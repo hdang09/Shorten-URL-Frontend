@@ -5,13 +5,10 @@ function App() {
     return (
         <Router>
             <Routes>
-                {publicRoutes.map((route) => (
-                    <Route
-                        key={route.id}
-                        path={route.path}
-                        element={route.element}
-                    />
-                ))}
+                {publicRoutes.map((route) => {
+                    let Element = route.element;
+                    return <Route key={route.id} path={route.path} element={<Element />} />;
+                })}
             </Routes>
         </Router>
     );
