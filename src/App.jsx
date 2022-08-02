@@ -6,8 +6,23 @@ function App() {
         <Router>
             <Routes>
                 {publicRoutes.map((route) => {
-                    let Element = route.element;
-                    return <Route key={route.id} path={route.path} element={<Element />} />;
+                    const Element = route.element;
+                    const Layout = route.layout;
+                    return (
+                        <Route
+                            key={route.id}
+                            path={route.path}
+                            element={
+                                Layout ? (
+                                    <Layout>
+                                        <Element />
+                                    </Layout>
+                                ) : (
+                                    <Element />
+                                )
+                            }
+                        />
+                    );
                 })}
             </Routes>
         </Router>

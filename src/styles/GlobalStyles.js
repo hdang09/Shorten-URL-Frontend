@@ -44,7 +44,7 @@ const GlobalStyles = createGlobalStyle`
         border: none;
     }
 
-    a[href] {
+    a {
         color: var(--primary-color);
         text-decoration: none;
     }

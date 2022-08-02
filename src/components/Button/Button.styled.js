@@ -38,10 +38,10 @@ const MyButton = styled.button`
         color: var(--black-color);
         text-align: left;
         padding: 0 40px;
+    }
 
-        &.active {
-            color: var(--primary-color);
-        }
+    &.active {
+        color: var(--primary-color);
     }
 `;
 
