@@ -2,13 +2,15 @@ import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 
 export const Wrapper = styled.div`
-    display: inline-block;
+    /* display: inline-block; */
+    display: none;
     width: var(--sidebar-width);
     height: calc(100vh - var(--header-height));
     background-color: var(--white-color);
     padding-top: 16px;
 
     @media only screen and (max-width: 992px) {
+        display: inline-block;
         width: 125px;
     }
 
@@ -27,6 +29,7 @@ export const SidebarItem = styled(NavLink)`
         display: flex;
         justify-content: center;
         align-items: center;
+        flex-direction: column;
         padding: 16px 0;
     }
 
@@ -38,5 +41,15 @@ export const SidebarItem = styled(NavLink)`
     &.active {
         color: var(--primary-color);
         font-weight: 700;
+    }
+`;
+
+export const Icon = styled.div`
+    display: inline-block;
+    font-size: 2rem;
+    margin-right: 10px;
+
+    @media only screen and (max-width: 992px) {
+        margin: 0;
     }
 `;

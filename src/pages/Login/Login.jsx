@@ -1,13 +1,8 @@
+import { AiOutlineUser } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { Button, Input } from '../../components';
-import Wrapper, {
-    Title,
-    SubTitle,
-    Image,
-    LoginSection,
-    RecoverPass,
-    SignUp,
-} from './Login.styled';
+import { FcGoogle } from 'react-icons/fc';
+import Wrapper, { Title, SubTitle, Image, LoginSection, RecoverPass, SignUp } from './Login.styled';
 
 function Login() {
     return (
@@ -23,11 +18,11 @@ function Login() {
                     <Title>Hello again!</Title>
                     <SubTitle>Welcome back you've been missed</SubTitle>
                     <div>
-                        <Input placeholder="Enter username" />
+                        <Input icon={<AiOutlineUser />} placeholder="Enter username" />
                         <Input password />
                         <RecoverPass>Recovery Password</RecoverPass>
                         <Button large>Log in</Button>
-                        <Button large outline>
+                        <Button large leftIcon={<FcGoogle />} outline>
                             Continue with FPT Email
                         </Button>
                         <SignUp>

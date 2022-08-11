@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.header`
@@ -12,10 +13,16 @@ export const Wrapper = styled.header`
     align-items: center;
     box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
     background-color: var(--white-color);
+
+    &.transparent {
+        background-color: transparent;
+        box-shadow: none;
+        color: var(--white-color);
+    }
 `;
 
 export const Content = styled.div`
-    width: ${(props) => (props.fullWidth ? '100%' : '1150px')};
+    width: 1150px;
     height: var(--header-height);
     display: flex;
     justify-content: space-between;
@@ -45,20 +52,47 @@ export const Logo = styled.div`
 export const Search = styled.div`
     width: 450px;
 
-    @media only screen and (max-width: 600px) {
+    @media only screen and (max-width: 992px) {
+        width: 300px;
+    }
+
+    @media only screen and (max-width: 500px) {
         display: none;
     }
 `;
 
 export const NavList = styled.ul`
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
     margin: 0;
 
-    li {
-        color: blue;
-        list-style: none;
-        display: inline-block;
-        padding: 0 20px;
+    @media only screen and (max-width: 992px) {
+        display: none;
+    }
+`;
+
+export const NavItem = styled(NavLink)`
+    margin: 0 20px;
+    font-weight: 600;
+    color: ${(props) => (props.transparent ? 'var(--white-color)' : 'var(--black-color)')};
+
+    &.active {
+        color: var(--primary-color);
+    }
+
+    &:hover {
+        opacity: 0.6;
+        color: var(--primary-color);
+    }
+
+    @media only screen and (max-width: 992px) {
+        /* width: 300px; */
+    }
+
+    @media only screen and (max-width: 500px) {
+        display: none;
     }
 `;
 

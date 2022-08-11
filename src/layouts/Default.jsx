@@ -1,30 +1,57 @@
-import React from 'react';
+import { createRef, useState } from 'react';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
-import { Header, Sidebar } from '../components';
+import { useDispatch, useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import { add } from '../components/LinkItem/urlSlice';
+import * as Styled from './Default.styled';
 
-const Container = styled.div`
-    display: flex;
-    height: 100%;
-    margin-top: var(--header-height);
-`;
+import { Header, Sidebar, Input, Button, Card } from '../components';
 
-const Content = styled.div`
-    display: flex;
-    flex-direction: column;
-    flex: 1;
-    margin: 16px;
-`;
+const Default = ({ children }) => {
+    const inputRef = createRef();
+    const [originalURL, setOriginalURL] = useState('');
+    const MY_LINKS = useSelector((state) => state.urls);
+    const dispatch = useDispatch();
 
-const Default = (children) => {
+    const handleShortenURL = () => {
+        setOriginalURL('');
+        toast.success('Shorten successfully');
+        dispatch(add({ name: 'a', shorten_url: 'https://f-link/123', original_url: originalURL }));
+        inputRef.current.focus();
+    };
     return (
         <>
-            <Header />
-            <Container>
-                <Sidebar />
-                <Content className="container">{children.children}</Content>
-            </Container>
+            {MY_LINKS.length > 0 ? (
+                <>
+                    <Header />
+                    <Styled.Container>
+                        <Sidebar />
+                        <Styled.Content className="container">{children}</Styled.Content>
+                    </Styled.Container>
+                </>
+            ) : (
+                <>
+                    <Header transparent />
+                    <Styled.Banner>
+                        <div style={{ margin: 'calc(100vh/2 - var(--header-height) - 16px) 0' }}>
+                            <Card noItem title="URL Shortener">
+                                <Styled.URLShortener>
+                                    <Input
+                                        ref={inputRef}
+                                        value={originalURL}
+                                        onChange={(e) => setOriginalURL(e.target.value)}
+                                        large
+                                        transparent
+                                        placeholder="Paste a link to shorten it"
+                                    />
+                                    <Button onClick={() => handleShortenURL()}>Shorten</Button>
+                                </Styled.URLShortener>
+                            </Card>
+                        </div>
+                    </Styled.Banner>
+                </>
+            )}
         </>
     );
 };

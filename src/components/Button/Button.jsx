@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import MyButton from './Button.styled.js';
+import * as Styled from './Button.styled';
 
 function Button({
     href,
@@ -12,6 +12,7 @@ function Button({
     large = false,
     disabled = false,
     menu = false,
+    onClick,
 }) {
     const className = [
         outline && 'outline',
@@ -36,11 +37,11 @@ function Button({
     };
 
     return (
-        <MyButton {...handleButtonType()} className={[...className]}>
-            {leftIcon && leftIcon}
+        <Styled.Button {...handleButtonType()} onClick={onClick} className={className}>
+            {leftIcon && <Styled.LeftIcon>{leftIcon}</Styled.LeftIcon>}
             {children}
-            {rightIcon && rightIcon}
-        </MyButton>
+            {rightIcon && <Styled.LeftIcon>{rightIcon}</Styled.LeftIcon>}
+        </Styled.Button>
     );
 }
 

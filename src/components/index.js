@@ -3,5 +3,7 @@ import Card from './Card/Card';
 import Header from './Header/Header';
 import Input from './Input/Input';
 import Sidebar from './Sidebar/Sidebar';
+import LinkItem from './LinkItem/LinkItem';
+import QRModal from './QRModal/QRModal';
 
-export { Button, Card, Header, Input, Sidebar };
+export { Button, Card, Header, Input, Sidebar, LinkItem, QRModal };

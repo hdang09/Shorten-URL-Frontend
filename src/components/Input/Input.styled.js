@@ -6,14 +6,21 @@ export const Wrapper = styled.div`
     & + & {
         margin-top: 16px;
     }
+
+    &.large {
+        display: flex;
+        flex: 1;
+    }
+
+    &.transparent input {
+        border: none;
+        background-color: var(--background-color);
+    }
 `;
 
 export const InputTag = styled.input`
-    border: none;
-    background-color: var(
-        ${(props) =>
-            props.transparent ? '--background-color' : '--white-color'}
-    );
+    border: 1px solid var(--black-color);
+    background-color: var(--white-color);
     height: 42px;
     border-radius: 32px;
     padding: 20px;
@@ -33,4 +40,20 @@ export const Eye = styled.div`
     &:hover {
         opacity: 0.8;
     }
+`;
+
+export const SubmitBtn = styled.div`
+    position: absolute;
+    right: 12px;
+    top: 0;
+    margin: 0;
+`;
+
+export const Icon = styled.div`
+    position: absolute;
+    /* left: 8px; */
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    margin-right: 8px;
 `;
