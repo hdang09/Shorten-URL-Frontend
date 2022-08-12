@@ -47,21 +47,24 @@ const Default = ({ children }) => {
                 <>
                     <Header transparent />
                     <Styled.Banner>
-                        <div style={{ margin: 'calc(100vh/2 - var(--header-height) - 16px) 0' }}>
-                            <Card noItem title="URL Shortener">
-                                <Styled.URLShortener>
-                                    <Input
-                                        ref={inputRef}
-                                        value={originalURL}
-                                        onChange={(e) => setOriginalURL(e.target.value)}
-                                        large
-                                        transparent
-                                        placeholder="Paste a link to shorten it"
-                                    />
-                                    <Button onClick={() => handleShortenURL()}>Shorten</Button>
-                                </Styled.URLShortener>
-                            </Card>
-                        </div>
+                        <Styled.Heading>Create Short Links!</Styled.Heading>
+                        <Styled.Subheading>
+                            A URL shortener built with powerful tools to help you grow and protect
+                            your brand.
+                        </Styled.Subheading>
+                        <Card noItem title="URL Shortener">
+                            <Styled.URLShortener>
+                                <Input
+                                    ref={inputRef}
+                                    value={originalURL}
+                                    onChange={(e) => setOriginalURL(e.target.value)}
+                                    large
+                                    transparent
+                                    placeholder="Paste a link to shorten it"
+                                />
+                                <Button onClick={() => handleShortenURL()}>Shorten</Button>
+                            </Styled.URLShortener>
+                        </Card>
                     </Styled.Banner>
                 </>
             )}

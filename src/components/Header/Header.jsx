@@ -4,6 +4,8 @@ import NewLogo from '../../images/new-logo.png';
 import { AiFillCaretDown } from 'react-icons/ai';
 import * as Styled from './Header.styled';
 import Tippy from '@tippyjs/react/headless';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 function Header({ landingPage, transparent }) {
     return (

@@ -22,6 +22,8 @@ export const Banner = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+    flex-direction: column;
 `;
 
 export const Content = styled.div`
@@ -40,5 +42,27 @@ export const Content = styled.div`
 export const URLShortener = styled.div`
     @media only screen and (min-width: 600px) {
         display: flex;
+    }
+`;
+
+export const Heading = styled.h1`
+    color: var(--white-color);
+    display: block;
+    font-weight: 700;
+    text-align: center;
+    font-size: 4rem;
+    margin-bottom: 8px;
+`;
+
+export const Subheading = styled.h2`
+    color: var(--white-color);
+    display: block;
+    margin-bottom: 48px;
+    font-weight: 400;
+    text-align: center;
+    /* font-size: 4rem; */
+
+    @media only screen and (min-width: 600px) {
+        padding: 8px;
     }
 `;

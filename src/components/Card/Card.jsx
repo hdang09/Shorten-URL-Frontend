@@ -4,7 +4,7 @@ function Card({ title, children, subtitle, noItem }) {
     return (
         <Styled.Wrapper noItem={noItem}>
             <Styled.Header>
-                <Styled.Title>{title}</Styled.Title>
+                <Styled.Title noItem={noItem}>{title}</Styled.Title>
                 <h3>{subtitle}</h3>
             </Styled.Header>
             <div>{children}</div>
