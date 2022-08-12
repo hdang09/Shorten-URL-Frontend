@@ -25,6 +25,7 @@ export const Wrapper = styled.div`
 
 export const InputTag = styled.input`
     border: 1px solid var(--black-color);
+    box-shadow: var(--box-shadow);
     background-color: var(--white-color);
     height: 42px;
     border-radius: 32px;

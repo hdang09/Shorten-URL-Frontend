@@ -9,6 +9,7 @@ const primaryColors = [
     '90deg, rgb(116, 235, 213) 0%, rgb(159, 172, 230) 100%',
     '225deg, rgb(255, 60, 172) 0%, rgb(120, 75, 160) 50%, rgb(43, 134, 197) 100%',
     '5deg, rgb(250, 139, 255) 0%, rgb(43, 210, 255) 52%, rgb(43, 255, 136) 90%',
+    '90deg, rgb(0, 219, 222) 0%, rgb(252, 0, 255) 100%',
 ];
 
 const permanentRandNum = Math.floor(Math.random() * primaryColors.length);
@@ -51,7 +52,7 @@ export const EditBox = styled.div`
 `;
 
 export const Icon = styled.div`
-    font-size: 2rem;
+    font-size: 3.6rem;
     margin-right: 16px;
 
     @media only screen and (max-width: 500px) {

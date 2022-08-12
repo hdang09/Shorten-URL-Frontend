@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import * as Styled from './LinkItem.styled';
 import { MdOutlineContentCopy } from 'react-icons/md';
 import { IoQrCodeOutline } from 'react-icons/io5';
-import { BsPencilSquare } from 'react-icons/bs';
+import { BsPencilSquare, BsLink45Deg } from 'react-icons/bs';
 import { ImBin } from 'react-icons/im';
 import { Input, Button, QRModal } from '..';
 import { toast } from 'react-toastify';
@@ -46,7 +46,9 @@ const LinkItem = ({ data }) => {
     return (
         <>
             <Styled.Wrapper>
-                <Styled.Icon>Icon</Styled.Icon>
+                <Styled.Icon>
+                    <BsLink45Deg />
+                </Styled.Icon>
                 <Styled.Main>
                     <Styled.Title>{data.name}</Styled.Title>
                     <Styled.Subtitle href={data.shorten_url}>{data.shorten_url}</Styled.Subtitle>

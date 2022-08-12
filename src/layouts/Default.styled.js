@@ -48,7 +48,7 @@ export const URLShortener = styled.div`
 export const Heading = styled.h1`
     color: var(--white-color);
     display: block;
-    font-weight: 700;
+    font-weight: 800;
     text-align: center;
     font-size: 4rem;
     margin-bottom: 8px;

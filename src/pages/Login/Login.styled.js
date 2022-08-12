@@ -1,9 +1,19 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import styled from 'styled-components';
+import background from '../../assets/login-bg.png';
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
     height: 100vh;
+    background-image: url(${background});
+    background-size: cover;
+    background-clip: border-box;
+    background-position: center;
+    overflow: hidden;
+
+    @media only screen and (max-width: 992px) {
+        background-image: none;
+        background-color: var(--white-color);
+    }
 `;
 
 export const Title = styled.h1`
@@ -16,29 +26,17 @@ export const SubTitle = styled.h2`
     margin-bottom: 32px;
     font-size: 1.6rem;
 `;
-
-export const Image = styled.div`
-    background-color: var(--background-color);
-    position: relative;
-
-    & img {
-        border-radius: 32px;
-        position: relative;
-        width: 100%;
-        height: 100%;
-        object-fit: contain;
-    }
-
-    @media only screen and (max-width: 996px) {
-        display: none;
-    }
-`;
 export const LoginSection = styled.div`
-    height: 100%;
+    height: 100vh;
+    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
+    @media only screen and (max-width: 992px) {
+        background-color: var(--white-color);
+    }
 `;
 
 export const RecoverPass = styled.p`
@@ -53,5 +51,3 @@ export const SignUp = styled.p`
     margin: 12px;
     font-size: 1.4rem;
 `;
-
-export default Wrapper;

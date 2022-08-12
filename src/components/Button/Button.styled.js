@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-    border: 1px solid transparent;
+    /* border: 1px solid transparent; */
     background: linear-gradient(0deg, rgb(8, 174, 234) 0%, rgb(42, 245, 152) 100%);
     border-radius: 32px;
     min-width: 100px;
@@ -26,7 +26,7 @@ export const Button = styled.button`
 
     &.outline {
         background: var(--white-color);
-        border-color: var(--primary-color);
+        border: 1px solid var(--primary-color);
         color: var(--primary-color);
 
         &:hover {

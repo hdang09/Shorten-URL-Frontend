@@ -4,8 +4,8 @@ import NewLogo from '../../images/new-logo.png';
 import { AiFillCaretDown } from 'react-icons/ai';
 import * as Styled from './Header.styled';
 import Tippy from '@tippyjs/react/headless';
-import { useEffect } from 'react';
-import axios from 'axios';
+import { BsGlobe, BsGear, BsQuestionOctagon } from 'react-icons/bs';
+import { FiLogOut } from 'react-icons/fi';
 
 function Header({ landingPage, transparent }) {
     return (
@@ -50,10 +50,22 @@ function Header({ landingPage, transparent }) {
                         render={(attrs) => (
                             <div tabIndex="-1" {...attrs}>
                                 <Styled.TippyBox>
-                                    <Link to="/">Language</Link>
-                                    <Link to="/">Helps</Link>
-                                    <Link to="/settings">Settings</Link>
-                                    <Link to="/login">Log out</Link>
+                                    <Styled.MenuItem to="/">
+                                        <BsGlobe />
+                                        <Styled.Text>Language</Styled.Text>
+                                    </Styled.MenuItem>
+                                    <Styled.MenuItem to="/">
+                                        <BsQuestionOctagon />
+                                        <Styled.Text>Helps</Styled.Text>
+                                    </Styled.MenuItem>
+                                    <Styled.MenuItem to="/settings">
+                                        <BsGear />
+                                        <Styled.Text>Settings</Styled.Text>
+                                    </Styled.MenuItem>
+                                    <Styled.MenuItem to="/login">
+                                        <FiLogOut />
+                                        <Styled.Text>Log out</Styled.Text>
+                                    </Styled.MenuItem>
                                 </Styled.TippyBox>
                             </div>
                         )}

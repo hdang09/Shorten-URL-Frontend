@@ -1,37 +1,37 @@
 import { Link } from 'react-router-dom';
 import { Button, Input } from '../../components';
 import { FcGoogle } from 'react-icons/fc';
-import Wrapper, { Title, SubTitle, Image, LoginSection, RecoverPass, SignUp } from './Login.styled';
+import * as Styled from './Login.styled';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function Login() {
     return (
-        <div className="container">
-            <Wrapper className="row">
-                <Image className="col-lg-6 ">
-                    <img
-                        src="https://img.freepik.com/free-vector/link-building-concept_23-2148006397.jpg?t=st=1658285110~exp=1658285710~hmac=a42a9e075ceb06d8670e52f7f6638010e645ba4e509a815dee21d17657e6f8c1&w=740"
-                        alt=""
-                    />
-                </Image>
-                <LoginSection className="col-lg-6 col-md-12">
-                    <Title>Hello again!</Title>
-                    <SubTitle>Welcome back you've been missed</SubTitle>
-                    <div>
-                        <Input placeholder="Enter username" />
-                        <Input password />
-                        <RecoverPass>Recovery Password</RecoverPass>
-                        <Button large>Log in</Button>
-                        <Button large leftIcon={<FcGoogle />} outline>
-                            Continue with FPT Email
-                        </Button>
-                        <SignUp>
-                            Don't have an account?
-                            <Link to="/signup"> Sign up</Link>
-                        </SignUp>
+        <Styled.Wrapper>
+            <div className="container">
+                <div className="row">
+                    <div className="col-lg-6"></div>
+                    <div className="col-lg-6 col-md-12">
+                        <Styled.LoginSection>
+                            <Styled.Title>Hello Again!</Styled.Title>
+                            <Styled.SubTitle>Welcome back you've been missed</Styled.SubTitle>
+                            <div>
+                                <Input transparent placeholder="Enter username" />
+                                <Input transparent password />
+                                <Styled.RecoverPass>Recovery Password</Styled.RecoverPass>
+                                <Button large>Log in</Button>
+                                <Button large leftIcon={<FcGoogle />} outline>
+                                    Continue with FPT Email
+                                </Button>
+                                <Styled.SignUp>
+                                    Don't have an account?
+                                    <Link to="/signup"> Sign up</Link>
+                                </Styled.SignUp>
+                            </div>
+                        </Styled.LoginSection>
                     </div>
-                </LoginSection>
-            </Wrapper>
-        </div>
+                </div>
+            </div>
+        </Styled.Wrapper>
     );
 }
 

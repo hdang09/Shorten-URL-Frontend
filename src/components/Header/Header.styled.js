@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.header`
@@ -75,7 +75,7 @@ export const NavList = styled.ul`
 
 export const NavItem = styled(NavLink)`
     margin: 0 20px;
-    font-weight: 600;
+    font-weight: 700;
     color: ${(props) => (props.transparent ? 'var(--white-color)' : 'var(--black-color)')};
 
     &.active {
@@ -116,13 +116,24 @@ export const Menu = styled.div``;
 
 export const TippyBox = styled.ul`
     background-color: var(--white-color);
-    padding: 12px 40px;
-    box-shadow: var(--box-shadow);
+    padding: 12px 0;
+    box-shadow: rgb(0 0 0 / 12%) 0px 4px 16px;
     border-radius: 8px;
     list-style: none;
+`;
 
-    & a {
-        padding: 12px 0;
-        display: block;
+export const MenuItem = styled(Link)`
+    display: block;
+    padding: 12px 52px 12px 32px;
+    color: var(--black-color);
+    font-weight: 500;
+
+    &:hover {
+        color: var(--black-color);
+        background-color: rgba(0, 0, 0, 0.05);
     }
+`;
+
+export const Text = styled.span`
+    margin-left: 8px;
 `;

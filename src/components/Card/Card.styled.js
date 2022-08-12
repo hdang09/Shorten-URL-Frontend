@@ -20,9 +20,16 @@ export const Header = styled.header`
 `;
 
 export const Title = styled.h1`
-    width: 100%;
+    width: ${(props) => (props.noItem ? '100%' : 'auto')};
     font-weight: 700;
     margin-bottom: 20px;
-    font-size: 2.8rem;
+    font-size: 2.6rem;
     text-align: ${(props) => (props.noItem ? 'center' : 'left')};
+`;
+
+export const Subtitle = styled.h3`
+    &:hover a {
+        color: var(--primary-color);
+        opacity: 0.6;
+    }
 `;
