@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
+    margin-right: 8px;
     position: relative;
 
     & + & {
@@ -16,6 +17,10 @@ export const Wrapper = styled.div`
         border: none;
         background-color: var(--background-color);
     }
+
+    @media only screen and (max-width: 500px) {
+        margin-right: 0;
+    }
 `;
 
 export const InputTag = styled.input`
@@ -28,6 +33,10 @@ export const InputTag = styled.input`
     display: block;
     font-size: 1.4rem;
     caret-color: var(--primary-color);
+
+    @media only screen and (max-width: 500px) {
+        min-width: 100%;
+    }
 `;
 
 export const Eye = styled.div`

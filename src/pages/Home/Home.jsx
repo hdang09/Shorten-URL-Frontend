@@ -24,15 +24,28 @@ function Home() {
     const dispatch = useDispatch();
 
     const handleShortenURL = () => {
-        setOriginalURL('');
-        toast.success('Shorten successfully');
-        dispatch(add({ name: 'a', shorten_url: 'https://f-link/123', original_url: originalURL }));
-        inputRef.current.focus();
+        if (
+            (originalURL.trim() && originalURL.includes('https://')) ||
+            originalURL.includes('www.')
+        ) {
+            setOriginalURL('');
+            toast.success('Shorten successfully');
+            dispatch(
+                add({
+                    name: 'Shorten URL 1',
+                    shorten_url: 'https://f-link/123',
+                    original_url: originalURL,
+                }),
+            );
+            inputRef.current.focus();
+        } else {
+            toast.error('Your link is wrong. Please try again!');
+        }
     };
 
     return (
         <>
-            <div className="row">
+            <div className="row gx-5">
                 <div className="col-lg-8 col-md-12">
                     <Card title="URL Shortener">
                         <Styled.URLShortener>
@@ -48,7 +61,7 @@ function Home() {
                         </Styled.URLShortener>
                     </Card>
                     <Card
-                        title="My Recent URLs"
+                        title="Recent URLs"
                         subtitle={
                             <Link to="/url">
                                 View All <AiOutlineRight />

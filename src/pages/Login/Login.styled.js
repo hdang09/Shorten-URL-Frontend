@@ -21,12 +21,16 @@ export const Image = styled.div`
     background-color: var(--background-color);
     position: relative;
 
-    img {
+    & img {
         border-radius: 32px;
         position: relative;
         width: 100%;
         height: 100%;
         object-fit: contain;
+    }
+
+    @media only screen and (max-width: 996px) {
+        display: none;
     }
 `;
 export const LoginSection = styled.div`

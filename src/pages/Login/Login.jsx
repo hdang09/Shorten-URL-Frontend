@@ -1,4 +1,3 @@
-import { AiOutlineUser } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
 import { Button, Input } from '../../components';
 import { FcGoogle } from 'react-icons/fc';
@@ -8,17 +7,17 @@ function Login() {
     return (
         <div className="container">
             <Wrapper className="row">
-                <Image className="col">
+                <Image className="col-lg-6 ">
                     <img
                         src="https://img.freepik.com/free-vector/link-building-concept_23-2148006397.jpg?t=st=1658285110~exp=1658285710~hmac=a42a9e075ceb06d8670e52f7f6638010e645ba4e509a815dee21d17657e6f8c1&w=740"
                         alt=""
                     />
                 </Image>
-                <LoginSection className="col">
+                <LoginSection className="col-lg-6 col-md-12">
                     <Title>Hello again!</Title>
                     <SubTitle>Welcome back you've been missed</SubTitle>
                     <div>
-                        <Input icon={<AiOutlineUser />} placeholder="Enter username" />
+                        <Input placeholder="Enter username" />
                         <Input password />
                         <RecoverPass>Recovery Password</RecoverPass>
                         <Button large>Log in</Button>

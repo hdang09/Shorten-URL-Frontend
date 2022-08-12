@@ -13,7 +13,7 @@ export const Container = styled.div`
     }
 
     @media only screen and (max-width: 500px) {
-        /* display: none; */
+        overflow: hidden;
     }
 `;
 
@@ -25,10 +25,15 @@ export const Banner = styled.div`
 `;
 
 export const Content = styled.div`
+    width: 1150px;
     margin: 16px;
 
-    @media only screen and (min-width: 992px) {
-        width: 1150px;
+    @media only screen and (max-width: 992px) {
+        margin: 16px 8px;
+    }
+
+    @media only screen and (max-width: 500px) {
+        margin: 12px 8px;
     }
 `;
 

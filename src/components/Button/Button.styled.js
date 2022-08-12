@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
     border: 1px solid transparent;
-    background: var(--primary-color);
+    background: linear-gradient(0deg, rgb(8, 174, 234) 0%, rgb(42, 245, 152) 100%);
     border-radius: 32px;
     min-width: 100px;
     height: 40px;
@@ -12,10 +12,8 @@ export const Button = styled.button`
     display: flex;
     align-items: center;
     justify-content: center;
-    /* width: 100%; */
     color: var(--white-color);
     font-weight: 500;
-    /* margin: 12px; */
 
     &:hover {
         opacity: 0.8;
@@ -27,7 +25,7 @@ export const Button = styled.button`
     }
 
     &.outline {
-        background-color: var(--white-color);
+        background: var(--white-color);
         border-color: var(--primary-color);
         color: var(--primary-color);
 
@@ -54,7 +52,7 @@ export const Button = styled.button`
         color: var(--primary-color);
     }
 
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 600px) {
         width: 100%;
     }
 `;

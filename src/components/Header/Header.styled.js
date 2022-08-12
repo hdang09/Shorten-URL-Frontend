@@ -101,7 +101,10 @@ export const Avatar = styled.img`
     width: 35px;
     height: 35px;
 `;
-export const User = styled.div``;
+export const User = styled.div`
+    cursor: pointer;
+`;
+
 export const NameUser = styled.span`
     margin: 0 8px;
 
@@ -110,3 +113,16 @@ export const NameUser = styled.span`
     }
 `;
 export const Menu = styled.div``;
+
+export const TippyBox = styled.ul`
+    background-color: var(--white-color);
+    padding: 12px 40px;
+    box-shadow: var(--box-shadow);
+    border-radius: 8px;
+    list-style: none;
+
+    & a {
+        padding: 12px 0;
+        display: block;
+    }
+`;

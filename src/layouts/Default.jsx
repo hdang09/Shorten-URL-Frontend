@@ -15,10 +15,23 @@ const Default = ({ children }) => {
     const dispatch = useDispatch();
 
     const handleShortenURL = () => {
-        setOriginalURL('');
-        toast.success('Shorten successfully');
-        dispatch(add({ name: 'a', shorten_url: 'https://f-link/123', original_url: originalURL }));
-        inputRef.current.focus();
+        if (
+            (originalURL.trim() && originalURL.toLowerCase().includes('https://')) ||
+            originalURL.toLowerCase().includes('www.')
+        ) {
+            setOriginalURL('');
+            toast.success('Shorten successfully');
+            dispatch(
+                add({
+                    name: 'Shorten URL 1',
+                    shorten_url: 'https://f-link/123',
+                    original_url: originalURL,
+                }),
+            );
+            inputRef.current.focus();
+        } else {
+            toast.error('Your link is wrong. Please try again!');
+        }
     };
     return (
         <>

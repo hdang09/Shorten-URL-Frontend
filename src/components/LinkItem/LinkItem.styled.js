@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+const primaryColors = [
+    '160deg, rgb(0, 147, 233) 0%, rgb(128, 208, 199) 100%',
+    '62deg, rgb(142, 197, 252) 0%, rgb(224, 195, 252) 100%',
+    '90deg, rgb(250, 217, 97) 0%, rgb(247, 107, 28) 100%',
+    '19deg, rgb(250, 172, 168) 0%, rgb(221, 214, 243) 100%',
+    'rgb(169, 201, 255) 0%, rgb(255, 187, 236) 100%',
+    '90deg, rgb(116, 235, 213) 0%, rgb(159, 172, 230) 100%',
+    '225deg, rgb(255, 60, 172) 0%, rgb(120, 75, 160) 50%, rgb(43, 134, 197) 100%',
+    '5deg, rgb(250, 139, 255) 0%, rgb(43, 210, 255) 52%, rgb(43, 255, 136) 90%',
+];
+
+const permanentRandNum = Math.floor(Math.random() * primaryColors.length);
+
 export const Wrapper = styled.div`
     box-shadow: var(--box-shadow);
     padding: 12px;
@@ -10,7 +23,7 @@ export const Wrapper = styled.div`
     margin-bottom: 10px;
     position: relative;
     z-index: 1;
-    background: var(--primary-color);
+    background: linear-gradient(${(props) => primaryColors[permanentRandNum]});
     border-radius: 10px;
 
     @media only screen and (max-width: 500px) {

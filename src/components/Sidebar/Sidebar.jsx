@@ -13,24 +13,18 @@ const SIDEBAR_LIST = [
     },
     {
         id: 2,
-        icon: <AiOutlineQrcode />,
-        to: '/qrcode',
-        title: 'QR Code',
-    },
-    {
-        id: 3,
         icon: <BiLink />,
         to: '/url',
         title: 'My URLs',
     },
     {
-        id: 4,
+        id: 3,
         icon: <ImStatsDots />,
         to: '/statistics',
         title: 'Statistics',
     },
     {
-        id: 5,
+        id: 4,
         icon: <BsFillGearFill />,
         to: '/settings',
         title: 'Settings',

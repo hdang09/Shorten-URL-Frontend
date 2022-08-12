@@ -15,7 +15,18 @@ export const Wrapper = styled.div`
     }
 
     @media only screen and (max-width: 500px) {
-        display: none;
+        display: flex;
+        flex-direction: row;
+        z-index: 10;
+        width: 100%;
+        position: fixed;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        height: auto;
+        justify-content: space-between;
+        padding: 0 16px;
+        border-top: 1px solid #ccc;
     }
 `;
 
@@ -31,6 +42,10 @@ export const SidebarItem = styled(NavLink)`
         align-items: center;
         flex-direction: column;
         padding: 16px 0;
+    }
+
+    @media only screen and (max-width: 500px) {
+        padding: 12px 0;
     }
 
     &:hover {

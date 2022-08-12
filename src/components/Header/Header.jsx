@@ -1,16 +1,15 @@
-import { AiOutlineMenu } from 'react-icons/ai';
 import { Input, Button } from '..';
 import { Link, NavLink } from 'react-router-dom';
 import NewLogo from '../../images/new-logo.png';
 import { AiFillCaretDown } from 'react-icons/ai';
 import * as Styled from './Header.styled';
+import Tippy from '@tippyjs/react/headless';
 
 function Header({ landingPage, transparent }) {
     return (
         <Styled.Wrapper className={transparent && 'transparent'}>
             {landingPage ? (
                 <Styled.Content>
-                    {/* <AiOutlineMenu /> */}
                     <Styled.Logo as={Link} to="/">
                         <img src={NewLogo} alt="F-Code Logo" />
                         <p>F - Code</p>
@@ -26,7 +25,6 @@ function Header({ landingPage, transparent }) {
                 </Styled.Content>
             ) : (
                 <Styled.Content>
-                    {/* <AiOutlineMenu /> */}
                     <Link to="/">
                         <Styled.Logo>
                             <img src={NewLogo} alt="" />
@@ -44,11 +42,26 @@ function Header({ landingPage, transparent }) {
                     {/* <Styled.Search>
                         <Input large transparent />
                     </Styled.Search> */}
-                    <Styled.User>
-                        <Styled.Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU" />
-                        <Styled.NameUser>Hai Dang</Styled.NameUser>
-                        <AiFillCaretDown />
-                    </Styled.User>
+
+                    <Tippy
+                        interactive
+                        render={(attrs) => (
+                            <div tabIndex="-1" {...attrs}>
+                                <Styled.TippyBox>
+                                    <Link to="/">Language</Link>
+                                    <Link to="/">Helps</Link>
+                                    <Link to="/settings">Settings</Link>
+                                    <Link to="/login">Log out</Link>
+                                </Styled.TippyBox>
+                            </div>
+                        )}
+                    >
+                        <Styled.User>
+                            <Styled.Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU" />
+                            <Styled.NameUser>Hai Dang</Styled.NameUser>
+                            <AiFillCaretDown />
+                        </Styled.User>
+                    </Tippy>
                 </Styled.Content>
             )}
         </Styled.Wrapper>
