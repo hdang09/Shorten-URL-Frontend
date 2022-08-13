@@ -43,6 +43,7 @@ export const InputTag = styled.input`
     display: block;
     font-size: 1.4rem;
     caret-color: var(--primary-color);
+    color: var(--black-color);
 
     @media only screen and (max-width: 500px) {
         min-width: 100%;

@@ -1,9 +1,10 @@
-import { useState, createRef } from 'react';
+import { useState, createRef, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
+import { useDebounce } from '../../hooks';
 import { Card, Input, Button } from '../../components';
 import { add } from '../../components/LinkItem/urlSlice';
 
@@ -19,6 +20,12 @@ const URLShortener = ({ noItem }) => {
     const inputRef = createRef();
     const [originalURL, setOriginalURL] = useState('');
     const dispatch = useDispatch();
+
+    const debouncedOriginalURL = useDebounce(originalURL, 750);
+
+    useEffect(() => {
+        // Call API
+    }, [debouncedOriginalURL]);
 
     const handleShortenURL = () => {
         if (

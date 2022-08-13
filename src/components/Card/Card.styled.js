@@ -2,6 +2,7 @@ import styled from 'styled-components';
 
 export const Wrapper = styled.div`
     background-color: var(--white-color);
+    color: var(--black-color);
     border-radius: 12px;
     width: ${(props) => (props.noItem ? '500px' : '100%')};
     margin-bottom: 20px;

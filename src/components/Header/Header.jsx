@@ -1,12 +1,17 @@
 import { Link } from 'react-router-dom';
-import Logo from '../../assets/logo.png';
 import { AiFillCaretDown } from 'react-icons/ai';
-import * as Styled from './Header.styled';
-import Tippy from '@tippyjs/react/headless';
-import { BsGlobe, BsGear, BsQuestionOctagon } from 'react-icons/bs';
+import { BsGlobe, BsGear, BsQuestionOctagon, BsLightbulb } from 'react-icons/bs';
 import { FiLogOut } from 'react-icons/fi';
+import Tippy from '@tippyjs/react/headless';
+
+import { useLocalStorage } from '../../hooks';
+import Logo from '../../assets/logo.png';
+import * as Styled from './Header.styled';
 
 function Header({ transparent }) {
+    const [theme, setTheme] = useLocalStorage('data-theme', 'light');
+    document.body.setAttribute('data-theme', theme);
+
     return (
         <Styled.Wrapper className={transparent && 'transparent'}>
             <Styled.Content>
@@ -29,6 +34,17 @@ function Header({ transparent }) {
                     render={(attrs) => (
                         <div tabIndex="-1" {...attrs}>
                             <Styled.TippyBox>
+                                <Styled.MenuItem
+                                    to="/"
+                                    onClick={() =>
+                                        setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'))
+                                    }
+                                >
+                                    <BsLightbulb />
+                                    <Styled.Text>
+                                        {theme === 'light' ? 'Dark' : 'Light'} Theme
+                                    </Styled.Text>
+                                </Styled.MenuItem>
                                 <Styled.MenuItem to="/language">
                                     <BsGlobe />
                                     <Styled.Text>Language</Styled.Text>

@@ -17,38 +17,42 @@ const privateRoutes = [
 
 const RouterComponents = () => {
     return (
-        <Router>
-            <Routes>
-                <Route>
-                    {privateRoutes.map((route) => {
-                        const Element = route.element;
-                        const Layout = route.layout;
-                        return (
-                            <Route
-                                key={route.name}
-                                path={route.path}
-                                element={
-                                    Layout ? (
-                                        <Layout>
+        <div>
+            <Router>
+                <Routes>
+                    <Route>
+                        {privateRoutes.map((route) => {
+                            const Element = route.element;
+                            const Layout = route.layout;
+                            return (
+                                <Route
+                                    key={route.name}
+                                    path={route.path}
+                                    element={
+                                        Layout ? (
+                                            <Layout>
+                                                <Element />
+                                            </Layout>
+                                        ) : (
                                             <Element />
-                                        </Layout>
-                                    ) : (
-                                        <Element />
-                                    )
-                                }
-                            />
-                        );
-                    })}
-                </Route>
-                <Route>
-                    {publicRoutes.map((route) => {
-                        const Element = route.element;
-                        return <Route key={route.name} path={route.path} element={<Element />} />;
-                    })}
-                </Route>
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-        </Router>
+                                        )
+                                    }
+                                />
+                            );
+                        })}
+                    </Route>
+                    <Route>
+                        {publicRoutes.map((route) => {
+                            const Element = route.element;
+                            return (
+                                <Route key={route.name} path={route.path} element={<Element />} />
+                            );
+                        })}
+                    </Route>
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            </Router>
+        </div>
     );
 };
 

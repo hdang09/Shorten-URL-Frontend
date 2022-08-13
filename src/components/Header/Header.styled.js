@@ -107,6 +107,7 @@ export const User = styled.div`
 
 export const NameUser = styled.span`
     margin: 0 8px;
+    color: var(--black-color);
 
     @media only screen and (max-width: 500px) {
         display: none;
