@@ -12,6 +12,7 @@ export const Wrapper = styled.div`
     @media only screen and (max-width: 992px) {
         display: inline-block;
         width: 125px;
+        /* height: inherit; */
     }
 
     @media only screen and (max-width: 500px) {

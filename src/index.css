@@ -10,7 +10,8 @@
     --background-color: #eef0f4;
     --sidebar-width: 250px;
     --header-height: 60px;
-    --box-shadow: 0 5px 8px rgb(0 0 0 / 8%);
+    /* --box-shadow: 0 5px 8px rgb(0 0 0 / 8%); */
+    --box-shadow: 0 4px 24px 0 rgb(34 41 47 / 10%);
 }
 
 [data-theme='dark'] {

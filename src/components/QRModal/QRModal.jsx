@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { AiOutlineClose, AiOutlineDownload } from 'react-icons/ai';
 
@@ -12,7 +12,8 @@ import Frame5 from '../../assets/QRCode/frame/qrcg-scan-me-bottom-frame.png';
 import Frame6 from '../../assets/QRCode/frame/qrcg-scan-me-bottom-header-frame.png';
 
 const QRModal = ({ setCloseQRModal }) => {
-    console.log('Function: ', setCloseQRModal);
+    const [frame, setFrame] = useState(Frame1);
+
     return (
         <div>
             <Styled.Wrapper>
@@ -21,40 +22,40 @@ const QRModal = ({ setCloseQRModal }) => {
                     onClick={() => setCloseQRModal()}
                 ></Styled.CloseBTN>
                 <Styled.Preview>
-                    <Styled.PreviewImage src={Frame1} alt="" />
+                    <Styled.PreviewImage src={frame} alt="" />
                     <Button leftIcon={<AiOutlineDownload />}>Download</Button>
                 </Styled.Preview>
                 <Styled.Customize>
                     <Styled.List>
                         <h2>FRAME</h2>
                         <Styled.Item>
-                            <Styled.Image src={Frame1} alt="" />
-                            <Styled.Image src={Frame2} alt="" />
-                            <Styled.Image src={Frame3} alt="" />
-                            <Styled.Image src={Frame4} alt="" />
-                            <Styled.Image src={Frame5} alt="" />
-                            <Styled.Image src={Frame6} alt="" />
-                            <Styled.Image src={Frame4} alt="" />
+                            <Styled.Image src={Frame1} alt="" onClick={() => setFrame(Frame1)} />
+                            <Styled.Image src={Frame2} alt="" onClick={() => setFrame(Frame2)} />
+                            <Styled.Image src={Frame3} alt="" onClick={() => setFrame(Frame3)} />
+                            <Styled.Image src={Frame4} alt="" onClick={() => setFrame(Frame4)} />
+                            <Styled.Image src={Frame5} alt="" onClick={() => setFrame(Frame5)} />
+                            <Styled.Image src={Frame6} alt="" onClick={() => setFrame(Frame6)} />
+                            <Styled.Image src={Frame4} alt="" onClick={() => setFrame(Frame4)} />
                         </Styled.Item>
                         <h2>QR CODE</h2>
                         <Styled.Item>
-                            <Styled.Image src={Frame1} alt="" />
-                            <Styled.Image src={Frame2} alt="" />
-                            <Styled.Image src={Frame3} alt="" />
-                            <Styled.Image src={Frame4} alt="" />
-                            <Styled.Image src={Frame5} alt="" />
-                            <Styled.Image src={Frame6} alt="" />
-                            <Styled.Image src={Frame4} alt="" />
+                            <Styled.Image src={Frame1} alt="" onClick={() => setFrame(Frame1)} />
+                            <Styled.Image src={Frame2} alt="" onClick={() => setFrame(Frame2)} />
+                            <Styled.Image src={Frame3} alt="" onClick={() => setFrame(Frame3)} />
+                            <Styled.Image src={Frame4} alt="" onClick={() => setFrame(Frame4)} />
+                            <Styled.Image src={Frame5} alt="" onClick={() => setFrame(Frame5)} />
+                            <Styled.Image src={Frame6} alt="" onClick={() => setFrame(Frame6)} />
+                            <Styled.Image src={Frame4} alt="" onClick={() => setFrame(Frame4)} />
                         </Styled.Item>
                         <h2>LOGO</h2>
                         <Styled.Item>
-                            <Styled.Image src={Frame1} alt="" />
-                            <Styled.Image src={Frame2} alt="" />
-                            <Styled.Image src={Frame3} alt="" />
-                            <Styled.Image src={Frame4} alt="" />
-                            <Styled.Image src={Frame5} alt="" />
-                            <Styled.Image src={Frame6} alt="" />
-                            <Styled.Image src={Frame4} alt="" />
+                            <Styled.Image src={Frame1} alt="" onClick={() => setFrame(Frame1)} />
+                            <Styled.Image src={Frame2} alt="" onClick={() => setFrame(Frame2)} />
+                            <Styled.Image src={Frame3} alt="" onClick={() => setFrame(Frame3)} />
+                            <Styled.Image src={Frame4} alt="" onClick={() => setFrame(Frame4)} />
+                            <Styled.Image src={Frame5} alt="" onClick={() => setFrame(Frame5)} />
+                            <Styled.Image src={Frame6} alt="" onClick={() => setFrame(Frame6)} />
+                            <Styled.Image src={Frame4} alt="" onClick={() => setFrame(Frame4)} />
                         </Styled.Item>
                         <h2>COLOR</h2>
                         <Styled.Item>

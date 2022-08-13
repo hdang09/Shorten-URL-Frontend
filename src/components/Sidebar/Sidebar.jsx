@@ -20,8 +20,8 @@ const SIDEBAR_LIST = [
     {
         id: 3,
         icon: <ImStatsDots />,
-        to: '/statistics',
-        title: 'Statistics',
+        to: '/analytics',
+        title: 'Analytics',
     },
     {
         id: 4,

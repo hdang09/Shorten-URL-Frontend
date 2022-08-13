@@ -25,7 +25,7 @@ function Header({ transparent }) {
                     <Styled.NavList>
                         <Styled.NavItem to="/">HOME</Styled.NavItem>
                         <Styled.NavItem to="/url">MY URLS</Styled.NavItem>
-                        <Styled.NavItem to="/statistics">STATISTICS</Styled.NavItem>
+                        <Styled.NavItem to="/analytics">ANALYTICS</Styled.NavItem>
                         <Styled.NavItem to="/settings">SETTINGS</Styled.NavItem>
                     </Styled.NavList>
                 )}
@@ -67,7 +67,7 @@ function Header({ transparent }) {
                 >
                     <Styled.User>
                         <Styled.Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU" />
-                        <Styled.NameUser>Hai Dang</Styled.NameUser>
+                        <Styled.NameUser transparent={transparent}>Hai Dang</Styled.NameUser>
                         <AiFillCaretDown />
                     </Styled.User>
                 </Tippy>

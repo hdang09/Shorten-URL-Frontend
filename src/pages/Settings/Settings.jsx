@@ -6,11 +6,10 @@ const Settings = (props) => {
     return (
         <>
             <div className="row gx-5">
+                <div className="col-lg-3 hidden-md"></div>
                 <div className="col-lg-6 col-md-12">
                     <Card title="Settings"></Card>
-                </div>
-                <div className="col-lg-6 col-md-12">
-                    <Card title="Settings"></Card>
+                    <div className="col-lg-3 hidden-md"></div>
                 </div>
             </div>
         </>

@@ -29,9 +29,9 @@ const URLShortener = ({ noItem }) => {
 
     const handleShortenURL = () => {
         if (
-            (originalURL.trim() && originalURL.includes('https://')) ||
-            originalURL.includes('www.') ||
-            originalURL.includes('http://')
+            (originalURL.trim() && originalURL.toLowerCase().includes('https://')) ||
+            originalURL.toLowerCase().includes('www.') ||
+            originalURL.toLowerCase().includes('http://')
         ) {
             ++counter;
             setOriginalURL('');
@@ -41,7 +41,7 @@ const URLShortener = ({ noItem }) => {
                 add({
                     name: `Shorten URL ${counter}`,
                     shorten_url: `https://f-link.io/${counter}${counter}${counter}`,
-                    original_url: originalURL,
+                    original_url: originalURL.toLowerCase(),
                     created_at: `${today.getDate()}/${
                         today.getMonth() + 1
                     }/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}`,
