@@ -1,6 +1,10 @@
 import styled from 'styled-components';
 
 // Statistics
+export const InfoStat = styled.div`
+    display: inline-flex;
+    flex-direction: column;
+`;
 
 const Icon = styled.div`
     width: 30px;
@@ -10,17 +14,6 @@ const Icon = styled.div`
     justify-content: center;
     align-items: center;
     margin-right: 8px;
-`;
-
-export const URLShortener = styled.div`
-    @media only screen and (min-width: 600px) {
-        display: flex;
-    }
-`;
-
-export const InfoStat = styled.div`
-    display: inline-flex;
-    flex-direction: column;
 `;
 
 export const LinksIcon = styled(Icon)`

@@ -1,6 +1,6 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { Login, Home, Landing, Statistics, QRCode, Settings, MyURL, NotFound } from '../pages';
+import { Login, Home, Landing, Statistics, Settings, MyURL, NotFound } from '../pages';
 import Default from '../layouts/Default';
 
 const publicRoutes = [
@@ -11,7 +11,6 @@ const publicRoutes = [
 const privateRoutes = [
     { name: 'home', path: '/', element: Home, layout: Default },
     { name: 'statistics', path: '/statistics', element: Statistics, layout: Default },
-    { name: 'qrcode', path: '/qrcode', element: QRCode, layout: Default },
     { name: 'settings', path: '/settings', element: Settings, layout: Default },
     { name: 'url', path: '/url', element: MyURL, layout: Default },
 ];
