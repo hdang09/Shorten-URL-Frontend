@@ -50,11 +50,11 @@ function Header({ landingPage, transparent }) {
                         render={(attrs) => (
                             <div tabIndex="-1" {...attrs}>
                                 <Styled.TippyBox>
-                                    <Styled.MenuItem to="/">
+                                    <Styled.MenuItem to="/language">
                                         <BsGlobe />
                                         <Styled.Text>Language</Styled.Text>
                                     </Styled.MenuItem>
-                                    <Styled.MenuItem to="/">
+                                    <Styled.MenuItem to="/helps">
                                         <BsQuestionOctagon />
                                         <Styled.Text>Helps</Styled.Text>
                                     </Styled.MenuItem>

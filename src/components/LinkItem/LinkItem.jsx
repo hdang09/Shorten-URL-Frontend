@@ -9,7 +9,7 @@ import { Input, Button, QRModal } from '..';
 import { toast } from 'react-toastify';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
-import { add, deleteItem, edit } from './urlSlice';
+import { deleteItem, edit } from './urlSlice';
 import { useDispatch } from 'react-redux';
 
 const LinkItem = ({ data }) => {
@@ -21,14 +21,12 @@ const LinkItem = ({ data }) => {
 
     const handleDoneEdit = () => {
         setOpenEditBox(false);
-        console.log(nameInput);
-        console.log(nameInput && data.name);
-        console.log(urlInput);
         dispatch(
             edit({
                 name: nameInput || data.name,
                 shorten_url: urlInput || data.shorten_url,
                 original_url: data.original_url,
+                created_at: data.created_at,
             }),
         );
     };
@@ -87,22 +85,31 @@ const LinkItem = ({ data }) => {
             </Styled.Wrapper>
             {openEditBox && (
                 <Styled.EditBox>
-                    Name:{' '}
+                    <label>Name: </label>
                     <Input
                         value={nameInput}
                         onChange={(e) => setNameInput(e.target.value)}
                         outline
+                        large
                         placeholder={data.name}
                     />
-                    Shorten URL:{' '}
+                    <label>Shorten URL: </label>
                     <Input
                         value={urlInput}
                         onChange={(e) => setURLInput(e.target.value)}
                         outline
+                        large
                         placeholder={data.shorten_url}
                     />
                     <p>Original link: {data.original_url}</p>
-                    <Button onClick={handleDoneEdit}>Done</Button>
+                    <p>Created at: {data.created_at}</p>
+                    <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+                        <Button outline onClick={handleDelete}>
+                            Delete
+                        </Button>
+                        <p style={{ padding: '0 4px' }}></p>
+                        <Button onClick={handleDoneEdit}>Save</Button>
+                    </div>
                 </Styled.EditBox>
             )}
             {showQRModal && <QRModal setCloseQRModal={() => setShowQRModal(false)} />}

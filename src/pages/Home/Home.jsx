@@ -30,11 +30,15 @@ function Home() {
         ) {
             setOriginalURL('');
             toast.success('Shorten successfully');
+            let today = new Date();
             dispatch(
                 add({
                     name: 'Shorten URL 1',
                     shorten_url: 'https://f-link/123',
                     original_url: originalURL,
+                    created_at: `${today.getDate()}/${
+                        today.getMonth() + 1
+                    }/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}`,
                 }),
             );
             inputRef.current.focus();
@@ -69,7 +73,7 @@ function Home() {
                         }
                     >
                         {MY_LINKS.slice(0, 5).map((link) => (
-                            <LinkItem key={link.name} data={link} />
+                            <LinkItem key={link.original_url} data={link} />
                         ))}
                     </Card>
                 </div>

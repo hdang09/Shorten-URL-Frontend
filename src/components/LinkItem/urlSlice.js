@@ -47,6 +47,7 @@ const urlSlice = createSlice({
                 name: action.payload.name,
                 original_url: action.payload.original_url,
                 shorten_url: action.payload.shorten_url,
+                created_at: action.payload.created_at,
             });
         },
         deleteItem: (state, action) => {

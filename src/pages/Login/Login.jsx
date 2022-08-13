@@ -18,8 +18,10 @@ function Login() {
                                 <Input transparent placeholder="Enter username" />
                                 <Input transparent password />
                                 <Styled.RecoverPass>Recovery Password</Styled.RecoverPass>
-                                <Button large>Log in</Button>
-                                <Button large leftIcon={<FcGoogle />} outline>
+                                <Button to="/" large>
+                                    Log in
+                                </Button>
+                                <Button to="/" large leftIcon={<FcGoogle />} outline>
                                     Continue with FPT Email
                                 </Button>
                                 <Styled.SignUp>

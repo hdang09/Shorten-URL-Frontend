@@ -5,7 +5,7 @@ import { Card, LinkItem } from '../../components';
 import { useSelector } from 'react-redux';
 
 const Wrapper = styled.div`
-    padding: 0 120px;
+    padding: 0 150px;
 
     @media only screen and (max-width: 992px) {
         padding: 0;

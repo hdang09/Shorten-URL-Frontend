@@ -47,8 +47,12 @@ export const Wrapper = styled.div`
 export const EditBox = styled.div`
     border: 1px solid var(--black-color);
     border-radius: 10px;
-    padding: 20px;
+    padding: 20px 50px;
     margin-bottom: 20px;
+
+    @media only screen and (max-width: 500px) {
+        padding: 20px;
+    }
 `;
 
 export const Icon = styled.div`

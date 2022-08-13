@@ -3,7 +3,6 @@ import banner from '../assets/banner-bg.jpg';
 
 export const Container = styled.div`
     display: flex;
-    height: 100vh;
     justify-content: center;
     top: 0;
     margin-top: var(--header-height);
@@ -14,6 +13,7 @@ export const Container = styled.div`
 
     @media only screen and (max-width: 500px) {
         overflow: hidden;
+        margin-bottom: 80px;
     }
 `;
 
@@ -57,7 +57,7 @@ export const Heading = styled.h1`
 export const Subheading = styled.h2`
     color: var(--white-color);
     display: block;
-    margin-bottom: 48px;
+    margin-bottom: 32px;
     font-weight: 400;
     text-align: center;
     /* font-size: 4rem; */

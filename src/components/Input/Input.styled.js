@@ -1,8 +1,12 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-    margin-right: 8px;
     position: relative;
+    margin-bottom: 12px;
+
+    & + button {
+        margin-left: 8px;
+    }
 
     & + & {
         margin-top: 16px;
@@ -18,13 +22,18 @@ export const Wrapper = styled.div`
         background-color: var(--background-color);
     }
 
+    &.outline input {
+        box-shadow: inset 0 0 6px var(--primary-color), inset 0 0 6px var(--primary-color),
+            inset 0 0 6px var(--primary-color);
+    }
+
     @media only screen and (max-width: 500px) {
         margin-right: 0;
     }
 `;
 
 export const InputTag = styled.input`
-    border: 1px solid var(--black-color);
+    /* border: 1px solid var(--black-color); */
     box-shadow: var(--box-shadow);
     background-color: var(--white-color);
     height: 42px;

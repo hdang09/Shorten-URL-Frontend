@@ -2,13 +2,13 @@ import styled from 'styled-components';
 
 export const Button = styled.button`
     /* border: 1px solid transparent; */
-    background: linear-gradient(0deg, rgb(8, 174, 234) 0%, rgb(42, 245, 152) 100%);
+    background: linear-gradient(0deg, var(--primary-color) 0%, rgb(42, 245, 152) 100%);
     border-radius: 32px;
     min-width: 100px;
-    height: 40px;
+    height: 42px;
     font-size: 1.6rem;
     text-align: center;
-    padding: 0 24px;
+    padding: 0 28px;
     display: flex;
     align-items: center;
     justify-content: center;

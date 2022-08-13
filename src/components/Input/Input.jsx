@@ -10,6 +10,7 @@ const Input = forwardRef(
             large = false,
             transparent = false,
             password = false,
+            outline = false,
             onClick,
             submitBtn,
             icon,
@@ -26,7 +27,11 @@ const Input = forwardRef(
             onClick = handleShowPassword;
         }
 
-        const propsClassName = [transparent && 'transparent', large && 'large'];
+        const propsClassName = [
+            transparent && 'transparent',
+            large && 'large',
+            outline && 'outline',
+        ];
         const Inputprops = { placeholder, type, large, transparent, ...props };
         return (
             <Styled.Wrapper className={propsClassName}>

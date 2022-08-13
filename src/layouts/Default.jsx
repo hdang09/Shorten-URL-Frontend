@@ -17,15 +17,20 @@ const Default = ({ children }) => {
     const handleShortenURL = () => {
         if (
             (originalURL.trim() && originalURL.toLowerCase().includes('https://')) ||
-            originalURL.toLowerCase().includes('www.')
+            originalURL.toLowerCase().includes('www.') ||
+            originalURL.toLowerCase().includes('http://')
         ) {
             setOriginalURL('');
             toast.success('Shorten successfully');
+            let today = new Date();
             dispatch(
                 add({
                     name: 'Shorten URL 1',
                     shorten_url: 'https://f-link/123',
                     original_url: originalURL,
+                    created_at: `${today.getDate()}/${
+                        today.getMonth() + 1
+                    }/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}`,
                 }),
             );
             inputRef.current.focus();
