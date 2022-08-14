@@ -17,7 +17,9 @@ function NotFound() {
     return (
         <Wrapper>
             <p>404 - Not Found</p>
-            <Button to="/">Back to Home</Button>
+            <Button shine to="/">
+                Back to Home
+            </Button>
         </Wrapper>
     );
 }

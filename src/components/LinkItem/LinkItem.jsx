@@ -108,7 +108,9 @@ const LinkItem = ({ data }) => {
                             Delete
                         </Button>
                         <p style={{ padding: '0 4px' }}></p>
-                        <Button onClick={handleDoneEdit}>Save</Button>
+                        <Button shine onClick={handleDoneEdit}>
+                            Save
+                        </Button>
                     </div>
                 </Styled.EditBox>
             )}

@@ -23,7 +23,9 @@ const QRModal = ({ setCloseQRModal }) => {
                 ></Styled.CloseBTN>
                 <Styled.Preview>
                     <Styled.PreviewImage src={frame} alt="" />
-                    <Button leftIcon={<AiOutlineDownload />}>Download</Button>
+                    <Button shine leftIcon={<AiOutlineDownload />}>
+                        Download
+                    </Button>
                 </Styled.Preview>
                 <Styled.Customize>
                     <Styled.List>
