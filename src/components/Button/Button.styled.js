@@ -14,6 +14,7 @@ export const Button = styled.button`
     justify-content: center;
     color: var(--white-color);
     font-weight: 500;
+    box-shadow: ${(props) => (props.shine ? ' 0 8px 25px -8px var(--primary-color)' : 'none')};
 
     &:hover {
         opacity: 0.8;

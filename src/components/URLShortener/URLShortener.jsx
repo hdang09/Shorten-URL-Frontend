@@ -66,7 +66,9 @@ const URLShortener = ({ noItem }) => {
                     transparent
                     placeholder="Paste a link to shorten it"
                 />
-                <Button onClick={() => handleShortenURL()}>Shorten</Button>
+                <Button shine onClick={() => handleShortenURL()}>
+                    Shorten
+                </Button>
             </Wrapper>
         </Card>
     );

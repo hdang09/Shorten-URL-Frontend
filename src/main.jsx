@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
+
 import urlReducer from './components/LinkItem/urlSlice';
 
 const store = createStore(urlReducer);
@@ -16,7 +16,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <Provider store={store}>
             <App />
-            <ToastContainer />
+            <ToastContainer theme={JSON.parse(window.localStorage.getItem('data-theme'))} />
         </Provider>
     </React.StrictMode>,
 );
