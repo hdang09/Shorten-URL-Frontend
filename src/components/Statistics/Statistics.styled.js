@@ -4,6 +4,12 @@ import styled from 'styled-components';
 export const InfoStat = styled.div`
     display: inline-flex;
     flex-direction: column;
+    margin: 0 0 12px 3px;
+
+    & h2 {
+        font-size: 2.5rem;
+        font-weight: 800;
+    }
 `;
 
 const Icon = styled.div`

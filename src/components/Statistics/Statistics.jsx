@@ -9,8 +9,8 @@ import { AiOutlineClockCircle } from 'react-icons/ai';
 const DATA = {
     total_links: 36,
     total_clicks: 146,
-    avg_ctr: 0.727,
-    avg_times: 5.21,
+    avg_ctr: '72.7%',
+    avg_times: '5.21s',
 };
 
 const Statistics = (props) => {

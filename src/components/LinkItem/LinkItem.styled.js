@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 
 const primaryColors = [
     '160deg, rgb(0, 147, 233) 0%, rgb(128, 208, 199) 100%',
@@ -14,6 +14,15 @@ const primaryColors = [
 
 const permanentRandNum = Math.floor(Math.random() * primaryColors.length);
 
+const slideLeft = keyframes`
+    from {
+        transform: translateX(100px);
+    }
+    to {
+         transform: translateX(0);
+    }
+`;
+
 export const Wrapper = styled.div`
     box-shadow: var(--box-shadow);
     padding: 12px;
@@ -26,6 +35,7 @@ export const Wrapper = styled.div`
     z-index: 1;
     background: linear-gradient(${(props) => primaryColors[permanentRandNum]});
     border-radius: 10px;
+    animation: ${slideLeft} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s forwards;
 
     @media only screen and (max-width: 500px) {
         flex-direction: column;

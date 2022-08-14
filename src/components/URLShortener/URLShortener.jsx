@@ -40,7 +40,7 @@ const URLShortener = ({ noItem }) => {
             dispatch(
                 add({
                     name: `Shorten URL ${counter}`,
-                    shorten_url: `https://f-link.io/${counter}${counter}${counter}`,
+                    shorten_url: `https://f-link.io/${Math.random().toString(36).substring(2, 7)}`,
                     original_url: originalURL.toLowerCase(),
                     created_at: `${today.getDate()}/${
                         today.getMonth() + 1

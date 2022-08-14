@@ -29,6 +29,10 @@ export const Wrapper = styled.div`
 
     @media only screen and (max-width: 500px) {
         margin-right: 0;
+
+        & + button {
+            margin-left: 0;
+        }
     }
 `;
 
