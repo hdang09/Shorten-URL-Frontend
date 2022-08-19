@@ -9,7 +9,7 @@ const Settings = (props) => {
     const handleChangeTheme = () => {
         setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'));
         alert('The page will be reloaded. This is a small bug =)))))');
-        window.location = '/settings';
+        window.location = '/'; // 'settings'
     };
 
     return (
