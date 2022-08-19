@@ -28,14 +28,27 @@ export const SubTitle = styled.h2`
 `;
 export const LoginSection = styled.div`
     height: 100vh;
-    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* overflow: hidden; */
+
+    @media only screen and (max-width: 992px) {
+        background-color: var(--white-color);
+    }
+`;
+
+export const Box = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
 
     @media only screen and (max-width: 992px) {
-        background-color: var(--white-color);
+        width: 450px;
+        height: 650px;
+        box-shadow: var(--box-shadow);
+        border-radius: 10px;
     }
 `;
 

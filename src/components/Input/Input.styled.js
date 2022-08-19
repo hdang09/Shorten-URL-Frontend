@@ -49,9 +49,9 @@ export const InputTag = styled.input`
     caret-color: var(--primary-color);
     color: var(--black-color);
 
-    @media only screen and (max-width: 500px) {
+    /* @media only screen and (max-width: 500px) {
         min-width: 100%;
-    }
+    } */
 `;
 
 export const Eye = styled.div`

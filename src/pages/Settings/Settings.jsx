@@ -6,6 +6,11 @@ import { useLocalStorage } from '../../hooks';
 const Settings = (props) => {
     const [theme, setTheme] = useLocalStorage('data-theme', 'light');
     document.body.setAttribute('data-theme', theme);
+    const handleChangeTheme = () => {
+        setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'));
+        alert('The page will be reloaded. This is a small bug =)))))');
+        window.location = '/settings';
+    };
 
     return (
         <>
@@ -21,9 +26,7 @@ const Settings = (props) => {
                                 type="checkbox"
                                 id="theme"
                                 value={theme}
-                                onClick={() =>
-                                    setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'))
-                                }
+                                onClick={() => handleChangeTheme()}
                             />
                         </div>
                         <div>

@@ -12,23 +12,25 @@ function Login() {
                     <div className="col-lg-6"></div>
                     <div className="col-lg-6 col-md-12">
                         <Styled.LoginSection>
-                            <Styled.Title>Hello Again!</Styled.Title>
-                            <Styled.SubTitle>Welcome back you've been missed</Styled.SubTitle>
-                            <div>
-                                <Input transparent placeholder="Enter username" />
-                                <Input transparent password />
-                                <Styled.RecoverPass>Recovery Password</Styled.RecoverPass>
-                                <Button to="/" large>
-                                    Log in
-                                </Button>
-                                <Button to="/" large leftIcon={<FcGoogle />} outline>
-                                    Continue with FPT Email
-                                </Button>
-                                <Styled.SignUp>
-                                    Don't have an account?
-                                    <Link to="/signup"> Sign up</Link>
-                                </Styled.SignUp>
-                            </div>
+                            <Styled.Box>
+                                <Styled.Title>Hello Again!</Styled.Title>
+                                <Styled.SubTitle>Welcome back you've been missed</Styled.SubTitle>
+                                <div>
+                                    <Input transparent placeholder="Enter username" />
+                                    <Input transparent password />
+                                    <Styled.RecoverPass>Recovery Password</Styled.RecoverPass>
+                                    <Button to="/" large>
+                                        Log in
+                                    </Button>
+                                    <Button to="/" large leftIcon={<FcGoogle />} outline>
+                                        Continue with FPT Email
+                                    </Button>
+                                    <Styled.SignUp>
+                                        Don't have an account?
+                                        <Link to="/signup"> Sign up</Link>
+                                    </Styled.SignUp>
+                                </div>
+                            </Styled.Box>
                         </Styled.LoginSection>
                     </div>
                 </div>

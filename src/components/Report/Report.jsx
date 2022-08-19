@@ -46,7 +46,7 @@ const Report = (props) => {
         ],
     };
 
-    return <Line datasetIdKey="id" data={data} />;
+    return <Line data={data} />;
 };
 
 Report.propTypes = {};
