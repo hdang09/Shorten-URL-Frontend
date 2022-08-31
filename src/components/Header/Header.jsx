@@ -8,9 +8,30 @@ import { useLocalStorage } from '../../hooks';
 import Logo from '../../assets/logo.png';
 import * as Styled from './Header.styled';
 
-function Header({ transparent }) {
+function Header({ admin, transparent }) {
     const [theme, setTheme] = useLocalStorage('data-theme', 'light');
     document.body.setAttribute('data-theme', theme);
+
+    let navList;
+    if (admin) {
+        navList = (
+            <Styled.NavList>
+                <Styled.NavItem to="/admin/">DASHBOARD</Styled.NavItem>
+                <Styled.NavItem to="/admin/management">MANAGEMENT</Styled.NavItem>
+                <Styled.NavItem to="/admin/shorten-url">SHORTEN URL</Styled.NavItem>
+                <Styled.NavItem to="/admin/settings">SETTINGS</Styled.NavItem>
+            </Styled.NavList>
+        );
+    } else if (!transparent) {
+        navList = (
+            <Styled.NavList>
+                <Styled.NavItem to="/">HOME</Styled.NavItem>
+                <Styled.NavItem to="/url">MY URLS</Styled.NavItem>
+                <Styled.NavItem to="/analytics">ANALYTICS</Styled.NavItem>
+                <Styled.NavItem to="/settings">SETTINGS</Styled.NavItem>
+            </Styled.NavList>
+        );
+    }
 
     return (
         <Styled.Wrapper className={transparent && 'transparent'}>
@@ -18,24 +39,21 @@ function Header({ transparent }) {
                 <Link to="/">
                     <Styled.Logo>
                         <img src={Logo} alt="F-Code Logo" />
-                        <p>F - Code</p>
+                        <p>
+                            F<span style={{ visibility: 'hidden' }}>.</span>-
+                            <span style={{ visibility: 'hidden' }}>.</span>
+                            CODE
+                        </p>
                     </Styled.Logo>
                 </Link>
-                {!transparent && (
-                    <Styled.NavList>
-                        <Styled.NavItem to="/">HOME</Styled.NavItem>
-                        <Styled.NavItem to="/url">MY URLS</Styled.NavItem>
-                        <Styled.NavItem to="/analytics">ANALYTICS</Styled.NavItem>
-                        <Styled.NavItem to="/settings">SETTINGS</Styled.NavItem>
-                    </Styled.NavList>
-                )}
+                {navList}
                 <Tippy
                     interactive
                     render={(attrs) => (
                         <div tabIndex="-1" {...attrs}>
                             <Styled.TippyBox>
                                 <Styled.MenuItem
-                                    to="/"
+                                    to=""
                                     onClick={() =>
                                         setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'))
                                     }

@@ -27,7 +27,7 @@ const URLShortener = ({ noItem }) => {
         // Call API
     }, [debouncedOriginalURL]);
 
-    const handleShortenURL = () => {
+    const handleShortenURL = (e) => {
         if (
             (originalURL.trim() && originalURL.toLowerCase().includes('https://')) ||
             originalURL.toLowerCase().includes('www.') ||
@@ -47,6 +47,9 @@ const URLShortener = ({ noItem }) => {
                     }/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}`,
                 }),
             );
+            if (window.location.pathname.split('/')[1] === 'landing') {
+                window.location = '/';
+            }
         } else {
             toast.error('Your link is wrong. Please try again!');
         }

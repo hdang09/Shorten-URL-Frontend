@@ -27,7 +27,7 @@ ChartJS.register(
 
 const Report = (props) => {
     const data = {
-        labels: ['14/8', '15/8', '16/8', '17/8', '18/8'],
+        labels: ['14/9', '15/9', '16/9', '17/9', '18/9'],
         datasets: [
             {
                 id: 1,

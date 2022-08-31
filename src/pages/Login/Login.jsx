@@ -6,6 +6,7 @@ import { GoogleLogin } from 'react-google-login';
 import * as Styled from './Login.styled';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useLocalStorage } from '../../hooks';
+import { Container, Row, Col } from 'styled-bootstrap-grid';
 
 function Login() {
     const [tokenStorage, setTokenStorage] = useLocalStorage('token', '');
@@ -21,10 +22,10 @@ function Login() {
 
     return (
         <Styled.Wrapper>
-            <div className="container">
-                <div className="row">
-                    <div className="col-lg-6" />
-                    <div className="col-lg-6 col-md-12">
+            <Container>
+                <Row>
+                    <Col col={6} hiddenMdDown />
+                    <Col col={6} xs={12} sm={12} md={12} lg={6}>
                         <Styled.LoginSection>
                             <Styled.Box>
                                 <Styled.Title>Hello Again!</Styled.Title>
@@ -61,9 +62,9 @@ function Login() {
                                 </div>
                             </Styled.Box>
                         </Styled.LoginSection>
-                    </div>
-                </div>
-            </div>
+                    </Col>
+                </Row>
+            </Container>
         </Styled.Wrapper>
     );
 }

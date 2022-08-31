@@ -5,14 +5,14 @@ export const Wrapper = styled.div`
     /* display: inline-block; */
     display: none;
     width: var(--sidebar-width);
-    height: calc(100vh - var(--header-height));
+    min-height: calc(100vh - var(--header-height));
+    height: auto;
     background-color: var(--white-color);
     padding-top: 16px;
 
     @media only screen and (max-width: 992px) {
         display: inline-block;
         width: 125px;
-        /* height: inherit; */
     }
 
     @media only screen and (max-width: 500px) {
@@ -28,6 +28,7 @@ export const Wrapper = styled.div`
         justify-content: space-between;
         padding: 0 16px;
         border-top: 1px solid #ccc;
+        min-height: auto;
     }
 `;
 

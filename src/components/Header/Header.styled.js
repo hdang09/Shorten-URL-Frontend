@@ -41,11 +41,17 @@ export const Logo = styled.div`
 
     p {
         display: inline-block;
-        font-weight: 700;
         font-size: 2rem;
         color: var(--primary-color);
         margin: 0;
-        margin-left: 16px;
+        margin-left: 18px;
+        font-family: Quantum;
+        font-kerning: none;
+        line-height: initial;
+        background: rgb(69, 206, 123);
+        background: linear-gradient(90deg, rgba(69, 206, 123, 1) 0%, rgba(255, 201, 20, 1) 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
     }
 `;
 
@@ -79,11 +85,11 @@ export const NavItem = styled(NavLink)`
     color: ${(props) => (props.transparent ? 'var(--white-color)' : 'var(--black-color)')};
 
     &.active {
+        opacity: 0.75;
         color: var(--primary-color);
     }
 
     &:hover {
-        opacity: 0.6;
         color: var(--primary-color);
     }
 

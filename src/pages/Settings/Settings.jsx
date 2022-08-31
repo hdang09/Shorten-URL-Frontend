@@ -1,16 +1,22 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Input } from '../../components';
+import { Button, Card, Input } from '../../components';
 import { useLocalStorage } from '../../hooks';
 import styled from 'styled-components';
+import { toast } from 'react-toastify';
 
 const Settings = (props) => {
+    const [color, setColor] = React.useState('');
     const [theme, setTheme] = useLocalStorage('data-theme', 'light');
     document.body.setAttribute('data-theme', theme);
     const handleChangeTheme = () => {
         setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'));
-        alert('The page will be reloaded. This is a small bug =)))))');
+        alert('The entire page will be reloaded!');
         window.location = '/'; // 'settings'
+    };
+
+    const handleChangeColor = () => {
+        toast.warn('This feature will be upgraded soon. Please kindly wait!');
     };
 
     return (
@@ -27,9 +33,20 @@ const Settings = (props) => {
                                 <Circle theme={theme} />
                             </Toggle>
                         </div>
-                        <div>
-                            <p>Change default color: </p>
-                            <Input large outline />
+                        <p>Change default color: </p>
+                        <div style={{ display: 'flex' }}>
+                            <ColorInput
+                                type="color"
+                                value={color}
+                                onChange={(e) => setColor(e.target.value)}
+                            />
+                            <Input
+                                large
+                                outline
+                                value={color}
+                                onChange={(e) => setColor(e.target.value)}
+                            />
+                            <Button onClick={handleChangeColor}>Change</Button>
                         </div>
                     </Card>
                     <div className="col-lg-3 hidden-md"></div>
@@ -75,4 +92,10 @@ const Circle = styled.div`
         props.theme === 'dark'
             ? 'translate(1rem, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1)'
             : '0'};
+`;
+
+const ColorInput = styled.input`
+    margin-right: 1rem;
+    width: 40px;
+    height: 40px;
 `;

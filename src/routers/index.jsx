@@ -1,58 +1,67 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
-import { Login, Home, Landing, Analytics, Settings, MyURL, NotFound } from '../pages';
-import Default from '../layouts/Default';
+import {
+    Login,
+    Home,
+    Landing,
+    Analytics,
+    Settings,
+    MyURL,
+    NotFound,
+    Admin,
+    Management,
+} from '../pages';
+import DefaultLayout from '../layouts/Default';
 
 const publicRoutes = [
-    // { name: 'home', path: '/', element: Landing },
-    { name: 'login', path: '/login', element: Login },
+    { name: 'landing', path: '/landing', element: <Landing /> },
+    { name: 'login', path: '/login', element: <Login /> },
 ];
 
 const privateRoutes = [
-    { name: 'home', path: '/', element: Home, layout: Default },
-    { name: 'analytics', path: '/Analytics', element: Analytics, layout: Default },
-    { name: 'settings', path: '/settings', element: Settings, layout: Default },
-    { name: 'url', path: '/url', element: MyURL, layout: Default },
+    { name: 'home', path: '/', element: <Home /> },
+    { name: 'analytics', path: '/Analytics', element: <Analytics /> },
+    { name: 'settings', path: '/settings', element: <Settings /> },
+    { name: 'url', path: '/url', element: <MyURL /> },
+];
+
+const adminRoutes = [
+    { name: 'admin', path: '/admin', element: <Admin /> },
+    { name: 'management', path: '/admin/management', element: <Management /> },
+    { name: 'shorten-url', path: '/admin/shorten-url', element: <Home /> },
+    { name: 'settings', path: '/admin/settings', element: <Settings /> },
 ];
 
 const RouterComponents = () => {
     return (
-        <div>
-            <Router>
-                <Routes>
-                    <Route>
-                        {privateRoutes.map((route) => {
-                            const Element = route.element;
-                            const Layout = route.layout;
-                            return (
-                                <Route
-                                    key={route.name}
-                                    path={route.path}
-                                    element={
-                                        Layout ? (
-                                            <Layout>
-                                                <Element />
-                                            </Layout>
-                                        ) : (
-                                            <Element />
-                                        )
-                                    }
-                                />
-                            );
-                        })}
-                    </Route>
-                    <Route>
-                        {publicRoutes.map((route) => {
-                            const Element = route.element;
-                            return (
-                                <Route key={route.name} path={route.path} element={<Element />} />
-                            );
-                        })}
-                    </Route>
-                    <Route path="*" element={<NotFound />} />
-                </Routes>
-            </Router>
-        </div>
+        <Router>
+            <Routes>
+                <Route>
+                    {privateRoutes.map((route) => (
+                        <Route
+                            key={route.name}
+                            path={route.path}
+                            element={<DefaultLayout>{route.element}</DefaultLayout>}
+                        />
+                    ))}
+                </Route>
+                <Route>
+                    {publicRoutes.map((route) => (
+                        <Route key={route.name} path={route.path} element={route.element} />
+                    ))}
+                </Route>
+                <Route>
+                    {adminRoutes.map((route) => (
+                        <Route
+                            key={route.name}
+                            path={route.path}
+                            element={<DefaultLayout admin>{route.element}</DefaultLayout>}
+                        />
+                    ))}
+                </Route>
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </Router>
     );
 };
 
