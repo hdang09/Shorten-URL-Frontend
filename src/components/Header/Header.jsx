@@ -65,7 +65,7 @@ function Header({ admin, transparent }) {
                                 </Styled.MenuItem>
                                 <Styled.MenuItem to="/admin">
                                     <BsGlobe />
-                                    <Styled.Text>Admin Page (Production)</Styled.Text>
+                                    <Styled.Text>Admin Page (Development)</Styled.Text>
                                 </Styled.MenuItem>
                                 <Styled.MenuItem to="/helps">
                                     <BsQuestionOctagon />

@@ -35,7 +35,7 @@ const ADMIN_SIDEBAR_LIST = [
     {
         id: 5,
         icon: <AiFillHome />,
-        to: '/admin',
+        to: '/admin/',
         title: 'Dashboard',
     },
     {
