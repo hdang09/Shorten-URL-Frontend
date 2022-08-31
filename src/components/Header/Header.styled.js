@@ -52,6 +52,7 @@ export const Logo = styled.div`
         background: linear-gradient(90deg, rgba(69, 206, 123, 1) 0%, rgba(255, 201, 20, 1) 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        text-rendering: optimizeSpeed;
     }
 `;
 
