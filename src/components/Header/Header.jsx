@@ -63,9 +63,9 @@ function Header({ admin, transparent }) {
                                         {theme === 'light' ? 'Dark' : 'Light'} Theme
                                     </Styled.Text>
                                 </Styled.MenuItem>
-                                <Styled.MenuItem to="/language">
+                                <Styled.MenuItem to="/admin">
                                     <BsGlobe />
-                                    <Styled.Text>Language</Styled.Text>
+                                    <Styled.Text>Admin Page (Production)</Styled.Text>
                                 </Styled.MenuItem>
                                 <Styled.MenuItem to="/helps">
                                     <BsQuestionOctagon />

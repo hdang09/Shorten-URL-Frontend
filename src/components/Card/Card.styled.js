@@ -35,6 +35,7 @@ export const Title = styled.h1`
     margin-bottom: 20px;
     font-size: 2.6rem;
     text-align: ${(props) => (props.noItem ? 'center' : 'left')};
+    color: var(--black-color);
 `;
 
 export const Subtitle = styled.h3`

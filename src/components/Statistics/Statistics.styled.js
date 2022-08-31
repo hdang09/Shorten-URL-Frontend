@@ -9,6 +9,7 @@ export const InfoStat = styled.div`
     & h2 {
         font-size: 2.5rem;
         font-weight: 800;
+        color: var(--black-color);
     }
 `;
 

@@ -116,28 +116,28 @@ const Analytics = (props) => {
 
     return (
         <>
-            <Container>
-                <Row>
-                    <Col sm={12} md={4}>
-                        <Card title="Statistics">
-                            <Statistics />
-                        </Card>
-                        <Card title="Statistics">
-                            <Report />
-                        </Card>
-                    </Col>
-                    <Col sm={12} md={8}>
-                        <Card title="Monthly Report">
-                            <BarChart />
-                        </Card>
-                    </Col>
-                </Row>
-            </Container>
-            <Col sm={12}>
-                <Card title="Annual Report">
-                    <LineChart />
-                </Card>
-            </Col>
+            <Row>
+                <Col sm={12} md={4}>
+                    <Card title="Statistics">
+                        <Statistics />
+                    </Card>
+                    <Card title="Statistics">
+                        <Report />
+                    </Card>
+                </Col>
+                <Col sm={12} md={8}>
+                    <Card title="Monthly Report">
+                        <BarChart />
+                    </Card>
+                </Col>
+            </Row>
+            <Row>
+                <Col sm={12}>
+                    <Card title="Annual Report">
+                        <LineChart />
+                    </Card>
+                </Col>
+            </Row>
         </>
     );
 };
