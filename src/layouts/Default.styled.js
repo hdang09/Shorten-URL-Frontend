@@ -12,7 +12,6 @@ export const Container = styled.div`
 
     @media only screen and (max-width: 500px) {
         overflow: hidden;
-        margin-bottom: 80px;
     }
 `;
 
@@ -25,6 +24,6 @@ export const Content = styled.div`
     }
 
     @media only screen and (max-width: 500px) {
-        margin: 12px 8px;
+        margin: 12px 8px 80px;
     }
 `;

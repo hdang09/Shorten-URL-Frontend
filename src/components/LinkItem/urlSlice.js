@@ -1,43 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-    urls: [
-        // {
-        //     name: 'F-Code Club',
-        //     original_url: 'http://tech1.tech.tech.tech.f-code.tech.com',
-        //     shorten_url: 'http://f-code.tech',
-        // },
-        // {
-        //     name: 'F-Code Club 2',
-        //     original_url: 'http://tech2.tech.tech.tech.f-code.tech.com',
-        //     shorten_url: 'http://f-code.tech2',
-        // },
-        // {
-        //     name: 'F-Code Club 3',
-        //     original_url: 'http://tech3.tech.tech.tech.f-code.tech.com',
-        //     shorten_url: 'http://f-code.tech3',
-        // },
-        // {
-        //     name: 'F-Code Club 4',
-        //     original_url: 'http://tech4.tech.tech.tech.f-code.tech.com',
-        //     shorten_url: 'http://f-code.tech4',
-        // },
-        // {
-        //     name: 'F-Code Club 5',
-        //     original_url: 'http://tech5.tech.tech.tech.f-code.tech.com',
-        //     shorten_url: 'http://f-code.tech5',
-        // },
-        // {
-        //     name: 'F-Code Club 6',
-        //     original_url: 'http://tech6.tech.tech.tech.f-code.tech.com',
-        //     shorten_url: 'http://f-code.tech6',
-        // },
-        // {
-        //     name: 'F-Code Club 7',
-        //     original_url: 'http://tech7.tech.tech.tech.f-code.tech.com',
-        //     shorten_url: 'http://f-code.tech7',
-        // },
-    ],
+    urls: [],
 };
 
 const urlSlice = createSlice({

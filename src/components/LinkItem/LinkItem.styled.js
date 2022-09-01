@@ -82,6 +82,7 @@ export const Title = styled.h1`
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 6px;
+    color: var(--white-color);
 `;
 
 export const Subtitle = styled.a`

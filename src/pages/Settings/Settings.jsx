@@ -3,37 +3,42 @@ import PropTypes from 'prop-types';
 import { Button, Card, Input } from '../../components';
 import { useLocalStorage } from '../../hooks';
 import styled from 'styled-components';
-import { toast } from 'react-toastify';
+import { BsMoon } from 'react-icons/bs';
+import { IoColorPaletteOutline } from 'react-icons/io5';
+import { MdInvertColorsOff } from 'react-icons/md';
 
 const Settings = (props) => {
-    const [color, setColor] = React.useState('');
     const [theme, setTheme] = useLocalStorage('data-theme', 'light');
     document.body.setAttribute('data-theme', theme);
+
+    const [color, setColor] = useLocalStorage('primary-color', '#45ce7b');
+    document.querySelector(':root').style.setProperty('--primary-color', `${color}`);
+
     const handleChangeTheme = () => {
         setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'));
         alert('The entire page will be reloaded!');
         window.location = '/'; // 'settings'
     };
 
-    const handleChangeColor = () => {
-        toast.warn('This feature will be upgraded soon. Please kindly wait!');
-    };
-
     return (
         <>
             <div className="row gx-5">
-                <div className="col-lg-3 hidden-md"></div>
+                <div className="col-lg-3 hidden-md" />
                 <div className="col-lg-6 col-md-12">
                     <Card title="Settings">
                         <div>
                             <label style={{ marginRight: '6px' }} htmlFor="theme">
+                                <BsMoon />
+                                {'  '}
                                 Dark Theme
                             </label>
                             <Toggle theme={theme} onClick={() => handleChangeTheme()}>
                                 <Circle theme={theme} />
                             </Toggle>
                         </div>
-                        <p>Change default color: </p>
+                        <p>
+                            <IoColorPaletteOutline /> Change primary color:
+                        </p>
                         <div style={{ display: 'flex' }}>
                             <ColorInput
                                 type="color"
@@ -46,10 +51,14 @@ const Settings = (props) => {
                                 value={color}
                                 onChange={(e) => setColor(e.target.value)}
                             />
-                            <Button onClick={handleChangeColor}>Change</Button>
                         </div>
+                        <a onClick={() => setColor('#45ce7b')}>
+                            <MdInvertColorsOff />
+                            {'   '}
+                            Click here to go back to default color
+                        </a>
                     </Card>
-                    <div className="col-lg-3 hidden-md"></div>
+                    <div className="col-lg-3 hidden-md" />
                 </div>
             </div>
         </>
@@ -67,7 +76,6 @@ const Toggle = styled.div`
         props.theme === 'dark' ? 'var(--primary-color)' : 'rgba(15, 23, 42, 0.1)'};
     transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow,
         transform;
-    transition-duration: 200ms;
     transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
     width: 2.5rem;
     height: 1.5rem;

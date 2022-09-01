@@ -86,7 +86,7 @@ function Header({ admin, transparent }) {
                     <Styled.User>
                         <Styled.Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU" />
                         <Styled.NameUser transparent={transparent}>Hai Dang</Styled.NameUser>
-                        <AiFillCaretDown />
+                        <AiFillCaretDown style={{ color: 'var(--black-color)' }} />
                     </Styled.User>
                 </Tippy>
             </Styled.Content>

@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
 export const Button = styled.button`
-    /* border: 1px solid transparent; */
-    background: linear-gradient(0deg, var(--primary-color) 0%, rgb(42, 245, 152) 100%);
+    border: 1px solid transparent;
+    background: var(--primary-color);
+    /* background: linear-gradient(0deg, var(--primary-color) 0%, rgb(42, 245, 152) 100%); */
     border-radius: 32px;
     min-width: 100px;
     height: 42px;
