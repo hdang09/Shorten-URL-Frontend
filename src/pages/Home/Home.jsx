@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Report, Card, LinkItem, URLShortener, Statistics } from '../../components';
+import { Col, Row } from 'styled-bootstrap-grid';
 
 import { useSelector } from 'react-redux';
 import { AiOutlineRight } from 'react-icons/ai';
@@ -8,8 +9,8 @@ function Home() {
     const MY_LINKS = useSelector((state) => state.urls);
 
     return (
-        <div className="row gx-5">
-            <div className="col-lg-8 col-md-12">
+        <Row>
+            <Col md={12} lg={8}>
                 <URLShortener />
                 <Card
                     title="Recent URLs"
@@ -23,16 +24,16 @@ function Home() {
                         <LinkItem key={link.original_url} data={link} />
                     ))}
                 </Card>
-            </div>
-            <div className="col-lg-4 col-md-12">
+            </Col>
+            <Col md={12} lg={4}>
                 <Card title="Statistics">
                     <Statistics />
                 </Card>
                 <Card title="Report" subtitle="Last 5 days">
                     <Report />
                 </Card>
-            </div>
-        </div>
+            </Col>
+        </Row>
     );
 }
 

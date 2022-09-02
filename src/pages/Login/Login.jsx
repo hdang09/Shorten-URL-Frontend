@@ -38,23 +38,25 @@ function Login() {
                                         Log in
                                     </Button>
 
-                                    <GoogleLogin
-                                        // clientId="977769293513-67s7vl5ij0nrvpafqliamobp1hhocrja.apps.googleusercontent.com"
-                                        clientId="testhehe.apps.googleusercontent.com"
-                                        onSuccess={onSuccess}
-                                        onFailure={onFailure}
-                                        render={(props) => (
-                                            <Button
-                                                onClick={props.onClick}
-                                                to="/"
-                                                large
-                                                leftIcon={<FcGoogle />}
-                                                outline
-                                            >
-                                                Continue with FPT Email
-                                            </Button>
-                                        )}
-                                    />
+                                    <div style={{ marginTop: '1rem' }}>
+                                        <GoogleLogin
+                                            // clientId="977769293513-67s7vl5ij0nrvpafqliamobp1hhocrja.apps.googleusercontent.com"
+                                            clientId="testhehe.apps.googleusercontent.com"
+                                            onSuccess={onSuccess}
+                                            onFailure={onFailure}
+                                            render={(props) => (
+                                                <Button
+                                                    onClick={props.onClick}
+                                                    to="/"
+                                                    large
+                                                    leftIcon={<FcGoogle />}
+                                                    outline
+                                                >
+                                                    Continue with FPT Email
+                                                </Button>
+                                            )}
+                                        />
+                                    </div>
                                     <Styled.SignUp>
                                         Don't have an account?
                                         <Link to="/signup"> Sign up</Link>

@@ -1,13 +1,9 @@
 import PropTypes from 'prop-types';
 
-// import { useSelector } from 'react-redux';
 import * as Styled from './Default.styled';
-import { Header, Sidebar } from '../components';
-// import { Landing } from '../pages';
+import { Header, Sidebar } from '../../components';
 
 const Default = ({ admin, children }) => {
-    // const MY_LINKS = useSelector((state) => state.urls);
-
     return (
         <>
             <Header admin={admin} />

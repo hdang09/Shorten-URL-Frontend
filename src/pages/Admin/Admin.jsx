@@ -96,26 +96,26 @@ const Admin = (props) => {
                         <Col col={3}>
                             <Card style={{ color: 'red' }}>
                                 <Links>1024</Links>
-                                <h3>Total Links</h3>
+                                <h3 style={{ color: 'var(--black-color)' }}>Total Links</h3>
                             </Card>
                         </Col>
                         <Col col={3}>
                             <Card>
                                 <Clicks>10235</Clicks>
-                                <h3>Total Clicks</h3>
+                                <h3 style={{ color: 'var(--black-color)' }}>Total Clicks</h3>
                             </Card>
                         </Col>
 
                         <Col col={3}>
                             <Card>
                                 <CTR>72.7%</CTR>
-                                <h3>AVG CTR</h3>
+                                <h3 style={{ color: 'var(--black-color)' }}>AVG CTR</h3>
                             </Card>
                         </Col>
                         <Col col={3}>
                             <Card>
                                 <Times>5.2s</Times>
-                                <h3>AVG Times</h3>
+                                <h3 style={{ color: 'var(--black-color)' }}>AVG Times</h3>
                             </Card>
                         </Col>
                     </Row>

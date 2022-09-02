@@ -11,7 +11,7 @@ import {
     Admin,
     Management,
 } from '../pages';
-import DefaultLayout from '../layouts/Default';
+import { Default as DefaultLayout, New as NewLayout } from '../layouts';
 
 const publicRoutes = [
     { name: 'landing', path: '/landing', element: <Landing /> },
@@ -41,7 +41,7 @@ const RouterComponents = () => {
                         <Route
                             key={route.name}
                             path={route.path}
-                            element={<DefaultLayout>{route.element}</DefaultLayout>}
+                            element={<NewLayout>{route.element}</NewLayout>}
                         />
                     ))}
                 </Route>

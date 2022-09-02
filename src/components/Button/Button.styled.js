@@ -23,7 +23,8 @@ export const Button = styled.button`
     }
 
     & + & {
-        margin-top: 8px;
+        margin-left: 1.5rem;
+        display: inline-flex;
     }
 
     &.outline {
@@ -35,6 +36,12 @@ export const Button = styled.button`
             opacity: 0.8;
             color: var(--primary-color);
         }
+    }
+
+    &.text {
+        border: none;
+        background-color: transparent;
+        color: var(--primary-color);
     }
 
     &.large {

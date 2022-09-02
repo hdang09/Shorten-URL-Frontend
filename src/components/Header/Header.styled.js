@@ -110,6 +110,7 @@ export const Avatar = styled.img`
 `;
 export const User = styled.div`
     cursor: pointer;
+    color: var(--black-color);
 `;
 
 export const NameUser = styled.span`

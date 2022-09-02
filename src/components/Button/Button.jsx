@@ -7,6 +7,7 @@ function Button({
     leftIcon,
     rightIcon,
     children,
+    text = false,
     outline = false,
     small = false,
     large = false,
@@ -21,6 +22,7 @@ function Button({
         large && 'large',
         disabled && 'disabled',
         menu && 'menu',
+        text && 'text',
     ];
 
     const handleButtonType = () => {

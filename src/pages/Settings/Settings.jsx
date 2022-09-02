@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Button, Card, Input } from '../../components';
+import { Card, Input } from '../../components';
 import { useLocalStorage } from '../../hooks';
 import styled from 'styled-components';
 import { BsMoon } from 'react-icons/bs';
@@ -9,7 +9,7 @@ import { MdInvertColorsOff } from 'react-icons/md';
 
 const Settings = (props) => {
     const [theme, setTheme] = useLocalStorage('data-theme', 'light');
-    document.body.setAttribute('data-theme', theme);
+    useEffect(() => document.body.setAttribute('data-theme', theme), [theme]);
 
     const [color, setColor] = useLocalStorage('primary-color', '#45ce7b');
     document.querySelector(':root').style.setProperty('--primary-color', `${color}`);
