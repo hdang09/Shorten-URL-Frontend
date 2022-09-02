@@ -17,7 +17,7 @@ export const Container = styled.div`
 
 export const Content = styled.div`
     width: 1150px;
-    margin: 16px;
+    margin: 24px 16px;
 
     @media only screen and (max-width: 992px) {
         margin: 16px 8px;

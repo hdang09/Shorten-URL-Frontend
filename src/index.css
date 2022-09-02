@@ -91,3 +91,12 @@ h5,
 h6 {
     margin: 0;
 }
+
+/* OVerride CSS */
+.ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
+    background: var(--primary-color);
+}
+
+.ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
+    border-color: var(--primary-color);
+}

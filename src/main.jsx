@@ -17,7 +17,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
         <Provider store={store}>
             <App />
-            <ToastContainer theme={JSON.parse(window.localStorage.getItem('data-theme'))} />
+            <ToastContainer
+                theme={JSON.parse(window.localStorage.getItem('data-theme')) || 'light'}
+            />
         </Provider>
     </React.StrictMode>,
 );

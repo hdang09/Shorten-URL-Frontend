@@ -10,17 +10,6 @@ const Default = ({ admin, children }) => {
 
     return (
         <>
-            {/* {MY_LINKS.length > 0 ? (
-                <>
-                    <Header />
-                    <Styled.Container>
-                        <Sidebar />
-                        <Styled.Content className="container">{children}</Styled.Content>
-                    </Styled.Container>
-                </>
-            ) : (
-                <Landing />
-            )} */}
             <Header admin={admin} />
             <Styled.Container>
                 <Sidebar admin={admin} />

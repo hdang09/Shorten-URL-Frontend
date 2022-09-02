@@ -43,76 +43,19 @@ const Management = (props) => {
             },
         },
     ];
-    const data = [
-        {
-            key: '1',
-            name: 'John Brown',
-            links: 98,
-            clicks: 60,
-            ctr: 70,
-            times: 45,
-        },
-        {
-            key: '2',
-            name: 'Jim Green',
-            links: 98,
-            clicks: 66,
-            ctr: 89,
-            times: 50,
-        },
-        {
-            key: '3',
-            name: 'Joe Black',
-            links: 98,
-            clicks: 90,
-            ctr: 70,
-            times: 35,
-        },
-        {
-            key: '4',
-            name: 'Jim Red',
-            links: 88,
-            clicks: 99,
-            ctr: 89,
-            times: 70,
-        },
-        {
-            key: '5',
-            name: 'Andy Circle',
-            links: 98,
-            clicks: 60,
-            ctr: 70,
-            times: 45,
-        },
-        {
-            key: '6',
-            name: 'Morp Blue',
-            links: 98,
-            clicks: 66,
-            ctr: 89,
-            times: 50,
-        },
-        {
-            key: '7',
-            name: 'Gaga Pink',
-            links: 98,
-            clicks: 90,
-            ctr: 70,
-            times: 35,
-        },
-        {
-            key: '8',
-            name: 'Morp Yellow',
-            links: 88,
-            clicks: 99,
-            ctr: 89,
-            times: 70,
-        },
-    ];
+    const data = [];
 
-    const onChange = (pagination, filters, sorter, extra) => {
-        console.log('params', pagination, filters, sorter, extra);
-    };
+    for (let i = 0; i < 100; i++) {
+        data.push({
+            key: i,
+            name: `Hai Dang ${i}`,
+            links: 32,
+            clicks: 124,
+            ctr: '72.7%',
+            times: '5.25s',
+            address: `London, Park Lane no. ${i}`,
+        });
+    }
 
     return (
         <Container>
@@ -124,7 +67,7 @@ const Management = (props) => {
             </Row>
             <Col col={4} />
 
-            <Table columns={columns} dataSource={data} onChange={onChange} />
+            <Table columns={columns} dataSource={data} />
         </Container>
     );
 };
