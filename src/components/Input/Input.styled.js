@@ -60,6 +60,7 @@ export const Eye = styled.div`
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
+    color: var(--black-color);
 
     &:hover {
         opacity: 0.8;

@@ -44,6 +44,7 @@ export const Sidebar = styled.div`
 
     @media only screen and (max-width: 500px) {
         width: 100vw;
+        height: auto;
         justify-content: flex-end;
         padding: 0;
         bottom: 1rem;
@@ -76,6 +77,8 @@ export const NavList = styled.ul`
     @media only screen and (max-width: 500px) {
         flex-direction: row;
         padding: 0 1.5rem;
+        width: calc(100vw - 1rem);
+        justify-content: space-around;
 
         & > :first-child {
             display: none;
@@ -92,6 +95,10 @@ export const NewSidebarItem = styled(NavLink)`
     display: flex;
     justify-content: center;
     align-items: center;
+
+    @media only screen and (max-width: 500px) {
+        margin: 1rem 0;
+    }
 
     &:hover {
         color: var(--primary-color);

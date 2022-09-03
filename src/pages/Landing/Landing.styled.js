@@ -10,6 +10,7 @@ export const Banner = styled.div`
     align-items: center;
     /* margin-top: calc(var(--header-height) / 2); */
     flex-direction: column;
+    min-height: 100vh;
 `;
 
 export const Heading = styled.h1`
@@ -30,8 +31,8 @@ export const Subheading = styled.h2`
     font-weight: 400;
     text-align: center;
 
-    @media only screen and (min-width: 600px) {
-        padding: 8px;
+    @media only screen and (max-width: 500px) {
+        padding: 16px;
     }
 `;
 
@@ -70,4 +71,11 @@ export const Highlight = styled.span`
     border: 3px solid var(--primary-color);
     box-sizing: border-box;
     position: relative;
+`;
+
+export const BannerButton = styled.button`
+    @media only screen and (max-width: 500px) {
+        margin-left: 0 !important;
+        margin-top: 1rem;
+    }
 `;

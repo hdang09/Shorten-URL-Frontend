@@ -1,15 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const initialState = {
-    urls: [],
-};
+const initialState = [];
 
 const urlSlice = createSlice({
-    name: 'url',
+    name: 'urls',
     initialState,
     reducers: {
         add: (state, action) => {
-            state.urls.unshift({
+            state.unshift({
                 name: action.payload.name,
                 original_url: action.payload.original_url,
                 shorten_url: action.payload.shorten_url,
@@ -17,10 +15,10 @@ const urlSlice = createSlice({
             });
         },
         deleteItem: (state, action) => {
-            state.urls = state.urls.filter((data) => data.original_url !== action.payload);
+            state = state.filter((data) => data.original_url !== action.payload);
         },
         edit: (state, action) => {
-            state.urls.forEach((url) => {
+            state.forEach((url) => {
                 if (url.original_url === action.payload.original_url) {
                     url.shorten_url = action.payload.shorten_url;
                     url.name = action.payload.name;
@@ -30,5 +28,6 @@ const urlSlice = createSlice({
     },
 });
 
+export const urlSelector = (state) => state.urls;
 export const { add, deleteItem, edit } = urlSlice.actions;
 export default urlSlice.reducer;

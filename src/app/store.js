@@ -4,7 +4,7 @@ import authReducer from '../pages/Login/loginSlice';
 
 const store = configureStore({
     reducer: {
-        url: urlReducer,
+        urls: urlReducer,
         auth: authReducer,
     },
 });

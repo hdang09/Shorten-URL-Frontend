@@ -20,12 +20,15 @@ export const Title = styled.h1`
     font-weight: 600;
     margin-bottom: 10px;
     font-size: 2.8rem;
+    color: var(--black-color);
 `;
 
 export const SubTitle = styled.h2`
     margin-bottom: 32px;
     font-size: 1.6rem;
+    color: var(--black-color);
 `;
+
 export const LoginSection = styled.div`
     height: 100vh;
     display: flex;
@@ -57,10 +60,12 @@ export const RecoverPass = styled.p`
     font-size: 1.4rem;
     margin: 10px 0 20px;
     right: 0;
+    color: var(--black-color);
 `;
 
 export const SignUp = styled.p`
     text-align: center;
     margin: 12px;
     font-size: 1.4rem;
+    color: var(--black-color);
 `;

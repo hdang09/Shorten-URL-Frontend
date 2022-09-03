@@ -4,9 +4,10 @@ import { Col, Row } from 'styled-bootstrap-grid';
 
 import { useSelector } from 'react-redux';
 import { AiOutlineRight } from 'react-icons/ai';
+import { urlSelector } from '../../components/LinkItem/urlSlice';
 
 function Home() {
-    const MY_LINKS = useSelector((state) => state.urls) || [];
+    const MY_LINKS = useSelector(urlSelector) || [];
 
     return (
         <Row>

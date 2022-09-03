@@ -22,7 +22,11 @@ function LandingPage() {
                     <Button to="/login" style={{ display: 'inline-flex' }} shine="true">
                         Get Started
                     </Button>
-                    <Button href="https://shorten-url-hdang09.vercel.app/" outline>
+                    <Button
+                        href="https://shorten-url-hdang09.vercel.app/"
+                        outline
+                        as={Styled.BannerButton}
+                    >
                         Watch Demo
                     </Button>
                 </div>

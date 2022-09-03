@@ -39,7 +39,7 @@ function Login({ signUp }) {
                                     {signUp && <Input transparent confirmPassword />}
                                     <Styled.RecoverPass>Recovery Password</Styled.RecoverPass>
                                     <Button to="/" large onClick={() => dispatch(login())}>
-                                        {signUp ? 'Sign Up' : 'Log in'}
+                                        {signUp ? 'Sign up' : 'Log in'}
                                     </Button>
 
                                     <div style={{ marginTop: '1rem' }}>

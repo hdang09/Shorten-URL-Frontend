@@ -3,9 +3,10 @@ import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import { Card, Input, LinkItem } from '../../components';
 import { useSelector } from 'react-redux';
+import { urlSelector } from '../../components/LinkItem/urlSlice';
 
 const MyURL = (props) => {
-    const MY_LINKS = useSelector((state) => state.urls) || [];
+    const MY_LINKS = useSelector(urlSelector) || [];
     return (
         <Wrapper>
             <Input style={{ margin: '1rem auto' }} placeholder="Type here to search my URL..." />

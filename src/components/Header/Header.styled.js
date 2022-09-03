@@ -149,3 +149,9 @@ export const MenuItem = styled(Link)`
 export const Text = styled.span`
     margin-left: 8px;
 `;
+
+export const HeaderButtons = styled.div`
+    @media only screen and (max-width: 500px) {
+        display: none;
+    }
+`;

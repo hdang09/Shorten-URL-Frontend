@@ -59,12 +59,12 @@ function Header({ admin, landingPage }) {
                 </Link>
                 {navList}
                 {landingPage ? (
-                    <div>
+                    <Styled.HeaderButtons>
                         <Button to="/signup" style={{ display: 'inline-flex' }} text>
                             Sign up
                         </Button>
                         <Button to="/login">Log in</Button>
-                    </div>
+                    </Styled.HeaderButtons>
                 ) : (
                     <Tippy
                         interactive
