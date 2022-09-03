@@ -6,7 +6,7 @@ export const Button = styled.button`
     /* background: linear-gradient(0deg, var(--primary-color) 0%, rgb(42, 245, 152) 100%); */
     border-radius: 32px;
     min-width: 100px;
-    height: 42px;
+    height: 46px;
     font-size: 1.6rem;
     text-align: center;
     padding: 0 28px;

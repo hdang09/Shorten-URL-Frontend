@@ -10,6 +10,7 @@ const Input = forwardRef(
             large = false,
             transparent = false,
             password = false,
+            confirmPassword = false,
             outline = false,
             onClick,
             submitBtn,
@@ -21,8 +22,8 @@ const Input = forwardRef(
         const [showPass, setShowPass] = useState(false);
         const handleShowPassword = () => setShowPass(!showPass);
 
-        if (password) {
-            placeholder = 'Enter your password';
+        if (password || confirmPassword) {
+            placeholder = password ? 'Enter your password' : 'Confirm your password';
             type = showPass ? 'text' : 'password';
             onClick = handleShowPassword;
         }
@@ -42,7 +43,7 @@ const Input = forwardRef(
                     {...Inputprops}
                     spellCheck={false}
                 />
-                {password && (
+                {(password || confirmPassword) && (
                     <Styled.Eye onClick={onClick}>
                         {showPass ? <AiFillEye /> : <AiFillEyeInvisible />}
                     </Styled.Eye>

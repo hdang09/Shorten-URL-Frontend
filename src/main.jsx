@@ -3,11 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { Provider } from 'react-redux';
-import { createStore } from 'redux';
-
-import urlReducer from './components/LinkItem/urlSlice';
-
-const store = createStore(urlReducer);
+import store from './app/store';
 
 import App from './App';
 import 'antd/dist/antd.css';

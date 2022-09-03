@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { AiOutlineMenu, AiOutlineHome } from 'react-icons/ai';
 import { ImStatsBars } from 'react-icons/im';
-import { BsGear, BsMoon, BsLink45Deg } from 'react-icons/bs';
+import { BsGear, BsMoon } from 'react-icons/bs';
 import { BiLink } from 'react-icons/bi';
 import { MdLogout } from 'react-icons/md';
 import Tippy from '@tippyjs/react';
 
-// import { useSelector } from 'react-redux';
+import { signOut } from '../../pages/Login/loginSlice';
+
 import * as Styled from './New.styled';
-import { Header, Sidebar } from '../../components';
 import logo from '../../assets/logo.png';
 import { useLocalStorage } from '../../hooks';
 
@@ -36,7 +36,7 @@ const New = ({ children }) => {
             onClick: () => setTheme((theme) => (theme === 'light' ? 'dark' : 'light')),
             to: '',
         },
-        { name: 'Log out', icon: <MdLogout />, to: '/login' },
+        { name: 'Log out', icon: <MdLogout />, to: '', onClick: () => dispatch(signOut()) },
     ];
 
     const NewSidebar = () => (

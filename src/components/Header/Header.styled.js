@@ -11,8 +11,11 @@ export const Wrapper = styled.header`
     display: flex;
     justify-content: center;
     align-items: center;
-    box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
-    background-color: var(--white-color);
+    ${(props) =>
+        props.landingPage
+            ? `box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+    background-color: var(--white-color);`
+            : `backdrop-filter: blur(5px);`}
 
     &.transparent {
         background-color: transparent;

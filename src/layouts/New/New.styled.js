@@ -84,8 +84,8 @@ export const NavList = styled.ul`
 `;
 
 export const NewSidebarItem = styled(NavLink)`
-    padding: 2rem;
-    margin: 0.5rem;
+    padding: 1.5rem;
+    margin: 1rem;
     font-size: 1.8rem;
     color: var(--black-color);
     border-radius: ${(props) => (props.expanded ? '12px' : '50%')};

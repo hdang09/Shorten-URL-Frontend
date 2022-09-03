@@ -2,13 +2,16 @@ import { Link } from 'react-router-dom';
 import { Button, Input } from '../../components';
 import { FcGoogle } from 'react-icons/fc';
 import { GoogleLogin } from 'react-google-login';
+import { useDispatch } from 'react-redux';
 
+import { login } from '../Login/loginSlice';
 import * as Styled from './Login.styled';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useLocalStorage } from '../../hooks';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
 
-function Login() {
+function Login({ signUp }) {
+    const dispatch = useDispatch();
     const [tokenStorage, setTokenStorage] = useLocalStorage('token', '');
 
     const onSuccess = async (response) => {
@@ -33,9 +36,10 @@ function Login() {
                                 <div>
                                     <Input transparent placeholder="Enter username" />
                                     <Input transparent password />
+                                    {signUp && <Input transparent confirmPassword />}
                                     <Styled.RecoverPass>Recovery Password</Styled.RecoverPass>
-                                    <Button to="/" large>
-                                        Log in
+                                    <Button to="/" large onClick={() => dispatch(login())}>
+                                        {signUp ? 'Sign Up' : 'Log in'}
                                     </Button>
 
                                     <div style={{ marginTop: '1rem' }}>
@@ -52,15 +56,17 @@ function Login() {
                                                     leftIcon={<FcGoogle />}
                                                     outline
                                                 >
-                                                    Continue with FPT Email
+                                                    Continue with Google
                                                 </Button>
                                             )}
                                         />
                                     </div>
-                                    <Styled.SignUp>
-                                        Don't have an account?
-                                        <Link to="/signup"> Sign up</Link>
-                                    </Styled.SignUp>
+                                    {!signUp && (
+                                        <Styled.SignUp>
+                                            Don't have an account?
+                                            <Link to="/signup"> Sign up</Link>
+                                        </Styled.SignUp>
+                                    )}
                                 </div>
                             </Styled.Box>
                         </Styled.LoginSection>

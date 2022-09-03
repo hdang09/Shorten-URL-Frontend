@@ -6,7 +6,7 @@ import { useSelector } from 'react-redux';
 import { AiOutlineRight } from 'react-icons/ai';
 
 function Home() {
-    const MY_LINKS = useSelector((state) => state.urls);
+    const MY_LINKS = useSelector((state) => state.urls) || [];
 
     return (
         <Row>

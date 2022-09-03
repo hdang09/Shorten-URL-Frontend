@@ -1,28 +1,32 @@
-import { Button, Header, URLShortener } from '../../components';
+import { Button, Header } from '../../components';
 import * as Styled from './Landing.styled';
-import screenshot from '../../assets/screenshots.png';
+import lightScreenshot from '../../assets/screenshots.png';
+import darkScreenshot from '../../assets/screenshots-dark.png';
+import { useLocalStorage } from '../../hooks';
 
 function LandingPage() {
+    const [theme, setTheme] = useLocalStorage('data-theme', 'light');
+    const screenshot = theme === 'light' ? lightScreenshot : darkScreenshot;
     return (
         <>
             <Header landingPage />
             <Styled.Banner>
                 <Styled.Heading>
-                    Create <span style={{ color: 'var(--primary-color' }}>Short</span> Links!
+                    Create <Styled.Highlight>Short</Styled.Highlight>&nbsp;Links!
                 </Styled.Heading>
                 <Styled.Subheading>
                     A URL shortener built with powerful tools to help you grow and protect your
                     brand.
                 </Styled.Subheading>
                 <div style={{ margin: '2rem' }}>
-                    <Button to="/" style={{ display: 'inline-flex' }} shine="true">
+                    <Button to="/login" style={{ display: 'inline-flex' }} shine="true">
                         Get Started
                     </Button>
-                    <Button to="/" outline>
+                    <Button href="https://shorten-url-hdang09.vercel.app/" outline>
                         Watch Demo
                     </Button>
                 </div>
-                <Styled.Screenshot src={screenshot} />
+                <Styled.Screenshot src={screenshot} alt="Screenshot" />
             </Styled.Banner>
         </>
     );

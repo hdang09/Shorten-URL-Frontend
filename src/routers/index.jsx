@@ -1,5 +1,7 @@
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import PrivateRouters from './PrivateRouters';
+import PublicRouters from './PublicRouters';
+import AdminRouters from './AdminRouters';
 import {
     Login,
     Home,
@@ -16,6 +18,7 @@ import { Default as DefaultLayout, New as NewLayout } from '../layouts';
 const publicRoutes = [
     { name: 'landing', path: '/landing', element: <Landing /> },
     { name: 'login', path: '/login', element: <Login /> },
+    { name: 'signup', path: '/signup', element: <Login signUp /> },
 ];
 
 const privateRoutes = [
@@ -36,23 +39,25 @@ const RouterComponents = () => {
     return (
         <Router>
             <Routes>
-                <Route>
+                <Route exact element={<PrivateRouters />}>
                     {privateRoutes.map((route) => (
                         <Route
+                            exact
                             key={route.name}
                             path={route.path}
                             element={<NewLayout>{route.element}</NewLayout>}
                         />
                     ))}
                 </Route>
-                <Route>
+                <Route exact element={<PublicRouters />}>
                     {publicRoutes.map((route) => (
-                        <Route key={route.name} path={route.path} element={route.element} />
+                        <Route exact key={route.name} path={route.path} element={route.element} />
                     ))}
                 </Route>
-                <Route>
+                <Route exact>
                     {adminRoutes.map((route) => (
                         <Route
+                            exact
                             key={route.name}
                             path={route.path}
                             element={<DefaultLayout admin>{route.element}</DefaultLayout>}

@@ -45,7 +45,7 @@ function Header({ admin, landingPage }) {
     }
 
     return (
-        <Styled.Wrapper>
+        <Styled.Wrapper landingPage>
             <Styled.Content>
                 <Link to="/">
                     <Styled.Logo>
