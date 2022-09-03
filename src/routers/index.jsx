@@ -31,6 +31,7 @@ const privateRoutes = [
 const adminRoutes = [
     { name: 'admin', path: '/admin', element: <Admin /> },
     { name: 'management', path: '/admin/management', element: <Management /> },
+    { name: 'management/user-url', path: '/admin/management/user-url', element: <MyURL /> },
     { name: 'shorten-url', path: '/admin/shorten-url', element: <Home /> },
     { name: 'settings', path: '/admin/settings', element: <Settings /> },
 ];

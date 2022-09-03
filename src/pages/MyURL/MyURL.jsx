@@ -7,6 +7,8 @@ import { Card, Input, LinkItem } from '../../components';
 import { urlSelector } from '../../components/LinkItem/urlSlice';
 
 const MyURL = (props) => {
+    const userId = window.location.search.split('?id=')[1];
+
     const MY_LINKS = useSelector(urlSelector) || [];
     return (
         <Wrapper>

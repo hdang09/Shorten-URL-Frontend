@@ -74,7 +74,7 @@ export const Highlight = styled.span`
 `;
 
 export const BannerButton = styled.button`
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 600px) {
         margin-left: 0 !important;
         margin-top: 1rem;
     }

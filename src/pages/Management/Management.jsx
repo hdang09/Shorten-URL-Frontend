@@ -67,7 +67,17 @@ const Management = (props) => {
             </Row>
             <Col col={4} />
 
-            <Table columns={columns} dataSource={data} />
+            <Table
+                columns={columns}
+                dataSource={data}
+                onRow={(record, rowIndex) => {
+                    return {
+                        onClick: (event) => {
+                            window.location = `/admin/management/user-url?id=${rowIndex}`;
+                        },
+                    };
+                }}
+            />
         </Container>
     );
 };

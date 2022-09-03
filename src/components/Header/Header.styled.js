@@ -151,7 +151,7 @@ export const Text = styled.span`
 `;
 
 export const HeaderButtons = styled.div`
-    @media only screen and (max-width: 500px) {
+    @media only screen and (max-width: 600px) {
         display: none;
     }
 `;
