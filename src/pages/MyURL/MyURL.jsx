@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
-import { Card, Input, LinkItem } from '../../components';
 import { useSelector } from 'react-redux';
+
+import { Card, Input, LinkItem } from '../../components';
 import { urlSelector } from '../../components/LinkItem/urlSlice';
 
 const MyURL = (props) => {
