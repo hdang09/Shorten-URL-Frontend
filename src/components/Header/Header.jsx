@@ -84,10 +84,10 @@ function Header({ admin, landingPage }) {
                                             {theme === 'light' ? 'Dark' : 'Light'} Theme
                                         </Styled.Text>
                                     </Styled.MenuItem>
-                                    <Styled.MenuItem to="/admin">
+                                    {/* <Styled.MenuItem to="/admin">
                                         <BsGlobe />
                                         <Styled.Text>Admin Page (Dev Only)</Styled.Text>
-                                    </Styled.MenuItem>
+                                    </Styled.MenuItem> */}
                                     <Styled.MenuItem to="/helps">
                                         <BsQuestionOctagon />
                                         <Styled.Text>Helps</Styled.Text>
