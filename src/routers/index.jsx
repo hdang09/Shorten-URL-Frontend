@@ -33,6 +33,7 @@ const adminRoutes = [
     { name: 'management', path: '/admin/management', element: <Management /> },
     { name: 'management/user-url', path: '/admin/management/user-url', element: <MyURL /> },
     { name: 'shorten-url', path: '/admin/shorten-url', element: <Home /> },
+    { name: 'shorten-url/admin-url', path: '/admin/shorten-url/admin-url', element: <MyURL /> },
     { name: 'settings', path: '/admin/settings', element: <Settings /> },
 ];
 

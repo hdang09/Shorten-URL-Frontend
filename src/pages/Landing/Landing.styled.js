@@ -73,7 +73,7 @@ export const Highlight = styled.span`
     position: relative;
 `;
 
-export const BannerButton = styled.button`
+export const BannerButton = styled.a`
     @media only screen and (max-width: 600px) {
         margin-left: 0 !important;
         margin-top: 1rem;

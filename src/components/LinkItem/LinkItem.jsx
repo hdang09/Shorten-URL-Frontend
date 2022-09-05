@@ -23,10 +23,9 @@ const LinkItem = ({ data }) => {
         setOpenEditBox(false);
         dispatch(
             edit({
+                ...data,
                 name: nameInput || data.name,
                 shorten_url: urlInput || data.shorten_url,
-                original_url: data.original_url,
-                created_at: data.created_at,
             }),
         );
     };
@@ -37,7 +36,7 @@ const LinkItem = ({ data }) => {
     };
 
     const handleDelete = () => {
-        dispatch(deleteItem(data.original_url));
+        dispatch(deleteItem(data.id));
         toast.success(`Deleted successfully`);
     };
 
@@ -101,7 +100,7 @@ const LinkItem = ({ data }) => {
                         large
                         placeholder={data.shorten_url}
                     />
-                    <p>Original link: {data.original_url}</p>
+                    <p>Original link: {data.origin_url}</p>
                     <p>Created at: {data.created_at}</p>
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                         <Button outline onClick={handleDelete}>

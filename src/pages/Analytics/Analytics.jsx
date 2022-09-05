@@ -27,6 +27,7 @@ const Analytics = (props) => {
                     text: 'Chart.js Bar Chart',
                 },
             },
+            bezierCurve: true,
         };
 
         const labels = ['1 - 5/9', '6 - 10/9', '11 - 15/9', '16 - 20/9', '21 - 25/9', '26 - 30/9'];
@@ -60,6 +61,9 @@ const Analytics = (props) => {
     };
 
     const LineChart = () => {
+        const options = {
+            responsive: true,
+        };
         const data = {
             labels: [
                 'January',
@@ -77,41 +81,37 @@ const Analytics = (props) => {
             ],
             datasets: [
                 {
-                    fill: true,
                     id: 1,
                     label: 'Links',
                     data: [5, 6, 4, 1, 9, 3, 2, 6, 8, 4, 5, 6],
-                    borderColor: 'rgb(0, 0, 255, 0.5)',
-                    backgroundColor: 'rgba(0, 0, 255, 0.25)',
+                    borderColor: '#FF6384',
+                    lineTension: 0.4,
                 },
                 {
-                    fill: true,
                     id: 2,
                     label: 'Clicks',
                     data: [3, 2, 6, 8, 4, 5, 6, 4, 1, 9, 3, 2],
-                    borderColor: 'rgb(0, 255, 0, 0.5)',
-                    backgroundColor: 'rgba(0, 255, 0, 0.25)',
+                    borderColor: '#36A2EB',
+                    lineTension: 0.4,
                 },
-                {
-                    fill: true,
-                    id: 3,
-                    label: 'AVG CTR',
-                    data: [8, 6, 2, 5, 4, 7, 8, 2, 0, 1, 2, 5],
-                    borderColor: 'rgb(255, 0, 0, 0.5)',
-                    backgroundColor: 'rgba(255, 0, 0, 0.25)',
-                },
-                {
-                    fill: true,
-                    id: 4,
-                    label: 'AVG Times',
-                    data: [9, 1, 2, 5, 4, 12, 1, 4, 7, 8, 3],
-                    borderColor: 'rgb(255, 255, 0, 0.5)',
-                    backgroundColor: 'rgba(255, 255, 0, 0.25)',
-                },
+                // {
+                //     id: 3,
+                //     label: 'AVG CTR',
+                //     data: [8, 6, 2, 5, 4, 7, 8, 2, 0, 1, 2, 5],
+                //     borderColor: '#4BC0C0',
+                //     lineTension: 0.4,
+                // },
+                // {
+                //     id: 4,
+                //     label: 'AVG Times',
+                //     data: [9, 1, 2, 5, 4, 12, 1, 4, 7, 8, 3],
+                //     borderColor: '#FFCD56',
+                //     lineTension: 0.4,
+                // },
             ],
         };
 
-        return <Line data={data} />;
+        return <Line data={data} options={options} />;
     };
 
     return (

@@ -24,6 +24,7 @@
     --white-color: #000;
     /* --hover-color: #e6edf0; */
     --background-color: #202427;
+    --box-shadow: 0 -2px 10px rgba(0, 0, 0, 1);
 }
 
 * {

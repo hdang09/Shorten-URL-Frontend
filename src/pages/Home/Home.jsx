@@ -8,6 +8,7 @@ import { urlSelector } from '../../components/LinkItem/urlSlice';
 
 function Home() {
     const MY_LINKS = useSelector(urlSelector) || [];
+    const role = window.location.pathname.split('/')[1] === '/' ? 'user' : 'admin';
 
     return (
         <Row>
@@ -16,13 +17,13 @@ function Home() {
                 <Card
                     title="Recent URLs"
                     subtitle={
-                        <Link to="/url">
+                        <Link to={role === 'user' ? '/url' : '/admin/shorten-url/admin-url'}>
                             View All <AiOutlineRight />
                         </Link>
                     }
                 >
                     {MY_LINKS.slice(0, 5).map((link) => (
-                        <LinkItem key={link.original_url} data={link} />
+                        <LinkItem key={link.id} data={link} />
                     ))}
                 </Card>
             </Col>

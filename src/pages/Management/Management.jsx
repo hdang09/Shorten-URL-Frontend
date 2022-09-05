@@ -57,6 +57,10 @@ const Management = (props) => {
         });
     }
 
+    const handleClickRow = (record) => {
+        window.location = `/admin/management/user-url?id=${record.key}`;
+    };
+
     return (
         <Container>
             <Row>
@@ -72,9 +76,7 @@ const Management = (props) => {
                 dataSource={data}
                 onRow={(record, rowIndex) => {
                     return {
-                        onClick: (event) => {
-                            window.location = `/admin/management/user-url?id=${rowIndex}`;
-                        },
+                        onClick: () => handleClickRow(record),
                     };
                 }}
             />

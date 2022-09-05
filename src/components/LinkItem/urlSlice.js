@@ -7,19 +7,14 @@ const urlSlice = createSlice({
     initialState,
     reducers: {
         add: (state, action) => {
-            state.unshift({
-                name: action.payload.name,
-                original_url: action.payload.original_url,
-                shorten_url: action.payload.shorten_url,
-                created_at: action.payload.created_at,
-            });
+            state.unshift(action.payload);
         },
         deleteItem: (state, action) => {
-            state = state.filter((data) => data.original_url !== action.payload);
+            state = state.filter((data) => data.id !== action.payload);
         },
         edit: (state, action) => {
             state.forEach((url) => {
-                if (url.original_url === action.payload.original_url) {
+                if (url.origin_url === action.payload.origin_url) {
                     url.shorten_url = action.payload.shorten_url;
                     url.name = action.payload.name;
                 }
