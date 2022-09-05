@@ -9,22 +9,25 @@ import { Button } from '..';
 import { useLocalStorage } from '../../hooks';
 import Logo from '../../assets/logo.png';
 import * as Styled from './Header.styled';
+import { useSelector } from 'react-redux';
+import { adminSidebarSelector, userSidebarSelector } from '../Sidebar/sidebarSlice';
 
 function Header({ admin, landingPage }) {
+    const navListMenu = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
     const [theme, setTheme] = useLocalStorage('data-theme', 'light');
     useEffect(() => document.body.setAttribute('data-theme', theme), [theme]);
 
-    let navList;
-    if (admin) {
-        navList = (
-            <Styled.NavList>
-                <Styled.NavItem to="/admin/">DASHBOARD</Styled.NavItem>
-                <Styled.NavItem to="/admin/management">MANAGEMENT</Styled.NavItem>
-                <Styled.NavItem to="/admin/shorten-url">SHORTEN URL</Styled.NavItem>
-                <Styled.NavItem to="/admin/settings">SETTINGS</Styled.NavItem>
-            </Styled.NavList>
-        );
-    } else if (landingPage) {
+    const account = {
+        id: 'string',
+        first_name: '(K17 HCM)',
+        last_name: 'Tran Hai Dang',
+        email: 'dangthse171362@fpt.edu.vn',
+        role: 'admin',
+        avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU',
+    };
+
+    let navItem;
+    if (landingPage) {
         // navList = (
         //     <Styled.NavList>
         //         <Styled.NavItem to="#">HOME</Styled.NavItem>
@@ -34,14 +37,11 @@ function Header({ admin, landingPage }) {
         //     </Styled.NavList>
         // );
     } else {
-        navList = (
-            <Styled.NavList>
-                <Styled.NavItem to="/">HOME</Styled.NavItem>
-                <Styled.NavItem to="/url">MY URLS</Styled.NavItem>
-                <Styled.NavItem to="/analytics">ANALYTICS</Styled.NavItem>
-                <Styled.NavItem to="/settings">SETTINGS</Styled.NavItem>
-            </Styled.NavList>
-        );
+        navItem = navListMenu.map((item) => (
+            <Styled.NavItem to={item.to} key={item.name}>
+                {item.name}
+            </Styled.NavItem>
+        ));
     }
 
     return (
@@ -57,7 +57,7 @@ function Header({ admin, landingPage }) {
                         </p>
                     </Styled.Logo>
                 </Link>
-                {navList}
+                <Styled.NavList>{navItem}</Styled.NavList>
                 {landingPage ? (
                     <Styled.HeaderButtons>
                         <Button to="/signup" style={{ display: 'inline-flex' }} text>
@@ -84,10 +84,6 @@ function Header({ admin, landingPage }) {
                                             {theme === 'light' ? 'Dark' : 'Light'} Theme
                                         </Styled.Text>
                                     </Styled.MenuItem>
-                                    {/* <Styled.MenuItem to="/admin">
-                                        <BsGlobe />
-                                        <Styled.Text>Admin Page (Dev Only)</Styled.Text>
-                                    </Styled.MenuItem> */}
                                     <Styled.MenuItem to="/helps">
                                         <BsQuestionOctagon />
                                         <Styled.Text>Helps</Styled.Text>
@@ -105,8 +101,8 @@ function Header({ admin, landingPage }) {
                         )}
                     >
                         <Styled.User>
-                            <Styled.Avatar src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU" />
-                            <Styled.NameUser>Hai Dang</Styled.NameUser>
+                            <Styled.Avatar src={account.avatar} />
+                            <Styled.NameUser>{account.last_name}</Styled.NameUser>
                             <AiFillCaretDown />
                         </Styled.User>
                     </Tippy>

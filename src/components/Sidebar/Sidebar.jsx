@@ -1,69 +1,63 @@
-import { AiFillHome } from 'react-icons/ai';
-import { BiLink } from 'react-icons/bi';
-import { ImStatsDots } from 'react-icons/im';
-import { BsFillGearFill } from 'react-icons/bs';
+import { useState, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import Tippy from '@tippyjs/react';
+import { MdLogout } from 'react-icons/md';
+import { BsMoon } from 'react-icons/bs';
+
 import * as Styled from './Sidebar.styled';
+import { userSidebarSelector, adminSidebarSelector } from '../Sidebar/sidebarSlice';
+import logo from '../../assets/logo.png';
+import { useLocalStorage } from '../../hooks';
+import { signOut } from '../../pages/Login/loginSlice';
 
-const USER_SIDEBAR_LIST = [
-    {
-        id: 1,
-        icon: <AiFillHome />,
-        to: '/',
-        title: 'Home',
-    },
-    {
-        id: 2,
-        icon: <BiLink />,
-        to: '/url',
-        title: 'My URLs',
-    },
-    {
-        id: 3,
-        icon: <ImStatsDots />,
-        to: '/analytics',
-        title: 'Analytics',
-    },
-    {
-        id: 4,
-        icon: <BsFillGearFill />,
-        to: '/settings',
-        title: 'Settings',
-    },
-];
+function Sidebar({ admin, redesign }) {
+    const sidebarList = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
+    const [theme, setTheme] = useLocalStorage('data-theme', 'light');
+    useEffect(() => document.body.setAttribute('data-theme', theme), [theme]);
 
-const ADMIN_SIDEBAR_LIST = [
-    {
-        id: 5,
-        icon: <AiFillHome />,
-        to: '/admin/',
-        title: 'Dashboard',
-    },
-    {
-        id: 6,
-        icon: <BiLink />,
-        to: '/admin/management',
-        title: 'Management',
-    },
-    {
-        id: 7,
-        icon: <ImStatsDots />,
-        to: '/admin/shorten-url',
-        title: 'Shorten URL',
-    },
-    {
-        id: 8,
-        icon: <BsFillGearFill />,
-        to: '/admin/settings',
-        title: 'Settings',
-    },
-];
-
-function Sidebar({ admin }) {
-    const sidebarList = admin ? ADMIN_SIDEBAR_LIST : USER_SIDEBAR_LIST;
-    return (
+    return redesign ? (
+        <Styled.Sidebar>
+            <Link to="/">
+                <Styled.Logo src={logo} alt="Logo" />
+            </Link>
+            <Styled.NavList>
+                {sidebarList.map(({ name, icon, to, ...rest }) => (
+                    <Tippy content={name} placement="right" key={name}>
+                        <Styled.NewSidebarItem to={to} {...rest}>
+                            {icon}
+                        </Styled.NewSidebarItem>
+                    </Tippy>
+                ))}
+                <Tippy
+                    content={`${theme === 'light' ? 'Dark' : 'Light'} Theme`}
+                    placement="right"
+                    key={'abc'}
+                >
+                    <Styled.NewSidebarItem
+                        to=""
+                        onClick={() => setTheme((theme) => (theme === 'light' ? 'dark' : 'light'))}
+                    >
+                        <BsMoon />
+                    </Styled.NewSidebarItem>
+                </Tippy>
+                <Tippy content={'Log out'} placement="right" key={'Log out'}>
+                    <Styled.NewSidebarItem to="" onClick={() => dispatch(signOut())}>
+                        <MdLogout />
+                    </Styled.NewSidebarItem>
+                </Tippy>
+            </Styled.NavList>
+            <Tippy content="Hai Dang" placement="right">
+                <Styled.Logo
+                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU"
+                    alt="Avatar"
+                />
+            </Tippy>
+        </Styled.Sidebar>
+    ) : (
         <Styled.Wrapper>
             {sidebarList.map((item) => (
-                <Styled.SidebarItem key={item.id} to={item.to}>
+                <Styled.SidebarItem key={item.name} to={item.to}>
                     <Styled.Icon>{item.icon}</Styled.Icon>
                     {item.title}
                 </Styled.SidebarItem>
@@ -73,3 +67,22 @@ function Sidebar({ admin }) {
 }
 
 export default Sidebar;
+
+{
+    /* <Styled.NavList expanded={expandedNav}>
+                {SIDEBAR_LIST.map(({ name, icon, to, ...rest }) =>
+                    expandedNav ? (
+                        <Styled.NewSidebarItem to={to} key={name} {...rest} expanded={expandedNav}>
+                            {icon}
+                            <span style={{ marginLeft: '1rem' }}>{name}</span>
+                        </Styled.NewSidebarItem>
+                    ) : (
+                        <Tippy content={name} placement="right" key={name}>
+                            <Styled.NewSidebarItem to={to} {...rest}>
+                                {icon}
+                            </Styled.NewSidebarItem>
+                        </Tippy>
+                    ),
+                )}
+            </Styled.NavList> */
+}

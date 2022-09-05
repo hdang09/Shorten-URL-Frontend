@@ -86,6 +86,7 @@ export const NavList = styled.ul`
 export const NavItem = styled(NavLink)`
     margin: 0 20px;
     font-weight: 700;
+    text-transform: uppercase;
     color: ${(props) => (props.transparent ? 'var(--white-color)' : 'var(--black-color)')};
 
     &.active {

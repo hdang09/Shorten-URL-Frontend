@@ -14,6 +14,20 @@ const Settings = (props) => {
     const [color, setColor] = useLocalStorage('primary-color', '#45ce7b');
     document.querySelector(':root').style.setProperty('--primary-color', `${color}`);
 
+    const [layout, setLayout] = useLocalStorage('layout', 'new');
+
+    const handleChangeBasicLayout = () => {
+        setLayout('default');
+        alert('The entire page will be reloaded!');
+        window.location = '/'; // 'settings'
+    };
+
+    const handleChangeMModernLayout = () => {
+        setLayout('new');
+        alert('The entire page will be reloaded!');
+        window.location = '/'; // 'settings'
+    };
+
     const handleChangeTheme = () => {
         setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'));
         alert('The entire page will be reloaded!');
@@ -57,6 +71,29 @@ const Settings = (props) => {
                             {'   '}
                             Click here to go back to default color
                         </a>
+                        <div>
+                            <span style={{ marginTop: '6px', display: 'block' }}>
+                                <BsMoon />
+                                {'  '}
+                                Layout:
+                            </span>
+                            <input
+                                id="default"
+                                type="radio"
+                                onClick={handleChangeBasicLayout}
+                                checked={layout === 'default'}
+                            />{' '}
+                            <label htmlFor="default" style={{ marginRight: '1rem' }}>
+                                Basic Layout
+                            </label>
+                            <input
+                                id="new"
+                                type="radio"
+                                onClick={handleChangeMModernLayout}
+                                checked={layout === 'new'}
+                            />{' '}
+                            <label htmlFor="new">Modern Layout (Default)</label>
+                        </div>
                     </Card>
                     <div className="col-lg-3 hidden-md" />
                 </div>

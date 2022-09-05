@@ -14,6 +14,7 @@ import {
     Management,
 } from '../pages';
 import { Default as DefaultLayout, New as NewLayout } from '../layouts';
+import { useLocalStorage } from '../hooks';
 
 const publicRoutes = [
     { name: 'landing', path: '/landing', element: <Landing /> },
@@ -38,6 +39,7 @@ const adminRoutes = [
 ];
 
 const RouterComponents = () => {
+    const Layout = useLocalStorage('layout', 'new')[0] === 'new' ? NewLayout : DefaultLayout;
     return (
         <Router>
             <Routes>
@@ -47,7 +49,7 @@ const RouterComponents = () => {
                             exact
                             key={route.name}
                             path={route.path}
-                            element={<NewLayout>{route.element}</NewLayout>}
+                            element={<Layout>{route.element}</Layout>}
                         />
                     ))}
                 </Route>
@@ -62,7 +64,7 @@ const RouterComponents = () => {
                             exact
                             key={route.name}
                             path={route.path}
-                            element={<DefaultLayout admin>{route.element}</DefaultLayout>}
+                            element={<Layout admin>{route.element}</Layout>}
                         />
                     ))}
                 </Route>
