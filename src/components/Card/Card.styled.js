@@ -9,8 +9,8 @@ const scaleUpCanter = keyframes`
 `;
 
 export const Wrapper = styled.div`
-    background-color: var(--white-color);
-    color: var(--black-color);
+    background-color: ${(props) => props.theme.cardBackground};
+    color: ${(props) => props.theme.black};
     border-radius: 12px;
     width: ${(props) => (props.noItem ? '500px' : '100%')};
     margin-bottom: 20px;
@@ -35,12 +35,12 @@ export const Title = styled.h1`
     margin-bottom: 20px;
     font-size: 2.6rem;
     text-align: ${(props) => (props.noItem ? 'center' : 'left')};
-    color: var(--black-color);
+    color: ${(props) => props.theme.black};
 `;
 
 export const Subtitle = styled.h3`
     margin-bottom: 12px;
-    color: var(--black-color);
+    color: ${(props) => props.theme.black};
 
     &:hover a {
         color: var(--primary-color);

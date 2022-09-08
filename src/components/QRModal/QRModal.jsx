@@ -11,6 +11,8 @@ import Frame4 from '../../assets/QRCode/frame/qrcg-scan-me-beer-frame.png';
 import Frame5 from '../../assets/QRCode/frame/qrcg-scan-me-bottom-frame.png';
 import Frame6 from '../../assets/QRCode/frame/qrcg-scan-me-bottom-header-frame.png';
 
+const FramesArray = [Frame1, Frame2, Frame3, Frame4, Frame5, Frame6];
+
 const QRModal = ({ setCloseQRModal }) => {
     const [frame, setFrame] = useState(Frame1);
 
@@ -31,33 +33,21 @@ const QRModal = ({ setCloseQRModal }) => {
                     <Styled.List>
                         <h2>FRAME</h2>
                         <Styled.Item>
-                            <Styled.Image src={Frame1} alt="" onClick={() => setFrame(Frame1)} />
-                            <Styled.Image src={Frame2} alt="" onClick={() => setFrame(Frame2)} />
-                            <Styled.Image src={Frame3} alt="" onClick={() => setFrame(Frame3)} />
-                            <Styled.Image src={Frame4} alt="" onClick={() => setFrame(Frame4)} />
-                            <Styled.Image src={Frame5} alt="" onClick={() => setFrame(Frame5)} />
-                            <Styled.Image src={Frame6} alt="" onClick={() => setFrame(Frame6)} />
-                            <Styled.Image src={Frame4} alt="" onClick={() => setFrame(Frame4)} />
+                            {FramesArray.map((frame) => (
+                                <Styled.Image src={frame} alt="" onClick={() => setFrame(frame)} />
+                            ))}
                         </Styled.Item>
                         <h2>QR CODE</h2>
                         <Styled.Item>
-                            <Styled.Image src={Frame1} alt="" onClick={() => setFrame(Frame1)} />
-                            <Styled.Image src={Frame2} alt="" onClick={() => setFrame(Frame2)} />
-                            <Styled.Image src={Frame3} alt="" onClick={() => setFrame(Frame3)} />
-                            <Styled.Image src={Frame4} alt="" onClick={() => setFrame(Frame4)} />
-                            <Styled.Image src={Frame5} alt="" onClick={() => setFrame(Frame5)} />
-                            <Styled.Image src={Frame6} alt="" onClick={() => setFrame(Frame6)} />
-                            <Styled.Image src={Frame4} alt="" onClick={() => setFrame(Frame4)} />
+                            {FramesArray.map((frame) => (
+                                <Styled.Image src={frame} alt="" onClick={() => setFrame(frame)} />
+                            ))}
                         </Styled.Item>
                         <h2>LOGO</h2>
                         <Styled.Item>
-                            <Styled.Image src={Frame1} alt="" onClick={() => setFrame(Frame1)} />
-                            <Styled.Image src={Frame2} alt="" onClick={() => setFrame(Frame2)} />
-                            <Styled.Image src={Frame3} alt="" onClick={() => setFrame(Frame3)} />
-                            <Styled.Image src={Frame4} alt="" onClick={() => setFrame(Frame4)} />
-                            <Styled.Image src={Frame5} alt="" onClick={() => setFrame(Frame5)} />
-                            <Styled.Image src={Frame6} alt="" onClick={() => setFrame(Frame6)} />
-                            <Styled.Image src={Frame4} alt="" onClick={() => setFrame(Frame4)} />
+                            {FramesArray.map((frame) => (
+                                <Styled.Image src={frame} alt="" onClick={() => setFrame(frame)} />
+                            ))}
                         </Styled.Item>
                         <h2>COLOR</h2>
                         <Styled.Item>

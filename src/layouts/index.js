@@ -1,4 +1,4 @@
-import Default from './Default/Default';
-import New from './New/New';
+import BasicLayout from './BasicLayout/BasicLayout';
+import ModernLayout from './ModernLayout/ModernLayout';
 
-export { Default, New };
+export { BasicLayout, ModernLayout };

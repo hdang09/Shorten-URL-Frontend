@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 
-import * as Styled from './Default.styled';
+import * as Styled from './BasicLayout.styled';
 import { Header, Sidebar } from '../../components';
 
-const Default = ({ admin, children }) => {
+const BasicLayout = ({ admin, children }) => {
     return (
         <>
             <Header admin={admin} new />
@@ -15,6 +15,6 @@ const Default = ({ admin, children }) => {
     );
 };
 
-Default.propTypes = {};
+BasicLayout.propTypes = {};
 
-export default Default;
+export default BasicLayout;

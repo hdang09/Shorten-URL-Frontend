@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useContext, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import { MdLogout } from 'react-icons/md';
@@ -7,14 +7,18 @@ import { BsMoon } from 'react-icons/bs';
 
 import * as Styled from './Sidebar.styled';
 import { userSidebarSelector, adminSidebarSelector } from '../Sidebar/sidebarSlice';
-import logo from '../../assets/logo.png';
+import logo from '../../assets/images/logo.png';
 import { useLocalStorage } from '../../hooks';
 import { signOut } from '../../pages/Login/loginSlice';
 
+import { ThemeContext } from '../../App';
+
 function Sidebar({ admin, redesign }) {
+    const dispatch = useDispatch();
     const sidebarList = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
     const [theme, setTheme] = useLocalStorage('data-theme', 'light');
     useEffect(() => document.body.setAttribute('data-theme', theme), [theme]);
+    const setThemeInLocal = useContext(ThemeContext);
 
     return redesign ? (
         <Styled.Sidebar>
@@ -34,15 +38,12 @@ function Sidebar({ admin, redesign }) {
                     placement="right"
                     key={'abc'}
                 >
-                    <Styled.NewSidebarItem
-                        to=""
-                        onClick={() => setTheme((theme) => (theme === 'light' ? 'dark' : 'light'))}
-                    >
+                    <Styled.NewSidebarItem to="" onClick={setThemeInLocal}>
                         <BsMoon />
                     </Styled.NewSidebarItem>
                 </Tippy>
                 <Tippy content={'Log out'} placement="right" key={'Log out'}>
-                    <Styled.NewSidebarItem to="" onClick={() => dispatch(signOut())}>
+                    <Styled.NewSidebarItem to="/landing" onClick={() => dispatch(signOut())}>
                         <MdLogout />
                     </Styled.NewSidebarItem>
                 </Tippy>
@@ -59,7 +60,7 @@ function Sidebar({ admin, redesign }) {
             {sidebarList.map((item) => (
                 <Styled.SidebarItem key={item.name} to={item.to}>
                     <Styled.Icon>{item.icon}</Styled.Icon>
-                    {item.title}
+                    {item.name}
                 </Styled.SidebarItem>
             ))}
         </Styled.Wrapper>

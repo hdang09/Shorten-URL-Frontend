@@ -7,12 +7,15 @@ import Tippy from '@tippyjs/react/headless';
 
 import { Button } from '..';
 import { useLocalStorage } from '../../hooks';
-import Logo from '../../assets/logo.png';
+import Logo from '../../assets/images/logo.png';
 import * as Styled from './Header.styled';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { adminSidebarSelector, userSidebarSelector } from '../Sidebar/sidebarSlice';
+import { signOut } from '../../pages/Login/loginSlice';
 
 function Header({ admin, landingPage }) {
+    const dispatch = useDispatch();
+
     const navListMenu = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
     const [theme, setTheme] = useLocalStorage('data-theme', 'light');
     useEffect(() => document.body.setAttribute('data-theme', theme), [theme]);
@@ -45,7 +48,7 @@ function Header({ admin, landingPage }) {
     }
 
     return (
-        <Styled.Wrapper landingPage>
+        <Styled.Wrapper landingPage={landingPage}>
             <Styled.Content>
                 <Link to="/">
                     <Styled.Logo>
@@ -92,7 +95,10 @@ function Header({ admin, landingPage }) {
                                         <BsGear />
                                         <Styled.Text>Settings</Styled.Text>
                                     </Styled.MenuItem>
-                                    <Styled.MenuItem to="/login">
+                                    <Styled.MenuItem
+                                        to="/landing"
+                                        onClick={() => dispatch(signOut())}
+                                    >
                                         <FiLogOut />
                                         <Styled.Text>Log out</Styled.Text>
                                     </Styled.MenuItem>

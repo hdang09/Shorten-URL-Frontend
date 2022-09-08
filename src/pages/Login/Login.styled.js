@@ -1,19 +1,24 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
-import background from '../../assets/login-bg.png';
+import loginComponent from '../../assets/images/login-component.png';
 
 export const Wrapper = styled.div`
     height: 100vh;
-    background-image: url(${background});
     background-size: cover;
     background-clip: border-box;
     background-position: center;
     overflow: hidden;
+    background-color: ${(props) => props.theme.background};
+`;
 
-    @media only screen and (max-width: 992px) {
-        background-image: none;
-        background-color: var(--background-color);
-    }
+export const ImgSection = styled.div`
+    background-image: url(${loginComponent});
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
 `;
 
 export const LoginSection = styled.div`
@@ -28,21 +33,13 @@ export const Title = styled.h1`
     font-weight: 600;
     margin-bottom: 10px;
     font-size: 2.8rem;
-    color: #000;
-
-    @media only screen and (max-width: 992px) {
-        color: var(--black-color);
-    }
+    color: ${(props) => props.theme.black};
 `;
 
 export const SubTitle = styled.h2`
     margin-bottom: 32px;
     font-size: 1.6rem;
-    color: #000;
-
-    @media only screen and (max-width: 992px) {
-        color: var(--black-color);
-    }
+    color: ${(props) => props.theme.black};
 `;
 
 export const Box = styled.div`
@@ -56,7 +53,7 @@ export const Box = styled.div`
         height: 650px;
         box-shadow: var(--box-shadow);
         border-radius: 12px;
-        background-color: var(--white-color);
+        background-color: ${(props) => props.theme.white};
     }
 `;
 
@@ -65,20 +62,12 @@ export const RecoverPass = styled.p`
     font-size: 1.4rem;
     margin: 10px 0 20px;
     right: 0;
-    color: #000;
-
-    @media only screen and (max-width: 992px) {
-        color: var(--black-color);
-    }
+    color: ${(props) => props.theme.black};
 `;
 
 export const SignUp = styled.p`
     text-align: center;
     margin: 12px;
     font-size: 1.4rem;
-    color: #000;
-
-    @media only screen and (max-width: 992px) {
-        color: var(--black-color);
-    }
+    color: ${(props) => props.theme.black};
 `;

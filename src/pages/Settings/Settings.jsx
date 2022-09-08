@@ -1,38 +1,71 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import { Card, Input } from '../../components';
-import { useLocalStorage } from '../../hooks';
-import styled from 'styled-components';
 import { BsMoon } from 'react-icons/bs';
+import { RiLayout2Fill } from 'react-icons/ri';
 import { IoColorPaletteOutline } from 'react-icons/io5';
 import { MdInvertColorsOff } from 'react-icons/md';
 
+import * as Styled from './Settings.styled';
+import { Card, Input } from '../../components';
+import { useLocalStorage } from '../../hooks';
+import { ThemeContext } from '../../App';
+import { LayoutContext } from '../../routers';
+import { useContext } from 'react';
+import { Col, Row } from 'styled-bootstrap-grid';
+import newLayout from '../../assets/images/screenshots.png';
+import basicLayout from '../../assets/images/basic-layout.png';
+
 const Settings = (props) => {
-    const [theme, setTheme] = useLocalStorage('data-theme', 'light');
-    useEffect(() => document.body.setAttribute('data-theme', theme), [theme]);
+    const theme = JSON.parse(localStorage.getItem('data-theme'));
+    const setThemeInLocal = useContext(ThemeContext);
+    const layout = JSON.parse(localStorage.getItem('layout'));
+    const setLayoutInLocal = useContext(LayoutContext);
 
     const [color, setColor] = useLocalStorage('primary-color', '#45ce7b');
     document.querySelector(':root').style.setProperty('--primary-color', `${color}`);
 
-    const [layout, setLayout] = useLocalStorage('layout', 'new');
+    const ThemeSettings = () => (
+        <Styled.SettingsItem>
+            <Styled.SettingsLabel style={{ marginRight: '6px' }} htmlFor="theme">
+                <BsMoon />
+                {'  '}
+                Dark Theme
+            </Styled.SettingsLabel>
+            <Styled.Toggle theme={theme} onClick={setThemeInLocal}>
+                <Styled.Circle theme={theme} />
+            </Styled.Toggle>
+        </Styled.SettingsItem>
+    );
 
-    const handleChangeBasicLayout = () => {
-        setLayout('default');
-        alert('The entire page will be reloaded!');
-        window.location = '/'; // 'settings'
-    };
-
-    const handleChangeMModernLayout = () => {
-        setLayout('new');
-        alert('The entire page will be reloaded!');
-        window.location = '/'; // 'settings'
-    };
-
-    const handleChangeTheme = () => {
-        setTheme((theme) => (theme === 'dark' ? 'light' : 'dark'));
-        alert('The entire page will be reloaded!');
-        window.location = '/'; // 'settings'
-    };
+    const LayoutSettings = () => (
+        <Styled.SettingsItem>
+            <Styled.SettingsLabel>
+                <RiLayout2Fill />
+                {'  '}
+                Layout:
+            </Styled.SettingsLabel>
+            <Row>
+                <Col col={6}>
+                    <Styled.LayoutSelect
+                        active={layout === 'default'}
+                        onClick={() => setLayoutInLocal('default')}
+                    >
+                        <Styled.LayoutName htmlFor="default">Basic Layout</Styled.LayoutName>
+                        <Styled.LayoutImg src={basicLayout} />
+                    </Styled.LayoutSelect>
+                </Col>
+                <Col col={6}>
+                    <Styled.LayoutSelect
+                        active={layout === 'new'}
+                        onClick={() => setLayoutInLocal('new')}
+                    >
+                        <Styled.LayoutName htmlFor="new">Modern Layout (Default)</Styled.LayoutName>
+                        <Styled.LayoutImg src={newLayout} />
+                    </Styled.LayoutSelect>
+                </Col>
+            </Row>
+        </Styled.SettingsItem>
+    );
 
     return (
         <>
@@ -40,60 +73,34 @@ const Settings = (props) => {
                 <div className="col-lg-3 hidden-md" />
                 <div className="col-lg-6 col-md-12">
                     <Card title="Settings">
-                        <div>
-                            <label style={{ marginRight: '6px' }} htmlFor="theme">
-                                <BsMoon />
-                                {'  '}
-                                Dark Theme
-                            </label>
-                            <Toggle theme={theme} onClick={() => handleChangeTheme()}>
-                                <Circle theme={theme} />
-                            </Toggle>
-                        </div>
-                        <p>
-                            <IoColorPaletteOutline /> Change primary color:
-                        </p>
-                        <div style={{ display: 'flex' }}>
-                            <ColorInput
-                                type="color"
-                                value={color}
-                                onChange={(e) => setColor(e.target.value)}
-                            />
-                            <Input
-                                large
-                                outline
-                                value={color}
-                                onChange={(e) => setColor(e.target.value)}
-                            />
-                        </div>
-                        <a onClick={() => setColor('#45ce7b')}>
-                            <MdInvertColorsOff />
-                            {'   '}
-                            Click here to go back to default color
-                        </a>
-                        <div>
-                            <span style={{ marginTop: '6px', display: 'block' }}>
-                                <BsMoon />
-                                {'  '}
-                                Layout:
-                            </span>
-                            <input
-                                id="default"
-                                type="radio"
-                                onClick={handleChangeBasicLayout}
-                                checked={layout === 'default'}
-                            />{' '}
-                            <label htmlFor="default" style={{ marginRight: '1rem' }}>
-                                Basic Layout
-                            </label>
-                            <input
-                                id="new"
-                                type="radio"
-                                onClick={handleChangeMModernLayout}
-                                checked={layout === 'new'}
-                            />{' '}
-                            <label htmlFor="new">Modern Layout (Default)</label>
-                        </div>
+                        <ThemeSettings />
+
+                        {/* PrimaryColorSettings */}
+                        <Styled.SettingsItem>
+                            <Styled.SettingsLabel>
+                                <IoColorPaletteOutline /> Change primary color:
+                            </Styled.SettingsLabel>
+                            <div style={{ display: 'flex' }}>
+                                <Styled.ColorInput
+                                    type="color"
+                                    value={color}
+                                    onChange={(e) => setColor(e.target.value)}
+                                />
+                                <Input
+                                    large
+                                    outline
+                                    value={color}
+                                    onChange={(e) => setColor(e.target.value)}
+                                />
+                            </div>
+                            <a onClick={() => setColor('#45ce7b')}>
+                                <MdInvertColorsOff />
+                                {'   '}
+                                Click here to go back to default color
+                            </a>
+                        </Styled.SettingsItem>
+
+                        <LayoutSettings />
                     </Card>
                     <div className="col-lg-3 hidden-md" />
                 </div>
@@ -105,42 +112,3 @@ const Settings = (props) => {
 Settings.propTypes = {};
 
 export default Settings;
-
-const Toggle = styled.div`
-    display: inline-block;
-    padding: 0.25rem;
-    background-color: ${(props) =>
-        props.theme === 'dark' ? 'var(--primary-color)' : 'rgba(15, 23, 42, 0.1)'};
-    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow,
-        transform;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    width: 2.5rem;
-    height: 1.5rem;
-    border-radius: 9999px;
-    box-shadow: var(--box-shadow);
-    pointer-events: auto;
-    cursor: pointer;
-`;
-
-const Circle = styled.div`
-    background-color: #ffffff;
-    transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow,
-        transform;
-    transition-duration: 200ms;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    width: 1rem;
-    height: 1rem;
-    border-radius: 9999px;
-    box-shadow: var(--box-shadow);
-    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-    transform: ${(props) =>
-        props.theme === 'dark'
-            ? 'translate(1rem, 0) rotate(0) skewX(0) skewY(0) scaleX(1) scaleY(1)'
-            : '0'};
-`;
-
-const ColorInput = styled.input`
-    margin-right: 1rem;
-    width: 40px;
-    height: 40px;
-`;

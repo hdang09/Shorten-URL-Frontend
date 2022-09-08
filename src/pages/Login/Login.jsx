@@ -6,9 +6,9 @@ import { useDispatch } from 'react-redux';
 
 import { login } from '../Login/loginSlice';
 import * as Styled from './Login.styled';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import { useLocalStorage } from '../../hooks';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
+import { CLIENT_ID } from '../../config';
 
 function Login({ signUp }) {
     const dispatch = useDispatch();
@@ -27,16 +27,18 @@ function Login({ signUp }) {
         <Styled.Wrapper>
             <Container>
                 <Row>
-                    <Col col={6} hiddenMdDown />
+                    <Col col={6} hiddenMdDown>
+                        <Styled.ImgSection />
+                    </Col>
                     <Col col={6} xs={12} sm={12} md={12} lg={6}>
                         <Styled.LoginSection>
                             <Styled.Box>
                                 <Styled.Title>Hello Again!</Styled.Title>
                                 <Styled.SubTitle>Welcome back you've been missed</Styled.SubTitle>
                                 <div>
-                                    <Input transparent placeholder="Enter username" />
-                                    <Input transparent password />
-                                    {signUp && <Input transparent confirmPassword />}
+                                    <Input placeholder="Enter username" />
+                                    <Input password />
+                                    {signUp && <Input confirmPassword />}
                                     <Styled.RecoverPass>Recovery Password</Styled.RecoverPass>
                                     <Button to="/" large onClick={() => dispatch(login())}>
                                         {signUp ? 'Sign up' : 'Log in'}
@@ -44,8 +46,7 @@ function Login({ signUp }) {
 
                                     <div style={{ marginTop: '1rem' }}>
                                         <GoogleLogin
-                                            // clientId="977769293513-67s7vl5ij0nrvpafqliamobp1hhocrja.apps.googleusercontent.com"
-                                            clientId="testhehe.apps.googleusercontent.com"
+                                            clientId={`${CLIENT_ID}`}
                                             onSuccess={onSuccess}
                                             onFailure={onFailure}
                                             render={(props) => (

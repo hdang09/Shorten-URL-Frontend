@@ -67,7 +67,7 @@ const URLShortener = ({ noItem }) => {
                     onChange={(e) => setOriginalURL(e.target.value)}
                     onKeyDown={(e) => e.keyCode === 13 && handleShortenURL()}
                     large
-                    transparent
+                    background
                     placeholder="Paste a link to shorten it"
                 />
                 <Button shine onClick={() => handleShortenURL()}>

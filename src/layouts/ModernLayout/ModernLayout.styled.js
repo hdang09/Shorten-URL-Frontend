@@ -1,5 +1,18 @@
-import { NavLink } from 'react-router-dom';
 import styled from 'styled-components';
+
+export const Wrapper = styled.div`
+    /* display: flex; */
+    height: 100%;
+    min-height: 100vh;
+    background-color: ${(props) => props.theme.background};
+    box-sizing: border-box;
+
+    /* width: 100%;
+    height: 100%;
+    max-height: 100vw;
+    max-width: 100vh;
+    background-color: ${(props) => props.theme.background}; */
+`;
 
 export const Container = styled.div`
     display: flex;

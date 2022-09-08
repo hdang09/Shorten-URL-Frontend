@@ -2,6 +2,7 @@ import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
 export const Wrapper = styled.header`
+    height: var(--header-height);
     position: fixed;
     bottom: auto;
     top: 0;
@@ -12,21 +13,21 @@ export const Wrapper = styled.header`
     justify-content: center;
     align-items: center;
     ${(props) =>
-        props.landingPage
-            ? `box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
-    background-color: var(--white-color);`
-            : `backdrop-filter: blur(5px);`}
+        props.landingPage === true
+            ? `backdrop-filter: blur(5px);`
+            : `box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
+    background-color: ${props.theme.cardBackground};`}
 
     &.transparent {
         background-color: transparent;
         box-shadow: none;
-        color: var(--white-color);
+        color: ${(props) => props.theme.white};
     }
 `;
 
 export const Content = styled.div`
     width: 1150px;
-    height: var(--header-height);
+    height: ${(props) => console.log(props)};
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -87,7 +88,7 @@ export const NavItem = styled(NavLink)`
     margin: 0 20px;
     font-weight: 700;
     text-transform: uppercase;
-    color: ${(props) => (props.transparent ? 'var(--white-color)' : 'var(--black-color)')};
+    color: ${(props) => props.theme.black};
 
     &.active {
         opacity: 0.75;
@@ -114,12 +115,13 @@ export const Avatar = styled.img`
 `;
 export const User = styled.div`
     cursor: pointer;
-    color: var(--black-color);
+    color: ${(props) => props.theme.black};
 `;
 
 export const NameUser = styled.span`
     margin: 0 8px;
-    color: ${(props) => (props.transparent ? 'var(--white-color)' : 'var(--black-color)')};
+    color: ${(props) =>
+        props.transparent ? '${(props) => props.theme.white}' : '${(props) => props.theme.black}'};
 
     @media only screen and (max-width: 500px) {
         display: none;
@@ -128,7 +130,7 @@ export const NameUser = styled.span`
 export const Menu = styled.div``;
 
 export const TippyBox = styled.ul`
-    background-color: var(--white-color);
+    background-color: ${(props) => props.theme.white};
     padding: 12px 0;
     box-shadow: rgb(0 0 0 / 12%) 0px 4px 16px;
     border-radius: 8px;
@@ -138,11 +140,11 @@ export const TippyBox = styled.ul`
 export const MenuItem = styled(Link)`
     display: block;
     padding: 12px 52px 12px 32px;
-    color: var(--black-color);
+    color: ${(props) => props.theme.black};
     font-weight: 500;
 
     &:hover {
-        color: var(--black-color);
+        color: ${(props) => props.theme.black};
         background-color: rgba(0, 0, 0, 0.05);
     }
 `;

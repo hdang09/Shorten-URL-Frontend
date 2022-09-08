@@ -13,8 +13,9 @@ import {
     Admin,
     Management,
 } from '../pages';
-import { Default as DefaultLayout, New as NewLayout } from '../layouts';
+import { BasicLayout, ModernLayout } from '../layouts';
 import { useLocalStorage } from '../hooks';
+import { createContext } from 'react';
 
 const publicRoutes = [
     { name: 'landing', path: '/landing', element: <Landing /> },
@@ -38,39 +39,49 @@ const adminRoutes = [
     { name: 'settings', path: '/admin/settings', element: <Settings /> },
 ];
 
+export const LayoutContext = createContext();
+
 const RouterComponents = () => {
-    const Layout = useLocalStorage('layout', 'new')[0] === 'new' ? NewLayout : DefaultLayout;
+    const [layout, setLayoutInLocal] = useLocalStorage('layout', 'new');
+    const Layout = layout === 'new' ? ModernLayout : BasicLayout;
     return (
-        <Router>
-            <Routes>
-                <Route exact element={<PrivateRouters />}>
-                    {privateRoutes.map((route) => (
-                        <Route
-                            exact
-                            key={route.name}
-                            path={route.path}
-                            element={<Layout>{route.element}</Layout>}
-                        />
-                    ))}
-                </Route>
-                <Route exact element={<PublicRouters />}>
-                    {publicRoutes.map((route) => (
-                        <Route exact key={route.name} path={route.path} element={route.element} />
-                    ))}
-                </Route>
-                <Route exact>
-                    {adminRoutes.map((route) => (
-                        <Route
-                            exact
-                            key={route.name}
-                            path={route.path}
-                            element={<Layout admin>{route.element}</Layout>}
-                        />
-                    ))}
-                </Route>
-                <Route path="*" element={<NotFound />} />
-            </Routes>
-        </Router>
+        <LayoutContext.Provider value={setLayoutInLocal}>
+            <Router>
+                <Routes>
+                    <Route exact element={<PrivateRouters />}>
+                        {privateRoutes.map((route) => (
+                            <Route
+                                exact
+                                key={route.name}
+                                path={route.path}
+                                element={<Layout>{route.element}</Layout>}
+                            />
+                        ))}
+                    </Route>
+                    <Route exact element={<PublicRouters />}>
+                        {publicRoutes.map((route) => (
+                            <Route
+                                exact
+                                key={route.name}
+                                path={route.path}
+                                element={route.element}
+                            />
+                        ))}
+                    </Route>
+                    <Route exact>
+                        {adminRoutes.map((route) => (
+                            <Route
+                                exact
+                                key={route.name}
+                                path={route.path}
+                                element={<Layout admin>{route.element}</Layout>}
+                            />
+                        ))}
+                    </Route>
+                    <Route path="*" element={<NotFound />} />
+                </Routes>
+            </Router>
+        </LayoutContext.Provider>
     );
 };
 

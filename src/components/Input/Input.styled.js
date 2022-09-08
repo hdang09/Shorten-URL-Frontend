@@ -17,9 +17,13 @@ export const Wrapper = styled.div`
         flex: 1;
     }
 
-    &.transparent input {
+    & input {
+        background-color: ${(props) => props.theme.cardBackground};
+    }
+
+    &.background input {
+        background-color: ${(props) => props.theme.background};
         border: none;
-        background-color: var(--background-color);
     }
 
     &.outline input {
@@ -37,9 +41,9 @@ export const Wrapper = styled.div`
 `;
 
 export const InputTag = styled.input`
-    /* border: 1px solid var(--black-color); */
+    /* border: 1px solid ${(props) => props.theme.black}; */
     box-shadow: var(--box-shadow);
-    background-color: var(--white-color);
+    background-color: transparent;
     height: 42px;
     border-radius: 32px;
     padding: 20px;
@@ -47,7 +51,7 @@ export const InputTag = styled.input`
     display: block;
     font-size: 1.4rem;
     caret-color: var(--primary-color);
-    color: var(--black-color);
+    color: ${(props) => props.theme.black};
 
     /* @media only screen and (max-width: 500px) {
         min-width: 100%;
@@ -60,7 +64,7 @@ export const Eye = styled.div`
     top: 50%;
     transform: translateY(-50%);
     cursor: pointer;
-    color: var(--black-color);
+    color: ${(props) => props.theme.black};
 
     &:hover {
         opacity: 0.8;

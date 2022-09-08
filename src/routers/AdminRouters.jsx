@@ -3,6 +3,6 @@ import { Outlet, Navigate } from 'react-router-dom';
 
 import { authSelector } from '../pages/Login/loginSlice';
 
-const PrivateRouters = () => (useSelector(authSelector) ? <Outlet /> : <Navigate to="/landing" />);
+const AdminRouters = () => (useSelector(authSelector) ? <Outlet /> : <Navigate to="/landing" />);
 
-export default PrivateRouters;
+export default AdminRouters;

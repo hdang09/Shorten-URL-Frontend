@@ -17,7 +17,7 @@ export const Wrapper = styled.div`
     left: 200px;
     right: 200px;
     box-shadow: var(--box-shadow);
-    background-color: var(--white-color);
+    background-color: ${(props) => props.theme.white};
     border-radius: 8px;
     z-index: 100;
     display: flex;
@@ -50,7 +50,7 @@ export const Preview = styled.div`
     height: 100%;
     padding: 32px;
     display: inline-block;
-    border-right: 1px solid var(--black-color);
+    border-right: 1px solid ${(props) => props.theme.black};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,7 +93,12 @@ export const Image = styled.img`
 export const List = styled.ul`
     list-style: none;
     padding: 0;
+
+    & h2 {
+        color: ${(props) => props.theme.black};
+    }
 `;
+
 export const Item = styled.li`
     margin: 4px 0 16px 0;
     display: flex;

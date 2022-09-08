@@ -1,20 +1,18 @@
 import styled, { keyframes } from 'styled-components';
-import bg from '../../assets/bg-landing-page-2.png';
 import { Button } from '../../components';
 
 export const Banner = styled.div`
-    /* background: url(${bg}) no-repeat center / cover; */
-    background-color: var(--white-color);
+    background-color: ${(props) => props.theme.white};
     display: flex;
     justify-content: center;
     align-items: center;
-    /* margin-top: calc(var(--header-height) / 2); */
+    /* margin-top: calc( var(--header-height) / 2); */
     flex-direction: column;
     min-height: 100vh;
 `;
 
 export const Heading = styled.h1`
-    color: var(--black-color);
+    color: ${(props) => props.theme.black};
     display: block;
     font-weight: 800;
     text-align: center;
@@ -25,7 +23,7 @@ export const Heading = styled.h1`
 `;
 
 export const Subheading = styled.h2`
-    color: var(--black-color);
+    color: ${(props) => props.theme.black};
     display: block;
     /* margin-bottom: 32px; */
     font-weight: 400;

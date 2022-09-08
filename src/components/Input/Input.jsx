@@ -8,7 +8,7 @@ const Input = forwardRef(
             placeholder = 'Type here to search',
             type = 'text',
             large = false,
-            transparent = false,
+            background = false,
             password = false,
             confirmPassword = false,
             outline = false,
@@ -28,12 +28,8 @@ const Input = forwardRef(
             onClick = handleShowPassword;
         }
 
-        const propsClassName = [
-            transparent && 'transparent',
-            large && 'large',
-            outline && 'outline',
-        ];
-        const Inputprops = { placeholder, type, large, transparent, ...props };
+        const propsClassName = [background && 'background', large && 'large', outline && 'outline'];
+        const Inputprops = { placeholder, type, large, background, ...props };
         return (
             <Styled.Wrapper className={propsClassName}>
                 {icon && <Styled.Icon>{icon}</Styled.Icon>}

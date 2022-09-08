@@ -1,18 +1,18 @@
 import PropTypes from 'prop-types';
-import * as Styled from './New.styled';
+import * as Styled from './ModernLayout.styled';
 import { Sidebar } from '../../components';
 
-const New = ({ children, admin }) => {
+const ModernLayout = ({ children, admin }) => {
     return (
-        <div style={{ display: 'flex' }}>
+        <Styled.Wrapper>
             <Sidebar redesign admin={admin} />
             <Styled.Container>
                 <Styled.Content className="container">{children}</Styled.Content>
             </Styled.Container>
-        </div>
+        </Styled.Wrapper>
     );
 };
 
-New.propTypes = {};
+ModernLayout.propTypes = {};
 
-export default New;
+export default ModernLayout;

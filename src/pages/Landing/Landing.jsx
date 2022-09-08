@@ -1,7 +1,7 @@
 import { Button, Header } from '../../components';
 import * as Styled from './Landing.styled';
-import lightScreenshot from '../../assets/screenshots.png';
-import darkScreenshot from '../../assets/screenshots-dark.png';
+import lightScreenshot from '../../assets/images/screenshots.png';
+import darkScreenshot from '../../assets/images/screenshots-dark.png';
 import { useLocalStorage } from '../../hooks';
 
 function LandingPage() {

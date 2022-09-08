@@ -19,9 +19,9 @@ const Statistics = (props) => {
     return (
         <Container>
             <Row>
-                <Col col={6}>
+                <Col as={Styled.ColStat} col={6}>
                     <Styled.LinksIcon>
-                        <RiLinksLine color="blue" />
+                        <RiLinksLine />
                     </Styled.LinksIcon>
                     <Styled.InfoStat>
                         <h2>{DATA.total_links}</h2>
@@ -29,27 +29,27 @@ const Statistics = (props) => {
                     </Styled.InfoStat>
                 </Col>
 
-                <Col col={6}>
+                <Col as={Styled.ColStat} col={6}>
                     <Styled.ClickIcon>
-                        <HiCursorClick color="green" />
+                        <HiCursorClick />
                     </Styled.ClickIcon>
                     <Styled.InfoStat>
                         <h2>{DATA.total_clicks}</h2>
                         <span>Clicks</span>
                     </Styled.InfoStat>
                 </Col>
-                <Col col={6}>
+                <Col as={Styled.ColStat} col={6}>
                     <Styled.AvgCTRIcon>
-                        <ImStatsDots color="red" />
+                        <ImStatsDots />
                     </Styled.AvgCTRIcon>
                     <Styled.InfoStat>
                         <h2>{DATA.avg_ctr}</h2>
                         <span>AVG CTR</span>
                     </Styled.InfoStat>
                 </Col>
-                <Col col={6}>
+                <Col as={Styled.ColStat} col={6}>
                     <Styled.AvgTimesIcon>
-                        <AiOutlineClockCircle color="yellow" />
+                        <AiOutlineClockCircle />
                     </Styled.AvgTimesIcon>
                     <Styled.InfoStat>
                         <h2>{DATA.avg_times}</h2>

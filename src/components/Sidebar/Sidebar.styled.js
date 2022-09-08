@@ -4,10 +4,10 @@ import { NavLink } from 'react-router-dom';
 export const Wrapper = styled.div`
     /* display: inline-block; */
     display: none;
-    width: var(--sidebar-width);
+    width: 250px;
     min-height: calc(100vh - var(--header-height));
     height: auto;
-    background-color: var(--white-color);
+    background-color: ${(props) => props.theme.white};
     padding-top: 16px;
 
     @media only screen and (max-width: 992px) {
@@ -33,7 +33,7 @@ export const Wrapper = styled.div`
 `;
 
 export const SidebarItem = styled(NavLink)`
-    color: var(--black-color);
+    color: ${(props) => props.theme.black};
     font-weight: 500;
     display: block;
     padding: 16px 32px;
@@ -43,7 +43,7 @@ export const SidebarItem = styled(NavLink)`
         justify-content: center;
         align-items: center;
         flex-direction: column;
-        padding: 16px 0;
+        padding: 16px 16px;
     }
 
     @media only screen and (max-width: 500px) {
@@ -103,7 +103,7 @@ export const Logo = styled.img`
 
 export const NavList = styled.ul`
     list-style: none;
-    background-color: var(--white-color);
+    background-color: ${(props) => props.theme.cardBackground};
     border-radius: ${(props) => (props.expanded ? '32px' : '100px')};
     padding: 1.5rem 4px;
     display: flex;
@@ -129,7 +129,7 @@ export const NewSidebarItem = styled(NavLink)`
     padding: 1.5rem;
     margin: 1rem;
     font-size: 1.8rem;
-    color: var(--black-color);
+    color: ${(props) => props.theme.black};
     border-radius: ${(props) => (props.expanded ? '12px' : '50%')};
     display: flex;
     justify-content: center;
@@ -145,6 +145,6 @@ export const NewSidebarItem = styled(NavLink)`
         props.to &&
         `&.active {
         background-color: var(--primary-color);
-        color: var(--white-color);
+        color: ${props.theme.white};
     }`}
 `;

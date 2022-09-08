@@ -88,16 +88,16 @@ const LinkItem = ({ data }) => {
                     <Input
                         value={nameInput}
                         onChange={(e) => setNameInput(e.target.value)}
-                        outline
                         large
+                        background
                         placeholder={data.name}
                     />
                     <label>Shorten URL: </label>
                     <Input
                         value={urlInput}
                         onChange={(e) => setURLInput(e.target.value)}
-                        outline
                         large
+                        background
                         placeholder={data.shorten_url}
                     />
                     <p>Original link: {data.origin_url}</p>
