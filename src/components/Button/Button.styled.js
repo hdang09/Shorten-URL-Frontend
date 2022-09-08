@@ -17,6 +17,7 @@ export const Button = styled.button`
     color: ${(props) => props.theme.white};
     font-weight: 500;
     box-shadow: ${(props) => (props.shine ? ' 0 8px 25px -8px var(--primary-color)' : 'none')};
+    transition: all 0.5s;
 
     &:hover {
         opacity: 0.8;
@@ -35,8 +36,9 @@ export const Button = styled.button`
         color: var(--primary-color);
 
         &:hover {
-            opacity: 0.8;
-            color: var(--primary-color);
+            opacity: 1;
+            background-color: var(--primary-color);
+            color: #fff;
         }
     }
 
@@ -70,10 +72,10 @@ export const Button = styled.button`
 
 export const LeftIcon = styled.div`
     font-size: 2rem;
-    margin-right: 6px;
+    margin-right: 10px;
 `;
 
 export const RightIcon = styled.div`
     font-size: 2rem;
-    margin-left: 6px;
+    margin-left: 10px;
 `;

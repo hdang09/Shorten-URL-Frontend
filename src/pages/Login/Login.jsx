@@ -10,7 +10,7 @@ import { useLocalStorage } from '../../hooks';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
 import { CLIENT_ID } from '../../config';
 
-function Login({ signUp }) {
+function Login() {
     const dispatch = useDispatch();
     const [tokenStorage, setTokenStorage] = useLocalStorage('token', '');
 
@@ -27,51 +27,41 @@ function Login({ signUp }) {
         <Styled.Wrapper>
             <Container>
                 <Row>
-                    <Col col={6} hiddenMdDown>
-                        <Styled.ImgSection />
-                    </Col>
+                    <Col col={3} hiddenMdDown />
                     <Col col={6} xs={12} sm={12} md={12} lg={6}>
                         <Styled.LoginSection>
                             <Styled.Box>
+                                <Styled.ImgSection />
                                 <Styled.Title>Hello Again!</Styled.Title>
                                 <Styled.SubTitle>Welcome back you've been missed</Styled.SubTitle>
-                                <div>
-                                    <Input placeholder="Enter username" />
-                                    <Input password />
-                                    {signUp && <Input confirmPassword />}
-                                    <Styled.RecoverPass>Recovery Password</Styled.RecoverPass>
-                                    <Button to="/" large onClick={() => dispatch(login())}>
-                                        {signUp ? 'Sign up' : 'Log in'}
-                                    </Button>
+                                <Styled.Separator />
 
-                                    <div style={{ marginTop: '1rem' }}>
-                                        <GoogleLogin
-                                            clientId={`${CLIENT_ID}`}
-                                            onSuccess={onSuccess}
-                                            onFailure={onFailure}
-                                            render={(props) => (
-                                                <Button
-                                                    onClick={props.onClick}
-                                                    to="/"
-                                                    large
-                                                    leftIcon={<FcGoogle />}
-                                                    outline
-                                                >
-                                                    Continue with Google
-                                                </Button>
-                                            )}
-                                        />
-                                    </div>
-                                    {!signUp && (
-                                        <Styled.SignUp>
-                                            Don't have an account?
-                                            <Link to="/signup"> Sign up</Link>
-                                        </Styled.SignUp>
-                                    )}
+                                <div style={{ marginTop: '1rem' }}>
+                                    <GoogleLogin
+                                        clientId={`${CLIENT_ID}`}
+                                        onSuccess={onSuccess}
+                                        onFailure={onFailure}
+                                        render={(props) => (
+                                            <Button
+                                                onClick={() => dispatch(login())}
+                                                to="/"
+                                                large
+                                                outline
+                                                leftIcon={<FcGoogle />}
+                                            >
+                                                Continue with Google
+                                            </Button>
+                                        )}
+                                    />
                                 </div>
+                                <Styled.Contact>
+                                    Don't have an account?{' '}
+                                    <a href="https://www.facebook.com/">Contact admin</a>
+                                </Styled.Contact>
                             </Styled.Box>
                         </Styled.LoginSection>
                     </Col>
+                    <Col col={3} hiddenMdDown />
                 </Row>
             </Container>
         </Styled.Wrapper>

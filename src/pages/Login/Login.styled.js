@@ -13,12 +13,15 @@ export const Wrapper = styled.div`
 
 export const ImgSection = styled.div`
     background-image: url(${loginComponent});
-    height: 100%;
-    width: 100%;
+    width: 400px;
+    height: 200px;
     object-fit: contain;
     background-repeat: no-repeat;
     background-size: contain;
     background-position: center;
+    margin-bottom: 2rem;
+    /* padding: 0 5rem; */
+    box-sizing: border-box;
 `;
 
 export const LoginSection = styled.div`
@@ -30,44 +33,39 @@ export const LoginSection = styled.div`
 `;
 
 export const Title = styled.h1`
-    font-weight: 600;
+    font-weight: 700;
     margin-bottom: 10px;
     font-size: 2.8rem;
     color: ${(props) => props.theme.black};
 `;
 
 export const SubTitle = styled.h2`
-    margin-bottom: 32px;
     font-size: 1.6rem;
+    font-weight: 400;
     color: ${(props) => props.theme.black};
 `;
 
+export const Separator = styled.div`
+    width: calc(100% - 18em);
+    height: 1px;
+    background-color: ${(props) => props.theme.black};
+    margin: 2rem 0;
+`;
+
 export const Box = styled.div`
+    position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-
-    @media only screen and (max-width: 992px) {
-        width: 450px;
-        height: 650px;
-        box-shadow: var(--box-shadow);
-        border-radius: 12px;
-        background-color: ${(props) => props.theme.white};
-    }
+    width: 450px;
+    height: 650px;
+    box-shadow: var(--box-shadow);
+    border-radius: 12px;
+    background-color: ${(props) => props.theme.cardBackground};
 `;
 
-export const RecoverPass = styled.p`
-    text-align: right;
-    font-size: 1.4rem;
-    margin: 10px 0 20px;
-    right: 0;
-    color: ${(props) => props.theme.black};
-`;
-
-export const SignUp = styled.p`
-    text-align: center;
-    margin: 12px;
-    font-size: 1.4rem;
-    color: ${(props) => props.theme.black};
+export const Contact = styled.p`
+    position: absolute;
+    bottom: 2rem;
 `;
