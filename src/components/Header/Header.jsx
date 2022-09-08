@@ -63,8 +63,12 @@ function Header({ admin, landingPage }) {
                 <Styled.NavList>{navItem}</Styled.NavList>
                 {landingPage ? (
                     <Styled.HeaderButtons>
-                        <Button to="/signup" style={{ display: 'inline-flex' }} text>
-                            Sign up
+                        <Button
+                            href="https://www.facebook.com/fcodefpt"
+                            style={{ display: 'inline-flex' }}
+                            text
+                        >
+                            Visit Fanpage
                         </Button>
                         <Button to="/login">Log in</Button>
                     </Styled.HeaderButtons>

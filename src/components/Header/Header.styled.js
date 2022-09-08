@@ -91,8 +91,11 @@ export const NavItem = styled(NavLink)`
     color: ${(props) => props.theme.black};
 
     &.active {
+        --active-line: 2px;
         opacity: 0.75;
         color: var(--primary-color);
+        line-height: calc(var(--header-height) - var(--active-line));
+        border-bottom: var(--active-line) solid var(--primary-color);
     }
 
     &:hover {

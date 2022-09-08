@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
-import loginComponent from '../../assets/images/login-component.png';
+import urlComponent from '../../assets/images/url.png';
 
 export const Wrapper = styled.div`
     height: 100vh;
@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
 `;
 
 export const ImgSection = styled.div`
-    background-image: url(${loginComponent});
+    background-image: url(${urlComponent});
     width: 400px;
     height: 200px;
     object-fit: contain;
@@ -66,6 +66,7 @@ export const Box = styled.div`
 `;
 
 export const Contact = styled.p`
+    color: ${(props) => props.theme.black};
     position: absolute;
     bottom: 2rem;
 `;

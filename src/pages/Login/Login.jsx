@@ -36,7 +36,7 @@ function Login() {
                                 <Styled.SubTitle>Welcome back you've been missed</Styled.SubTitle>
                                 <Styled.Separator />
 
-                                <div style={{ marginTop: '1rem' }}>
+                                <div style={{ margin: '1rem 0 8rem 0' }}>
                                     <GoogleLogin
                                         clientId={`${CLIENT_ID}`}
                                         onSuccess={onSuccess}
@@ -56,7 +56,7 @@ function Login() {
                                 </div>
                                 <Styled.Contact>
                                     Don't have an account?{' '}
-                                    <a href="https://www.facebook.com/">Contact admin</a>
+                                    <a href="https://www.facebook.com/fcodefpt">Contact admin</a>
                                 </Styled.Contact>
                             </Styled.Box>
                         </Styled.LoginSection>

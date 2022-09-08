@@ -1,13 +1,13 @@
 import { RouterComponents } from './routers';
 import { useLocalStorage } from './hooks';
 import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from './assets/styles/GlobalStyles';
+import { lightTheme, darkTheme } from './assets/styles/themes';
 import { createContext } from 'react';
 
 const ThemeContext = createContext();
 
 function App() {
-    const [color, setColor] = useLocalStorage('primary-color', '#45ce7b');
+    const color = useLocalStorage('primary-color', '#45ce7b')[0];
     document.querySelector(':root').style.setProperty('--primary-color', `${color}`);
 
     const [themeInLocal, setThemeInLocal] = useLocalStorage('data-theme', 'light');

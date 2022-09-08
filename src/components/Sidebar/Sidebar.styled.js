@@ -7,7 +7,7 @@ export const Wrapper = styled.div`
     width: 250px;
     min-height: calc(100vh - var(--header-height));
     height: auto;
-    background-color: ${(props) => props.theme.white};
+    background-color: ${(props) => props.theme.cardBackground};
     padding-top: 16px;
 
     @media only screen and (max-width: 992px) {

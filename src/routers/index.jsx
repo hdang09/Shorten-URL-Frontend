@@ -20,7 +20,6 @@ import { createContext } from 'react';
 const publicRoutes = [
     { name: 'landing', path: '/landing', element: <Landing /> },
     { name: 'login', path: '/login', element: <Login /> },
-    { name: 'signup', path: '/signup', element: <Login signUp /> },
 ];
 
 const privateRoutes = [
