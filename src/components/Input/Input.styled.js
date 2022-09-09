@@ -86,3 +86,11 @@ export const Icon = styled.div`
     font-size: 2rem;
     margin-right: 8px;
 `;
+
+export const ColorInput = styled.input`
+    position: absolute;
+    bottom: 6px;
+    right: 24px;
+    width: 30px;
+    height: 30px;
+`;

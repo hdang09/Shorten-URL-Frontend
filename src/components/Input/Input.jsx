@@ -15,6 +15,7 @@ const Input = forwardRef(
             onClick,
             submitBtn,
             icon,
+            color,
             ...props
         },
         ref,
@@ -45,6 +46,7 @@ const Input = forwardRef(
                     </Styled.Eye>
                 )}
                 {submitBtn && <Styled.SubmitBtn>{submitBtn}</Styled.SubmitBtn>}
+                {color && <Styled.ColorInput type="color" width={50} height={50} />}
             </Styled.Wrapper>
         );
     },

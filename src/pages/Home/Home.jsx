@@ -1,14 +1,16 @@
 import { Link } from 'react-router-dom';
-import { Report, Card, LinkItem, URLShortener, Statistics } from '../../components';
+import { Report, Card, LinkItem, URLShortener, Statistics, QR } from '../../components';
 import { Col, Row } from 'styled-bootstrap-grid';
 
 import { useSelector } from 'react-redux';
 import { AiOutlineRight } from 'react-icons/ai';
 import { urlSelector } from '../../components/LinkItem/urlSlice';
+import bg from '../../assets/images/home.png';
+import * as Styled from './Home.styled';
 
 function Home() {
     const MY_LINKS = useSelector(urlSelector) || [];
-    const role = window.location.pathname.split('/')[1] === '/' ? 'user' : 'admin';
+    const role = window.location.pathname.split('/')[1] === '' ? 'user' : 'admin';
 
     return (
         <Row>
@@ -28,11 +30,8 @@ function Home() {
                 </Card>
             </Col>
             <Col md={12} lg={4}>
-                <Card title="Statistics">
-                    <Statistics />
-                </Card>
-                <Card title="Report" subtitle="Last 5 days">
-                    <Report />
+                <Card noTitle>
+                    <QR />
                 </Card>
             </Col>
         </Row>
