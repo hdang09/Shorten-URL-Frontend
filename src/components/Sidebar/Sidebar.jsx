@@ -34,7 +34,7 @@ function Sidebar({ admin, redesign }) {
                     </Tippy>
                 ))}
                 <Tippy
-                    content={`${theme === 'light' ? 'Dark' : 'Light'} Theme`}
+                    content={`${theme === 'light' ? 'Dark' : 'Light'} Mode`}
                     placement="right"
                     key={'abc'}
                 >

@@ -16,7 +16,8 @@ export const Button = styled.button`
     justify-content: center;
     color: ${(props) => props.theme.white};
     font-weight: 500;
-    box-shadow: ${(props) => (props.shine ? ' 0 8px 25px -8px var(--primary-color)' : 'none')};
+    box-shadow: ${(props) =>
+        props.shine === 'true' ? ' 0 8px 25px -8px var(--primary-color)' : 'none'};
     transition: all 0.5s;
 
     &:hover {

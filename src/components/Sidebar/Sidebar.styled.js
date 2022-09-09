@@ -27,7 +27,6 @@ export const Wrapper = styled.div`
         height: auto;
         justify-content: space-between;
         padding: 0 16px;
-        border-top: 1px solid #ccc;
         min-height: auto;
     }
 `;
@@ -118,10 +117,6 @@ export const NavList = styled.ul`
         padding: 0 1.5rem;
         width: calc(100vw - 1rem);
         justify-content: space-around;
-
-        & > :first-child {
-            display: none;
-        }
     }
 `;
 

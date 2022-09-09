@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { down } from 'styled-breakpoints';
 
 export const Overlay = styled.div`
     position: fixed;
@@ -12,8 +13,8 @@ export const Overlay = styled.div`
 
 export const Wrapper = styled.div`
     position: fixed;
-    top: 64px;
-    bottom: 64px;
+    top: 48px;
+    bottom: 48px;
     left: 200px;
     right: 200px;
     box-shadow: var(--box-shadow);
@@ -22,11 +23,9 @@ export const Wrapper = styled.div`
     z-index: 100;
     display: flex;
 
-    @media only screen and (max-width: 992px) {
+    ${down('lg')} {
         left: 24px;
         right: 24px;
-        top: 100px;
-        bottom: 100px;
     }
 `;
 
@@ -56,7 +55,7 @@ export const Preview = styled.div`
     align-items: center;
     flex-direction: column;
 
-    @media only screen and (max-width: 500px) {
+    ${down('md')} {
         width: 100%;
         border: none;
     }
@@ -71,10 +70,6 @@ export const Customize = styled.div`
     padding: 32px;
     display: inline-block;
     flex: 1;
-
-    @media only screen and (max-width: 500px) {
-        display: none;
-    }
 `;
 
 export const Image = styled.img`
@@ -92,6 +87,7 @@ export const Image = styled.img`
 
 export const List = styled.ul`
     list-style: none;
+    overflow: auto;
     padding: 0;
 
     & h2 {
@@ -105,5 +101,6 @@ export const Item = styled.li`
     overflow-x: auto;
     overflow-y: hidden;
     flex-shrink: 0;
-    width: 45vw;
+    width: calc(100vw - 120px);
+    overflow: auto;
 `;

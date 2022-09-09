@@ -27,7 +27,6 @@ export const Wrapper = styled.header`
 
 export const Content = styled.div`
     width: 1150px;
-    height: ${(props) => console.log(props)};
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -39,7 +38,7 @@ export const Logo = styled.div`
     justify-content: center;
     align-items: center;
 
-    img {
+    & img {
         width: 30px;
     }
 

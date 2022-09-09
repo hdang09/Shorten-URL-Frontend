@@ -1,31 +1,30 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AiFillCaretDown } from 'react-icons/ai';
-import { BsGlobe, BsGear, BsQuestionOctagon, BsLightbulb } from 'react-icons/bs';
+import { BsGear, BsQuestionOctagon, BsLightbulb } from 'react-icons/bs';
 import { FiLogOut } from 'react-icons/fi';
 import Tippy from '@tippyjs/react/headless';
 
 import { Button } from '..';
-import { useLocalStorage } from '../../hooks';
 import Logo from '../../assets/images/logo.png';
 import * as Styled from './Header.styled';
 import { useDispatch, useSelector } from 'react-redux';
 import { adminSidebarSelector, userSidebarSelector } from '../Sidebar/sidebarSlice';
 import { signOut } from '../../pages/Login/loginSlice';
+import { ThemeContext } from '../../App';
+import { useContext } from 'react';
 
 function Header({ admin, landingPage }) {
+    const setThemeInLocal = useContext(ThemeContext);
     const dispatch = useDispatch();
 
     const navListMenu = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
-    const [theme, setTheme] = useLocalStorage('data-theme', 'light');
-    useEffect(() => document.body.setAttribute('data-theme', theme), [theme]);
+    const theme = JSON.parse(localStorage.getItem('data-theme'));
 
     const account = {
         id: 'string',
         first_name: '(K17 HCM)',
-        last_name: 'Tran Hai Dang',
+        last_name: 'Hai Dang',
         email: 'dangthse171362@fpt.edu.vn',
-        role: 'admin',
         avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU',
     };
 
@@ -78,17 +77,10 @@ function Header({ admin, landingPage }) {
                         render={(attrs) => (
                             <div tabIndex="-1" {...attrs}>
                                 <Styled.TippyBox>
-                                    <Styled.MenuItem
-                                        to=""
-                                        onClick={() =>
-                                            setTheme((theme) =>
-                                                theme === 'dark' ? 'light' : 'dark',
-                                            )
-                                        }
-                                    >
+                                    <Styled.MenuItem to="" onClick={setThemeInLocal}>
                                         <BsLightbulb />
                                         <Styled.Text>
-                                            {theme === 'light' ? 'Dark' : 'Light'} Theme
+                                            {theme === 'light' ? 'Dark' : 'Light'} Mode
                                         </Styled.Text>
                                     </Styled.MenuItem>
                                     <Styled.MenuItem to="/helps">

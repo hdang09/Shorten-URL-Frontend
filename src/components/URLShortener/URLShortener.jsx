@@ -2,17 +2,11 @@ import { useState, createRef, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
-import styled from 'styled-components';
 
+import * as Styled from './URLShortener.styled';
 import { useDebounce } from '../../hooks';
 import { Card, Input, Button } from '../../components';
 import { add } from '../../components/LinkItem/urlSlice';
-
-const Wrapper = styled.div`
-    @media only screen and (min-width: 600px) {
-        display: flex;
-    }
-`;
 
 let counter = 0;
 
@@ -60,7 +54,7 @@ const URLShortener = ({ noItem }) => {
 
     return (
         <Card noItem={noItem} title="URL Shortener">
-            <Wrapper>
+            <Styled.Wrapper>
                 <Input
                     ref={inputRef}
                     value={originalURL}
@@ -70,10 +64,10 @@ const URLShortener = ({ noItem }) => {
                     background
                     placeholder="Paste a link to shorten it"
                 />
-                <Button shine onClick={() => handleShortenURL()}>
+                <Button shine="true" onClick={() => handleShortenURL()}>
                     Shorten
                 </Button>
-            </Wrapper>
+            </Styled.Wrapper>
         </Card>
     );
 };

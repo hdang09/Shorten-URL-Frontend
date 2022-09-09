@@ -2,7 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import { Button } from '../../components';
 
 export const Banner = styled.div`
-    background-color: ${(props) => props.theme.white};
+    background-color: ${(props) => props.theme.cardBackground};
     display: flex;
     justify-content: center;
     align-items: center;

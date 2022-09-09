@@ -107,7 +107,7 @@ const LinkItem = ({ data }) => {
                             Delete
                         </Button>
                         <p style={{ padding: '0 4px' }}></p>
-                        <Button shine onClick={handleDoneEdit}>
+                        <Button shine="true" onClick={handleDoneEdit}>
                             Save
                         </Button>
                     </div>

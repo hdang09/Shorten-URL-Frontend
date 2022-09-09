@@ -29,7 +29,7 @@ const Settings = (props) => {
             <Styled.SettingsLabel style={{ marginRight: '6px' }} htmlFor="theme">
                 <BsMoon />
                 {'  '}
-                Dark Theme
+                Dark Mode
             </Styled.SettingsLabel>
             <Styled.Toggle theme={theme} onClick={setThemeInLocal}>
                 <Styled.Circle theme={theme} />

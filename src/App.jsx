@@ -7,7 +7,7 @@ import { createContext } from 'react';
 const ThemeContext = createContext();
 
 function App() {
-    const color = useLocalStorage('primary-color', '#45ce7b')[0];
+    const color = JSON.parse(localStorage.getItem('primary-color'));
     document.querySelector(':root').style.setProperty('--primary-color', `${color}`);
 
     const [themeInLocal, setThemeInLocal] = useLocalStorage('data-theme', 'light');

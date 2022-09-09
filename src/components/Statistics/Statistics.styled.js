@@ -20,8 +20,9 @@ export const InfoStat = styled.div`
 `;
 
 const Icon = styled.div`
-    width: 48px;
-    height: 48px;
+    --radius: 46px;
+    width: var(--radius);
+    height: var(--radius);
     border-radius: 100%;
     display: inline-flex;
     justify-content: center;

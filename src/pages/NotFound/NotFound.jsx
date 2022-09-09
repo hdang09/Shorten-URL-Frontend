@@ -21,7 +21,7 @@ function NotFound() {
     return (
         <Wrapper>
             <p>404 - Not Found</p>
-            <Button shine to="/">
+            <Button shine="true" to="/">
                 Back to Home
             </Button>
         </Wrapper>
