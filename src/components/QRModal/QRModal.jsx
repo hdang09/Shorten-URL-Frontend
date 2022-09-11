@@ -8,12 +8,12 @@ import { BiArrowBack } from 'react-icons/bi';
 
 import { Button, Input } from '..';
 import * as Styled from './QRModal.styled';
-import Frame1 from '../../assets/QRCode/frame/qrcg-scan-me-arrow-frame.png';
-import Frame2 from '../../assets/QRCode/frame/qrcg-scan-me-bar-frame.png';
-import Frame3 from '../../assets/QRCode/frame/qrcg-scan-me-basic-frame.png';
-import Frame4 from '../../assets/QRCode/frame/qrcg-scan-me-beer-frame.png';
-import Frame5 from '../../assets/QRCode/frame/qrcg-scan-me-bottom-frame.png';
-import Frame6 from '../../assets/QRCode/frame/qrcg-scan-me-bottom-header-frame.png';
+import Frame1 from '../../assets/qr/frame/qrcg-scan-me-arrow-frame.png';
+import Frame2 from '../../assets/qr/frame/qrcg-scan-me-bar-frame.png';
+import Frame3 from '../../assets/qr/frame/qrcg-scan-me-basic-frame.png';
+import Frame4 from '../../assets/qr/frame/qrcg-scan-me-beer-frame.png';
+import Frame5 from '../../assets/qr/frame/qrcg-scan-me-bottom-frame.png';
+import Frame6 from '../../assets/qr/frame/qrcg-scan-me-bottom-header-frame.png';
 
 const FramesArray = [Frame1, Frame2, Frame3, Frame4, Frame5, Frame6];
 

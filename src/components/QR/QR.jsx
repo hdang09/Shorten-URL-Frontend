@@ -9,19 +9,19 @@ import QRCodeStyling from 'qr-code-styling';
 import logo from '../../assets/images/logo.png';
 import { urlSelector } from '../LinkItem/urlSlice';
 
-import classyRoundedPattern from '../../assets/qrcode/pattern/classy-rounded.png';
-import classyPattern from '../../assets/qrcode/pattern/classy.png';
-import defaultPattern from '../../assets/qrcode/pattern/default.png';
-import dotsPattern from '../../assets/qrcode/pattern/dots.png';
-import extraRoundedPattern from '../../assets/qrcode/pattern/extra-rounded.png';
-import roundedPattern from '../../assets/qrcode/pattern/rounded.png';
+import classyRoundedPattern from '../../assets/qr/pattern/classy-rounded.png';
+import classyPattern from '../../assets/qr/pattern/classy.png';
+import defaultPattern from '../../assets/qr/pattern/default.png';
+import dotsPattern from '../../assets/qr/pattern/dots.png';
+import extraRoundedPattern from '../../assets/qr/pattern/extra-rounded.png';
+import roundedPattern from '../../assets/qr/pattern/rounded.png';
 
-import squareCornerSquare from '../../assets/qrcode/corners/corner-square/square.png';
-import dotCornerSquare from '../../assets/qrcode/corners/corner-square/dot.png';
-import extraRoundedCornerSquare from '../../assets/qrcode/corners/corner-square/extra-rounded.png';
+import squareCornerSquare from '../../assets/qr/corners/corner-square/square.png';
+import dotCornerSquare from '../../assets/qr/corners/corner-square/dot.png';
+import extraRoundedCornerSquare from '../../assets/qr/corners/corner-square/extra-rounded.png';
 
-import SquareCornerDot from '../../assets/qrcode/corners/corner-dot/square.png';
-import DotCornerDot from '../../assets/qrcode/corners/corner-dot/dot.png';
+import SquareCornerDot from '../../assets/qr/corners/corner-dot/square.png';
+import DotCornerDot from '../../assets/qr/corners/corner-dot/dot.png';
 
 import { ReactComponent as QRScanningImg } from '../../assets/svg/qr-code.svg';
 
