@@ -87,6 +87,10 @@ const GlobalStyles = createGlobalStyle`
         margin: 0;
     }
 
+    p {
+        margin-bottom: 0;
+    }
+
     /* OVerride CSS */
     .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
         background: var(--primary-color);

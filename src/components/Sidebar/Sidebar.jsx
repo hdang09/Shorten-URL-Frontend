@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import { MdLogout } from 'react-icons/md';
-import { BsMoon } from 'react-icons/bs';
+import { BsMoon, BsSun } from 'react-icons/bs';
 
 import * as Styled from './Sidebar.styled';
 import { userSidebarSelector, adminSidebarSelector } from '../Sidebar/sidebarSlice';
@@ -16,8 +16,7 @@ import { ThemeContext } from '../../App';
 function Sidebar({ admin, redesign }) {
     const dispatch = useDispatch();
     const sidebarList = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
-    const [theme, setTheme] = useLocalStorage('data-theme', 'light');
-    useEffect(() => document.body.setAttribute('data-theme', theme), [theme]);
+    const theme = JSON.parse(localStorage.getItem('data-theme'));
     const setThemeInLocal = useContext(ThemeContext);
 
     return redesign ? (
@@ -39,7 +38,7 @@ function Sidebar({ admin, redesign }) {
                     key={'abc'}
                 >
                     <Styled.NewSidebarItem to="" onClick={setThemeInLocal}>
-                        <BsMoon />
+                        {theme === 'light' ? <BsMoon /> : <BsSun />}
                     </Styled.NewSidebarItem>
                 </Tippy>
                 <Tippy content={'Log out'} placement="right" key={'Log out'}>

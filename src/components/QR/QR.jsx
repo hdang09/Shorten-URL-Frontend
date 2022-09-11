@@ -4,7 +4,8 @@ import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as Styled from './QR.styled';
 import { Input, Button } from '../';
-import { AiOutlineDown } from 'react-icons/ai';
+import { AiOutlineDown, AiOutlineDownload } from 'react-icons/ai';
+
 import QRCodeStyling from 'qr-code-styling';
 import logo from '../../assets/images/logo.png';
 import { urlSelector } from '../LinkItem/urlSlice';
@@ -24,6 +25,7 @@ import SquareCornerDot from '../../assets/qr/corners/corner-dot/square.png';
 import DotCornerDot from '../../assets/qr/corners/corner-dot/dot.png';
 
 import { ReactComponent as QRScanningImg } from '../../assets/svg/qr-code.svg';
+import { ReactComponent as BorderQR } from '../../assets/svg/border.svg';
 
 const framesArray = [
     { image: defaultPattern, type: '' },
@@ -134,6 +136,7 @@ const QR = (props) => {
                     <Styled.QRScanningGroup>
                         <Styled.QrScanningBg as={QRScanningImg} />
                         <Styled.QrScanning as={QRScanningImg} />
+                        <Styled.BorderQr as={BorderQR} />
                     </Styled.QRScanningGroup>
                 ) : (
                     <Styled.QR ref={qrRef} />
@@ -274,7 +277,7 @@ const QR = (props) => {
 
                 <Styled.SettingsItem ref={cornersRef}>
                     <Styled.Header onClick={() => handleOpenSetingsList(3)}>
-                        <Styled.Heading>Eyes (Corners)</Styled.Heading>
+                        <Styled.Heading>Corners</Styled.Heading>
                         <AiOutlineDown />
                     </Styled.Header>
                     {openSetingsList[2].isOpened && (
@@ -298,7 +301,7 @@ const QR = (props) => {
                                 />
                             ))}
                             <form>
-                                {/* <label htmlFor="single">Single color</label> */}
+                                <label htmlFor="single">Single color</label>
                                 <Input
                                     color
                                     large
@@ -331,7 +334,7 @@ const QR = (props) => {
                                 />
                             ))}
                             <form>
-                                {/* <label htmlFor="single">Single color</label> */}
+                                <label htmlFor="single">Single color</label>
                                 <Input
                                     color
                                     large
@@ -437,18 +440,26 @@ const QR = (props) => {
                 </Styled.SettingsItem>
             </Styled.SettingsList>
             <Styled.Center>
-                <Button outline onClick={() => onDownloadClick('png')}>
+                <Button
+                    leftIcon={<AiOutlineDownload />}
+                    outline
+                    onClick={() => onDownloadClick('png')}
+                >
                     PNG
                 </Button>
-                <Button outline onClick={() => onDownloadClick('svg')}>
+                <Button
+                    leftIcon={<AiOutlineDownload />}
+                    outline
+                    onClick={() => onDownloadClick('svg')}
+                >
                     SVG
                 </Button>
             </Styled.Center>
             {/* <Styled.Center>
-                <Button outline onClick={() => onDownloadClick('jpeg')}>
+                <Button leftIcon={<AiOutlineDownload />} outline onClick={() => onDownloadClick('jpeg')}>
                     JPEG
                 </Button>
-                <Button outline onClick={() => onDownloadClick('webp')}>
+                <Button leftIcon={<AiOutlineDownload />} outline onClick={() => onDownloadClick('webp')}>
                     WEBP
                 </Button>
             </Styled.Center> */}

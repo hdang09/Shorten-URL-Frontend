@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import { down } from 'styled-breakpoints';
 
 export const QR = styled.div`
     & canvas {
@@ -31,9 +30,10 @@ export const SettingsItem = styled.li`
     min-height: 50px;
     border-radius: 1rem;
     padding: 1rem 1.5rem;
-    /* display: flex;
-    align-items: center; */
-    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 1.25rem;
 `;
 
 export const Header = styled.div`
@@ -41,7 +41,7 @@ export const Header = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 1rem;
+    margin: 0.5rem 0;
     cursor: pointer;
 `;
 
@@ -68,8 +68,6 @@ export const Image = styled.img`
     width: 50px;
     height: auto;
     margin: 8px 24px;
-    /* padding: 10px; */
-    border-radius: 6px;
 
     &:hover {
         background-color: var(--hover-color);
@@ -97,15 +95,26 @@ const scanning = keyframes`
     }
 `;
 
+const flicker = keyframes`
+    0%, 100% {
+        opacity: 0
+    }
+
+    50% {
+        opacity: 1
+    }
+`;
+
 export const QRScanningGroup = styled.div`
     height: 250px;
+    position: relative;
 
     &::after {
         content: '';
         display: block;
         position: absolute;
         inset: 30px;
-        width: calc(100% / 2 + 20px);
+        width: calc(100% / 2 + 50px);
         left: 50%;
         transform: translateX(-50%);
         height: 2px;
@@ -117,7 +126,7 @@ export const QRScanningGroup = styled.div`
 `;
 
 export const QrScanningBg = styled.div`
-    fill: ${(props) => props.theme.black};
+    fill: ${(props) => props.theme.background};
     position: absolute;
     width: 250px;
     padding: 5rem;
@@ -131,12 +140,15 @@ export const QrScanning = styled(QrScanningBg)`
     overflow: hidden;
     background-size: 250px;
     animation: ${scanning} 4s linear infinite;
+`;
 
-    /* ${down('lg')} {
-        padding: 12rem;
+export const BorderQr = styled.div`
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    animation: ${flicker} 1s linear infinite;
+
+    & .border {
+        stroke: ${(props) => props.theme.black};
     }
-
-    ${down('md')} {
-        padding: 4rem;
-    } */
 `;
