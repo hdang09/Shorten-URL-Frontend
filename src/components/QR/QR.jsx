@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
@@ -9,50 +9,85 @@ import QRCodeStyling from 'qr-code-styling';
 import logo from '../../assets/images/logo.png';
 import { urlSelector } from '../LinkItem/urlSlice';
 
-import Frame1 from '../../assets/QRCode/frame/qrcg-scan-me-arrow-frame.png';
-import Frame2 from '../../assets/QRCode/frame/qrcg-scan-me-bar-frame.png';
-import Frame3 from '../../assets/QRCode/frame/qrcg-scan-me-basic-frame.png';
-import Frame4 from '../../assets/QRCode/frame/qrcg-scan-me-beer-frame.png';
-import Frame5 from '../../assets/QRCode/frame/qrcg-scan-me-bottom-frame.png';
-import Frame6 from '../../assets/QRCode/frame/qrcg-scan-me-bottom-header-frame.png';
-import { toast } from 'react-toastify';
+import classyRoundedPattern from '../../assets/qrcode/pattern/classy-rounded.png';
+import classyPattern from '../../assets/qrcode/pattern/classy.png';
+import defaultPattern from '../../assets/qrcode/pattern/default.png';
+import dotsPattern from '../../assets/qrcode/pattern/dots.png';
+import extraRoundedPattern from '../../assets/qrcode/pattern/extra-rounded.png';
+import roundedPattern from '../../assets/qrcode/pattern/rounded.png';
 
-const FramesArray = [Frame1, Frame2, Frame3, Frame4, Frame5, Frame6];
+import squareCornerSquare from '../../assets/qrcode/corners/corner-square/square.png';
+import dotCornerSquare from '../../assets/qrcode/corners/corner-square/dot.png';
+import extraRoundedCornerSquare from '../../assets/qrcode/corners/corner-square/extra-rounded.png';
+
+import SquareCornerDot from '../../assets/qrcode/corners/corner-dot/square.png';
+import DotCornerDot from '../../assets/qrcode/corners/corner-dot/dot.png';
+
+import { ReactComponent as QRScanningImg } from '../../assets/svg/qr-code.svg';
+
+const framesArray = [
+    { image: defaultPattern, type: '' },
+    { image: classyRoundedPattern, type: 'classy-rounded' },
+    { image: classyPattern, type: 'classy' },
+    { image: dotsPattern, type: 'dots' },
+    { image: extraRoundedPattern, type: 'extra-rounded' },
+    { image: roundedPattern, type: 'rounded' },
+];
+
+const cornerSquareArray = [
+    { image: squareCornerSquare, type: 'square' },
+    { image: dotCornerSquare, type: 'dots' },
+    { image: extraRoundedCornerSquare, type: 'extra-rounded' },
+];
+const cornerDotArray = [
+    { image: SquareCornerDot, type: 'square' },
+    { image: DotCornerDot, type: 'dots' },
+];
+
+const qrCode = new QRCodeStyling({
+    width: 200,
+    height: 200,
+    image: logo,
+    dotsOptions: {
+        type: 'dots',
+    },
+    backgroundOptions: {
+        color: 'transparent',
+    },
+    imageOptions: {
+        crossOrigin: 'anonymous',
+        margin: 10,
+    },
+    cornersSquareOptions: {
+        type: 'extra-rounded',
+    },
+});
 
 const QR = (props) => {
-    const color = JSON.parse(localStorage.getItem('primary-color'));
+    // const [gradientArray, setGradientArray] = useState([{}, {}]);
 
-    const qrCode = new QRCodeStyling({
-        width: 200,
-        height: 200,
-        image: logo,
-        dotsOptions: {
-            type: 'dots',
-        },
-        backgroundOptions: {
-            color: 'transparent',
-        },
-        imageOptions: {
-            crossOrigin: 'anonymous',
-            margin: 10,
-        },
-        cornersSquareOptions: {
-            type: 'extra-rounded',
-        },
-        cornersDotOptions: {
-            color,
-        },
-    });
+    // const handleSetGradient = (value) => {
+    //     console.log(value);
+    //     qrCode.update({
+    //         dotsOptions: {
+    //             ...qrCode._options.dotsOptions,
+    //             gradient: {
+    //                 ...qrCode._options.dotsOptions.gradient,
+    //                 colorStops: gradientArray,
+    //             },
+    //         },
+    //     });
+    // };
+
+    // const color = JSON.parse(localStorage.getItem('primary-color'));
 
     const currentUrl = useSelector(urlSelector)[0]?.shorten_url || '';
-    console.log(currentUrl);
 
     // const [url, setUrl] = useState(currentUrl);
-    const [fileExt, setFileExt] = useState('png');
-    const ref = useRef(null);
+    const qrRef = useRef(null);
 
     useEffect(() => {
-        qrCode.append(ref.current);
+        qrCode.append(qrRef.current);
     }, [currentUrl]);
 
     useEffect(() => {
@@ -67,38 +102,142 @@ const QR = (props) => {
         });
     };
 
+    const customUrlRef = React.createRef(null);
+    const dotsRef = React.createRef(null);
+    const cornersRef = React.createRef(null);
+    const logoRef = React.createRef(null);
+    const optionsRef = React.createRef(null);
+    const [openSetingsList, setOpenSettingsList] = useState([
+        { id: 1, isOpened: false },
+        { id: 2, isOpened: false },
+        { id: 3, isOpened: false },
+        { id: 4, isOpened: false },
+        { id: 5, isOpened: false },
+    ]);
+
+    const arrayRefs = [customUrlRef, dotsRef, cornersRef, logoRef, optionsRef];
+
+    const handleOpenSetingsList = (num) => {
+        const newList = openSetingsList.map((item) => ({
+            key: item.id,
+            id: item.id,
+            isOpened: item.id === num ? !openSetingsList[num - 1].isOpened : false,
+        }));
+        setOpenSettingsList(newList);
+        arrayRefs[num - 1].current.scrollIntoView({ behavior: 'smooth' });
+    };
+
     return (
         <>
             <Styled.Center>
-                <Styled.QR ref={ref} />
-            </Styled.Center>
-            <Styled.Center>
-                <Input
-                    large
-                    background
-                    placeholder={currentUrl || 'Your QR Code will showing here...'}
-                />
+                {!currentUrl ? (
+                    <Styled.QRScanningGroup>
+                        <Styled.QrScanningBg as={QRScanningImg} />
+                        <Styled.QrScanning as={QRScanningImg} />
+                    </Styled.QRScanningGroup>
+                ) : (
+                    <Styled.QR ref={qrRef} />
+                )}
             </Styled.Center>
             <Styled.SettingsList>
-                <Styled.SettingsItem>
-                    <Styled.Header>
+                <Styled.SettingsItem ref={customUrlRef}>
+                    <Styled.Header onClick={() => handleOpenSetingsList(1)}>
                         <Styled.Heading>Custom URL</Styled.Heading>
                         <AiOutlineDown />
                     </Styled.Header>
-                    {/* <Styled.Content>
-                        <Input large />
-                    </Styled.Content> */}
+                    {openSetingsList[0].isOpened && (
+                        <Styled.Content>
+                            <Input
+                                large
+                                value={currentUrl || 'Your QR Code will showing here...'}
+                            />
+                        </Styled.Content>
+                    )}
                 </Styled.SettingsItem>
 
-                <Styled.SettingsItem
-                    onClick={() => toast.warn('This feature will be updated soon!')}
-                >
-                    <Styled.Header>
-                        <Styled.Heading>Colors</Styled.Heading>
+                <Styled.SettingsItem ref={dotsRef}>
+                    <Styled.Header onClick={() => handleOpenSetingsList(2)}>
+                        <Styled.Heading>Dots</Styled.Heading>
                         <AiOutlineDown />
                     </Styled.Header>
-                    <Styled.Content>
-                        {/* Background Color
+                    {openSetingsList[1].isOpened && (
+                        <Styled.Content>
+                            {/* <label htmlFor="">Dots Style: </label> */}
+                            {framesArray.map((frame) => (
+                                <Styled.Image
+                                    key={frame.type}
+                                    src={frame.image}
+                                    title={frame.type.toUpperCase()}
+                                    onClick={(e) =>
+                                        qrCode.update({
+                                            dotsOptions: {
+                                                ...qrCode._options.dotsOptions,
+                                                type: frame.type,
+                                            },
+                                        })
+                                    }
+                                    alt="Frame"
+                                    // onClick={() => setFrame(frame)}
+                                />
+                            ))}
+                            <form action="">
+                                {/* <input id="single" type="radio" name="pattern-color" /> */}
+                                <label htmlFor="single">Single color</label>
+                                <Input
+                                    color
+                                    large
+                                    onChange={(e) =>
+                                        qrCode.update({
+                                            dotsOptions: {
+                                                ...qrCode._options.dotsOptions,
+                                                color: e.target.value,
+                                            },
+                                        })
+                                    }
+                                />
+
+                                {/* <input id="gradient" type="radio" name="pattern-color" />
+                            <label htmlFor="gradient">Gradient color</label>
+                            <Input
+                                color
+                                large
+                                onChange={(e) =>
+                                    qrCode.update({
+                                        dotsOptions: {
+                                            ...qrCode._options.dotsOptions,
+                                            gradient: {
+                                                ...qrCode._options.dotsOptions.gradient,
+                                                colorStops: [
+                                                    ...qrCode._options.dotsOptions.gradient
+                                                        ?.colorStops,
+                                                    { offset: 0, color: e.target.value },
+                                                ],
+                                            },
+                                        },
+                                    })
+                                }
+                            />
+                            <Input
+                                color
+                                large
+                                onChange={(e) =>
+                                    qrCode.update({
+                                        dotsOptions: {
+                                            ...qrCode._options.dotsOptions,
+                                            gradient: {
+                                                ...qrCode._options.dotsOptions.gradient,
+                                                colorStops: [
+                                                    ...qrCode._options.dotsOptions.gradient
+                                                        ?.colorStops,
+                                                    { offset: 1, color: e.target.value },
+                                                ],
+                                            },
+                                        },
+                                    })
+                                }
+                            /> */}
+                            </form>
+                            {/* Background Color
                         <form action="">
                             <input id="single" type="radio" name="background-color" />
                             <label htmlFor="single">Single color</label>
@@ -129,75 +268,172 @@ const QR = (props) => {
                             <input id="gradient" type="radio" name="corner-dot-color" />
                             <label htmlFor="gradient">Gradient color</label>
                         </form> */}
-                    </Styled.Content>
+                        </Styled.Content>
+                    )}
                 </Styled.SettingsItem>
 
-                <Styled.SettingsItem>
-                    <Styled.Header>
-                        <Styled.Heading>Pattern</Styled.Heading>
+                <Styled.SettingsItem ref={cornersRef}>
+                    <Styled.Header onClick={() => handleOpenSetingsList(3)}>
+                        <Styled.Heading>Eyes (Corners)</Styled.Heading>
                         <AiOutlineDown />
                     </Styled.Header>
-                    {/* <Styled.Content>
-                        {FramesArray.map((frame) => (
-                            <Styled.Image
-                                key={frame}
-                                src={frame}
-                                alt="Frame"
-                                onClick={() => setFrame(frame)}
-                            />
-                        ))}
-                    </Styled.Content> */}
+                    {openSetingsList[2].isOpened && (
+                        <Styled.Content>
+                            <p>Corners Square: </p>
+                            {cornerSquareArray.map((frame) => (
+                                <Styled.Image
+                                    key={frame.type}
+                                    src={frame.image}
+                                    title={frame.type.toUpperCase()}
+                                    onClick={(e) =>
+                                        qrCode.update({
+                                            cornersSquareOptions: {
+                                                ...qrCode._options.cornersSquareOptions,
+                                                type: frame.type,
+                                            },
+                                        })
+                                    }
+                                    alt="Corner Square"
+                                    // onClick={() => setFrame(frame)}
+                                />
+                            ))}
+                            <form>
+                                {/* <label htmlFor="single">Single color</label> */}
+                                <Input
+                                    color
+                                    large
+                                    onChange={(e) =>
+                                        qrCode.update({
+                                            cornersSquareOptions: {
+                                                ...qrCode._options.cornersSquareOptions,
+                                                color: e.target.value,
+                                            },
+                                        })
+                                    }
+                                />
+                            </form>
+                            <p htmlFor="">Corners Dot: </p>
+                            {cornerDotArray.map((frame) => (
+                                <Styled.Image
+                                    key={frame.type}
+                                    src={frame.image}
+                                    title={frame.type.toUpperCase()}
+                                    onClick={(e) =>
+                                        qrCode.update({
+                                            cornersDotOptions: {
+                                                ...qrCode.cornersDotOptions,
+                                                type: frame.type,
+                                            },
+                                        })
+                                    }
+                                    alt="Corner Dot"
+                                    // onClick={() => setFrame(frame)}
+                                />
+                            ))}
+                            <form>
+                                {/* <label htmlFor="single">Single color</label> */}
+                                <Input
+                                    color
+                                    large
+                                    onChange={(e) =>
+                                        qrCode.update({
+                                            cornersDotOptions: {
+                                                ...qrCode._options.cornersDotOptions,
+                                                color: e.target.value,
+                                            },
+                                        })
+                                    }
+                                />
+                            </form>
+                        </Styled.Content>
+                    )}
                 </Styled.SettingsItem>
 
-                <Styled.SettingsItem>
-                    <Styled.Header>
-                        <Styled.Heading>Corners</Styled.Heading>
-                        <AiOutlineDown />
-                    </Styled.Header>
-                    {/* <Styled.Content>
-                        {FramesArray.map((frame) => (
-                            <Styled.Image
-                                key={frame}
-                                src={frame}
-                                alt="Frame"
-                                onClick={() => setFrame(frame)}
-                            />
-                        ))}
-                    </Styled.Content> */}
-                </Styled.SettingsItem>
-
-                <Styled.SettingsItem>
-                    <Styled.Header>
+                <Styled.SettingsItem ref={logoRef}>
+                    <Styled.Header onClick={() => handleOpenSetingsList(4)}>
                         <Styled.Heading>Logo</Styled.Heading>
                         <AiOutlineDown />
                     </Styled.Header>
-                    {/* <Styled.Content>
-                        URL:{' '}
-                        <Input large onChange={(e) => qrCode.update({ image: e.target.value })} />
-                        Upload file:{' '}
-                        <Styled.Center>
-                            <Button
-                                onClick={() => toast.warn('This feature will be updated soon!')}
-                            >
-                                Upload
-                            </Button>
-                        </Styled.Center>
-                    </Styled.Content> */}
+                    {openSetingsList[3].isOpened && (
+                        <Styled.Content>
+                            <label>URL:</label>
+                            <Input
+                                large
+                                onChange={(e) => qrCode.update({ image: e.target.value })}
+                            />
+                            <label>Upload file:</label>
+                            <input
+                                type="file"
+                                onChange={(e) =>
+                                    qrCode.update({ image: URL.createObjectURL(e.target.files[0]) })
+                                }
+                            />
+                            <div>
+                                <label>Hide background logo: </label>
+                                <input
+                                    type="checkbox"
+                                    onChange={(e) =>
+                                        qrCode.update({
+                                            imageOptions: {
+                                                ...qrCode.imageOptions,
+                                                hideBackgroundDots: e.target.checked,
+                                            },
+                                        })
+                                    }
+                                />
+                            </div>
+                            <label htmlFor="">Logo size (0 - 1): </label>
+                            <Input
+                                large
+                                onChange={(e) =>
+                                    qrCode.update({
+                                        imageOptions: {
+                                            ...qrCode.imageOptions,
+                                            imageSize: e.target.value,
+                                        },
+                                    })
+                                }
+                            />
+                            <label>Margin: </label>
+                            <Input
+                                large
+                                onChange={(e) =>
+                                    qrCode.update({
+                                        imageOptions: {
+                                            ...qrCode.imageOptions,
+                                            margin: e.target.value,
+                                        },
+                                    })
+                                }
+                            />
+                        </Styled.Content>
+                    )}
                 </Styled.SettingsItem>
 
-                <Styled.SettingsItem>
-                    <Styled.Header>
+                <Styled.SettingsItem ref={optionsRef}>
+                    <Styled.Header onClick={() => handleOpenSetingsList(5)}>
                         <Styled.Heading>Options</Styled.Heading>
                         <AiOutlineDown />
                     </Styled.Header>
-                    {/* <Styled.Content>
-                        Width:{' '}
-                        <Input large onChange={(e) => qrCode.update({ width: e.target.value })} />
-                        Height{' '}
-                        <Input large onChange={(e) => qrCode.update({ height: e.target.value })} />
-                        Margin{' '}
-                        <Input large onChange={(e) => qrCode.update({ margin: e.target.value })} />
-                    </Styled.Content> */}
+                    {openSetingsList[4].isOpened && (
+                        <Styled.Content>
+                            Width:{' '}
+                            <Input
+                                large
+                                onChange={(e) => qrCode.update({ width: e.target.value })}
+                            />
+                            Height{' '}
+                            <Input
+                                large
+                                onChange={(e) => qrCode.update({ height: e.target.value })}
+                            />
+                            Margin{' '}
+                            <Input
+                                large
+                                onChange={(e) => qrCode.update({ margin: e.target.value })}
+                            />
+                        </Styled.Content>
+                    )}
                 </Styled.SettingsItem>
             </Styled.SettingsList>
             <Styled.Center>

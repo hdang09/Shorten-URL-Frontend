@@ -38,6 +38,7 @@
         "tippy.js": "^6.3.7",
         "vite-plugin-favicon": "^1.0.8",
         "vite-plugin-favicons-inject": "^2.1.0",
+        "vite-plugin-svgr": "^2.2.1",
         "web-vitals": "^2.1.0"
     },
     "devDependencies": {
