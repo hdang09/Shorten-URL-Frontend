@@ -16,7 +16,7 @@ import { ThemeContext } from '../../App';
 function Sidebar({ admin, redesign }) {
     const dispatch = useDispatch();
     const sidebarList = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
-    const theme = JSON.parse(localStorage.getItem('data-theme'));
+    const theme = JSON.parse(localStorage.getItem('data-theme')) || 'light';
     const setThemeInLocal = useContext(ThemeContext);
 
     return redesign ? (

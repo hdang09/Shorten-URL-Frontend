@@ -20,7 +20,7 @@ export const SettingsList = styled.ul`
     list-style: none;
     padding: 0;
     height: 325px;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     overflow-x: hidden;
 `;
 
@@ -101,7 +101,7 @@ const flicker = keyframes`
     }
 
     50% {
-        opacity: 1
+        opacity: 0.5
     }
 `;
 
@@ -135,7 +135,7 @@ export const QrScanningBg = styled.div`
 export const QrScanning = styled(QrScanningBg)`
     fill: var(--primary-color);
     position: absolute;
-    z-index: 10;
+    z-index: 1;
     position: relative;
     overflow: hidden;
     background-size: 250px;

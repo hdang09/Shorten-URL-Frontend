@@ -104,11 +104,11 @@ const QR = (props) => {
         });
     };
 
-    const customUrlRef = React.createRef(null);
-    const dotsRef = React.createRef(null);
-    const cornersRef = React.createRef(null);
-    const logoRef = React.createRef(null);
-    const optionsRef = React.createRef(null);
+    const customUrlRef = useRef(null);
+    const dotsRef = useRef(null);
+    const cornersRef = useRef(null);
+    const logoRef = useRef(null);
+    const optionsRef = useRef(null);
     const [openSetingsList, setOpenSettingsList] = useState([
         { id: 1, isOpened: false },
         { id: 2, isOpened: false },

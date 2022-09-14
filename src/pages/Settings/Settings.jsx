@@ -16,9 +16,9 @@ import newLayout from '../../assets/images/screenshots.png';
 import basicLayout from '../../assets/images/basic-layout.png';
 
 const Settings = (props) => {
-    const theme = JSON.parse(localStorage.getItem('data-theme'));
+    const theme = JSON.parse(localStorage.getItem('data-theme')) || 'light';
     const setThemeInLocal = useContext(ThemeContext);
-    const layout = JSON.parse(localStorage.getItem('layout'));
+    const layout = JSON.parse(localStorage.getItem('layout')) || 'new';
     const setLayoutInLocal = useContext(LayoutContext);
 
     const [color, setColor] = useLocalStorage('primary-color', '#45ce7b');
