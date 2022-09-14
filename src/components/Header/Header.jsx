@@ -18,7 +18,7 @@ function Header({ admin, landingPage }) {
     const dispatch = useDispatch();
 
     const navListMenu = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
-    const theme = JSON.parse(localStorage.getItem('data-theme'));
+    const theme = JSON.parse(localStorage.getItem('data-theme')) || 'light';
 
     const account = {
         id: 'string',
