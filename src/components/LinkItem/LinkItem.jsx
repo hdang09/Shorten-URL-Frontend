@@ -25,7 +25,7 @@ const LinkItem = ({ data }) => {
             edit({
                 ...data,
                 name: nameInput || data.name,
-                shorten_url: urlInput || data.shorten_url,
+                shorten_link: urlInput || data.shorten_link,
             }),
         );
     };
@@ -47,15 +47,15 @@ const LinkItem = ({ data }) => {
                     <BsLink45Deg />
                 </Styled.Icon>
                 <Styled.Main>
-                    <Styled.Title>{data.name}</Styled.Title>
-                    <Styled.Subtitle href={data.shorten_url}>{data.shorten_url}</Styled.Subtitle>
+                    <Styled.Title>{data.name || 'Shorten URL'}</Styled.Title>
+                    <Styled.Subtitle href={data.shorten_link}>{data.shorten_link}</Styled.Subtitle>
                 </Styled.Main>
                 <div>
                     <Tippy content="Copy">
                         <span>
                             <Styled.Button
                                 as={MdOutlineContentCopy}
-                                onClick={() => handleCopy(data.shorten_url)}
+                                onClick={() => handleCopy(data.shorten_link)}
                             />
                         </span>
                     </Tippy>
@@ -92,15 +92,15 @@ const LinkItem = ({ data }) => {
                         background
                         placeholder={data.name}
                     />
-                    <label>Shorten URL: </label>
+                    {/* <label>Shorten URL: </label>
                     <Input
                         value={urlInput}
                         onChange={(e) => setURLInput(e.target.value)}
                         large
                         background
-                        placeholder={data.shorten_url}
-                    />
-                    <p>Original link: {data.origin_url}</p>
+                        placeholder={data.shorten_link}
+                    /> */}
+                    <p>Original link: {data.origin_link}</p>
                     <p>Created at: {data.created_at}</p>
                     <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                         <Button outline onClick={handleDelete}>

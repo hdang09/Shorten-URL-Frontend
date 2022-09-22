@@ -5,12 +5,22 @@ import { Col, Row } from 'styled-bootstrap-grid';
 import { useSelector } from 'react-redux';
 import { AiOutlineRight } from 'react-icons/ai';
 import { urlSelector } from '../../components/LinkItem/urlSlice';
-import bg from '../../assets/images/home.png';
 import * as Styled from './Home.styled';
+import { useEffect, useState } from 'react';
+import { getReport } from '../../utils/productApi';
 
 function Home() {
+    const [allLinks, setAllLinks] = useState([]);
     const MY_LINKS = useSelector(urlSelector) || [];
     const role = window.location.pathname.split('/')[1] === '' ? 'user' : 'admin';
+
+    useEffect(() => {
+        const getAllLinks = async () => {
+            const { data } = await getReport();
+            setAllLinks(data.data.links);
+        };
+        getAllLinks();
+    }, []);
 
     return (
         <Row>
@@ -24,7 +34,7 @@ function Home() {
                         </Link>
                     }
                 >
-                    {MY_LINKS.slice(0, 5).map((link) => (
+                    {allLinks.slice(0, 5).map((link) => (
                         <LinkItem key={link.id} data={link} />
                     ))}
                 </Card>

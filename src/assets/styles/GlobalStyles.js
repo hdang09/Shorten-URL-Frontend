@@ -50,7 +50,7 @@ const GlobalStyles = createGlobalStyle`
         border: none;
     }
 
-    a {
+    a[href=""] {
         color: var(--primary-color);
         text-decoration: none;
     }
@@ -98,6 +98,10 @@ const GlobalStyles = createGlobalStyle`
 
     .ant-picker-cell-in-view.ant-picker-cell-today .ant-picker-cell-inner::before {
         border-color: var(--primary-color);
+    }
+
+    img, svg, video, canvas, audio, iframe, embed, object {
+        display: inline-block !important;
     }
 `;
 

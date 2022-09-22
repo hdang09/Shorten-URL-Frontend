@@ -13,7 +13,6 @@ function Button({
     large = false,
     disabled = false,
     menu = false,
-    onClick,
     ...props
 }) {
     const className = [
@@ -40,7 +39,7 @@ function Button({
     };
 
     return (
-        <Styled.Button {...handleButtonType()} onClick={onClick} className={className} {...props}>
+        <Styled.Button {...handleButtonType()} className={className} {...props}>
             {leftIcon && <Styled.LeftIcon>{leftIcon}</Styled.LeftIcon>}
             {children}
             {rightIcon && <Styled.LeftIcon>{rightIcon}</Styled.LeftIcon>}

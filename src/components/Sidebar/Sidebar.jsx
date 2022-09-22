@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
@@ -12,12 +12,25 @@ import { useLocalStorage } from '../../hooks';
 import { signOut } from '../../pages/Login/loginSlice';
 
 import { ThemeContext } from '../../App';
+import { getInfo } from '../../utils/productApi';
 
 function Sidebar({ admin, redesign }) {
+    const [infoUser, setInfoUser] = useState({});
+    const defaultAvatar =
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU';
+
     const dispatch = useDispatch();
     const sidebarList = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
     const theme = JSON.parse(localStorage.getItem('data-theme')) || 'light';
     const setThemeInLocal = useContext(ThemeContext);
+
+    useEffect(() => {
+        const getInfoUser = async () => {
+            const { data } = await getInfo();
+            setInfoUser(data.data);
+        };
+        getInfoUser();
+    }, []);
 
     return redesign ? (
         <Styled.Sidebar>
@@ -47,11 +60,8 @@ function Sidebar({ admin, redesign }) {
                     </Styled.NewSidebarItem>
                 </Tippy>
             </Styled.NavList>
-            <Tippy content="Hai Dang" placement="right">
-                <Styled.Logo
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU"
-                    alt="Avatar"
-                />
+            <Tippy content={infoUser.first_name || 'Anonymous'} placement="right">
+                <Styled.Logo src={infoUser.avatar || defaultAvatar} alt="Avatar" />
             </Tippy>
         </Styled.Sidebar>
     ) : (

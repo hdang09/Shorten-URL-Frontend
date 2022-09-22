@@ -7,6 +7,7 @@ import * as Styled from './URLShortener.styled';
 import { useDebounce } from '../../hooks';
 import { Card, Input, Button } from '../../components';
 import { add } from '../../components/LinkItem/urlSlice';
+import { shortenUrl } from '../../utils/productApi';
 
 let counter = 0;
 
@@ -21,27 +22,35 @@ const URLShortener = ({ noItem }) => {
         // Call API
     }, [debouncedOriginalURL]);
 
-    const handleShortenURL = (e) => {
+    const handleShortenURL = async (e) => {
         if (
             (originalURL.trim() && originalURL.toLowerCase().includes('https://')) ||
             originalURL.toLowerCase().includes('www.') ||
             originalURL.toLowerCase().includes('http://')
         ) {
-            ++counter;
-            setOriginalURL('');
-            toast.success('Shorten successfully');
-            let today = new Date();
-            dispatch(
-                add({
-                    id: counter,
-                    name: `Shorten URL ${counter}`,
-                    shorten_url: `https://f-link.io/${Math.random().toString(36).substring(2, 7)}`,
-                    origin_url: originalURL.toLowerCase(),
-                    created_at: `${today.getDate()}/${
-                        today.getMonth() + 1
-                    }/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}`,
-                }),
-            );
+            try {
+                const { data } = await shortenUrl(originalURL);
+                console.log(data);
+                ++counter;
+                setOriginalURL('');
+                toast.success('Shorten successfully');
+                let today = new Date();
+                dispatch(
+                    add({
+                        id: counter,
+                        name: `Shorten URL ${counter}`,
+                        shorten_url: data.data.shorten_link,
+                        origin_url: originalURL.toLowerCase(),
+                        created_at: `${today.getDate()}/${
+                            today.getMonth() + 1
+                        }/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}`,
+                    }),
+                );
+            } catch (error) {
+                toast.error(error);
+                console.error(error);
+            }
+
             if (window.location.pathname.split('/')[1] === 'landing') {
                 window.location = '/';
             }

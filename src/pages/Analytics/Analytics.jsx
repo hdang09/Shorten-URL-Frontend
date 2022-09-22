@@ -4,9 +4,15 @@ import { Bar, Line } from 'react-chartjs-2';
 import { Row, Col } from 'styled-bootstrap-grid';
 
 import { Report, Card, Statistics } from '../../components';
+import { getAllUser } from '../../utils/productApi';
+
 import { BarChartData, LineChartData } from './Analytics.dummy';
 
 const Analytics = (props) => {
+    const test = async () => {
+        const res = await getAllUser();
+        console.log(res.data.data);
+    };
     const BarChart = () => <Bar data={BarChartData.data} />;
 
     const LineChart = () => <Line data={LineChartData.data} options={LineChartData.options} />;
@@ -17,7 +23,7 @@ const Analytics = (props) => {
                 <Col sm={12} md={12} lg={4}>
                     <Row>
                         <Col sm={12} md={6} lg={12}>
-                            <Card title="Statistics">
+                            <Card title="Statistics" onClick={test}>
                                 <Statistics />
                             </Card>
                         </Col>

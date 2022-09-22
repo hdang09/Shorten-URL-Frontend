@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { RiLinksLine } from 'react-icons/ri';
 import { HiCursorClick } from 'react-icons/hi';
 import { ImStatsDots } from 'react-icons/im';
 import { AiOutlineClockCircle } from 'react-icons/ai';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
+import { getReport } from '../../utils/productApi';
 
 import * as Styled from './Statistics.styled';
 
@@ -16,6 +17,16 @@ const DATA = {
 };
 
 const Statistics = (props) => {
+    const [report, setReport] = useState([]);
+
+    useEffect(() => {
+        const getAllLinks = async () => {
+            const { data } = await getReport();
+            setReport(data.data);
+        };
+        getAllLinks();
+    }, []);
+
     return (
         <Container>
             <Row>
@@ -24,7 +35,7 @@ const Statistics = (props) => {
                         <RiLinksLine />
                     </Styled.LinksIcon>
                     <Styled.InfoStat>
-                        <h2>{DATA.total_links}</h2>
+                        <h2>{report.totalLinks}</h2>
                         <span>Links</span>
                     </Styled.InfoStat>
                 </Col>
@@ -34,7 +45,7 @@ const Statistics = (props) => {
                         <HiCursorClick />
                     </Styled.ClickIcon>
                     <Styled.InfoStat>
-                        <h2>{DATA.total_clicks}</h2>
+                        <h2>{report.totalClicks}</h2>
                         <span>Clicks</span>
                     </Styled.InfoStat>
                 </Col>

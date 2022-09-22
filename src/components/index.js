@@ -9,6 +9,7 @@ import URLShortener from './URLShortener/URLShortener';
 import Report from './Report/Report';
 import Statistics from './Statistics/Statistics';
 import QR from './QR/QR';
+import Avatar from './Avatar/Avatar';
 
 export {
     Button,
@@ -22,4 +23,5 @@ export {
     Report,
     Statistics,
     QR,
+    Avatar,
 };

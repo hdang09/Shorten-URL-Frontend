@@ -13,6 +13,13 @@ import { CLIENT_ID } from '../../config';
 function Login() {
     const dispatch = useDispatch();
     const [tokenStorage, setTokenStorage] = useLocalStorage('token', '');
+    const token =
+        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7Il9pZCI6IjYzMjY2ZDU5MjcwN2IyMWMxOTAxNWZkZCIsImVtYWlsIjoiZGFuZ3RyYW5oYWk2MjhAZ21haWwuY29tIiwicm9sZSI6IjEifSwiaWF0IjoxNjYzODQ5MDk4LCJleHAiOjE2NjM4NTA4OTh9.gc_fhDzLIOt4S7bhQP4TnlIlbn7deb3B6NQr0mCO73M';
+
+    const handleLogin = () => {
+        dispatch(login());
+        localStorage.setItem('token', JSON.stringify(token));
+    };
 
     const onSuccess = async (response) => {
         const token = response.tokenId;
@@ -38,12 +45,12 @@ function Login() {
 
                                 <div style={{ margin: '1rem 0 8rem 0' }}>
                                     <GoogleLogin
-                                        clientId={`${CLIENT_ID}`}
+                                        clientId={'http://localhost:5000/api/auth'}
                                         onSuccess={onSuccess}
                                         onFailure={onFailure}
                                         render={(props) => (
                                             <Button
-                                                onClick={() => dispatch(login())}
+                                                onClick={handleLogin}
                                                 to="/"
                                                 large
                                                 outline

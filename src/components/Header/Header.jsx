@@ -11,22 +11,27 @@ import { useDispatch, useSelector } from 'react-redux';
 import { adminSidebarSelector, userSidebarSelector } from '../Sidebar/sidebarSlice';
 import { signOut } from '../../pages/Login/loginSlice';
 import { ThemeContext } from '../../App';
-import { useContext } from 'react';
+import { useContext, useState, useEffect } from 'react';
+import { getInfo } from '../../utils/productApi';
 
 function Header({ admin, landingPage }) {
+    const [infoUser, setInfoUser] = useState({});
+    const defaultAvatar =
+        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU';
+
     const setThemeInLocal = useContext(ThemeContext);
     const dispatch = useDispatch();
 
     const navListMenu = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
     const theme = JSON.parse(localStorage.getItem('data-theme')) || 'light';
 
-    const account = {
-        id: 'string',
-        first_name: '(K17 HCM)',
-        last_name: 'Hai Dang',
-        email: 'dangthse171362@fpt.edu.vn',
-        avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU',
-    };
+    useEffect(() => {
+        const getInfoUser = async () => {
+            const { data } = await getInfo();
+            setInfoUser(data.data);
+        };
+        getInfoUser();
+    }, []);
 
     let navItem;
     if (landingPage) {
@@ -103,8 +108,8 @@ function Header({ admin, landingPage }) {
                         )}
                     >
                         <Styled.User>
-                            <Styled.Avatar src={account.avatar} />
-                            <Styled.NameUser>{account.last_name}</Styled.NameUser>
+                            <Styled.Avatar src={infoUser.avatar || defaultAvatar} />
+                            <Styled.NameUser>{infoUser.first_name || 'Anonymous'}</Styled.NameUser>
                             <AiFillCaretDown />
                         </Styled.User>
                     </Tippy>
