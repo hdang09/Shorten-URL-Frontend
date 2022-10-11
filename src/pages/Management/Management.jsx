@@ -147,9 +147,9 @@ const Management = (props) => {
     }, []);
 
     return (
-        <Container>
+        <Styled.Wrapper>
             <Table columns={columns} dataSource={allUsers} />
-        </Container>
+        </Styled.Wrapper>
     );
 };
 

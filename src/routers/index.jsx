@@ -1,6 +1,7 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import PrivateRouters from './PrivateRouters';
 import PublicRouters from './PublicRouters';
+// import AdminRouers from './AdminRouers';
 import { Login, Home, Landing, Analytics, Settings, MyURL, Admin, Management } from '../pages';
 import { BasicLayout, ModernLayout } from '../layouts';
 import { useLocalStorage } from '../hooks';
@@ -24,6 +25,7 @@ const privateRoutes = [
 
 const adminRoutes = [
     { name: 'admin', path: '/admin', element: <Admin /> },
+    { name: 'analytics', path: '/admin/analytics', element: <Analytics /> },
     { name: 'management', path: '/admin/management', element: <Management /> },
     { name: 'management/user-url', path: '/admin/management/user-url', element: <MyURL /> },
     { name: 'shorten-url', path: '/admin/shorten-url', element: <Home /> },

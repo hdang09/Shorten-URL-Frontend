@@ -11,7 +11,20 @@ ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend)
 
 export const BarChartData = {
     data: {
-        labels: ['1 - 5/9', '6 - 10/9', '11 - 15/9', '16 - 20/9', '21 - 25/9', '26 - 30/9'],
+        labels: [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'June',
+            'July',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+        ],
         datasets: [
             {
                 label: 'Links',
@@ -23,16 +36,16 @@ export const BarChartData = {
                 data: [4, 2, 3, 4, 5, 6, 7],
                 backgroundColor: 'rgba(0,207,232, 0.5)',
             },
-            {
-                label: 'AVG CTR.',
-                data: [6, 2, 4, 5, 6, 9, 3],
-                backgroundColor: 'rgba(234,84,85, 0.5)',
-            },
-            {
-                label: 'AVG Times',
-                data: [9, 5, 2, 1, 6, 4, 8, 7],
-                backgroundColor: 'rgba(40,199,111, 0.5)',
-            },
+            // {
+            //     label: 'AVG CTR.',
+            //     data: [6, 2, 4, 5, 6, 9, 3],
+            //     backgroundColor: 'rgba(234,84,85, 0.5)',
+            // },
+            // {
+            //     label: 'AVG Times',
+            //     data: [9, 5, 2, 1, 6, 4, 8, 7],
+            //     backgroundColor: 'rgba(40,199,111, 0.5)',
+            // },
         ],
     },
 };

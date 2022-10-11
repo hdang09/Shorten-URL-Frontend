@@ -2,8 +2,9 @@ import styled, { keyframes } from 'styled-components';
 
 export const QR = styled.div`
     & canvas {
-        width: 250px;
-        height: auto;
+        max-width: 250px;
+        max-height: 250px;
+        /* height: auto; */
     }
 `;
 

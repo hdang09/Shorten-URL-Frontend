@@ -46,13 +46,12 @@ const cornerDotArray = [
     { image: DotCornerDot, type: 'dots' },
 ];
 
+let primaryColor = JSON.parse(localStorage.getItem('primary-color')) || '#000';
+
 const qrCode = new QRCodeStyling({
-    width: 200,
-    height: 200,
+    width: 250,
+    height: 250,
     image: logo,
-    dotsOptions: {
-        type: 'dots',
-    },
     backgroundOptions: {
         color: 'transparent',
     },
@@ -63,9 +62,12 @@ const qrCode = new QRCodeStyling({
     cornersSquareOptions: {
         type: 'extra-rounded',
     },
+    cornersDotOptions: {
+        color: primaryColor,
+    },
 });
 
-const QR = (props) => {
+const QR = ({ url }) => {
     // const [gradientArray, setGradientArray] = useState([{}, {}]);
 
     // const handleSetGradient = (value) => {
@@ -83,7 +85,9 @@ const QR = (props) => {
 
     // const color = JSON.parse(localStorage.getItem('primary-color'));
 
-    const currentUrl = useSelector(urlSelector)[0]?.shorten_url || '';
+    const currentUrl = useSelector(urlSelector)[0]?.shorten_link || url || '';
+    console.log(url);
+    // const currentUrl = url || '';
 
     // const [url, setUrl] = useState(currentUrl);
     const qrRef = useRef(null);
@@ -102,6 +106,17 @@ const QR = (props) => {
         qrCode.download({
             extension: type,
         });
+    };
+
+    const [logoSize, setLogoSize] = useState(0.5);
+    const handleSetLogoSize = (e) => {
+        qrCode.update({
+            imageOptions: {
+                ...qrCode.imageOptions,
+                imageSize: e.target.value,
+            },
+        });
+        setLogoSize(e.target.value);
     };
 
     const customUrlRef = useRef(null);
@@ -126,7 +141,7 @@ const QR = (props) => {
             isOpened: item.id === num ? !openSetingsList[num - 1].isOpened : false,
         }));
         setOpenSettingsList(newList);
-        arrayRefs[num - 1].current.scrollIntoView({ behavior: 'smooth' });
+        // arrayRefs[num - 1].current.scrollIntoView({ behavior: 'smooth' });
     };
 
     return (
@@ -186,7 +201,19 @@ const QR = (props) => {
                             <form action="">
                                 {/* <input id="single" type="radio" name="pattern-color" /> */}
                                 <label htmlFor="single">Single color</label>
-                                <Input
+                                <input
+                                    type="color"
+                                    onChange={(e) =>
+                                        qrCode.update({
+                                            dotsOptions: {
+                                                ...qrCode._options.dotsOptions,
+                                                color: e.target.value,
+                                            },
+                                        })
+                                    }
+                                />
+
+                                {/* <Input
                                     color
                                     large
                                     onChange={(e) =>
@@ -197,7 +224,7 @@ const QR = (props) => {
                                             },
                                         })
                                     }
-                                />
+                                /> */}
 
                                 {/* <input id="gradient" type="radio" name="pattern-color" />
                             <label htmlFor="gradient">Gradient color</label>
@@ -302,9 +329,8 @@ const QR = (props) => {
                             ))}
                             <form>
                                 <label htmlFor="single">Single color</label>
-                                <Input
-                                    color
-                                    large
+                                <input
+                                    type="color"
                                     onChange={(e) =>
                                         qrCode.update({
                                             cornersSquareOptions: {
@@ -335,9 +361,8 @@ const QR = (props) => {
                             ))}
                             <form>
                                 <label htmlFor="single">Single color</label>
-                                <Input
-                                    color
-                                    large
+                                <input
+                                    type="color"
                                     onChange={(e) =>
                                         qrCode.update({
                                             cornersDotOptions: {
@@ -360,6 +385,7 @@ const QR = (props) => {
                     {openSetingsList[3].isOpened && (
                         <Styled.Content>
                             <label>URL:</label>
+
                             <Input
                                 large
                                 onChange={(e) => qrCode.update({ image: e.target.value })}
@@ -385,30 +411,31 @@ const QR = (props) => {
                                     }
                                 />
                             </div>
-                            <label htmlFor="">Logo size (0 - 1): </label>
-                            <Input
-                                large
-                                onChange={(e) =>
-                                    qrCode.update({
-                                        imageOptions: {
-                                            ...qrCode.imageOptions,
-                                            imageSize: e.target.value,
-                                        },
-                                    })
-                                }
-                            />
-                            <label>Margin: </label>
-                            <Input
-                                large
-                                onChange={(e) =>
-                                    qrCode.update({
-                                        imageOptions: {
-                                            ...qrCode.imageOptions,
-                                            margin: e.target.value,
-                                        },
-                                    })
-                                }
-                            />
+                            <div>
+                                <label htmlFor="">Logo size: </label>
+                                <input
+                                    type="range"
+                                    min="0"
+                                    max="1"
+                                    step="0.1"
+                                    value={logoSize}
+                                    onChange={handleSetLogoSize}
+                                />
+                            </div>
+                            <div>
+                                <label>Margin: </label>
+                                <Input
+                                    large
+                                    onChange={(e) =>
+                                        qrCode.update({
+                                            imageOptions: {
+                                                ...qrCode.imageOptions,
+                                                margin: e.target.value,
+                                            },
+                                        })
+                                    }
+                                />
+                            </div>
                         </Styled.Content>
                     )}
                 </Styled.SettingsItem>
@@ -430,7 +457,7 @@ const QR = (props) => {
                                 large
                                 onChange={(e) => qrCode.update({ height: e.target.value })}
                             />
-                            Margin{' '}
+                            Padding{' '}
                             <Input
                                 large
                                 onChange={(e) => qrCode.update({ margin: e.target.value })}

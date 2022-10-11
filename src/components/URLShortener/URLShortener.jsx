@@ -40,11 +40,13 @@ const URLShortener = ({ noItem }) => {
                     add({
                         id: counter,
                         name: `Shorten URL ${counter}`,
-                        shorten_url: data.data.shorten_link,
-                        origin_url: originalURL.toLowerCase(),
-                        created_at: `${today.getDate()}/${
-                            today.getMonth() + 1
-                        }/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}`,
+                        shorten_link: data.data.shorten_link,
+                        origin_link: originalURL.toLowerCase(),
+                        // created_at: `${today.getDate()}/${
+                        //     today.getMonth() + 1
+                        // }/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}`,
+                        created_at: today,
+                        updated_at: today,
                     }),
                 );
             } catch (error) {

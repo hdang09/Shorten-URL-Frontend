@@ -31,3 +31,8 @@ export const Tag = styled.label`
     border-radius: 4px;
     padding: 4px 10px;
 `;
+
+export const Wrapper = styled.div`
+    /* width: 100vw; */
+    overflow-x: scroll;
+`;

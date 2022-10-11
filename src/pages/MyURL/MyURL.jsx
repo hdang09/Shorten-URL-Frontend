@@ -11,6 +11,8 @@ const MyURL = (props) => {
     const [, userId] = window.location.search.split('?id=');
     const [id] = useLocalStorage('id');
     const [allLinks, setAllLinks] = useState([]);
+    const [filteredLinks, setFilteredLinks] = useState([]);
+    const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
         const getAllLinks = async () => {
@@ -20,11 +22,23 @@ const MyURL = (props) => {
         getAllLinks();
     }, [id, userId]);
 
+    const handleSearch = (e) => {
+        setInputValue(e.target.value);
+        const filteredData = allLinks.filter((item) => item.shorten_link.includes(e.target.value));
+        setFilteredLinks(filteredData);
+    };
+
+    let links = filteredLinks.length ? filteredLinks : allLinks;
+
     return (
         <Styled.Wrapper>
-            <Input style={{ margin: '1rem auto' }} placeholder="Type here to search my URL..." />
+            <Styled.SearchInput
+                value={inputValue}
+                onChange={handleSearch}
+                placeholder="Type here to search my URL..."
+            />
             <Card title="My URLs">
-                {allLinks.map((link) => (
+                {links.map((link) => (
                     <LinkItem key={link.name} data={link} />
                 ))}
             </Card>

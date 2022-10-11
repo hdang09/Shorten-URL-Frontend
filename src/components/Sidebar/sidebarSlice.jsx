@@ -16,11 +16,11 @@ const initialState = {
             icon: <BiLink />,
             to: '/url',
         },
-        {
-            name: 'Analytics',
-            icon: <ImStatsBars />,
-            to: '/analytics',
-        },
+        // {
+        //     name: 'Analytics',
+        //     icon: <ImStatsBars />,
+        //     to: '/analytics',
+        // },
         {
             name: 'Settings',
             icon: <BsGear />,

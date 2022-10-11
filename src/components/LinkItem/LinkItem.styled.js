@@ -92,13 +92,15 @@ export const Button = styled.div`
 `;
 
 export const QRDrawer = styled.div`
-    padding: 0 48px;
+    padding: 48px;
 `;
 
 export const HighLight = styled.span`
     color: var(--primary-color);
     display: ${(props) => (props.wrap ? 'block' : 'inline-block')};
 `;
+
+export const Link = HighLight.withComponent('a');
 
 export const Item = styled.div`
     margin-bottom: 8px;

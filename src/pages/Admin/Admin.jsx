@@ -8,7 +8,7 @@ import { Button, Card, Input, Avatar } from '../../components';
 import { Link } from 'react-router-dom';
 import { createAccount, getAllUser } from '../../utils/productApi';
 import { toast } from 'react-toastify';
-import { AiTwotoneCrown } from 'react-icons/ai';
+import { AiTwotoneCrown, AiOutlineRight } from 'react-icons/ai';
 import Tippy from '@tippyjs/react';
 
 const Admin = (props) => {
@@ -22,7 +22,7 @@ const Admin = (props) => {
 
     const handleCreateAccount = async () => {
         try {
-            const res = await createAccount(account);
+            await createAccount(account);
             setAccount({
                 email: '',
                 first_name: '',
@@ -101,28 +101,28 @@ const Admin = (props) => {
     return (
         <Container>
             <Row>
-                <Col col={8}>
+                <Col col={12} lg={8}>
                     <Row>
-                        <Col col={3}>
+                        <Col col={6} md={3}>
                             <Card>
                                 <Styled.Links>0</Styled.Links>
                                 <Styled.Label>Total Links</Styled.Label>
                             </Card>
                         </Col>
-                        <Col col={3}>
+                        <Col col={6} md={3}>
                             <Card>
                                 <Styled.Clicks>0</Styled.Clicks>
                                 <Styled.Label>Total Clicks</Styled.Label>
                             </Card>
                         </Col>
 
-                        <Col col={3}>
+                        <Col col={6} md={3}>
                             <Card>
                                 <Styled.CTR>{allUserData.length}</Styled.CTR>
                                 <Styled.Label>Total Users</Styled.Label>
                             </Card>
                         </Col>
-                        <Col col={3}>
+                        <Col col={6} md={3}>
                             <Card>
                                 <Styled.Times>
                                     {allUserData.filter((item) => item.status === 'Waiting').length}
@@ -135,84 +135,93 @@ const Admin = (props) => {
                         <Col col={12}>
                             <Card
                                 title="Recent Users"
-                                subtitle={<Link to="/admin/management">View All</Link>}
+                                subtitle={
+                                    <Link to="/admin/management">
+                                        View All <AiOutlineRight />
+                                    </Link>
+                                }
                             >
                                 <Table columns={columns} dataSource={allUserData} />
                             </Card>
                         </Col>
                     </Row>
                 </Col>
-                <Col col={4}>
-                    <Col col={12}>
-                        <Card title="Add with template">
-                            <Styled.Center>
-                                <Button outline>Download template</Button>
-                            </Styled.Center>
-                            <Styled.Center>
-                                <Button disabled>Upload file to add</Button>
-                            </Styled.Center>
-                        </Card>
-                        <Card title="Create Account">
-                            <div>
-                                <label htmlFor="">Email</label>
-                                <Input
-                                    large
-                                    background
-                                    value={account.email}
-                                    onChange={(e) =>
-                                        setAccount({ ...account, email: e.target.value })
-                                    }
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="">First Name</label>
-                                <Input
-                                    large
-                                    background
-                                    value={account.first_name}
-                                    onChange={(e) =>
-                                        setAccount({ ...account, first_name: e.target.value })
-                                    }
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="">Last Name</label>
-                                <Input
-                                    large
-                                    background
-                                    value={account.last_name}
-                                    onChange={(e) =>
-                                        setAccount({ ...account, last_name: e.target.value })
-                                    }
-                                />
-                            </div>
-                            <div>
-                                <p htmlFor="role">Role</p>
-                                <input
-                                    type="radio"
-                                    name="role"
-                                    value="0"
-                                    onChange={(e) =>
-                                        e.target.checked && setAccount({ ...account, role: '0' })
-                                    }
-                                />
-                                <label htmlFor="0"> User</label>
-                                <input
-                                    type="radio"
-                                    name="role"
-                                    value="1"
-                                    style={{ marginLeft: '1.5rem' }}
-                                    onChange={(e) =>
-                                        e.target.checked && setAccount({ ...account, role: '1' })
-                                    }
-                                />
-                                <label htmlFor="0"> Admin</label>
-                            </div>
-                            <Styled.Center>
-                                <Button onClick={handleCreateAccount}>Add account</Button>
-                            </Styled.Center>
-                        </Card>
-                    </Col>
+
+                <Col col={12} lg={4}>
+                    <Row>
+                        <Col col={12}>
+                            <Card title="Add with template">
+                                <Styled.Center>
+                                    <Button outline>Download template</Button>
+                                </Styled.Center>
+                                <Styled.Center>
+                                    <Button disabled>Upload file to add</Button>
+                                </Styled.Center>
+                            </Card>
+                            <Card title="Create Account">
+                                <div>
+                                    <label htmlFor="">Email</label>
+                                    <Input
+                                        large
+                                        background
+                                        value={account.email}
+                                        onChange={(e) =>
+                                            setAccount({ ...account, email: e.target.value })
+                                        }
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="">First Name</label>
+                                    <Input
+                                        large
+                                        background
+                                        value={account.first_name}
+                                        onChange={(e) =>
+                                            setAccount({ ...account, first_name: e.target.value })
+                                        }
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="">Last Name</label>
+                                    <Input
+                                        large
+                                        background
+                                        value={account.last_name}
+                                        onChange={(e) =>
+                                            setAccount({ ...account, last_name: e.target.value })
+                                        }
+                                    />
+                                </div>
+                                <div>
+                                    <p htmlFor="role">Role</p>
+                                    <input
+                                        type="radio"
+                                        name="role"
+                                        value="0"
+                                        onChange={(e) =>
+                                            e.target.checked &&
+                                            setAccount({ ...account, role: '0' })
+                                        }
+                                    />
+                                    <label htmlFor="0"> User</label>
+                                    <input
+                                        type="radio"
+                                        name="role"
+                                        value="1"
+                                        style={{ marginLeft: '1.5rem' }}
+                                        onChange={(e) =>
+                                            e.target.checked &&
+                                            setAccount({ ...account, role: '1' })
+                                        }
+                                    />
+                                    <label htmlFor="0"> Admin</label>
+                                </div>
+                                <Styled.Center>
+                                    <Button onClick={handleCreateAccount}>Add account</Button>
+                                </Styled.Center>
+                            </Card>
+                        </Col>
+                    </Row>
                 </Col>
             </Row>
         </Container>

@@ -1,6 +1,6 @@
 import { useState, useRef } from 'react';
 import * as Styled from './LinkItem.styled';
-import { MdOutlineContentCopy, MdUpdate } from 'react-icons/md';
+import { MdOutlineContentCopy, MdUpdate, MdContentCut } from 'react-icons/md';
 import { IoCreateOutline, IoQrCodeOutline } from 'react-icons/io5';
 import { BsLink45Deg, BsPencilSquare } from 'react-icons/bs';
 import { Button, QR, Input } from '..';
@@ -24,8 +24,9 @@ import {
 import { shortenUrl } from '../../utils/productApi';
 import { useLocalStorage } from '../../hooks';
 import { API_URL } from '../../config';
+import { HiCursorClick } from 'react-icons/hi';
 
-const LinkItem = ({ data, keyer }) => {
+const LinkItem = ({ data }) => {
     const [urlInput, setURLInput] = useState('');
     const [openEditBox, setOpenEditBox] = useState(false);
     const [id, setId] = useLocalStorage('id', '');
@@ -50,8 +51,9 @@ const LinkItem = ({ data, keyer }) => {
         return (
             <Styled.EditBox>
                 <Styled.Item>
+                    <MdContentCut /> Shorten URL
                     <Box>
-                        <FormLabel htmlFor="url">Url</FormLabel>
+                        {/* <FormLabel htmlFor="url"></FormLabel> */}
                         <div>
                             <InputGroup size="lg">
                                 <InputLeftAddon>{API_URL}/</InputLeftAddon>
@@ -84,7 +86,7 @@ const LinkItem = ({ data, keyer }) => {
                 <Styled.Item>
                     <BsLink45Deg />
                     Original link:
-                    <Styled.HighLight wrap>{data.origin_link}</Styled.HighLight>
+                    <Styled.Link wrap>{data.origin_link}</Styled.Link>
                 </Styled.Item>
                 <Styled.Item>
                     <IoCreateOutline />
@@ -120,7 +122,7 @@ const LinkItem = ({ data, keyer }) => {
                     <Styled.Title>{data.name || 'Shorten URL'}</Styled.Title>
                     <Styled.Subtitle href={data.shorten_link}>{data.shorten_link}</Styled.Subtitle>
                 </Styled.Main>
-                <div>
+                <div style={{ minWidth: '160px' }}>
                     <Tippy content="Copy">
                         <span>
                             <Styled.Button
@@ -142,6 +144,11 @@ const LinkItem = ({ data, keyer }) => {
                             <Styled.Button as={IoQrCodeOutline} ref={btnRef} onClick={onOpen} />
                         </span>
                     </Tippy>
+                    <Tippy content={`${data.clicks} clicks`}>
+                        <span>
+                            <Styled.Button as={HiCursorClick} ref={btnRef} onClick={onOpen} />
+                        </span>
+                    </Tippy>
                 </div>
             </Styled.Wrapper>
 
@@ -156,7 +163,7 @@ const LinkItem = ({ data, keyer }) => {
                 <DrawerContent>
                     <DrawerCloseButton />
                     <Styled.QRDrawer>
-                        <QR />
+                        <QR url={data.shorten_link} />
                     </Styled.QRDrawer>
                 </DrawerContent>
             </Drawer>

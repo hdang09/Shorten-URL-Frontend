@@ -53,7 +53,7 @@ const Statistics = (props) => {
                         <span>Clicks</span>
                     </Styled.InfoStat>
                 </Col>
-                <Col as={Styled.ColStat} col={6}>
+                {/* <Col as={Styled.ColStat} col={6}>
                     <Styled.AvgCTRIcon>
                         <ImStatsDots />
                     </Styled.AvgCTRIcon>
@@ -70,7 +70,7 @@ const Statistics = (props) => {
                         <h2>{DATA.avg_times}</h2>
                         <span>AVG Times</span>
                     </Styled.InfoStat>
-                </Col>
+                </Col> */}
             </Row>
         </Container>
     );

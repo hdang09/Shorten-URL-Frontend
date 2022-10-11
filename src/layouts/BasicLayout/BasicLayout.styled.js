@@ -10,7 +10,7 @@ export const Container = styled.div`
     min-height: 100vh;
 
     @media only screen and (max-width: 992px) {
-        justify-content: flex-start;
+        justify-content: center;
     }
 
     @media only screen and (max-width: 500px) {
