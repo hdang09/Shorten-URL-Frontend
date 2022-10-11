@@ -97,4 +97,13 @@ export const QRDrawer = styled.div`
 
 export const HighLight = styled.span`
     color: var(--primary-color);
+    display: ${(props) => (props.wrap ? 'block' : 'inline-block')};
+`;
+
+export const Item = styled.div`
+    margin-bottom: 8px;
+
+    & svg {
+        margin-right: 4px;
+    }
 `;

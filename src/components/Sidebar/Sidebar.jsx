@@ -62,7 +62,7 @@ function Sidebar({ admin, redesign }) {
                 </Tippy>
             </Styled.NavList>
             <Tippy content={infoUser.first_name || 'Anonymous'} placement="right">
-                <Styled.Logo src={infoUser.avatar || defaultAvatar} alt="Avatar" />
+                <Styled.Logo src={infoUser.avatar || defaultAvatar} alt="Avatar" isAvatar />
             </Tippy>
         </Styled.Sidebar>
     ) : (

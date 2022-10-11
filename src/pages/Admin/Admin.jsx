@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { Table, Calendar } from 'antd';
+import { Table } from 'antd';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
 
 import * as Styled from './Admin.styled';
-import { Button, Card, Input, Report, Avatar } from '../../components';
+import { Button, Card, Input, Avatar } from '../../components';
 import { Link } from 'react-router-dom';
 import { createAccount, getAllUser } from '../../utils/productApi';
 import { toast } from 'react-toastify';
@@ -42,8 +42,9 @@ const Admin = (props) => {
                 <Link to={`/admin/management/user-url?id=${record.key}`}>
                     <Avatar src={record.avatar} />
                     <Styled.Name>
-                        <span>{record.first_name} </span>
-                        <span style={{ marginRight: '4px' }}>{record.last_name}</span>
+                        <span>
+                            {record.first_name} {record.last_name}
+                        </span>
                         {record.role === 'Admin' && (
                             <Tippy content="Admin">
                                 <div>
@@ -92,7 +93,7 @@ const Admin = (props) => {
                 status: item.status[0].toUpperCase() + item.status.slice(1),
                 role: item.role === '0' ? 'User' : 'Admin',
             }));
-            setAllUserData(newList);
+            setAllUserData(newList.reverse().slice(0, 5));
         };
         getAllUserData();
     }, []);
@@ -134,7 +135,7 @@ const Admin = (props) => {
                         <Col col={12}>
                             <Card
                                 title="Recent Users"
-                                subtitle={<Link to="/admin/management">View All {'>'}</Link>}
+                                subtitle={<Link to="/admin/management">View All</Link>}
                             >
                                 <Table columns={columns} dataSource={allUserData} />
                             </Card>

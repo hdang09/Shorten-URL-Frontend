@@ -40,10 +40,9 @@ export const Title = styled.h1`
 
 export const Subtitle = styled.h3`
     margin-bottom: 12px;
-    color: ${(props) => props.theme.black};
+    color: var(--primary-color);
 
     &:hover a {
-        color: var(--primary-color);
         opacity: 0.6;
     }
 `;

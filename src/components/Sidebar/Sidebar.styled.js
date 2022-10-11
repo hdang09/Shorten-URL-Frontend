@@ -93,7 +93,7 @@ export const Sidebar = styled.div`
 export const Logo = styled.img`
     width: 44px;
     height: 44px;
-    border-radius: 50%;
+    ${(props) => (props.isAvatar ? 'border-radius: 1000px;' : '')}
 
     @media only screen and (max-width: 500px) {
         display: none !important;

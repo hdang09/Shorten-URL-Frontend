@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react';
 import * as Styled from './LinkItem.styled';
-import { MdOutlineContentCopy } from 'react-icons/md';
-import { IoQrCodeOutline } from 'react-icons/io5';
+import { MdOutlineContentCopy, MdUpdate } from 'react-icons/md';
+import { IoCreateOutline, IoQrCodeOutline } from 'react-icons/io5';
 import { BsLink45Deg, BsPencilSquare } from 'react-icons/bs';
 import { Button, QR, Input } from '..';
 import { toast } from 'react-toastify';
@@ -23,8 +23,9 @@ import {
 } from '@chakra-ui/react';
 import { shortenUrl } from '../../utils/productApi';
 import { useLocalStorage } from '../../hooks';
+import { API_URL } from '../../config';
 
-const LinkItem = ({ data, key }) => {
+const LinkItem = ({ data, keyer }) => {
     const [urlInput, setURLInput] = useState('');
     const [openEditBox, setOpenEditBox] = useState(false);
     const [id, setId] = useLocalStorage('id', '');
@@ -48,21 +49,23 @@ const LinkItem = ({ data, key }) => {
     const EditBox = () => {
         return (
             <Styled.EditBox>
-                <Box>
-                    <FormLabel htmlFor="url">Url</FormLabel>
-                    <div style={{ height: '50px' }}>
-                        <InputGroup size="lg">
-                            <InputLeftAddon>`${import.meta.env.VITE_API_URL}/`</InputLeftAddon>
-                            <ChakraInput
-                                type="url"
-                                id="url"
-                                placeholder="Please enter domain"
-                                value={urlInput}
-                                onChange={(e) => setURLInput(e.target.value)}
-                            />
-                        </InputGroup>
-                    </div>
-                </Box>
+                <Styled.Item>
+                    <Box>
+                        <FormLabel htmlFor="url">Url</FormLabel>
+                        <div>
+                            <InputGroup size="lg">
+                                <InputLeftAddon>{API_URL}/</InputLeftAddon>
+                                <ChakraInput
+                                    type="url"
+                                    id="url"
+                                    placeholder="Please enter your custom url"
+                                    value={urlInput}
+                                    onChange={(e) => setURLInput(e.target.value)}
+                                />
+                            </InputGroup>
+                        </div>
+                    </Box>
+                </Styled.Item>
                 {/* <Input
                     value={nameInput}
                     onChange={(e) => setNameInput(e.target.value)}
@@ -78,21 +81,25 @@ const LinkItem = ({ data, key }) => {
                 background
                 placeholder={data.shorten_link}
             /> */}
-                <p>
-                    Original link: <Styled.HighLight>{data.origin_link}</Styled.HighLight>
-                </p>
-                <p>
+                <Styled.Item>
+                    <BsLink45Deg />
+                    Original link:
+                    <Styled.HighLight wrap>{data.origin_link}</Styled.HighLight>
+                </Styled.Item>
+                <Styled.Item>
+                    <IoCreateOutline />
                     Created at:{' '}
                     <Styled.HighLight>
                         {moment(data.createdAt).format('MMMM Do YYYY, hh:mm')}
                     </Styled.HighLight>
-                </p>
-                <p>
-                    Updated at:{' '}
+                </Styled.Item>
+                <Styled.Item>
+                    <MdUpdate />
+                    Updated{' '}
                     <Styled.HighLight>
                         {moment(data.createdAt).startOf('day').fromNow()}
                     </Styled.HighLight>
-                </p>
+                </Styled.Item>
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <p style={{ padding: '0 4px' }}></p>
                     <Button shine="true" onClick={handleDoneEdit}>
@@ -105,7 +112,7 @@ const LinkItem = ({ data, key }) => {
 
     return (
         <>
-            <Styled.Wrapper key={key}>
+            <Styled.Wrapper>
                 <Styled.Icon>
                     <BsLink45Deg />
                 </Styled.Icon>

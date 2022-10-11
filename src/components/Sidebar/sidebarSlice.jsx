@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AiOutlineHome } from 'react-icons/ai';
 import { ImStatsBars } from 'react-icons/im';
-import { BsGear } from 'react-icons/bs';
+import { BsGear, BsPeople } from 'react-icons/bs';
 import { BiLink } from 'react-icons/bi';
 
 const initialState = {
@@ -35,12 +35,12 @@ const initialState = {
         },
         {
             name: 'Management',
-            icon: <BiLink />,
+            icon: <BsPeople />,
             to: '/admin/management',
         },
         {
             name: 'Shorten URL',
-            icon: <ImStatsBars />,
+            icon: <BiLink />,
             to: '/admin/shorten-url',
         },
         {

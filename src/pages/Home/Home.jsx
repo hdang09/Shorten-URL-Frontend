@@ -2,9 +2,6 @@ import { Link } from 'react-router-dom';
 import { Card, LinkItem, URLShortener, QR } from '../../components';
 import { Col, Row } from 'styled-bootstrap-grid';
 
-import { useSelector } from 'react-redux';
-import { AiOutlineRight } from 'react-icons/ai';
-import { urlSelector } from '../../components/LinkItem/urlSlice';
 import { useEffect, useState } from 'react';
 import { getReport } from '../../utils/productApi';
 import { useLocalStorage } from '../../hooks';
@@ -31,12 +28,12 @@ function Home() {
                     title="Recent URLs"
                     subtitle={
                         <Link to={role === 'user' ? '/url' : '/admin/shorten-url/admin-url'}>
-                            View All <AiOutlineRight />
+                            View All
                         </Link>
                     }
                 >
                     {allLinks.slice(0, 5).map((link) => (
-                        <LinkItem key={link.id} data={link} />
+                        <LinkItem key={link._id} data={link} />
                     ))}
                 </Card>
             </Col>
