@@ -4,10 +4,11 @@ import { useDispatch } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import * as Styled from './URLShortener.styled';
-import { useDebounce } from '../../hooks';
+import { useDebounce, useLocalStorage } from '../../hooks';
 import { Card, Input, Button } from '../../components';
 import { add } from '../../components/LinkItem/urlSlice';
 import { shortenUrl } from '../../utils/productApi';
+import { nanoid } from 'nanoid';
 
 let counter = 0;
 
@@ -15,6 +16,7 @@ const URLShortener = ({ noItem }) => {
     const inputRef = createRef();
     const [originalURL, setOriginalURL] = useState('');
     const dispatch = useDispatch();
+    const [id, setId] = useLocalStorage('id');
 
     const debouncedOriginalURL = useDebounce(originalURL, 750);
 
@@ -29,8 +31,7 @@ const URLShortener = ({ noItem }) => {
             originalURL.toLowerCase().includes('http://')
         ) {
             try {
-                const { data } = await shortenUrl(originalURL);
-                console.log(data);
+                const { data } = await shortenUrl(originalURL, id, nanoid(11));
                 ++counter;
                 setOriginalURL('');
                 toast.success('Shorten successfully');
@@ -47,8 +48,7 @@ const URLShortener = ({ noItem }) => {
                     }),
                 );
             } catch (error) {
-                toast.error(error);
-                console.error(error);
+                toast.error(error.message);
             }
 
             if (window.location.pathname.split('/')[1] === 'landing') {

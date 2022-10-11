@@ -30,7 +30,7 @@ const Admin = (props) => {
                 role: '',
             });
         } catch (error) {
-            toast.error(error);
+            toast.error(error.message);
         }
     };
 

@@ -5,18 +5,20 @@ import { useSelector } from 'react-redux';
 import * as Styled from './MyURL.styled';
 import { Card, Input, LinkItem } from '../../components';
 import { getReport } from '../../utils/productApi';
+import { useLocalStorage } from '../../hooks';
 
 const MyURL = (props) => {
-    const userId = window.location.search.split('?id=')[1];
+    const [, userId] = window.location.search.split('?id=');
+    const [id] = useLocalStorage('id');
     const [allLinks, setAllLinks] = useState([]);
 
     useEffect(() => {
         const getAllLinks = async () => {
-            const { data } = await getReport(userId);
+            const { data } = await getReport(userId || id);
             setAllLinks(data.data.links.reverse());
         };
         getAllLinks();
-    }, []);
+    }, [id, userId]);
 
     return (
         <Styled.Wrapper>

@@ -6,16 +6,48 @@ import { BiLink } from 'react-icons/bi';
 
 const initialState = {
     user: [
-        { name: 'Home', icon: <AiOutlineHome />, to: '/' },
-        { name: 'My URLs', icon: <BiLink />, to: '/url' },
-        { name: 'Analytics', icon: <ImStatsBars />, to: '/analytics' },
-        { name: 'Settings', icon: <BsGear />, to: '/settings' },
+        {
+            name: 'Home',
+            icon: <AiOutlineHome />,
+            to: '/',
+        },
+        {
+            name: 'My URLs',
+            icon: <BiLink />,
+            to: '/url',
+        },
+        {
+            name: 'Analytics',
+            icon: <ImStatsBars />,
+            to: '/analytics',
+        },
+        {
+            name: 'Settings',
+            icon: <BsGear />,
+            to: '/settings',
+        },
     ],
     admin: [
-        { name: 'Dashboard', icon: <AiOutlineHome />, to: '/admin/' },
-        { name: 'Management', icon: <BiLink />, to: '/admin/management' },
-        { name: 'Shorten URL', icon: <ImStatsBars />, to: '/admin/shorten-url' },
-        { name: 'Settings', icon: <BsGear />, to: '/admin/settings' },
+        {
+            name: 'Dashboard',
+            icon: <AiOutlineHome />,
+            to: '/admin/',
+        },
+        {
+            name: 'Management',
+            icon: <BiLink />,
+            to: '/admin/management',
+        },
+        {
+            name: 'Shorten URL',
+            icon: <ImStatsBars />,
+            to: '/admin/shorten-url',
+        },
+        {
+            name: 'Settings',
+            icon: <BsGear />,
+            to: '/admin/settings',
+        },
     ],
 };
 

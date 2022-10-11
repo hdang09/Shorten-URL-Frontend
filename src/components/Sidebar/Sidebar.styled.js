@@ -96,7 +96,7 @@ export const Logo = styled.img`
     border-radius: 50%;
 
     @media only screen and (max-width: 500px) {
-        display: none;
+        display: none !important;
     }
 `;
 

@@ -3,6 +3,7 @@ import { useLocalStorage } from './hooks';
 import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './assets/styles/themes';
 import { createContext } from 'react';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const ThemeContext = createContext();
 
@@ -18,7 +19,9 @@ function App() {
     return (
         <ThemeContext.Provider value={toggleTheme}>
             <ThemeProvider theme={theme}>
-                <RouterComponents />
+                <Router>
+                    <RouterComponents />
+                </Router>
             </ThemeProvider>
         </ThemeContext.Provider>
     );

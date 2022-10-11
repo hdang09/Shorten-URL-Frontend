@@ -53,6 +53,10 @@ export const LayoutSelect = styled.div`
     &:hover {
         opacity: 0.8;
     }
+
+    @media only screen and (max-width: 500px) {
+        display: none;
+    }
 `;
 
 export const LayoutName = styled.label`

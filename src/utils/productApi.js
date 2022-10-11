@@ -1,8 +1,4 @@
-import { post, get, put, remove } from './apiCaller';
-import jwt_decode from 'jwt-decode';
-
-const token = JSON.parse(localStorage.getItem('token'));
-const { payload } = jwt_decode(token);
+import { post, get, put } from './apiCaller';
 
 // Admin API
 export const getAllUser = () => {
@@ -32,21 +28,25 @@ export const updateUserRole = (role, accountId) => {
 };
 
 // URL API
-export const shortenUrl = (link) => {
+export const shortenUrl = (link, accountId, linkcode) => {
     const url = '/api/url/shorten/';
-    return post(url, { origin_link: link, account_id: payload._id });
+    return post(url, {
+        origin_link: link,
+        account_id: accountId,
+        linkcode,
+    });
 };
 
 // Reports API
 export const getReport = (accountId = '', year, month) => {
-    let url = `/api/report/${accountId || payload._id}`;
+    let url = `/api/report/${accountId}`;
 
     if (year && month) url += `/${year}/${month}`;
     return get(url);
 };
 
 // Users API
-export const getInfo = () => {
-    const url = `/api/user/${payload._id}`;
+export const getInfo = (accountId) => {
+    const url = `/api/user/${accountId}`;
     return get(url);
 };

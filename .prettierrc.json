@@ -1,19 +1,19 @@
 {
-   "printWidth": 100,
-   "tabWidth": 4,
-   "bracketSpacing": true,
-   "trailingComma": "all",
-   "jsxBracketSameLine": false,
-   "arrowParens": "always",
-   "singleQuote": true,
-   "semi": true,
-   "endOfLine": "auto",
-   "importOrder": [
-      "^react$",
-      "^[a-z\\-/]*$",
-      "(^@material-ui|components|providers)",
-      "(^[src/]*$|^[./]|^[../])",
-      ""
-   ],
-   "importOrderSeparation": false
+    "printWidth": 100,
+    "tabWidth": 4,
+    "bracketSpacing": true,
+    "trailingComma": "all",
+    "jsxBracketSameLine": false,
+    "arrowParens": "always",
+    "singleQuote": true,
+    "semi": true,
+    "endOfLine": "auto",
+    "importOrder": [
+        "^react$",
+        "^[a-z\\-/]*$",
+        "(^@material-ui|components|providers)",
+        "(^[src/]*$|^[./]|^[../])",
+        ""
+    ],
+    "importOrderSeparation": false
 }

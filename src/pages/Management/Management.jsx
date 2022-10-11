@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Table } from 'antd';
-import { Col, Container, Row } from 'styled-bootstrap-grid';
-import { Button, Input } from '../../components';
+import { Container } from 'styled-bootstrap-grid';
 import { getAllUser, updateUserRole, updateUserStatus } from '../../utils/productApi';
 import HeadlessTippy from '@tippyjs/react/headless';
 import 'tippy.js/dist/tippy.css';
 import * as Styled from './Management.styled';
 import { toast } from 'react-toastify';
-import { Avatar } from '../../components';
+import { Avatar, Button } from '../../components';
 import { Link } from 'react-router-dom';
 import { AiTwotoneCrown } from 'react-icons/ai';
 import Tippy from '@tippyjs/react';
@@ -39,7 +38,6 @@ const Management = (props) => {
         } catch (error) {
             toast.error(error.message);
         }
-        // setRender(!render);
     };
 
     const columns = [
@@ -51,7 +49,7 @@ const Management = (props) => {
                     <Avatar src={record.avatar} />
                     <Styled.Name>
                         <span>{record.first_name} </span>
-                        <span style={{ marginRight: '4px' }}>{record.last_name}</span>
+                        <span style={{ margin: '0 4px' }}>{record.last_name}</span>
                         {record.role === 'Admin' && (
                             <Tippy content="Admin">
                                 <div>

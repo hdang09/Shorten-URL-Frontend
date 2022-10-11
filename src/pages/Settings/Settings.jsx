@@ -1,4 +1,3 @@
-import React from 'react';
 import PropTypes from 'prop-types';
 import { BsMoon } from 'react-icons/bs';
 import { RiLayout2Fill } from 'react-icons/ri';

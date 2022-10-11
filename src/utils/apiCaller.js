@@ -5,9 +5,14 @@ export const request = (endpoint, method, headers = {}, params = {}, body = {}) 
     const token = JSON.parse(localStorage.getItem('token')) || '';
     return axios({
         url: API_URL + endpoint,
-        method: method,
-        headers: { ...headers, token },
-        params: { ...params },
+        method,
+        headers: {
+            ...headers,
+            token,
+        },
+        params: {
+            ...params,
+        },
         data: body,
     });
 };

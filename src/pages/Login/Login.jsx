@@ -1,34 +1,15 @@
-import { Link } from 'react-router-dom';
-import { Button, Input } from '../../components';
+/* eslint-disable react/no-unescaped-entities */
+import { Button } from '../../components';
 import { FcGoogle } from 'react-icons/fc';
-import { GoogleLogin } from 'react-google-login';
-import { useDispatch } from 'react-redux';
 
-import { login } from '../Login/loginSlice';
 import * as Styled from './Login.styled';
-import { useLocalStorage } from '../../hooks';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
-import { CLIENT_ID } from '../../config';
 
 function Login() {
-    const dispatch = useDispatch();
-    const [tokenStorage, setTokenStorage] = useLocalStorage('token', '');
-    const token =
-        'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7Il9pZCI6IjYzMjY2ZDU5MjcwN2IyMWMxOTAxNWZkZCIsImVtYWlsIjoiZGFuZ3RyYW5oYWk2MjhAZ21haWwuY29tIiwicm9sZSI6IjEifSwiaWF0IjoxNjYzODQ5MDk4LCJleHAiOjE2NjM4NTA4OTh9.gc_fhDzLIOt4S7bhQP4TnlIlbn7deb3B6NQr0mCO73M';
-
     const handleLogin = () => {
-        dispatch(login());
-        localStorage.setItem('token', JSON.stringify(token));
+        // dispatch(login());
+        // localStorage.setItem('token', JSON.stringify(token));
     };
-
-    const onSuccess = async (response) => {
-        const token = response.tokenId;
-        // const res = await productApi.login(token);
-        setTokenStorage(res.data.tokens.access.token);
-        // LocalStorageUtils.setItem('token', res.data.tokens.access.token)
-        return (window.location = '/');
-    };
-    const onFailure = (response) => {};
 
     return (
         <Styled.Wrapper>
@@ -44,22 +25,15 @@ function Login() {
                                 <Styled.Separator />
 
                                 <div style={{ margin: '1rem 0 8rem 0' }}>
-                                    <GoogleLogin
-                                        clientId={'http://localhost:5000/api/auth'}
-                                        onSuccess={onSuccess}
-                                        onFailure={onFailure}
-                                        render={(props) => (
-                                            <Button
-                                                onClick={handleLogin}
-                                                to="/"
-                                                large
-                                                outline
-                                                leftIcon={<FcGoogle />}
-                                            >
-                                                Continue with Google
-                                            </Button>
-                                        )}
-                                    />
+                                    <Button
+                                        onClick={handleLogin}
+                                        href="http://localhost:5000/api/auth/google"
+                                        large
+                                        outline
+                                        leftIcon={<FcGoogle />}
+                                    >
+                                        Continue with Google
+                                    </Button>
                                 </div>
                                 <Styled.Contact>
                                     Don't have an account?{' '}
@@ -76,3 +50,17 @@ function Login() {
 }
 
 export default Login;
+
+// const ApiUrl = process.env.REACT_APP_API_URL + '/api/auth/'
+//   // get token from the url after successful signed in
+//   let location = useLocation()
+//   const UrlParams = new URLSearchParams(location.search)
+//   if (UrlParams.get('success') === 'true') {
+//     // save token to localStorage
+//     let response = {
+//       success: UrlParams.get('success'),
+//       token: UrlParams.get('token'),
+//     }
+//     LocalStorageUtils.setItem('token', response.token)
+//     return <Navigate to="/" replace />
+//   }

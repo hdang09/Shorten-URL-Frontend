@@ -7,7 +7,13 @@ const columns = [
                 <Avatar src={record.avatar} />
                 <Styled.Name>
                     <span>{record.first_name} </span>
-                    <span style={{ marginRight: '4px' }}>{record.last_name}</span>
+                    <span
+                        style={{
+                            marginRight: '4px',
+                        }}
+                    >
+                        {record.last_name}
+                    </span>
                     {record.role === 'Admin' && (
                         <Tippy content="Admin">
                             <div>

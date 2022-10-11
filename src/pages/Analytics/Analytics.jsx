@@ -11,7 +11,6 @@ import { BarChartData, LineChartData } from './Analytics.dummy';
 const Analytics = (props) => {
     const test = async () => {
         const res = await getAllUser();
-        console.log(res.data.data);
     };
     const BarChart = () => <Bar data={BarChartData.data} />;
 

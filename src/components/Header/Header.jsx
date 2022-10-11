@@ -13,6 +13,7 @@ import { signOut } from '../../pages/Login/loginSlice';
 import { ThemeContext } from '../../App';
 import { useContext, useState, useEffect } from 'react';
 import { getInfo } from '../../utils/productApi';
+import { useLocalStorage } from '../../hooks';
 
 function Header({ admin, landingPage }) {
     const [infoUser, setInfoUser] = useState({});
@@ -24,14 +25,15 @@ function Header({ admin, landingPage }) {
 
     const navListMenu = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
     const theme = JSON.parse(localStorage.getItem('data-theme')) || 'light';
+    const [id, setId] = useLocalStorage('id', '');
 
     useEffect(() => {
         const getInfoUser = async () => {
-            const { data } = await getInfo();
+            const { data } = await getInfo(id);
             setInfoUser(data.data);
         };
         getInfoUser();
-    }, []);
+    }, [id]);
 
     let navItem;
     if (landingPage) {

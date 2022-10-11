@@ -1,26 +1,27 @@
 import { Link } from 'react-router-dom';
-import { Report, Card, LinkItem, URLShortener, Statistics, QR } from '../../components';
+import { Card, LinkItem, URLShortener, QR } from '../../components';
 import { Col, Row } from 'styled-bootstrap-grid';
 
 import { useSelector } from 'react-redux';
 import { AiOutlineRight } from 'react-icons/ai';
 import { urlSelector } from '../../components/LinkItem/urlSlice';
-import * as Styled from './Home.styled';
 import { useEffect, useState } from 'react';
 import { getReport } from '../../utils/productApi';
+import { useLocalStorage } from '../../hooks';
 
 function Home() {
     const [allLinks, setAllLinks] = useState([]);
-    const MY_LINKS = useSelector(urlSelector) || [];
+    // const MY_LINKS = useSelector(urlSelector) || [];
     const role = window.location.pathname.split('/')[1] === '' ? 'user' : 'admin';
+    const [id, setId] = useLocalStorage('id', '');
 
     useEffect(() => {
         const getAllLinks = async () => {
-            const { data } = await getReport();
-            setAllLinks(data.data.links);
+            const { data } = await getReport(id);
+            setAllLinks(data.data.links.reverse());
         };
         getAllLinks();
-    }, []);
+    }, [id]);
 
     return (
         <Row>

@@ -106,7 +106,9 @@ const GlobalStyles = createGlobalStyle`
 `;
 
 GlobalStyles.defaultProps = {
-    theme: { ...lightTheme },
+    theme: {
+        ...lightTheme,
+    },
 };
 
 export default GlobalStyles;

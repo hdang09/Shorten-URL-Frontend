@@ -78,14 +78,23 @@ export const Subtitle = styled.a`
     color: inherit;
     font-size: 1.6rem;
     cursor: pointer;
-    text-decoration: underline;
+    text-decoration: none;
 `;
 
 export const Button = styled.div`
     cursor: pointer;
     font-size: 2.4rem;
     margin: 8px;
-    dib &:hover {
+    display: inline-block;
+    &:hover {
         opacity: 0.5;
     }
+`;
+
+export const QRDrawer = styled.div`
+    padding: 0 48px;
+`;
+
+export const HighLight = styled.span`
+    color: var(--primary-color);
 `;

@@ -23,14 +23,15 @@ function Sidebar({ admin, redesign }) {
     const sidebarList = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
     const theme = JSON.parse(localStorage.getItem('data-theme')) || 'light';
     const setThemeInLocal = useContext(ThemeContext);
+    const [id, setId] = useLocalStorage('id', '');
 
     useEffect(() => {
         const getInfoUser = async () => {
-            const { data } = await getInfo();
+            const { data } = await getInfo(id);
             setInfoUser(data.data);
         };
         getInfoUser();
-    }, []);
+    }, [id]);
 
     return redesign ? (
         <Styled.Sidebar>
