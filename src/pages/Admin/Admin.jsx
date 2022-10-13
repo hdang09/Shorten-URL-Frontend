@@ -150,14 +150,14 @@ const Admin = (props) => {
                 <Col col={12} lg={4}>
                     <Row>
                         <Col col={12}>
-                            <Card title="Add with template">
+                            {/* <Card title="Add with template">
                                 <Styled.Center>
                                     <Button outline>Download template</Button>
                                 </Styled.Center>
                                 <Styled.Center>
                                     <Button disabled>Upload file to add</Button>
                                 </Styled.Center>
-                            </Card>
+                            </Card> */}
                             <Card title="Create Account">
                                 <div>
                                     <label htmlFor="">Email</label>

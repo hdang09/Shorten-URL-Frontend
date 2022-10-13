@@ -17,6 +17,8 @@ export const Wrapper = styled.div`
 export const Container = styled.div`
     display: flex;
     justify-content: center;
+    min-height: 100vh;
+    align-items: center;
     top: 0;
     margin-left: 115px;
     flex: 1;

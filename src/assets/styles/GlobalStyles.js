@@ -4,10 +4,9 @@ import { lightTheme } from './themes';
 const GlobalStyles = createGlobalStyle`
     @import 'normalize.css';
     @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap');
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Montserrat:wght@100;200;300;400;500;600;700;800&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
     @font-face {
-        font-family: Quantum;
+        font-family: 'Quantum';
         src: url('./assets/fonts/Quantum.otf');
     }
 
@@ -19,6 +18,18 @@ const GlobalStyles = createGlobalStyle`
         --green-color: 40, 199, 111;
         --header-height: 60px;
         --box-shadow: 0 4px 24px 0 rgb(34 41 47 / 10%);
+    }
+
+    @font-face {
+        font-family: 'GT Walsheim Pro';
+        src: local('GT Walsheim Pro'), url(../fonts/GTWalsheimPro-Regular.woff2) format('woff2');
+        line-height: 150%;
+    }
+    
+    @font-face {
+        font-family: 'GT Walsheim Pro Black';
+        src: local('GT Walsheim Pro Black'), url(../fonts/GTWalsheimPro-Black.woff2) format('woff2');
+        line-height: 150%;
     }
     
 
@@ -33,7 +44,7 @@ const GlobalStyles = createGlobalStyle`
     }
 
     body {
-        font-family: Inter, Montserrat, Arial, Helvetica, sans-serif !important;
+        font-family: 'GT Walsheim Pro', 'Inter', 'Montserrat', Arial, Helvetica, sans-serif !important;
         font-size: 1.6rem;
         line-height: 1.5;
         text-rendering: optimizeSpeed;

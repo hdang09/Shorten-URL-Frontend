@@ -1,26 +1,25 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useSelector } from 'react-redux';
 
 import PropTypes from 'prop-types';
 import * as Styled from './QR.styled';
-import { Input, Button } from '../';
+import { Button, Input } from '../';
 import { AiOutlineDown, AiOutlineDownload } from 'react-icons/ai';
-
-import QRCodeStyling from 'qr-code-styling';
 import logo from '../../assets/images/logo.png';
+import QRCodeStyling from 'qr-code-styling';
+
 import { urlSelector } from '../LinkItem/urlSlice';
 
 import classyRoundedPattern from '../../assets/qr/pattern/classy-rounded.png';
 import classyPattern from '../../assets/qr/pattern/classy.png';
-import defaultPattern from '../../assets/qr/pattern/default.png';
 import dotsPattern from '../../assets/qr/pattern/dots.png';
+import defaultPattern from '../../assets/qr/pattern/default.png';
 import extraRoundedPattern from '../../assets/qr/pattern/extra-rounded.png';
 import roundedPattern from '../../assets/qr/pattern/rounded.png';
-
 import squareCornerSquare from '../../assets/qr/corners/corner-square/square.png';
+
 import dotCornerSquare from '../../assets/qr/corners/corner-square/dot.png';
 import extraRoundedCornerSquare from '../../assets/qr/corners/corner-square/extra-rounded.png';
-
 import SquareCornerDot from '../../assets/qr/corners/corner-dot/square.png';
 import DotCornerDot from '../../assets/qr/corners/corner-dot/dot.png';
 
@@ -86,7 +85,6 @@ const QR = ({ url }) => {
     // const color = JSON.parse(localStorage.getItem('primary-color'));
 
     const currentUrl = useSelector(urlSelector)[0]?.shorten_link || url || '';
-    console.log(url);
     // const currentUrl = url || '';
 
     // const [url, setUrl] = useState(currentUrl);

@@ -1,0 +1,19 @@
+@font-face {
+    font-family: 'GT Walsheim Pro';
+    src: local('GT Walsheim Pro'), url(./assets/fonts/GTWalsheimPro-Regular.woff2) format('woff2');
+    line-height: 150%;
+}
+
+@font-face {
+    font-family: 'GT Walsheim Pro Black';
+    src: local('GT Walsheim Pro Black'),
+        url(./assets/fonts/GTWalsheimPro-Black.woff2) format('woff2');
+    line-height: 150%;
+}
+
+body {
+    font-family: 'GT Walsheim Pro', 'Inter', 'Montserrat', Arial, Helvetica, sans-serif !important;
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-rendering: optimizeSpeed;
+}

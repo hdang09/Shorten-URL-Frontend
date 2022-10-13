@@ -13,6 +13,8 @@ import * as Styled from './Home.styled';
 import { useDebounce, useLocalStorage } from '../../hooks';
 
 import { nanoid } from 'nanoid';
+import { HiLink } from 'react-icons/hi';
+import { API_URL } from '../../config';
 
 let counter = 0;
 
@@ -29,15 +31,13 @@ const Home = () => {
         const getAllLinks = async () => {
             const { data } = await getReport(id);
             setAllLinks(data.data.links.reverse());
-            console.count('a');
         };
         getAllLinks();
     }, [id, reRender]);
 
     const inputRef = createRef();
     const [originalURL, setOriginalURL] = useState('');
-
-    console.count('re-render');
+    const [customPath, setCustomPath] = useState('');
 
     const handleShortenURL = async (e) => {
         if (
@@ -46,9 +46,10 @@ const Home = () => {
             originalURL.toLowerCase().includes('http://')
         ) {
             try {
-                const { data } = await shortenUrl(originalURL, id, nanoid(11));
+                const { data } = await shortenUrl(originalURL, id, customPath || nanoid(10));
                 ++counter;
                 setOriginalURL('');
+                setCustomPath('');
                 toast.success('Shorten successfully');
                 let today = new Date();
                 dispatch(
@@ -83,20 +84,50 @@ const Home = () => {
         <Row>
             <Col md={12} lg={8}>
                 <Card title="URL Shortener">
-                    <Styled.Wrapper>
-                        <Input
-                            ref={inputRef}
-                            value={originalURL}
-                            onChange={(e) => setOriginalURL(e.target.value)}
-                            onKeyDown={(e) => e.keyCode === 13 && handleShortenURL()}
-                            large
-                            background
-                            placeholder="Paste a link to shorten it"
-                        />
-                        <Button shine="true" onClick={() => handleShortenURL()}>
+                    <div>
+                        <Row>
+                            <Col xs={12} lg={6}>
+                                <Styled.Label>
+                                    <HiLink />
+                                    <HiLink />
+                                    <label htmlFor="">Enter your long URL here</label>
+                                </Styled.Label>
+                                <Input
+                                    ref={inputRef}
+                                    value={originalURL}
+                                    onChange={(e) => setOriginalURL(e.target.value)}
+                                    onKeyDown={(e) => e.keyCode === 13 && handleShortenURL()}
+                                    large
+                                    background
+                                    placeholder="Paste a link to shorten it"
+                                />
+                            </Col>
+                            <Col xs={12} lg={6}>
+                                <Styled.Label>
+                                    <HiLink />
+                                    <label htmlFor="">Customize your link</label>
+                                </Styled.Label>
+
+                                <Styled.WrapperInput>
+                                    <input type="text" value={`${API_URL}/`} />
+                                    <Styled.CustomInput
+                                        type="text"
+                                        value={customPath}
+                                        onChange={(e) => setCustomPath(e.target.value)}
+                                        onKeyDown={(e) => e.keyCode === 13 && handleShortenURL()}
+                                    />
+                                </Styled.WrapperInput>
+                            </Col>
+                        </Row>
+
+                        <Button
+                            shine="true"
+                            onClick={() => handleShortenURL()}
+                            style={{ margin: '12px auto 0 auto' }}
+                        >
                             Shorten
                         </Button>
-                    </Styled.Wrapper>
+                    </div>
                 </Card>
 
                 <Card
@@ -107,7 +138,7 @@ const Home = () => {
                         </Link>
                     }
                 >
-                    {allLinks.slice(0, 5).map((link) => (
+                    {allLinks.slice(0, 4).map((link) => (
                         <LinkItem key={link._id} data={link} />
                     ))}
                 </Card>

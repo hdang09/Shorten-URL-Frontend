@@ -14,6 +14,7 @@ export const Banner = styled.div`
 export const Heading = styled.h1`
     color: ${(props) => props.theme.black};
     display: block;
+    font-family: 'GT Walsheim Pro Black';
     font-weight: 800;
     text-align: center;
     font-size: 4rem;

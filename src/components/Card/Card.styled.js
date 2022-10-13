@@ -32,6 +32,7 @@ export const Header = styled.header`
 `;
 
 export const Title = styled.h1`
+    font-family: 'GT Walsheim Pro Black';
     width: ${(props) => (props.noItem ? '100%' : 'auto')};
     font-weight: 700;
     margin-bottom: 20px;

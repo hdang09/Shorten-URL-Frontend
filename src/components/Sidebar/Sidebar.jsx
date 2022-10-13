@@ -41,7 +41,7 @@ function Sidebar({ admin, redesign }) {
             <Styled.NavList>
                 {sidebarList.map(({ name, icon, to, ...rest }) => (
                     <Tippy content={name} placement="right" key={name}>
-                        <Styled.NewSidebarItem to={to} {...rest}>
+                        <Styled.NewSidebarItem to={to} exact {...rest}>
                             {icon}
                         </Styled.NewSidebarItem>
                     </Tippy>

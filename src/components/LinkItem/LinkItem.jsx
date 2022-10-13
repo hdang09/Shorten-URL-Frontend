@@ -146,7 +146,7 @@ const LinkItem = ({ data }) => {
                     </Tippy>
                     <Tippy content={`${data.clicks} clicks`}>
                         <span>
-                            <Styled.Button as={HiCursorClick} ref={btnRef} onClick={onOpen} />
+                            <Styled.Button as={HiCursorClick} />
                         </span>
                     </Tippy>
                 </div>

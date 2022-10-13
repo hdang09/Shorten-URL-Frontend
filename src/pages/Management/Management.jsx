@@ -18,7 +18,7 @@ const Management = (props) => {
 
     const handleErrorAvatar = (ev) => {
         ev.onerror = null;
-        ev.src = defaultAvatar;
+        // ev.src = defaultAvatar;
     };
 
     const updateStatus = async (status, accountId) => {

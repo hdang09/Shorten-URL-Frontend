@@ -13,7 +13,10 @@
         "^[a-z\\-/]*$",
         "(^@material-ui|components|providers)",
         "(^[src/]*$|^[./]|^[../])",
+        "^components/(.*)$",
+        "^[./]",
         ""
     ],
-    "importOrderSeparation": false
+    "importOrderSeparation": true,
+    "importOrderSortSpecifiers": true
 }

@@ -33,6 +33,7 @@ export const LoginSection = styled.div`
 `;
 
 export const Title = styled.h1`
+    font-family: 'GT Walsheim Pro Black';
     font-weight: 700;
     margin-bottom: 10px;
     font-size: 2.8rem;

@@ -20,6 +20,7 @@ module.exports = {
         'plugin:react-hooks/recommended',
         'prettier',
         'plugin:prettier/recommended',
+        'eslint:recommended',
     ],
     parserOptions: {
         ecmaVersion: 'latest',

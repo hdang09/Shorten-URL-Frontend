@@ -24,7 +24,9 @@ const MyURL = (props) => {
 
     const handleSearch = (e) => {
         setInputValue(e.target.value);
-        const filteredData = allLinks.filter((item) => item.shorten_link.includes(e.target.value));
+        const filteredData = allLinks.filter((item) =>
+            item.shorten_link.toLowerCase().includes(e.target.value.toLowerCase()),
+        );
         setFilteredLinks(filteredData);
     };
 
