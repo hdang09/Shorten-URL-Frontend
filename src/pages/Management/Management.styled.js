@@ -42,11 +42,13 @@ export const Wrapper = styled.div`
     }
 
     & .ant-table-thead tr th {
+        /* Identify when is dark theme */
         background: ${(props) => (props.theme.white === '#fff' ? '#fafafa' : '#161D31')};
         color: ${(props) => props.theme.black};
     }
 
     & .ant-table-tbody tr:hover {
-        color: ${(props) => props.theme.white};
+        /* Identify when is dark theme */
+        color: ${(props) => (props.theme.white === '#000' ? '#000' : '')};
     }
 `;

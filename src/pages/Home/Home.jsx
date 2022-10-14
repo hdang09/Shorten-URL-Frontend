@@ -47,10 +47,14 @@ const Home = () => {
         ) {
             try {
                 const { data } = await shortenUrl(originalURL, id, customPath || nanoid(10));
-                ++counter;
-                setOriginalURL('');
-                setCustomPath('');
-                toast.success('Shorten successfully');
+                if (data.message) {
+                    toast.warn(data.message);
+                } else {
+                    ++counter;
+                    setOriginalURL('');
+                    setCustomPath('');
+                    toast.success('Shorten successfully');
+                }
                 let today = new Date();
                 dispatch(
                     add({
@@ -61,8 +65,8 @@ const Home = () => {
                         // created_at: `${today.getDate()}/${
                         //     today.getMonth() + 1
                         // }/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}`,
-                        created_at: today,
-                        updated_at: today,
+                        created_at: JSON.stringify(today),
+                        updated_at: JSON.stringify(today),
                     }),
                 );
                 setReRender(!reRender);

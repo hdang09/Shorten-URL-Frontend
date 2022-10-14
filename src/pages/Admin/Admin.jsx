@@ -17,11 +17,11 @@ import {
 import Tippy from '@tippyjs/react';
 
 import { RiLinksLine } from 'react-icons/ri';
-import { ImStatsDots } from 'react-icons/im';
 import { IoMdDownload } from 'react-icons/io';
 import { MdUpload, MdEmail, MdOutlineDriveFileRenameOutline } from 'react-icons/md';
 import { IoPersonAddSharp } from 'react-icons/io5';
 import { FaUserTag } from 'react-icons/fa';
+import { FiUserX, FiUsers } from 'react-icons/fi';
 
 const Admin = (props) => {
     const [allUserData, setAllUserData] = useState([]);
@@ -42,7 +42,7 @@ const Admin = (props) => {
                 role: '',
             });
         } catch (error) {
-            toast.error(error.message);
+            toast.error(error.response.data.message);
         }
     };
 
@@ -123,7 +123,7 @@ const Admin = (props) => {
                             <Card>
                                 <Styled.CardWrapper>
                                     <Styled.LinksIcon>
-                                        <RiLinksLine />
+                                        <FiUsers />
                                     </Styled.LinksIcon>
                                     <Styled.InfoStat>
                                         <h2>{allUserData.length}</h2>
@@ -137,7 +137,7 @@ const Admin = (props) => {
                             <Card>
                                 <Styled.CardWrapper>
                                     <Styled.AvgCTRIcon>
-                                        <ImStatsDots />
+                                        <FiUserX />
                                     </Styled.AvgCTRIcon>
                                     <Styled.InfoStat>
                                         <h2>
@@ -166,7 +166,7 @@ const Admin = (props) => {
                                                 ).length
                                             }
                                         </h2>
-                                        <span>Pending Users</span>
+                                        <span>Waiting Users</span>
                                     </Styled.InfoStat>
                                 </Styled.CardWrapper>
                             </Card>

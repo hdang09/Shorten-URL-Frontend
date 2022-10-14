@@ -31,7 +31,8 @@ const URLShortener = ({ noItem }) => {
             originalURL.toLowerCase().includes('http://')
         ) {
             try {
-                const { data } = await shortenUrl(originalURL, id, nanoid(11));
+                const res = await shortenUrl(originalURL, id, nanoid(11));
+
                 ++counter;
                 setOriginalURL('');
                 toast.success('Shorten successfully');
@@ -40,7 +41,7 @@ const URLShortener = ({ noItem }) => {
                     add({
                         id: counter,
                         name: `Shorten URL ${counter}`,
-                        shorten_link: data.data.shorten_link,
+                        shorten_link: res.data.data.shorten_link,
                         origin_link: originalURL.toLowerCase(),
                         // created_at: `${today.getDate()}/${
                         //     today.getMonth() + 1
