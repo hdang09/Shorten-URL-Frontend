@@ -11,6 +11,9 @@ import logo from '../../assets/images/logo.png';
 import { useLocalStorage } from '../../hooks';
 import { signOut } from '../../pages/Login/loginSlice';
 
+import { down } from 'styled-breakpoints';
+import { useBreakpoint } from 'styled-breakpoints/react-styled';
+
 import { ThemeContext } from '../../App';
 import { getInfo } from '../../utils/productApi';
 
@@ -24,6 +27,9 @@ function Sidebar({ admin, redesign }) {
     const theme = JSON.parse(localStorage.getItem('data-theme')) || 'light';
     const setThemeInLocal = useContext(ThemeContext);
     const [id, setId] = useLocalStorage('id', '');
+
+    const isMobile = useBreakpoint(down('sm'));
+    const tippyPosition = isMobile ? 'top' : 'right';
 
     useEffect(() => {
         const getInfoUser = async () => {
@@ -40,28 +46,28 @@ function Sidebar({ admin, redesign }) {
             </Link>
             <Styled.NavList>
                 {sidebarList.map(({ name, icon, to, ...rest }) => (
-                    <Tippy content={name} placement="right" key={name}>
-                        <Styled.NewSidebarItem to={to} exact {...rest}>
+                    <Tippy content={name} placement={tippyPosition} key={name}>
+                        <Styled.NewSidebarItem to={to} exact={true} {...rest}>
                             {icon}
                         </Styled.NewSidebarItem>
                     </Tippy>
                 ))}
                 <Tippy
                     content={`${theme === 'light' ? 'Dark' : 'Light'} Mode`}
-                    placement="right"
+                    placement={tippyPosition}
                     key={'abc'}
                 >
                     <Styled.NewSidebarItem to="" onClick={setThemeInLocal}>
                         {theme === 'light' ? <BsMoon /> : <BsSun />}
                     </Styled.NewSidebarItem>
                 </Tippy>
-                <Tippy content={'Log out'} placement="right" key={'Log out'}>
+                <Tippy content={'Log out'} placement={tippyPosition} key={'Log out'}>
                     <Styled.NewSidebarItem to="/landing" onClick={() => dispatch(signOut())}>
                         <MdLogout />
                     </Styled.NewSidebarItem>
                 </Tippy>
             </Styled.NavList>
-            <Tippy content={infoUser.first_name || 'Anonymous'} placement="right">
+            <Tippy content={infoUser.first_name || 'Anonymous'} placement={tippyPosition}>
                 <Styled.Logo src={infoUser.avatar || defaultAvatar} alt="Avatar" isAvatar />
             </Tippy>
         </Styled.Sidebar>

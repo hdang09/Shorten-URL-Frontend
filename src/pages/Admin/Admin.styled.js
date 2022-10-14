@@ -1,3 +1,4 @@
+import { Flex } from '@chakra-ui/react';
 import styled from 'styled-components';
 
 export const Title = styled.h1`
@@ -59,4 +60,79 @@ export const Tag = styled.label`
     color: #fff;
     border-radius: 4px;
     padding: 4px 10px;
+`;
+
+export const ColStat = styled.div`
+    display: flex;
+    margin-bottom: 0.5rem;
+    padding: 0;
+`;
+
+export const InfoStat = styled.div`
+    display: inline-flex;
+    flex-direction: column;
+    margin-left: 3px;
+
+    & h2 {
+        font-size: 2.4rem;
+        font-weight: 600;
+        color: ${(props) => props.theme.black};
+    }
+`;
+
+const Icon = styled.div`
+    --radius: 46px;
+    width: var(--radius);
+    height: var(--radius);
+    border-radius: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 8px;
+    font-size: 2rem;
+`;
+
+export const LinksIcon = styled(Icon)`
+    background-color: rgba(var(--purple-color), 0.12);
+    & svg {
+        color: rgb(var(--purple-color));
+    }
+`;
+
+export const ClickIcon = styled(Icon)`
+    background-color: rgba(var(--aqua-color), 0.12);
+    & svg {
+        color: rgb(var(--aqua-color));
+    }
+`;
+
+export const AvgCTRIcon = styled(Icon)`
+    background-color: rgba(var(--red-color), 0.12);
+    & svg {
+        color: rgb(var(--red-color));
+    }
+`;
+
+export const AvgTimesIcon = styled(Icon)`
+    background-color: rgba(var(--green-color), 0.12);
+    & svg {
+        color: rgb(var(--green-color));
+    }
+`;
+
+export const CardWrapper = styled.div`
+    display: Flex;
+    align-items: center;
+`;
+
+export const TableWrapper = styled.div`
+    & .ant-table-tbody {
+        background: ${(props) => props.theme.cardBackground};
+        color: ${(props) => props.theme.black};
+    }
+
+    & .ant-table-thead tr th {
+        background: ${(props) => (props.theme.white === '#fff' ? '#fafafa' : '#161D31')};
+        color: ${(props) => props.theme.black};
+    }
 `;

@@ -8,8 +8,20 @@ import { Button, Card, Input, Avatar } from '../../components';
 import { Link } from 'react-router-dom';
 import { createAccount, getAllUser } from '../../utils/productApi';
 import { toast } from 'react-toastify';
-import { AiTwotoneCrown, AiOutlineRight } from 'react-icons/ai';
+import {
+    AiTwotoneCrown,
+    AiOutlineRight,
+    AiOutlineClockCircle,
+    AiOutlineMail,
+} from 'react-icons/ai';
 import Tippy from '@tippyjs/react';
+
+import { RiLinksLine } from 'react-icons/ri';
+import { ImStatsDots } from 'react-icons/im';
+import { IoMdDownload } from 'react-icons/io';
+import { MdUpload, MdEmail, MdOutlineDriveFileRenameOutline } from 'react-icons/md';
+import { IoPersonAddSharp } from 'react-icons/io5';
+import { FaUserTag } from 'react-icons/fa';
 
 const Admin = (props) => {
     const [allUserData, setAllUserData] = useState([]);
@@ -93,41 +105,70 @@ const Admin = (props) => {
                 status: item.status[0].toUpperCase() + item.status.slice(1),
                 role: item.role === '0' ? 'User' : 'Admin',
             }));
-            setAllUserData(newList.reverse().slice(0, 5));
+            setAllUserData(newList);
         };
         getAllUserData();
     }, []);
+
+    const showComingSoon = () => {
+        toast.warn('This feature will be upgraded soon!');
+    };
 
     return (
         <Container>
             <Row>
                 <Col col={12} lg={8}>
                     <Row>
-                        <Col col={6} md={3}>
+                        <Col col={12} md={4}>
                             <Card>
-                                <Styled.Links>0</Styled.Links>
-                                <Styled.Label>Total Links</Styled.Label>
-                            </Card>
-                        </Col>
-                        <Col col={6} md={3}>
-                            <Card>
-                                <Styled.Clicks>0</Styled.Clicks>
-                                <Styled.Label>Total Clicks</Styled.Label>
+                                <Styled.CardWrapper>
+                                    <Styled.LinksIcon>
+                                        <RiLinksLine />
+                                    </Styled.LinksIcon>
+                                    <Styled.InfoStat>
+                                        <h2>{allUserData.length}</h2>
+                                        <span>Total Users</span>
+                                    </Styled.InfoStat>
+                                </Styled.CardWrapper>
                             </Card>
                         </Col>
 
-                        <Col col={6} md={3}>
+                        <Col col={12} md={4}>
                             <Card>
-                                <Styled.CTR>{allUserData.length}</Styled.CTR>
-                                <Styled.Label>Total Users</Styled.Label>
+                                <Styled.CardWrapper>
+                                    <Styled.AvgCTRIcon>
+                                        <ImStatsDots />
+                                    </Styled.AvgCTRIcon>
+                                    <Styled.InfoStat>
+                                        <h2>
+                                            {
+                                                allUserData.filter(
+                                                    (item) => item.status === 'Reject',
+                                                ).length
+                                            }
+                                        </h2>
+                                        <span>Rejected Users</span>
+                                    </Styled.InfoStat>
+                                </Styled.CardWrapper>
                             </Card>
                         </Col>
-                        <Col col={6} md={3}>
+                        <Col col={12} md={4}>
                             <Card>
-                                <Styled.Times>
-                                    {allUserData.filter((item) => item.status === 'Waiting').length}
-                                </Styled.Times>
-                                <Styled.Label>Pending Users</Styled.Label>
+                                <Styled.CardWrapper>
+                                    <Styled.AvgTimesIcon>
+                                        <AiOutlineClockCircle />
+                                    </Styled.AvgTimesIcon>
+                                    <Styled.InfoStat>
+                                        <h2>
+                                            {
+                                                allUserData.filter(
+                                                    (item) => item.status === 'Waiting',
+                                                ).length
+                                            }
+                                        </h2>
+                                        <span>Pending Users</span>
+                                    </Styled.InfoStat>
+                                </Styled.CardWrapper>
                             </Card>
                         </Col>
                     </Row>
@@ -141,7 +182,12 @@ const Admin = (props) => {
                                     </Link>
                                 }
                             >
-                                <Table columns={columns} dataSource={allUserData} />
+                                <Styled.TableWrapper>
+                                    <Table
+                                        columns={columns}
+                                        dataSource={allUserData.reverse().slice(0, 5)}
+                                    />
+                                </Styled.TableWrapper>
                             </Card>
                         </Col>
                     </Row>
@@ -150,17 +196,31 @@ const Admin = (props) => {
                 <Col col={12} lg={4}>
                     <Row>
                         <Col col={12}>
-                            {/* <Card title="Add with template">
+                            <Card title="Add with template">
                                 <Styled.Center>
-                                    <Button outline>Download template</Button>
+                                    <Button
+                                        outline
+                                        onClick={showComingSoon}
+                                        leftIcon={<IoMdDownload />}
+                                    >
+                                        Download template
+                                    </Button>
                                 </Styled.Center>
                                 <Styled.Center>
-                                    <Button disabled>Upload file to add</Button>
+                                    <Button
+                                        disabled
+                                        onClick={showComingSoon}
+                                        leftIcon={<MdUpload />}
+                                    >
+                                        Upload file to add
+                                    </Button>
                                 </Styled.Center>
-                            </Card> */}
+                            </Card>
                             <Card title="Create Account">
                                 <div>
-                                    <label htmlFor="">Email</label>
+                                    <label htmlFor="">
+                                        <MdEmail /> Email
+                                    </label>
                                     <Input
                                         large
                                         background
@@ -171,7 +231,9 @@ const Admin = (props) => {
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="">First Name</label>
+                                    <label htmlFor="">
+                                        <MdOutlineDriveFileRenameOutline /> First Name
+                                    </label>
                                     <Input
                                         large
                                         background
@@ -182,7 +244,9 @@ const Admin = (props) => {
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="">Last Name</label>
+                                    <label htmlFor="">
+                                        <MdOutlineDriveFileRenameOutline /> Last Name
+                                    </label>
                                     <Input
                                         large
                                         background
@@ -193,7 +257,9 @@ const Admin = (props) => {
                                     />
                                 </div>
                                 <div>
-                                    <p htmlFor="role">Role</p>
+                                    <p htmlFor="role">
+                                        <FaUserTag /> Role
+                                    </p>
                                     <input
                                         type="radio"
                                         name="role"
@@ -217,7 +283,12 @@ const Admin = (props) => {
                                     <label htmlFor="0"> Admin</label>
                                 </div>
                                 <Styled.Center>
-                                    <Button onClick={handleCreateAccount}>Add account</Button>
+                                    <Button
+                                        onClick={handleCreateAccount}
+                                        leftIcon={<IoPersonAddSharp />}
+                                    >
+                                        Add account
+                                    </Button>
                                 </Styled.Center>
                             </Card>
                         </Col>

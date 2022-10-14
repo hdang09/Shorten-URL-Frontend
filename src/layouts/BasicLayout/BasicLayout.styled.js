@@ -1,3 +1,4 @@
+import { down } from 'styled-breakpoints';
 import styled from 'styled-components';
 
 export const Container = styled.div`
@@ -11,10 +12,11 @@ export const Container = styled.div`
     background-color: ${(props) => props.theme.background};
 
     @media only screen and (max-width: 992px) {
-        justify-content: center;
+        align-items: flex-start;
+        justify-content: space-between;
     }
 
-    @media only screen and (max-width: 500px) {
+    ${down('sm')} {
         overflow: hidden;
     }
 `;
@@ -27,7 +29,8 @@ export const Content = styled.div`
         margin: 16px 8px;
     }
 
-    @media only screen and (max-width: 500px) {
+    ${down('md')} {
+        overflow-x: scroll;
         margin: 12px 8px 80px;
     }
 `;

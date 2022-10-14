@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { AiOutlineHome } from 'react-icons/ai';
-import { ImStatsBars } from 'react-icons/im';
+import { TbBrandGoogleAnalytics } from 'react-icons/tb';
 import { BsGear, BsPeople } from 'react-icons/bs';
 import { BiLink } from 'react-icons/bi';
 
@@ -16,11 +16,11 @@ const initialState = {
             icon: <BiLink />,
             to: '/url',
         },
-        // {
-        //     name: 'Analytics',
-        //     icon: <ImStatsBars />,
-        //     to: '/analytics',
-        // },
+        {
+            name: 'Analytics',
+            icon: <TbBrandGoogleAnalytics />,
+            to: '/analytics',
+        },
         {
             name: 'Settings',
             icon: <BsGear />,

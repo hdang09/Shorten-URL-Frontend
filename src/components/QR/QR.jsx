@@ -158,7 +158,7 @@ const QR = ({ url }) => {
             <Styled.SettingsList>
                 <Styled.SettingsItem ref={customUrlRef}>
                     <Styled.Header onClick={() => handleOpenSetingsList(1)}>
-                        <Styled.Heading>Custom URL</Styled.Heading>
+                        <Styled.Heading>URL</Styled.Heading>
                         <AiOutlineDown />
                     </Styled.Header>
                     {openSetingsList[0].isOpened && (

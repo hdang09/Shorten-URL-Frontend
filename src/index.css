@@ -11,9 +11,8 @@
     line-height: 150%;
 }
 
-body {
-    font-family: 'GT Walsheim Pro', 'Inter', 'Montserrat', Arial, Helvetica, sans-serif !important;
-    font-size: 1.6rem;
-    line-height: 1.5;
-    text-rendering: optimizeSpeed;
+@font-face {
+    font-family: 'GT Walsheim Pro Bold';
+    src: local('GT Walsheim Pro Bold'), url(./assets/fonts/GTWalsheimPro-Bold.woff2) format('woff2');
+    line-height: 150%;
 }

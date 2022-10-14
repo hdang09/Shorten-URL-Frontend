@@ -24,7 +24,7 @@ export const Container = styled.div`
     flex: 1;
 
     @media only screen and (max-width: 992px) {
-        justify-content: flex-start;
+        /* justify-content: flex-start; */
     }
 
     @media only screen and (max-width: 500px) {
@@ -43,5 +43,6 @@ export const Content = styled.div`
 
     @media only screen and (max-width: 500px) {
         margin: 16px 8px 80px;
+        overflow-x: auto;
     }
 `;

@@ -18,13 +18,13 @@ const publicRoutes = [
 
 const privateRoutes = [
     { name: 'home', path: '/', element: <Home /> },
-    { name: 'analytics', path: '/Analytics', element: <Analytics /> },
+    { name: 'analytics', path: '/analytics', element: <Analytics /> },
     { name: 'settings', path: '/settings', element: <Settings /> },
     { name: 'url', path: '/url', element: <MyURL /> },
 ];
 
 const adminRoutes = [
-    { name: 'admin', path: '/admin', element: <Admin /> },
+    { name: 'admin', path: '/admin/', element: <Admin /> },
     { name: 'analytics', path: '/admin/analytics', element: <Analytics /> },
     { name: 'management', path: '/admin/management', element: <Management /> },
     { name: 'management/user-url', path: '/admin/management/user-url', element: <MyURL /> },
@@ -86,6 +86,7 @@ const RouterComponents = () => {
                     {privateRoutes.map((route) => (
                         <Route
                             exact
+                            restrict
                             key={route.name}
                             path={route.path}
                             element={<Layout>{route.element}</Layout>}
@@ -94,13 +95,20 @@ const RouterComponents = () => {
                 </Route>
                 <Route exact element={<PublicRouters auth={isAuthenticated} />}>
                     {publicRoutes.map((route) => (
-                        <Route exact key={route.name} path={route.path} element={route.element} />
+                        <Route
+                            exact
+                            restrict
+                            key={route.name}
+                            path={route.path}
+                            element={route.element}
+                        />
                     ))}
                 </Route>
                 <Route exact>
                     {adminRoutes.map((route) => (
                         <Route
                             exact
+                            restrict
                             key={route.name}
                             path={route.path}
                             element={<Layout admin>{route.element}</Layout>}

@@ -21,6 +21,7 @@ module.exports = {
         'prettier',
         'plugin:prettier/recommended',
         'eslint:recommended',
+        'eslint-config-prettier',
     ],
     parserOptions: {
         ecmaVersion: 'latest',

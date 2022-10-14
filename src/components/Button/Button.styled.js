@@ -74,9 +74,13 @@ export const Button = styled.button`
 export const LeftIcon = styled.div`
     font-size: 2rem;
     margin-right: 10px;
+    display: flex;
+    align-items: center;
 `;
 
 export const RightIcon = styled.div`
     font-size: 2rem;
     margin-left: 10px;
+    display: flex;
+    align-items: center;
 `;

@@ -35,4 +35,18 @@ export const Tag = styled.label`
 export const Wrapper = styled.div`
     /* width: 100vw; */
     overflow-x: scroll;
+
+    & .ant-table-tbody {
+        background: ${(props) => props.theme.cardBackground};
+        color: ${(props) => props.theme.black};
+    }
+
+    & .ant-table-thead tr th {
+        background: ${(props) => (props.theme.white === '#fff' ? '#fafafa' : '#161D31')};
+        color: ${(props) => props.theme.black};
+    }
+
+    & .ant-table-tbody tr:hover {
+        color: ${(props) => props.theme.white};
+    }
 `;

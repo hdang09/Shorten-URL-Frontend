@@ -36,12 +36,13 @@ const LinkItem = ({ data }) => {
     };
 
     const handleDoneEdit = async () => {
-        try {
-            await shortenUrl(data.origin_link, id, urlInput);
-            toast.success('Changed successfully');
-        } catch (error) {
-            toast.error(error.message);
-        }
+        // try {
+        //     await shortenUrl(data.origin_link, id, urlInput);
+        //     toast.success('Changed successfully');
+        // } catch (error) {
+        //     toast.error(error.message);
+        // }
+        setOpenEditBox(!openEditBox);
     };
 
     const { isOpen, onOpen, onClose } = useDisclosure();
@@ -50,10 +51,9 @@ const LinkItem = ({ data }) => {
     const EditBox = () => {
         return (
             <Styled.EditBox>
-                <Styled.Item>
+                {/* <Styled.Item>
                     <MdContentCut /> Shorten URL
                     <Box>
-                        {/* <FormLabel htmlFor="url"></FormLabel> */}
                         <div>
                             <InputGroup size="lg">
                                 <InputLeftAddon>{API_URL}/</InputLeftAddon>
@@ -67,7 +67,7 @@ const LinkItem = ({ data }) => {
                             </InputGroup>
                         </div>
                     </Box>
-                </Styled.Item>
+                </Styled.Item> */}
                 {/* <Input
                     value={nameInput}
                     onChange={(e) => setNameInput(e.target.value)}

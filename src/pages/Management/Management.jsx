@@ -28,7 +28,7 @@ const Management = (props) => {
         } catch (error) {
             toast.error(error.message);
         }
-        // setRender(!render);
+        window.location.reload(true);
     };
 
     const updateRole = async (role, accountId) => {
@@ -38,6 +38,7 @@ const Management = (props) => {
         } catch (error) {
             toast.error(error.message);
         }
+        window.location.reload(true);
     };
 
     const columns = [
