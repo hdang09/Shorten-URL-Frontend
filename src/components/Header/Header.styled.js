@@ -89,7 +89,7 @@ export const NavItem = styled(NavLink)`
     text-transform: uppercase;
     color: ${(props) => props.theme.black};
 
-    &.active {
+    &.active2 {
         --active-line: 2px;
         opacity: 0.75;
         color: var(--primary-color);

@@ -41,7 +41,7 @@ const MyURL = (props) => {
             />
             <Card title="My URLs">
                 {links.map((link) => (
-                    <LinkItem key={link.name} data={link} />
+                    <LinkItem key={link._id} data={link} />
                 ))}
             </Card>
         </Styled.Wrapper>

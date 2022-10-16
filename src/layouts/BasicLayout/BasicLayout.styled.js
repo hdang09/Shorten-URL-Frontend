@@ -30,6 +30,7 @@ export const Content = styled.div`
     }
 
     ${down('md')} {
+        width: auto;
         overflow-x: scroll;
         margin: 12px 8px 80px;
     }

@@ -14,6 +14,7 @@ export const Name = styled.span`
     align-items: center;
     color: var(--primary-color);
     font-weight: 500;
+    margin-right: 5px;
 `;
 
 export const Tag = styled.label`

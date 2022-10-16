@@ -138,7 +138,7 @@ export const NewSidebarItem = styled(NavLink)`
     }
     ${(props) =>
         props.to &&
-        `&.active {
+        `&.active2 {
         background-color: var(--primary-color);
         color: ${props.theme.white};
     }`}

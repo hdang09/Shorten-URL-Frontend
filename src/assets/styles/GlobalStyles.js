@@ -2,9 +2,6 @@ import { createGlobalStyle } from 'styled-components';
 import { lightTheme } from './themes';
 
 const GlobalStyles = createGlobalStyle`
-    @import 'normalize.css';
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800&display=swap');
-
     @font-face {
         font-family: 'Quantum';
         src: url('./assets/fonts/Quantum.otf');

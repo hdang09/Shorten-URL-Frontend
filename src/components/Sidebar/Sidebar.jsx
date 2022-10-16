@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
 import { MdLogout } from 'react-icons/md';
 import { BsMoon, BsSun } from 'react-icons/bs';
@@ -39,15 +39,20 @@ function Sidebar({ admin, redesign }) {
         getInfoUser();
     }, [id]);
 
+    const location = useLocation();
+
     return redesign ? (
         <Styled.Sidebar>
             <Link to="/">
                 <Styled.Logo src={logo} alt="Logo" />
             </Link>
             <Styled.NavList>
-                {sidebarList.map(({ name, icon, to, ...rest }) => (
+                {sidebarList.map(({ name, icon, to }) => (
                     <Tippy content={name} placement={tippyPosition} key={name}>
-                        <Styled.NewSidebarItem to={to} exact={true} {...rest}>
+                        <Styled.NewSidebarItem
+                            to={to}
+                            className={location.pathname === to ? 'active2' : ''}
+                        >
                             {icon}
                         </Styled.NewSidebarItem>
                     </Tippy>
@@ -55,14 +60,14 @@ function Sidebar({ admin, redesign }) {
                 <Tippy
                     content={`${theme === 'light' ? 'Dark' : 'Light'} Mode`}
                     placement={tippyPosition}
-                    key={'abc'}
+                    key={'Theme'}
                 >
                     <Styled.NewSidebarItem to="" onClick={setThemeInLocal}>
                         {theme === 'light' ? <BsMoon /> : <BsSun />}
                     </Styled.NewSidebarItem>
                 </Tippy>
                 <Tippy content={'Log out'} placement={tippyPosition} key={'Log out'}>
-                    <Styled.NewSidebarItem to="/landing" onClick={() => dispatch(signOut())}>
+                    <Styled.NewSidebarItem onClick={() => dispatch(signOut())}>
                         <MdLogout />
                     </Styled.NewSidebarItem>
                 </Tippy>

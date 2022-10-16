@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { AiFillCaretDown } from 'react-icons/ai';
 import { BsGear, BsQuestionOctagon, BsLightbulb } from 'react-icons/bs';
 import { FiLogOut } from 'react-icons/fi';
@@ -16,6 +16,8 @@ import { getInfo } from '../../utils/productApi';
 import { useLocalStorage } from '../../hooks';
 
 function Header({ admin, landingPage }) {
+    const location = useLocation();
+
     const [infoUser, setInfoUser] = useState({});
     const defaultAvatar =
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU';
@@ -47,7 +49,11 @@ function Header({ admin, landingPage }) {
         // );
     } else {
         navItem = navListMenu.map((item) => (
-            <Styled.NavItem to={item.to} key={item.name}>
+            <Styled.NavItem
+                to={item.to}
+                key={item.name}
+                className={location.pathname === item.to ? 'active2' : ''}
+            >
                 {item.name}
             </Styled.NavItem>
         ));

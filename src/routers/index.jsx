@@ -77,38 +77,26 @@ const RouterComponents = () => {
         }
     }, [dispatch, location]);
 
-    let isAuthenticated = useSelector(authSelector);
-
     return (
         <LayoutContext.Provider value={setLayoutInLocal}>
             <Routes>
-                <Route exact element={<PrivateRouters auth={isAuthenticated} />}>
+                <Route element={<PrivateRouters />}>
                     {privateRoutes.map((route) => (
                         <Route
-                            exact
-                            restrict
                             key={route.name}
                             path={route.path}
                             element={<Layout>{route.element}</Layout>}
                         />
                     ))}
                 </Route>
-                <Route exact element={<PublicRouters auth={isAuthenticated} />}>
+                <Route element={<PublicRouters />}>
                     {publicRoutes.map((route) => (
-                        <Route
-                            exact
-                            restrict
-                            key={route.name}
-                            path={route.path}
-                            element={route.element}
-                        />
+                        <Route key={route.name} path={route.path} element={route.element} />
                     ))}
                 </Route>
-                <Route exact>
+                <Route element={<PrivateRouters />}>
                     {adminRoutes.map((route) => (
                         <Route
-                            exact
-                            restrict
                             key={route.name}
                             path={route.path}
                             element={<Layout admin>{route.element}</Layout>}

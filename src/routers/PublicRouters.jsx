@@ -1,12 +1,15 @@
 import { Outlet, Navigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import jwtDecode from 'jwt-decode';
+import { authSelector } from '../pages/Login/loginSlice';
 
-const PublicRouters = ({ auth }) => {
+const PublicRouters = () => {
+    const isAuthenticated = useSelector(authSelector);
     if (localStorage.getItem('token')) {
         let { role } = jwtDecode(localStorage.getItem('token')).payload;
         return role === '1' ? <Navigate to="/admin" replace /> : <Navigate to="/" replace />;
     }
-    return auth ? <Navigate to="/" replace /> : <Outlet />;
+    return isAuthenticated ? <Navigate to="/" replace /> : <Outlet />;
 };
 
 export default PublicRouters;

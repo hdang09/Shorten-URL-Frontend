@@ -6,7 +6,8 @@ import { Outlet, Navigate, useLocation } from 'react-router-dom';
 import { authSelector } from '../pages/Login/loginSlice';
 
 const PrivateRouters = () => {
-    return useSelector(authSelector) ? <Outlet /> : <Navigate to="/landing" replace />;
+    const isAuthenticated = useSelector(authSelector);
+    return isAuthenticated ? <Outlet /> : <Navigate to="/landing" replace />;
 };
 
 export default PrivateRouters;

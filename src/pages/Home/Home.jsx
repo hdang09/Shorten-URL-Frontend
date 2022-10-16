@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { Card, LinkItem, QR, Input, Button } from '../../components';
-import { Col, Row } from 'styled-bootstrap-grid';
+import { Col, Container, Row } from 'styled-bootstrap-grid';
 import { useEffect, useState, createRef } from 'react';
 import { getReport, shortenUrl } from '../../utils/productApi';
 import { AiOutlineRight } from 'react-icons/ai';
@@ -85,74 +85,78 @@ const Home = () => {
     };
 
     return (
-        <Row>
-            <Col md={12} lg={8}>
-                <Card title="URL Shortener">
-                    <div>
-                        <Row>
-                            <Col xs={12} lg={6}>
-                                <Styled.Label>
-                                    <HiLink />
-                                    <HiLink />
-                                    <label htmlFor="">Enter your long URL here</label>
-                                </Styled.Label>
-                                <Input
-                                    ref={inputRef}
-                                    value={originalURL}
-                                    onChange={(e) => setOriginalURL(e.target.value)}
-                                    onKeyDown={(e) => e.keyCode === 13 && handleShortenURL()}
-                                    large
-                                    background
-                                    placeholder="Paste a link to shorten it"
-                                />
-                            </Col>
-                            <Col xs={12} lg={6}>
-                                <Styled.Label>
-                                    <HiLink />
-                                    <label htmlFor="">Customize your link</label>
-                                </Styled.Label>
-
-                                <Styled.WrapperInput>
-                                    <input type="text" value={`${API_URL}/`} />
-                                    <Styled.CustomInput
-                                        type="text"
-                                        value={customPath}
-                                        onChange={(e) => setCustomPath(e.target.value)}
+        <Container>
+            <Row>
+                <Col md={12} lg={8}>
+                    <Card title="URL Shortener">
+                        <div>
+                            <Row>
+                                <Col xs={12} lg={6}>
+                                    <Styled.Label>
+                                        <HiLink />
+                                        <HiLink />
+                                        <label htmlFor="">Enter your long URL here</label>
+                                    </Styled.Label>
+                                    <Input
+                                        ref={inputRef}
+                                        value={originalURL}
+                                        onChange={(e) => setOriginalURL(e.target.value)}
                                         onKeyDown={(e) => e.keyCode === 13 && handleShortenURL()}
+                                        large
+                                        background
+                                        placeholder="Paste a link to shorten it"
                                     />
-                                </Styled.WrapperInput>
-                            </Col>
-                        </Row>
+                                </Col>
+                                <Col xs={12} lg={6}>
+                                    <Styled.Label>
+                                        <HiLink />
+                                        <label htmlFor="">Customize your link</label>
+                                    </Styled.Label>
 
-                        <Button
-                            shine="true"
-                            onClick={() => handleShortenURL()}
-                            style={{ margin: '12px auto 0 auto' }}
-                        >
-                            Shorten
-                        </Button>
-                    </div>
-                </Card>
+                                    <Styled.WrapperInput>
+                                        <input type="text" value={`${API_URL}/`} readOnly />
+                                        <Styled.CustomInput
+                                            type="text"
+                                            value={customPath}
+                                            onChange={(e) => setCustomPath(e.target.value)}
+                                            onKeyDown={(e) =>
+                                                e.keyCode === 13 && handleShortenURL()
+                                            }
+                                        />
+                                    </Styled.WrapperInput>
+                                </Col>
+                            </Row>
 
-                <Card
-                    title="Recent URLs"
-                    subtitle={
-                        <Link to={role === 'user' ? '/url' : '/admin/shorten-url/admin-url'}>
-                            View All <AiOutlineRight />
-                        </Link>
-                    }
-                >
-                    {allLinks.slice(0, 4).map((link) => (
-                        <LinkItem key={link._id} data={link} />
-                    ))}
-                </Card>
-            </Col>
-            <Col md={12} lg={4}>
-                <Card noTitle>
-                    <QR />
-                </Card>
-            </Col>
-        </Row>
+                            <Button
+                                shine="true"
+                                onClick={() => handleShortenURL()}
+                                style={{ margin: '12px auto 0 auto' }}
+                            >
+                                Shorten
+                            </Button>
+                        </div>
+                    </Card>
+
+                    <Card
+                        title="Recent URLs"
+                        subtitle={
+                            <Link to={role === 'user' ? '/url' : '/admin/shorten-url/admin-url'}>
+                                View All <AiOutlineRight />
+                            </Link>
+                        }
+                    >
+                        {allLinks.slice(0, 4).map((link) => (
+                            <LinkItem key={link._id} data={link} />
+                        ))}
+                    </Card>
+                </Col>
+                <Col md={12} lg={4}>
+                    <Card noTitle>
+                        <QR />
+                    </Card>
+                </Col>
+            </Row>
+        </Container>
     );
 };
 

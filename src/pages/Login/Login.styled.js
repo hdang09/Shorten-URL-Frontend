@@ -70,4 +70,8 @@ export const Contact = styled.p`
     color: ${(props) => props.theme.black};
     position: absolute;
     bottom: 2rem;
+
+    & a {
+        color: var(--primary-color);
+    }
 `;

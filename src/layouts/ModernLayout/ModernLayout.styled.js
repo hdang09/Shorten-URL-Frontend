@@ -42,6 +42,7 @@ export const Content = styled.div`
     }
 
     @media only screen and (max-width: 500px) {
+        width: auto;
         margin: 16px 8px 80px;
         overflow-x: auto;
     }
