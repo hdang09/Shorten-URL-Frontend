@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
+import { down } from 'styled-breakpoints';
 
 export const Wrapper = styled.div`
     /* display: inline-block; */
@@ -10,12 +11,12 @@ export const Wrapper = styled.div`
     background-color: ${(props) => props.theme.cardBackground};
     padding-top: 16px;
 
-    @media only screen and (max-width: 992px) {
+    ${down('lg')} {
         display: inline-block;
         width: 125px;
     }
 
-    @media only screen and (max-width: 500px) {
+    ${down('sm')} {
         display: flex;
         flex-direction: row;
         z-index: 10;
@@ -37,7 +38,7 @@ export const SidebarItem = styled(NavLink)`
     display: block;
     padding: 16px 32px;
 
-    @media only screen and (max-width: 992px) {
+    ${down('lg')} {
         display: flex;
         justify-content: center;
         align-items: center;
@@ -45,7 +46,7 @@ export const SidebarItem = styled(NavLink)`
         padding: 16px 16px;
     }
 
-    @media only screen and (max-width: 500px) {
+    ${down('sm')} {
         padding: 12px 0;
     }
 
@@ -54,7 +55,7 @@ export const SidebarItem = styled(NavLink)`
         opacity: 0.8;
     }
 
-    &.active {
+    &.active2 {
         color: var(--primary-color);
         font-weight: 700;
     }
@@ -65,7 +66,7 @@ export const Icon = styled.div`
     font-size: 2rem;
     margin-right: 10px;
 
-    @media only screen and (max-width: 992px) {
+    ${down('lg')} {
         margin: 0;
     }
 `;
@@ -80,7 +81,7 @@ export const Sidebar = styled.div`
     padding: 5rem 0 5rem 1.5rem;
     z-index: 10;
 
-    @media only screen and (max-width: 500px) {
+    ${down('sm')} {
         width: 100vw;
         height: auto;
         justify-content: flex-end;
@@ -95,7 +96,7 @@ export const Logo = styled.img`
     height: 44px;
     ${(props) => (props.isAvatar ? 'border-radius: 1000px;' : '')}
 
-    @media only screen and (max-width: 500px) {
+    ${down('sm')} {
         display: none !important;
     }
 `;
@@ -112,7 +113,7 @@ export const NavList = styled.ul`
     box-shadow: var(--box-shadow);
     margin: 0;
 
-    @media only screen and (max-width: 500px) {
+    ${down('sm')} {
         flex-direction: row;
         padding: 0 1.5rem;
         width: calc(100vw - 1rem);
@@ -129,7 +130,7 @@ export const NewSidebarItem = styled(NavLink)`
     display: flex;
     justify-content: center;
     align-items: center;
-    @media only screen and (max-width: 500px) {
+    ${down('sm')} {
         margin: 1rem 0;
     }
     &:hover {

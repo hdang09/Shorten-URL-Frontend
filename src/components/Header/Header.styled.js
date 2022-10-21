@@ -1,4 +1,5 @@
 import { Link, NavLink } from 'react-router-dom';
+import { down } from 'styled-breakpoints';
 import styled from 'styled-components';
 
 export const Wrapper = styled.header`
@@ -45,10 +46,11 @@ export const Logo = styled.div`
     p {
         display: inline-block;
         font-size: 2rem;
+        font-weight: 800;
         color: var(--primary-color);
         margin: 0;
         margin-left: 18px;
-        font-family: Quantum;
+        font-family: 'Quantum', 'GT Walsheim Pro Black';
         font-kerning: none;
         line-height: initial;
         background: rgb(69, 206, 123);
@@ -62,11 +64,11 @@ export const Logo = styled.div`
 export const Search = styled.div`
     width: 450px;
 
-    @media only screen and (max-width: 992px) {
+    ${down('lg')} {
         width: 300px;
     }
 
-    @media only screen and (max-width: 500px) {
+    ${down('sm')} {
         display: none;
     }
 `;
@@ -78,7 +80,7 @@ export const NavList = styled.ul`
     list-style: none;
     margin: 0;
 
-    @media only screen and (max-width: 992px) {
+    ${down('lg')} {
         display: none;
     }
 `;
@@ -101,11 +103,11 @@ export const NavItem = styled(NavLink)`
         color: var(--primary-color);
     }
 
-    @media only screen and (max-width: 992px) {
+    ${down('lg')} {
         /* width: 300px; */
     }
 
-    @media only screen and (max-width: 500px) {
+    ${down('sm')} {
         display: none;
     }
 `;
@@ -125,7 +127,7 @@ export const NameUser = styled.span`
     color: ${(props) =>
         props.transparent ? '${(props) => props.theme.white}' : '${(props) => props.theme.black}'};
 
-    @media only screen and (max-width: 500px) {
+    ${down('sm')} {
         display: none;
     }
 `;
@@ -156,7 +158,7 @@ export const Text = styled.span`
 `;
 
 export const HeaderButtons = styled.div`
-    @media only screen and (max-width: 600px) {
+    ${down('md')} {
         display: none;
     }
 `;

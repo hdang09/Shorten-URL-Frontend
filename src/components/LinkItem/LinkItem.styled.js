@@ -1,3 +1,4 @@
+import { down } from 'styled-breakpoints';
 import styled, { keyframes } from 'styled-components';
 import gradientColors from '../../assets/styles/gradientColors';
 
@@ -22,11 +23,11 @@ export const Wrapper = styled.div`
     margin-bottom: 10px;
     position: relative;
     z-index: 1;
-    background: linear-gradient(${(props) => gradientColors[permanentRandNum]});
+    background: linear-gradient(${gradientColors[permanentRandNum]});
     border-radius: 10px;
     animation: ${slideLeft} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s forwards;
 
-    @media only screen and (max-width: 500px) {
+    ${down('md')} {
         flex-direction: column;
         align-items: flex-start;
     }
@@ -49,7 +50,7 @@ export const EditBox = styled.div`
     padding: 20px 50px;
     margin-bottom: 20px;
 
-    @media only screen and (max-width: 500px) {
+    ${down('md')} {
         padding: 20px;
     }
 `;
@@ -58,13 +59,14 @@ export const Icon = styled.div`
     font-size: 3.6rem;
     margin-right: 16px;
 
-    @media only screen and (max-width: 500px) {
+    ${down('md')} {
         display: none;
     }
 `;
 
 export const Main = styled.div`
     flex: 1;
+    width: -webkit-fill-available;
 `;
 
 export const Title = styled.h1`
@@ -79,6 +81,7 @@ export const Subtitle = styled.a`
     font-size: 1.6rem;
     cursor: pointer;
     text-decoration: none;
+    text-overflow: ellipsis;
 `;
 
 export const Button = styled.div`

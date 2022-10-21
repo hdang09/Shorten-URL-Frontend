@@ -31,7 +31,7 @@ const initialState = {
         {
             name: 'Dashboard',
             icon: <AiOutlineHome />,
-            to: '/admin/',
+            to: '/admin',
         },
         {
             name: 'Management',

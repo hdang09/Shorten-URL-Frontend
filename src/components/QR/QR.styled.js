@@ -77,13 +77,13 @@ export const Image = styled.img`
 `;
 
 const animateLine = keyframes`
-0% {
-    top: 30px;
-}
+    0% {
+        top: 30px;
+    }
 
-50% {
-    top: calc(100% - 30px);
-}
+    50% {
+        top: calc(100% - 30px);
+    }
 `;
 
 const scanning = keyframes`

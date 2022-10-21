@@ -79,7 +79,11 @@ function Sidebar({ admin, redesign }) {
     ) : (
         <Styled.Wrapper>
             {sidebarList.map((item) => (
-                <Styled.SidebarItem key={item.name} to={item.to}>
+                <Styled.SidebarItem
+                    key={item.name}
+                    to={item.to}
+                    className={location.pathname === item.to ? 'active2' : ''}
+                >
                     <Styled.Icon>{item.icon}</Styled.Icon>
                     {item.name}
                 </Styled.SidebarItem>

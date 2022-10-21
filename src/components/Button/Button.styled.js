@@ -1,3 +1,4 @@
+import { down } from 'styled-breakpoints';
 import styled from 'styled-components';
 
 export const Button = styled.button`
@@ -66,7 +67,7 @@ export const Button = styled.button`
         color: var(--primary-color);
     }
 
-    @media only screen and (max-width: 600px) {
+    ${down('md')} {
         width: 100%;
     }
 `;

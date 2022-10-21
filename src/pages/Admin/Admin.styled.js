@@ -1,4 +1,4 @@
-import { Flex } from '@chakra-ui/react';
+import { between } from 'styled-breakpoints';
 import styled from 'styled-components';
 
 export const Title = styled.h1`
@@ -126,13 +126,36 @@ export const CardWrapper = styled.div`
 `;
 
 export const TableWrapper = styled.div`
+    margin: 14px 0;
+
     & .ant-table-tbody {
         background: ${(props) => props.theme.cardBackground};
         color: ${(props) => props.theme.black};
     }
 
     & .ant-table-thead tr th {
+        /* Identify when is dark theme */
         background: ${(props) => (props.theme.white === '#fff' ? '#fafafa' : '#161D31')};
         color: ${(props) => props.theme.black};
+    }
+
+    & .ant-table-tbody tr:hover {
+        /* Identify when is dark theme */
+        color: ${(props) => (props.theme.white === '#000' ? '#000' : '')};
+    }
+
+    & .ant-table-pagination.ant-pagination {
+        display: none;
+    }
+`;
+
+export const CenterOnTablet = styled.div`
+    ${between('md', 'lg')} {
+        display: flex;
+        justify-content: center;
+
+        & div:first-child {
+            margin-right: 8px;
+        }
     }
 `;

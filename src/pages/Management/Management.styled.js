@@ -14,7 +14,6 @@ export const Name = styled.span`
     align-items: center;
     color: var(--primary-color);
     font-weight: 500;
-    margin-right: 5px;
 `;
 
 export const Tag = styled.label`
@@ -52,4 +51,17 @@ export const Wrapper = styled.div`
         /* Identify when is dark theme */
         color: ${(props) => (props.theme.white === '#000' ? '#000' : '')};
     }
+`;
+
+export const Center = styled.div`
+    display: flex;
+    align-items: center;
+`;
+
+export const Separator = styled.div`
+    width: 1px;
+    height: 16px;
+    background-color: #333;
+    margin: 0 8px;
+    display: inline-block;
 `;

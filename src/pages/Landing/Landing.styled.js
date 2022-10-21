@@ -1,3 +1,4 @@
+import { down } from 'styled-breakpoints';
 import styled, { keyframes } from 'styled-components';
 import { Button } from '../../components';
 
@@ -30,7 +31,7 @@ export const Subheading = styled.h2`
     font-weight: 400;
     text-align: center;
 
-    @media only screen and (max-width: 500px) {
+    ${down('sm')} {
         padding: 16px;
     }
 `;
@@ -53,7 +54,7 @@ export const Screenshot = styled.img`
     animation: ${scaleUpCanter} 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
     transition: all 0.3s ease-in-out, background 0s, color 0s, border-color 0s;
 
-    @media only screen and (max-width: 992px) {
+    ${down('lg')} {
         width: 100%;
         padding: 0 12px;
     }
@@ -73,7 +74,7 @@ export const Highlight = styled.span`
 `;
 
 export const BannerButton = styled.a`
-    @media only screen and (max-width: 600px) {
+    ${down('md')} {
         margin-left: 0 !important;
         margin-top: 1rem;
     }

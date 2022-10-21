@@ -76,7 +76,7 @@ export const columns = [
         title: 'Update',
         key: 'update',
         render: (_, record) => (
-            <>
+            <Styled.Center>
                 <HeadlessTippy
                     interactive
                     render={(attrs) => (
@@ -85,6 +85,7 @@ export const columns = [
                                 <Button outline onClick={() => updateRole('0', record._id)}>
                                     User
                                 </Button>
+
                                 <Button outline onClick={() => updateRole('1', record._id)}>
                                     Admin
                                 </Button>
@@ -92,8 +93,9 @@ export const columns = [
                         </div>
                     )}
                 >
-                    <Styled.Name>Role </Styled.Name>
+                    <Styled.Name>Role</Styled.Name>
                 </HeadlessTippy>
+                <Styled.Separator />
                 <HeadlessTippy
                     interactive
                     render={(attrs) => (
@@ -112,7 +114,7 @@ export const columns = [
                 >
                     <Styled.Name>Status</Styled.Name>
                 </HeadlessTippy>
-            </>
+            </Styled.Center>
         ),
     },
 ];

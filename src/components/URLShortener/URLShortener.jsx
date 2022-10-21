@@ -11,6 +11,9 @@ import { shortenUrl } from '../../utils/productApi';
 import { nanoid } from 'nanoid';
 
 let counter = 0;
+const regex =
+    // eslint-disable-next-line no-useless-escape
+    /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
 
 const URLShortener = ({ noItem }) => {
     const inputRef = createRef();
@@ -25,11 +28,7 @@ const URLShortener = ({ noItem }) => {
     }, [debouncedOriginalURL]);
 
     const handleShortenURL = async (e) => {
-        if (
-            (originalURL.trim() && originalURL.toLowerCase().includes('https://')) ||
-            originalURL.toLowerCase().includes('www.') ||
-            originalURL.toLowerCase().includes('http://')
-        ) {
+        if (regex.test(originalURL)) {
             try {
                 const res = await shortenUrl(originalURL, id, nanoid(11));
 
@@ -83,7 +82,5 @@ const URLShortener = ({ noItem }) => {
         </Card>
     );
 };
-
-URLShortener.propTypes = {};
 
 export default URLShortener;

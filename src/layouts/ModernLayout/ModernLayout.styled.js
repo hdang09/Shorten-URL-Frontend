@@ -1,3 +1,4 @@
+import { down } from 'styled-breakpoints';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -23,11 +24,11 @@ export const Container = styled.div`
     margin-left: 115px;
     flex: 1;
 
-    @media only screen and (max-width: 992px) {
+    ${down('lg')} {
         /* justify-content: flex-start; */
     }
 
-    @media only screen and (max-width: 500px) {
+    ${down('sm')} {
         overflow: hidden;
         margin: 0;
     }
@@ -37,11 +38,11 @@ export const Content = styled.div`
     width: 1200px;
     margin: 2rem 1rem;
 
-    @media only screen and (max-width: 992px) {
+    ${down('lg')} {
         margin: 2rem 8px 0;
     }
 
-    @media only screen and (max-width: 500px) {
+    ${down('sm')} {
         width: auto;
         margin: 16px 8px 80px;
         overflow-x: auto;

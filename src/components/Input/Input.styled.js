@@ -1,3 +1,4 @@
+import { down } from 'styled-breakpoints';
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
@@ -31,7 +32,7 @@ export const Wrapper = styled.div`
             inset 0 0 6px var(--primary-color);
     }
 
-    @media only screen and (max-width: 500px) {
+    ${down('sm')} {
         margin-right: 0;
 
         & + button {
@@ -53,7 +54,7 @@ export const InputTag = styled.input`
     caret-color: var(--primary-color);
     color: ${(props) => props.theme.black};
 
-    /* @media only screen and (max-width: 500px) {
+    /* ${down('sm')} {
         min-width: 100%;
     } */
 `;

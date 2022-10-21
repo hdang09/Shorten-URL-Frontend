@@ -8,15 +8,9 @@ import { Button, Card, Input, Avatar } from '../../components';
 import { Link } from 'react-router-dom';
 import { createAccount, getAllUser } from '../../utils/productApi';
 import { toast } from 'react-toastify';
-import {
-    AiTwotoneCrown,
-    AiOutlineRight,
-    AiOutlineClockCircle,
-    AiOutlineMail,
-} from 'react-icons/ai';
+import { AiTwotoneCrown, AiOutlineRight, AiOutlineClockCircle } from 'react-icons/ai';
 import Tippy from '@tippyjs/react';
 
-import { RiLinksLine } from 'react-icons/ri';
 import { IoMdDownload } from 'react-icons/io';
 import { MdUpload, MdEmail, MdOutlineDriveFileRenameOutline } from 'react-icons/md';
 import { IoPersonAddSharp } from 'react-icons/io5';
@@ -79,20 +73,20 @@ const Admin = (props) => {
         {
             title: 'Role',
             dataIndex: 'role',
-            sorter: {
-                compare: (a, b) => a.role - b.role,
-                multiple: 1,
-            },
+            // sorter: {
+            //     compare: (a, b) => a.role - b.role,
+            //     multiple: 1,
+            // },
         },
         {
             title: 'Status',
             key: 'status',
             dataIndex: 'status',
             render: (_, record) => <Styled.Tag type={record.status}>{record.status}</Styled.Tag>,
-            sorter: {
-                compare: (a, b) => a.status - b.status,
-                multiple: 1,
-            },
+            // sorter: {
+            //     compare: (a, b) => a.status - b.status,
+            //     multiple: 1,
+            // },
         },
     ];
 
@@ -197,24 +191,26 @@ const Admin = (props) => {
                     <Row>
                         <Col col={12}>
                             <Card title="Add with template">
-                                <Styled.Center>
-                                    <Button
-                                        outline
-                                        onClick={showComingSoon}
-                                        leftIcon={<IoMdDownload />}
-                                    >
-                                        Download template
-                                    </Button>
-                                </Styled.Center>
-                                <Styled.Center>
-                                    <Button
-                                        disabled
-                                        onClick={showComingSoon}
-                                        leftIcon={<MdUpload />}
-                                    >
-                                        Upload file to add
-                                    </Button>
-                                </Styled.Center>
+                                <Styled.CenterOnTablet>
+                                    <Styled.Center>
+                                        <Button
+                                            outline
+                                            onClick={showComingSoon}
+                                            leftIcon={<IoMdDownload />}
+                                        >
+                                            Download template
+                                        </Button>
+                                    </Styled.Center>
+                                    <Styled.Center>
+                                        <Button
+                                            disabled
+                                            onClick={showComingSoon}
+                                            leftIcon={<MdUpload />}
+                                        >
+                                            Upload file to add
+                                        </Button>
+                                    </Styled.Center>
+                                </Styled.CenterOnTablet>
                             </Card>
                             <Card title="Create Account">
                                 <div>
@@ -268,7 +264,7 @@ const Admin = (props) => {
                                             e.target.checked &&
                                             setAccount({ ...account, role: '0' })
                                         }
-                                    />
+                                    />{' '}
                                     <label htmlFor="0"> User</label>
                                     <input
                                         type="radio"
@@ -279,7 +275,7 @@ const Admin = (props) => {
                                             e.target.checked &&
                                             setAccount({ ...account, role: '1' })
                                         }
-                                    />
+                                    />{' '}
                                     <label htmlFor="0"> Admin</label>
                                 </div>
                                 <Styled.Center>

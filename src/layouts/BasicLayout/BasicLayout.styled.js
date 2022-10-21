@@ -11,13 +11,14 @@ export const Container = styled.div`
     margin-top: var(--header-height);
     background-color: ${(props) => props.theme.background};
 
-    @media only screen and (max-width: 992px) {
+    ${down('lg')} {
         align-items: flex-start;
         justify-content: space-between;
     }
 
     ${down('sm')} {
         overflow: hidden;
+        justify-content: center;
     }
 `;
 
@@ -25,12 +26,11 @@ export const Content = styled.div`
     width: 1150px;
     margin: 24px 16px;
 
-    @media only screen and (max-width: 992px) {
+    ${down('lg')} {
         margin: 16px 8px;
     }
 
     ${down('md')} {
-        width: auto;
         overflow-x: scroll;
         margin: 12px 8px 80px;
     }

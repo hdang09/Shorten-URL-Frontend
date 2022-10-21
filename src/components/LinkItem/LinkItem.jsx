@@ -25,6 +25,7 @@ import { shortenUrl } from '../../utils/productApi';
 import { useLocalStorage } from '../../hooks';
 import { API_URL } from '../../config';
 import { HiCursorClick } from 'react-icons/hi';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 const LinkItem = ({ data }) => {
     const [urlInput, setURLInput] = useState('');
@@ -92,15 +93,12 @@ const LinkItem = ({ data }) => {
                     <IoCreateOutline />
                     Created at:{' '}
                     <Styled.HighLight>
-                        {moment(data.createdAt).format('MMMM Do YYYY, hh:mm')}
+                        {moment(data.createdAt).format('MMMM Do YYYY, HH:mm')}
                     </Styled.HighLight>
                 </Styled.Item>
                 <Styled.Item>
                     <MdUpdate />
-                    Updated{' '}
-                    <Styled.HighLight>
-                        {moment(data.createdAt).startOf('day').fromNow()}
-                    </Styled.HighLight>
+                    Updated <Styled.HighLight>{moment(data.updatedAt).fromNow()}</Styled.HighLight>
                 </Styled.Item>
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <p style={{ padding: '0 4px' }}></p>
@@ -131,10 +129,10 @@ const LinkItem = ({ data }) => {
                             />
                         </span>
                     </Tippy>
-                    <Tippy content="Edit">
+                    <Tippy content="Info">
                         <span>
                             <Styled.Button
-                                as={BsPencilSquare}
+                                as={AiOutlineInfoCircle}
                                 onClick={() => setOpenEditBox(!openEditBox)}
                             />
                         </span>

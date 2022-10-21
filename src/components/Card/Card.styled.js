@@ -1,3 +1,4 @@
+import { down } from 'styled-breakpoints';
 import styled, { keyframes } from 'styled-components';
 const scaleUpCanter = keyframes`
     from {
@@ -19,7 +20,7 @@ export const Wrapper = styled.div`
     animation: ${scaleUpCanter} 0.4s cubic-bezier(0.39, 0.575, 0.565, 1);
     transition: all 0.3s ease-in-out, background 0s, color 0s, border-color 0s;
 
-    @media only screen and (max-width: 500px) {
+    ${down('sm')} {
         /* width: calc(100vw - 32px); */
         width: auto;
     }
