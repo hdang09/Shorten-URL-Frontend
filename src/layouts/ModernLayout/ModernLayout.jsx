@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import * as Styled from './ModernLayout.styled';
 import { Sidebar } from '../../components';
 
@@ -12,7 +11,5 @@ const ModernLayout = ({ children, admin }) => {
         </Styled.Wrapper>
     );
 };
-
-ModernLayout.propTypes = {};
 
 export default ModernLayout;

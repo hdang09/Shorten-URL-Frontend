@@ -492,6 +492,4 @@ const QR = ({ url }) => {
     );
 };
 
-QR.propTypes = {};
-
 export default QR;

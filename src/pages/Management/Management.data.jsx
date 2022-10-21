@@ -49,28 +49,16 @@ export const columns = [
     {
         title: 'Email',
         dataIndex: 'email',
-        // sorter: {
-        //     compare: (a, b) => a.email - b.email,
-        //     multiple: 2,
-        // },
     },
     {
         title: 'Role',
         dataIndex: 'role',
-        // sorter: {
-        //     compare: (a, b) => a.role - b.role,
-        //     multiple: 1,
-        // },
     },
     {
         title: 'Status',
         key: 'status',
         dataIndex: 'status',
         render: (_, record) => <Styled.Tag type={record.status}>{record.status}</Styled.Tag>,
-        // sorter: {
-        //     compare: (a, b) => a.status - b.status,
-        //     multiple: 1,
-        // },
     },
     {
         title: 'Update',

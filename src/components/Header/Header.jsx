@@ -66,8 +66,7 @@ function Header({ admin, landingPage }) {
                     <Styled.Logo>
                         <img src={Logo} alt="F-Code Logo" />
                         <p>
-                            F<span style={{ visibility: 'hidden' }}>.</span>-
-                            <span style={{ visibility: 'hidden' }}>.</span>
+                            F<span>.</span>-<span>.</span>
                             CODE
                         </p>
                     </Styled.Logo>

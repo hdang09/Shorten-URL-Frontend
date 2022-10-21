@@ -4,13 +4,9 @@ import { FcGoogle } from 'react-icons/fc';
 
 import * as Styled from './Login.styled';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
+import { API_URL } from '../../config';
 
 function Login() {
-    const handleLogin = () => {
-        // dispatch(login());
-        // localStorage.setItem('token', JSON.stringify(token));
-    };
-
     return (
         <Styled.Wrapper>
             <Container>
@@ -26,8 +22,7 @@ function Login() {
 
                                 <div style={{ margin: '1rem 0 8rem 0' }}>
                                     <Button
-                                        onClick={handleLogin}
-                                        href="http://localhost:5000/api/auth/google"
+                                        href={`${API_URL}/api/auth/google`}
                                         large
                                         outline
                                         leftIcon={<FcGoogle />}

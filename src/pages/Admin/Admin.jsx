@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { Table } from 'antd';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
 
@@ -62,31 +61,15 @@ const Admin = (props) => {
                 </Link>
             ),
         },
-        // {
-        //     title: 'Email',
-        //     dataIndex: 'email',
-        //     sorter: {
-        //         compare: (a, b) => a.email - b.email,
-        //         multiple: 2,
-        //     },
-        // },
         {
             title: 'Role',
             dataIndex: 'role',
-            // sorter: {
-            //     compare: (a, b) => a.role - b.role,
-            //     multiple: 1,
-            // },
         },
         {
             title: 'Status',
             key: 'status',
             dataIndex: 'status',
             render: (_, record) => <Styled.Tag type={record.status}>{record.status}</Styled.Tag>,
-            // sorter: {
-            //     compare: (a, b) => a.status - b.status,
-            //     multiple: 1,
-            // },
         },
     ];
 
@@ -294,7 +277,5 @@ const Admin = (props) => {
         </Container>
     );
 };
-
-Admin.propTypes = {};
 
 export default Admin;

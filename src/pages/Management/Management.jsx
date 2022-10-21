@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
 
-import { getAllUser, updateUserRole, updateUserStatus } from '../../utils/productApi';
+import { getAllUser } from '../../utils/productApi';
 import 'tippy.js/dist/tippy.css';
 import * as Styled from './Management.styled';
 import { columns } from './Management.data';
@@ -29,7 +29,5 @@ const Management = (props) => {
         </Styled.Wrapper>
     );
 };
-
-Management.propTypes = {};
 
 export default Management;

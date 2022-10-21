@@ -22,7 +22,6 @@ const Input = forwardRef(
     ) => {
         const [showPass, setShowPass] = useState(false);
         const handleShowPassword = () => setShowPass(!showPass);
-        // const [inputColor, setInputColor] = useState('');
 
         if (password || confirmPassword) {
             placeholder = password ? 'Enter your password' : 'Confirm your password';

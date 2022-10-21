@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { BsMoon } from 'react-icons/bs';
 import { RiLayout2Fill } from 'react-icons/ri';
 import { IoColorPaletteOutline } from 'react-icons/io5';
@@ -14,7 +13,7 @@ import { Col, Container, Row } from 'styled-bootstrap-grid';
 import newLayout from '../../assets/images/screenshots.png';
 import basicLayout from '../../assets/images/basic-layout.png';
 
-const Settings = (props) => {
+const Settings = () => {
     const theme = JSON.parse(localStorage.getItem('data-theme')) || 'light';
     const setThemeInLocal = useContext(ThemeContext);
     const layout = JSON.parse(localStorage.getItem('layout')) || 'new';
@@ -109,7 +108,5 @@ const Settings = (props) => {
         </>
     );
 };
-
-Settings.propTypes = {};
 
 export default Settings;

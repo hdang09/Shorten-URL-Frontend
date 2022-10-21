@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import * as Styled from './Avatar.styled';
 
 const Avatar = ({ src, alt = '', size }) => {
@@ -15,7 +14,5 @@ const Avatar = ({ src, alt = '', size }) => {
         />
     );
 };
-
-Avatar.propTypes = {};
 
 export default Avatar;

@@ -59,6 +59,10 @@ export const Logo = styled.div`
         -webkit-text-fill-color: transparent;
         text-rendering: optimizeSpeed;
     }
+
+    & p span {
+        visibility: hidden;
+    }
 `;
 
 export const Search = styled.div`

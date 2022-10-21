@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-
 import * as Styled from './BasicLayout.styled';
 import { Header, Sidebar } from '../../components';
 
@@ -14,7 +12,5 @@ const BasicLayout = ({ admin, children }) => {
         </>
     );
 };
-
-BasicLayout.propTypes = {};
 
 export default BasicLayout;

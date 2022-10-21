@@ -1,8 +1,8 @@
 import { useState, useRef } from 'react';
 import * as Styled from './LinkItem.styled';
-import { MdOutlineContentCopy, MdUpdate, MdContentCut } from 'react-icons/md';
+import { MdOutlineContentCopy, MdUpdate } from 'react-icons/md';
 import { IoCreateOutline, IoQrCodeOutline } from 'react-icons/io5';
-import { BsLink45Deg, BsPencilSquare } from 'react-icons/bs';
+import { BsLink45Deg } from 'react-icons/bs';
 import { Button, QR, Input } from '..';
 import { toast } from 'react-toastify';
 import Tippy from '@tippyjs/react';
@@ -15,34 +15,18 @@ import {
     DrawerContent,
     DrawerCloseButton,
     useDisclosure,
-    FormLabel,
-    InputGroup,
-    InputLeftAddon,
-    Input as ChakraInput,
-    Box,
 } from '@chakra-ui/react';
-import { shortenUrl } from '../../utils/productApi';
-import { useLocalStorage } from '../../hooks';
-import { API_URL } from '../../config';
 import { HiCursorClick } from 'react-icons/hi';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 const LinkItem = ({ data }) => {
-    const [urlInput, setURLInput] = useState('');
     const [openEditBox, setOpenEditBox] = useState(false);
-    const [id, setId] = useLocalStorage('id', '');
     const handleCopy = (url) => {
         navigator.clipboard.writeText(url);
         toast.success(`Copied to clipboard`);
     };
 
     const handleDoneEdit = async () => {
-        // try {
-        //     await shortenUrl(data.origin_link, id, urlInput);
-        //     toast.success('Changed successfully');
-        // } catch (error) {
-        //     toast.error(error.message);
-        // }
         setOpenEditBox(!openEditBox);
     };
 
@@ -52,38 +36,6 @@ const LinkItem = ({ data }) => {
     const EditBox = () => {
         return (
             <Styled.EditBox>
-                {/* <Styled.Item>
-                    <MdContentCut /> Shorten URL
-                    <Box>
-                        <div>
-                            <InputGroup size="lg">
-                                <InputLeftAddon>{API_URL}/</InputLeftAddon>
-                                <ChakraInput
-                                    type="url"
-                                    id="url"
-                                    placeholder="Please enter your custom url"
-                                    value={urlInput}
-                                    onChange={(e) => setURLInput(e.target.value)}
-                                />
-                            </InputGroup>
-                        </div>
-                    </Box>
-                </Styled.Item> */}
-                {/* <Input
-                    value={nameInput}
-                    onChange={(e) => setNameInput(e.target.value)}
-                    large
-                    background
-                    placeholder={data.name}
-                /> */}
-                {/* <label>Shorten URL: </label>
-            <Input
-                value={urlInput}
-                onChange={(e) => setURLInput(e.target.value)}
-                large
-                background
-                placeholder={data.shorten_link}
-            /> */}
                 <Styled.Item>
                     <BsLink45Deg />
                     Original link:
@@ -170,7 +122,5 @@ const LinkItem = ({ data }) => {
         </>
     );
 };
-
-LinkItem.propTypes = {};
 
 export default LinkItem;
