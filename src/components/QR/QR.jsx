@@ -24,6 +24,7 @@ const qrCode = new QRCodeStyling({
     imageOptions: {
         crossOrigin: 'anonymous',
         margin: 10,
+        hideBackgroundDots: true,
     },
     cornersSquareOptions: {
         type: 'extra-rounded',
@@ -50,7 +51,6 @@ const QR = ({ url }) => {
         });
     };
 
-    const [logoSize, setLogoSize] = useState(0.5);
     const handleSetLogoSize = (e) => {
         qrCode.update({
             imageOptions: {
@@ -58,7 +58,6 @@ const QR = ({ url }) => {
                 imageSize: e.target.value,
             },
         });
-        setLogoSize(e.target.value);
     };
 
     const [openSetingsList, setOpenSettingsList] = useState([
@@ -78,33 +77,33 @@ const QR = ({ url }) => {
         setOpenSettingsList(newList);
     };
 
-    const changeSingleDotColor = (inputColor) => {
+    const changeSingleColor = (inputColor, option) => {
         // Remove gradient color
-        if (qrCode._options.dotsOptions.gradient) {
+        if (qrCode._options[option].gradient) {
             qrCode.update({
-                dotsOptions: {
-                    ...qrCode._options.dotsOptions,
+                [option]: {
+                    ...qrCode._options[option],
                     gradient: null,
                 },
             });
         }
 
         qrCode.update({
-            dotsOptions: {
-                ...qrCode._options.dotsOptions,
+            [option]: {
+                ...qrCode._options[option],
                 color: inputColor,
             },
         });
     };
 
-    const changeGradientDotColor = (offset, color) => {
+    const changeGradientColor = (offset, color, option) => {
         // Remove single color
-        if (!qrCode._options.dotsOptions.gradient) {
+        if (!qrCode._options[option].gradient) {
             qrCode.update({
-                dotsOptions: {
-                    ...qrCode._options.dotsOptions,
+                [option]: {
+                    ...qrCode._options[option],
                     gradient: {
-                        ...qrCode._options.dotsOptions.gradient,
+                        ...qrCode._options[option].gradient,
                         colorStops: [
                             { offset: 0, color: '#000' },
                             { offset: 1, color: '#000' },
@@ -114,91 +113,7 @@ const QR = ({ url }) => {
             });
         }
 
-        const newArray = qrCode._options.dotsOptions.gradient.colorStops.map(
-            (item) => (item.color = item.offset === offset ? color : item.color),
-        );
-        qrCode.update(newArray);
-    };
-
-    const changeSingleCornerSquareColor = (inputColor) => {
-        // Remove gradient color
-        if (qrCode._options.cornersSquareOptions.gradient) {
-            qrCode.update({
-                cornersSquareOptions: {
-                    ...qrCode._options.cornersSquareOptions,
-                    gradient: null,
-                },
-            });
-        }
-
-        qrCode.update({
-            cornersSquareOptions: {
-                ...qrCode._options.cornersSquareOptions,
-                color: inputColor,
-            },
-        });
-    };
-
-    const changeGradientCornerSquareColor = (offset, color) => {
-        // Remove single color
-        if (!qrCode._options.cornersSquareOptions.gradient) {
-            qrCode.update({
-                cornersSquareOptions: {
-                    ...qrCode._options.cornersSquareOptions,
-                    gradient: {
-                        ...qrCode._options.cornersSquareOptions.gradient,
-                        colorStops: [
-                            { offset: 0, color: '#000' },
-                            { offset: 1, color: '#000' },
-                        ],
-                    },
-                },
-            });
-        }
-
-        const newArray = qrCode._options.cornersSquareOptions.gradient.colorStops.map(
-            (item) => (item.color = item.offset === offset ? color : item.color),
-        );
-        qrCode.update(newArray);
-    };
-
-    const changeSingleCornerDotColor = (inputColor) => {
-        // Remove gradient color
-        if (qrCode._options.cornersDotOptions.gradient) {
-            qrCode.update({
-                cornersDotOptions: {
-                    ...qrCode._options.cornersDotOptions,
-                    gradient: null,
-                },
-            });
-        }
-
-        qrCode.update({
-            cornersDotOptions: {
-                ...qrCode._options.cornersDotOptions,
-                color: inputColor,
-            },
-        });
-    };
-
-    const changeGradientCornerDotColor = (offset, color) => {
-        // Remove single color
-        if (!qrCode._options.cornersDotOptions.gradient) {
-            qrCode.update({
-                cornersDotOptions: {
-                    ...qrCode._options.cornersDotOptions,
-                    gradient: {
-                        ...qrCode._options.cornersDotOptions.gradient,
-                        colorStops: [
-                            { offset: 0, color: '#000' },
-                            { offset: 1, color: '#000' },
-                        ],
-                    },
-                },
-            });
-        }
-
-        const newArray = qrCode._options.cornersDotOptions.gradient.colorStops.map(
+        const newArray = qrCode._options[option].gradient.colorStops.map(
             (item) => (item.color = item.offset === offset ? color : item.color),
         );
         qrCode.update(newArray);
@@ -263,7 +178,9 @@ const QR = ({ url }) => {
                                     <label htmlFor="single"> Single color </label>
                                     <input
                                         type="color"
-                                        onChange={(e) => changeSingleDotColor(e.target.value)}
+                                        onChange={(e) =>
+                                            changeSingleColor(e.target.value, 'dotsOptions')
+                                        }
                                     />
                                 </Styled.ColorsInput>
 
@@ -271,11 +188,15 @@ const QR = ({ url }) => {
                                     <label htmlFor="gradient">Gradient color</label>
                                     <input
                                         type="color"
-                                        onChange={(e) => changeGradientDotColor(0, e.target.value)}
+                                        onChange={(e) =>
+                                            changeGradientColor(0, e.target.value, 'dotsOptions')
+                                        }
                                     />
                                     <input
                                         type="color"
-                                        onChange={(e) => changeGradientDotColor(1, e.target.value)}
+                                        onChange={(e) =>
+                                            changeGradientColor(1, e.target.value, 'dotsOptions')
+                                        }
                                     />
                                 </Styled.ColorsInput>
                             </div>
@@ -296,7 +217,7 @@ const QR = ({ url }) => {
                                     key={frame.type}
                                     src={frame.image}
                                     title={frame.type.toUpperCase()}
-                                    onClick={(e) =>
+                                    onClick={() =>
                                         qrCode.update({
                                             cornersSquareOptions: {
                                                 ...qrCode._options.cornersSquareOptions,
@@ -314,7 +235,10 @@ const QR = ({ url }) => {
                                     <input
                                         type="color"
                                         onChange={(e) =>
-                                            changeSingleCornerSquareColor(e.target.value)
+                                            changeSingleColor(
+                                                e.target.value,
+                                                'cornersSquareOptions',
+                                            )
                                         }
                                     />
                                 </Styled.ColorsInput>
@@ -324,13 +248,21 @@ const QR = ({ url }) => {
                                     <input
                                         type="color"
                                         onChange={(e) =>
-                                            changeGradientCornerSquareColor(0, e.target.value)
+                                            changeGradientColor(
+                                                0,
+                                                e.target.value,
+                                                'cornersSquareOptions',
+                                            )
                                         }
                                     />
                                     <input
                                         type="color"
                                         onChange={(e) =>
-                                            changeGradientCornerSquareColor(1, e.target.value)
+                                            changeGradientColor(
+                                                1,
+                                                e.target.value,
+                                                'cornersSquareOptions',
+                                            )
                                         }
                                     />
                                 </Styled.ColorsInput>
@@ -358,7 +290,9 @@ const QR = ({ url }) => {
                                     <label htmlFor="single"> Single color </label>
                                     <input
                                         type="color"
-                                        onChange={(e) => changeSingleCornerDotColor(e.target.value)}
+                                        onChange={(e) =>
+                                            changeSingleColor(e.target.value, 'cornersDotOptions')
+                                        }
                                     />
                                 </Styled.ColorsInput>
 
@@ -367,13 +301,21 @@ const QR = ({ url }) => {
                                     <input
                                         type="color"
                                         onChange={(e) =>
-                                            changeGradientCornerDotColor(0, e.target.value)
+                                            changeGradientColor(
+                                                0,
+                                                e.target.value,
+                                                'cornersDotOptions',
+                                            )
                                         }
                                     />
                                     <input
                                         type="color"
                                         onChange={(e) =>
-                                            changeGradientCornerDotColor(1, e.target.value)
+                                            changeGradientColor(
+                                                1,
+                                                e.target.value,
+                                                'cornersDotOptions',
+                                            )
                                         }
                                     />
                                 </Styled.ColorsInput>
@@ -406,7 +348,6 @@ const QR = ({ url }) => {
                                 <label>Hide background logo: </label>
                                 <input
                                     type="checkbox"
-                                    value={qrCode._options.imageOptions.hideBackgroundDots}
                                     onChange={(e) =>
                                         qrCode.update({
                                             imageOptions: {
@@ -424,7 +365,6 @@ const QR = ({ url }) => {
                                     min="0.1"
                                     max="1"
                                     step="0.1"
-                                    value={logoSize}
                                     onChange={handleSetLogoSize}
                                 />
                             </div>
