@@ -55,6 +55,14 @@ export const Heading = styled.h2`
 
 export const Content = styled.div`
     width: inherit;
+
+    p {
+        font-weight: bold;
+    }
+
+    p:last-of-type {
+        margin-top: 24px;
+    }
 `;
 
 export const HorizontalContent = styled(Content)`
@@ -151,5 +159,17 @@ export const BorderQr = styled.div`
 
     & .border {
         stroke: ${(props) => props.theme.black};
+    }
+`;
+
+export const ColorsInput = styled.div`
+    display: flex;
+    align-items: center;
+    margin-bottom: 6px;
+
+    & input[type='color'] {
+        width: 30px;
+        height: 30px;
+        margin-left: 6px;
     }
 `;

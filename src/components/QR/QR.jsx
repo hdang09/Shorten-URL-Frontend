@@ -142,6 +142,132 @@ const QR = ({ url }) => {
         // arrayRefs[num - 1].current.scrollIntoView({ behavior: 'smooth' });
     };
 
+    const changeSingleDotColor = (inputColor) => {
+        // Remove gradient color
+        if (qrCode._options.dotsOptions.gradient) {
+            qrCode.update({
+                dotsOptions: {
+                    ...qrCode._options.dotsOptions,
+                    gradient: null,
+                },
+            });
+        }
+
+        qrCode.update({
+            dotsOptions: {
+                ...qrCode._options.dotsOptions,
+                color: inputColor,
+            },
+        });
+    };
+
+    const changeGradientDotColor = (offset, color) => {
+        // Remove single color
+        if (!qrCode._options.dotsOptions.gradient) {
+            qrCode.update({
+                dotsOptions: {
+                    ...qrCode._options.dotsOptions,
+                    gradient: {
+                        ...qrCode._options.dotsOptions.gradient,
+                        colorStops: [
+                            { offset: 0, color: '#000' },
+                            { offset: 1, color: '#000' },
+                        ],
+                    },
+                },
+            });
+        }
+
+        const newArray = qrCode._options.dotsOptions.gradient.colorStops.map(
+            (item) => (item.color = item.offset === offset ? color : item.color),
+        );
+        qrCode.update(newArray);
+    };
+
+    const changeSingleCornerSquareColor = (inputColor) => {
+        // Remove gradient color
+        if (qrCode._options.cornersSquareOptions.gradient) {
+            qrCode.update({
+                cornersSquareOptions: {
+                    ...qrCode._options.cornersSquareOptions,
+                    gradient: null,
+                },
+            });
+        }
+
+        qrCode.update({
+            cornersSquareOptions: {
+                ...qrCode._options.cornersSquareOptions,
+                color: inputColor,
+            },
+        });
+    };
+
+    const changeGradientCornerSquareColor = (offset, color) => {
+        // Remove single color
+        if (!qrCode._options.cornersSquareOptions.gradient) {
+            qrCode.update({
+                cornersSquareOptions: {
+                    ...qrCode._options.cornersSquareOptions,
+                    gradient: {
+                        ...qrCode._options.cornersSquareOptions.gradient,
+                        colorStops: [
+                            { offset: 0, color: '#000' },
+                            { offset: 1, color: '#000' },
+                        ],
+                    },
+                },
+            });
+        }
+
+        const newArray = qrCode._options.cornersSquareOptions.gradient.colorStops.map(
+            (item) => (item.color = item.offset === offset ? color : item.color),
+        );
+        qrCode.update(newArray);
+    };
+
+    const changeSingleCornerDotColor = (inputColor) => {
+        // Remove gradient color
+        if (qrCode._options.cornersDotOptions.gradient) {
+            qrCode.update({
+                cornersDotOptions: {
+                    ...qrCode._options.cornersDotOptions,
+                    gradient: null,
+                },
+            });
+        }
+
+        qrCode.update({
+            cornersDotOptions: {
+                ...qrCode._options.cornersDotOptions,
+                color: inputColor,
+            },
+        });
+    };
+
+    const changeGradientCornerDotColor = (offset, color) => {
+        // Remove single color
+        if (!qrCode._options.cornersDotOptions.gradient) {
+            qrCode.update({
+                cornersDotOptions: {
+                    ...qrCode._options.cornersDotOptions,
+                    gradient: {
+                        ...qrCode._options.cornersDotOptions.gradient,
+                        colorStops: [
+                            { offset: 0, color: '#000' },
+                            { offset: 1, color: '#000' },
+                        ],
+                    },
+                },
+            });
+        }
+
+        const newArray = qrCode._options.cornersDotOptions.gradient.colorStops.map(
+            (item) => (item.color = item.offset === offset ? color : item.color),
+        );
+        qrCode.update(newArray);
+    };
+
     return (
         <>
             <Styled.Center>
@@ -196,106 +322,27 @@ const QR = ({ url }) => {
                                     // onClick={() => setFrame(frame)}
                                 />
                             ))}
-                            <form action="">
-                                {/* <input id="single" type="radio" name="pattern-color" /> */}
-                                <label htmlFor="single">Single color</label>
-                                <input
-                                    type="color"
-                                    onChange={(e) =>
-                                        qrCode.update({
-                                            dotsOptions: {
-                                                ...qrCode._options.dotsOptions,
-                                                color: e.target.value,
-                                            },
-                                        })
-                                    }
-                                />
+                            <div>
+                                <Styled.ColorsInput>
+                                    <label htmlFor="single"> Single color </label>
+                                    <input
+                                        type="color"
+                                        onChange={(e) => changeSingleDotColor(e.target.value)}
+                                    />
+                                </Styled.ColorsInput>
 
-                                {/* <Input
-                                    color
-                                    large
-                                    onChange={(e) =>
-                                        qrCode.update({
-                                            dotsOptions: {
-                                                ...qrCode._options.dotsOptions,
-                                                color: e.target.value,
-                                            },
-                                        })
-                                    }
-                                /> */}
-
-                                {/* <input id="gradient" type="radio" name="pattern-color" />
-                            <label htmlFor="gradient">Gradient color</label>
-                            <Input
-                                color
-                                large
-                                onChange={(e) =>
-                                    qrCode.update({
-                                        dotsOptions: {
-                                            ...qrCode._options.dotsOptions,
-                                            gradient: {
-                                                ...qrCode._options.dotsOptions.gradient,
-                                                colorStops: [
-                                                    ...qrCode._options.dotsOptions.gradient
-                                                        ?.colorStops,
-                                                    { offset: 0, color: e.target.value },
-                                                ],
-                                            },
-                                        },
-                                    })
-                                }
-                            />
-                            <Input
-                                color
-                                large
-                                onChange={(e) =>
-                                    qrCode.update({
-                                        dotsOptions: {
-                                            ...qrCode._options.dotsOptions,
-                                            gradient: {
-                                                ...qrCode._options.dotsOptions.gradient,
-                                                colorStops: [
-                                                    ...qrCode._options.dotsOptions.gradient
-                                                        ?.colorStops,
-                                                    { offset: 1, color: e.target.value },
-                                                ],
-                                            },
-                                        },
-                                    })
-                                }
-                            /> */}
-                            </form>
-                            {/* Background Color
-                        <form action="">
-                            <input id="single" type="radio" name="background-color" />
-                            <label htmlFor="single">Single color</label>
-                            <input id="gradient" type="radio" name="background-color" />
-                            <label htmlFor="gradient">Gradient color</label>
-                        </form>
-                        <Input color large />
-                        <Input color large />
-                        <Input color large />
-                        Pattern Color
-                        <form action="">
-                            <input id="single" type="radio" name="pattern-color" />
-                            <label htmlFor="single">Single color</label>
-                            <input id="gradient" type="radio" name="pattern-color" />
-                            <label htmlFor="gradient">Gradient color</label>
-                        </form>
-                        Corners Square Color:
-                        <form action="">
-                            <input id="single" type="radio" name="corner-square-color" />
-                            <label htmlFor="single">Single color</label>
-                            <input id="gradient" type="radio" name="corner-square-color" />
-                            <label htmlFor="gradient">Gradient color</label>
-                        </form>
-                        Corners Dot Color:
-                        <form action="">
-                            <input id="single" type="radio" name="corner-dot-color" />
-                            <label htmlFor="single">Single color</label>
-                            <input id="gradient" type="radio" name="corner-dot-color" />
-                            <label htmlFor="gradient">Gradient color</label>
-                        </form> */}
+                                <Styled.ColorsInput>
+                                    <label htmlFor="gradient">Gradient color</label>
+                                    <input
+                                        type="color"
+                                        onChange={(e) => changeGradientDotColor(0, e.target.value)}
+                                    />
+                                    <input
+                                        type="color"
+                                        onChange={(e) => changeGradientDotColor(1, e.target.value)}
+                                    />
+                                </Styled.ColorsInput>
+                            </div>
                         </Styled.Content>
                     )}
                 </Styled.SettingsItem>
@@ -325,21 +372,34 @@ const QR = ({ url }) => {
                                     // onClick={() => setFrame(frame)}
                                 />
                             ))}
-                            <form>
-                                <label htmlFor="single">Single color</label>
-                                <input
-                                    type="color"
-                                    onChange={(e) =>
-                                        qrCode.update({
-                                            cornersSquareOptions: {
-                                                ...qrCode._options.cornersSquareOptions,
-                                                color: e.target.value,
-                                            },
-                                        })
-                                    }
-                                />
-                            </form>
-                            <p htmlFor="">Corners Dot: </p>
+                            <div>
+                                <Styled.ColorsInput>
+                                    <label htmlFor="single">Single color</label>
+                                    <input
+                                        type="color"
+                                        onChange={(e) =>
+                                            changeSingleCornerSquareColor(e.target.value)
+                                        }
+                                    />
+                                </Styled.ColorsInput>
+
+                                <Styled.ColorsInput>
+                                    <label htmlFor="gradient">Gradient color</label>
+                                    <input
+                                        type="color"
+                                        onChange={(e) =>
+                                            changeGradientCornerSquareColor(0, e.target.value)
+                                        }
+                                    />
+                                    <input
+                                        type="color"
+                                        onChange={(e) =>
+                                            changeGradientCornerSquareColor(1, e.target.value)
+                                        }
+                                    />
+                                </Styled.ColorsInput>
+                            </div>
+                            <p>Corners Dot: </p>
                             {cornerDotArray.map((frame) => (
                                 <Styled.Image
                                     key={frame.type}
@@ -357,20 +417,31 @@ const QR = ({ url }) => {
                                     // onClick={() => setFrame(frame)}
                                 />
                             ))}
-                            <form>
-                                <label htmlFor="single">Single color</label>
-                                <input
-                                    type="color"
-                                    onChange={(e) =>
-                                        qrCode.update({
-                                            cornersDotOptions: {
-                                                ...qrCode._options.cornersDotOptions,
-                                                color: e.target.value,
-                                            },
-                                        })
-                                    }
-                                />
-                            </form>
+                            <div>
+                                <Styled.ColorsInput>
+                                    <label htmlFor="single"> Single color </label>
+                                    <input
+                                        type="color"
+                                        onChange={(e) => changeSingleCornerDotColor(e.target.value)}
+                                    />
+                                </Styled.ColorsInput>
+
+                                <Styled.ColorsInput>
+                                    <label htmlFor="gradient">Gradient color</label>
+                                    <input
+                                        type="color"
+                                        onChange={(e) =>
+                                            changeGradientCornerDotColor(0, e.target.value)
+                                        }
+                                    />
+                                    <input
+                                        type="color"
+                                        onChange={(e) =>
+                                            changeGradientCornerDotColor(1, e.target.value)
+                                        }
+                                    />
+                                </Styled.ColorsInput>
+                            </div>
                         </Styled.Content>
                     )}
                 </Styled.SettingsItem>
