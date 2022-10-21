@@ -1,13 +1,13 @@
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
 import { Button, Header } from '../../components';
 import * as Styled from './Landing.styled';
 import lightScreenshot from '../../assets/images/screenshots.png';
 import darkScreenshot from '../../assets/images/screenshots-dark.png';
 import { useLocalStorage } from '../../hooks';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 AOS.init();
-
 AOS.init({
     // Global settings:
     disable: false,

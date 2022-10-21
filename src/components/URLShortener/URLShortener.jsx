@@ -1,14 +1,13 @@
-import { useState, createRef, useEffect } from 'react';
+import { useState, createRef } from 'react';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
-import PropTypes from 'prop-types';
+import { nanoid } from 'nanoid';
 
 import * as Styled from './URLShortener.styled';
-import { useDebounce, useLocalStorage } from '../../hooks';
+import { useLocalStorage } from '../../hooks';
 import { Card, Input, Button } from '../../components';
 import { add } from '../../components/LinkItem/urlSlice';
 import { shortenUrl } from '../../utils/productApi';
-import { nanoid } from 'nanoid';
 
 let counter = 0;
 const regex =
@@ -20,12 +19,6 @@ const URLShortener = ({ noItem }) => {
     const [originalURL, setOriginalURL] = useState('');
     const dispatch = useDispatch();
     const [id, setId] = useLocalStorage('id');
-
-    const debouncedOriginalURL = useDebounce(originalURL, 750);
-
-    useEffect(() => {
-        // Call API
-    }, [debouncedOriginalURL]);
 
     const handleShortenURL = async (e) => {
         if (regex.test(originalURL)) {

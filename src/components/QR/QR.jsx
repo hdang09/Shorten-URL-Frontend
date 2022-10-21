@@ -1,49 +1,16 @@
 import React, { useEffect, useRef, useState } from 'react';
+import QRCodeStyling from 'qr-code-styling';
 import { useSelector } from 'react-redux';
+import { AiOutlineDown, AiOutlineDownload } from 'react-icons/ai';
 
-import PropTypes from 'prop-types';
 import * as Styled from './QR.styled';
 import { Button, Input } from '../';
-import { AiOutlineDown, AiOutlineDownload } from 'react-icons/ai';
-import logo from '../../assets/images/logo.png';
-import QRCodeStyling from 'qr-code-styling';
-
 import { urlSelector } from '../LinkItem/urlSlice';
 
-import classyRoundedPattern from '../../assets/qr/pattern/classy-rounded.png';
-import classyPattern from '../../assets/qr/pattern/classy.png';
-import dotsPattern from '../../assets/qr/pattern/dots.png';
-import defaultPattern from '../../assets/qr/pattern/default.png';
-import extraRoundedPattern from '../../assets/qr/pattern/extra-rounded.png';
-import roundedPattern from '../../assets/qr/pattern/rounded.png';
-import squareCornerSquare from '../../assets/qr/corners/corner-square/square.png';
-
-import dotCornerSquare from '../../assets/qr/corners/corner-square/dot.png';
-import extraRoundedCornerSquare from '../../assets/qr/corners/corner-square/extra-rounded.png';
-import SquareCornerDot from '../../assets/qr/corners/corner-dot/square.png';
-import DotCornerDot from '../../assets/qr/corners/corner-dot/dot.png';
-
+import logo from '../../assets/images/logo.png';
 import { ReactComponent as QRScanningImg } from '../../assets/svg/qr-code.svg';
 import { ReactComponent as BorderQR } from '../../assets/svg/border.svg';
-
-const framesArray = [
-    { image: defaultPattern, type: '' },
-    { image: classyRoundedPattern, type: 'classy-rounded' },
-    { image: classyPattern, type: 'classy' },
-    { image: dotsPattern, type: 'dots' },
-    { image: extraRoundedPattern, type: 'extra-rounded' },
-    { image: roundedPattern, type: 'rounded' },
-];
-
-const cornerSquareArray = [
-    { image: squareCornerSquare, type: 'square' },
-    { image: dotCornerSquare, type: 'dots' },
-    { image: extraRoundedCornerSquare, type: 'extra-rounded' },
-];
-const cornerDotArray = [
-    { image: SquareCornerDot, type: 'square' },
-    { image: DotCornerDot, type: 'dots' },
-];
+import { FRAMES, CORNERS_SQUARES, CORNERS_DOTS } from './QR.images';
 
 let primaryColor = JSON.parse(localStorage.getItem('primary-color')) || '#000';
 
@@ -67,34 +34,11 @@ const qrCode = new QRCodeStyling({
 });
 
 const QR = ({ url }) => {
-    // const [gradientArray, setGradientArray] = useState([{}, {}]);
-
-    // const handleSetGradient = (value) => {
-    //     console.log(value);
-    //     qrCode.update({
-    //         dotsOptions: {
-    //             ...qrCode._options.dotsOptions,
-    //             gradient: {
-    //                 ...qrCode._options.dotsOptions.gradient,
-    //                 colorStops: gradientArray,
-    //             },
-    //         },
-    //     });
-    // };
-
-    // const color = JSON.parse(localStorage.getItem('primary-color'));
-
     const currentUrl = useSelector(urlSelector)[0]?.shorten_link || url || '';
-    // const currentUrl = url || '';
-
-    // const [url, setUrl] = useState(currentUrl);
     const qrRef = useRef(null);
 
     useEffect(() => {
         qrCode.append(qrRef.current);
-    }, [currentUrl]);
-
-    useEffect(() => {
         qrCode.update({
             data: currentUrl,
         });
@@ -117,11 +61,6 @@ const QR = ({ url }) => {
         setLogoSize(e.target.value);
     };
 
-    const customUrlRef = useRef(null);
-    const dotsRef = useRef(null);
-    const cornersRef = useRef(null);
-    const logoRef = useRef(null);
-    const optionsRef = useRef(null);
     const [openSetingsList, setOpenSettingsList] = useState([
         { id: 1, isOpened: false },
         { id: 2, isOpened: false },
@@ -130,8 +69,6 @@ const QR = ({ url }) => {
         { id: 5, isOpened: false },
     ]);
 
-    const arrayRefs = [customUrlRef, dotsRef, cornersRef, logoRef, optionsRef];
-
     const handleOpenSetingsList = (num) => {
         const newList = openSetingsList.map((item) => ({
             key: item.id,
@@ -139,7 +76,6 @@ const QR = ({ url }) => {
             isOpened: item.id === num ? !openSetingsList[num - 1].isOpened : false,
         }));
         setOpenSettingsList(newList);
-        // arrayRefs[num - 1].current.scrollIntoView({ behavior: 'smooth' });
     };
 
     const changeSingleDotColor = (inputColor) => {
@@ -282,7 +218,7 @@ const QR = ({ url }) => {
                 )}
             </Styled.Center>
             <Styled.SettingsList>
-                <Styled.SettingsItem ref={customUrlRef}>
+                <Styled.SettingsItem>
                     <Styled.Header onClick={() => handleOpenSetingsList(1)}>
                         <Styled.Heading>URL</Styled.Heading>
                         <AiOutlineDown />
@@ -297,7 +233,7 @@ const QR = ({ url }) => {
                     )}
                 </Styled.SettingsItem>
 
-                <Styled.SettingsItem ref={dotsRef}>
+                <Styled.SettingsItem>
                     <Styled.Header onClick={() => handleOpenSetingsList(2)}>
                         <Styled.Heading>Dots</Styled.Heading>
                         <AiOutlineDown />
@@ -305,7 +241,7 @@ const QR = ({ url }) => {
                     {openSetingsList[1].isOpened && (
                         <Styled.Content>
                             {/* <label htmlFor="">Dots Style: </label> */}
-                            {framesArray.map((frame) => (
+                            {FRAMES.map((frame) => (
                                 <Styled.Image
                                     key={frame.type}
                                     src={frame.image}
@@ -347,7 +283,7 @@ const QR = ({ url }) => {
                     )}
                 </Styled.SettingsItem>
 
-                <Styled.SettingsItem ref={cornersRef}>
+                <Styled.SettingsItem>
                     <Styled.Header onClick={() => handleOpenSetingsList(3)}>
                         <Styled.Heading>Corners</Styled.Heading>
                         <AiOutlineDown />
@@ -355,7 +291,7 @@ const QR = ({ url }) => {
                     {openSetingsList[2].isOpened && (
                         <Styled.Content>
                             <p>Corners Square: </p>
-                            {cornerSquareArray.map((frame) => (
+                            {CORNERS_SQUARES.map((frame) => (
                                 <Styled.Image
                                     key={frame.type}
                                     src={frame.image}
@@ -400,7 +336,7 @@ const QR = ({ url }) => {
                                 </Styled.ColorsInput>
                             </div>
                             <p>Corners Dot: </p>
-                            {cornerDotArray.map((frame) => (
+                            {CORNERS_DOTS.map((frame) => (
                                 <Styled.Image
                                     key={frame.type}
                                     src={frame.image}
@@ -446,7 +382,7 @@ const QR = ({ url }) => {
                     )}
                 </Styled.SettingsItem>
 
-                <Styled.SettingsItem ref={logoRef}>
+                <Styled.SettingsItem>
                     <Styled.Header onClick={() => handleOpenSetingsList(4)}>
                         <Styled.Heading>Logo</Styled.Heading>
                         <AiOutlineDown />
@@ -470,6 +406,7 @@ const QR = ({ url }) => {
                                 <label>Hide background logo: </label>
                                 <input
                                     type="checkbox"
+                                    value={qrCode._options.imageOptions.hideBackgroundDots}
                                     onChange={(e) =>
                                         qrCode.update({
                                             imageOptions: {
@@ -484,7 +421,7 @@ const QR = ({ url }) => {
                                 <label htmlFor="">Logo size: </label>
                                 <input
                                     type="range"
-                                    min="0"
+                                    min="0.1"
                                     max="1"
                                     step="0.1"
                                     value={logoSize}
@@ -509,7 +446,7 @@ const QR = ({ url }) => {
                     )}
                 </Styled.SettingsItem>
 
-                <Styled.SettingsItem ref={optionsRef}>
+                <Styled.SettingsItem>
                     <Styled.Header onClick={() => handleOpenSetingsList(5)}>
                         <Styled.Heading>Options</Styled.Heading>
                         <AiOutlineDown />

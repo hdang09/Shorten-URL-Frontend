@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unescaped-entities */
 import { Button } from '../../components';
 import { FcGoogle } from 'react-icons/fc';
+import { Container, Row, Col } from 'styled-bootstrap-grid';
 
 import * as Styled from './Login.styled';
-import { Container, Row, Col } from 'styled-bootstrap-grid';
 import { API_URL } from '../../config';
 
 function Login() {

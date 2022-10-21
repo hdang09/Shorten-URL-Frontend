@@ -1,19 +1,18 @@
-import { Link } from 'react-router-dom';
-import { Card, LinkItem, QR, Input, Button } from '../../components';
-import { Col, Container, Row } from 'styled-bootstrap-grid';
 import { useEffect, useState, createRef } from 'react';
-import { getReport, shortenUrl } from '../../utils/productApi';
-import { AiOutlineRight } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import { Col, Container, Row } from 'styled-bootstrap-grid';
 import { useSelector, useDispatch } from 'react-redux';
-import { urlSelector, add } from '../../components/LinkItem/urlSlice';
 import { toast } from 'react-toastify';
-
-import PropTypes from 'prop-types';
-import * as Styled from './Home.styled';
-import { useDebounce, useLocalStorage } from '../../hooks';
-
 import { nanoid } from 'nanoid';
+
+import { AiOutlineRight } from 'react-icons/ai';
 import { HiLink } from 'react-icons/hi';
+
+import { Card, LinkItem, QR, Input, Button } from '../../components';
+import { getReport, shortenUrl } from '../../utils/productApi';
+import { urlSelector, add } from '../../components/LinkItem/urlSlice';
+import * as Styled from './Home.styled';
+import { useLocalStorage } from '../../hooks';
 import { API_URL } from '../../config';
 
 let counter = 0;
