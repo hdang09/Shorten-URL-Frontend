@@ -12,7 +12,7 @@ import 'antd/dist/antd.css';
 import React from 'react';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <React.StrictMode>
+    <>
         <Provider store={store}>
             <ChakraProvider>
                 <App />
@@ -22,5 +22,5 @@ ReactDOM.createRoot(document.getElementById('root')).render(
                 theme={JSON.parse(window.localStorage.getItem('data-theme')) || 'light'}
             />
         </Provider>
-    </React.StrictMode>,
+    </>,
 );

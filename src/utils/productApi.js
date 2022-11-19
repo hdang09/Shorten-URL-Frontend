@@ -37,6 +37,14 @@ export const shortenUrl = (link, accountId, linkcode) => {
     });
 };
 
+export const updateLink = (shortenLink, linkcode) => {
+    const url = '/api/url/shorten/update-link';
+    return post(url, {
+        shorten_link: shortenLink,
+        linkcode,
+    });
+};
+
 // Reports API
 export const getReport = (accountId = '', year, month) => {
     let url = `/api/report/${accountId}`;

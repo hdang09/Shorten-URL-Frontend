@@ -23,7 +23,7 @@ const URLShortener = ({ noItem }) => {
     const handleShortenURL = async (e) => {
         if (regex.test(originalURL)) {
             try {
-                const res = await shortenUrl(originalURL, id, nanoid(11));
+                const res = await shortenUrl(originalURL, id, nanoid(10));
 
                 ++counter;
                 setOriginalURL('');

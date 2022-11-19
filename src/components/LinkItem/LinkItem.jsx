@@ -1,13 +1,15 @@
 import { useState, useRef } from 'react';
-import * as Styled from './LinkItem.styled';
 import { MdOutlineContentCopy, MdUpdate } from 'react-icons/md';
 import { IoCreateOutline, IoQrCodeOutline } from 'react-icons/io5';
 import { BsLink45Deg } from 'react-icons/bs';
-import { Button, QR, Input } from '..';
 import { toast } from 'react-toastify';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 import moment from 'moment';
+import { SocialIcon } from 'react-social-icons';
+
+import * as Styled from './LinkItem.styled';
+import { Button, QR } from '..';
 
 import {
     Drawer,
@@ -18,8 +20,11 @@ import {
 } from '@chakra-ui/react';
 import { HiCursorClick } from 'react-icons/hi';
 import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { useLocalStorage } from '../../hooks';
 
 const LinkItem = ({ data }) => {
+    const [theme, setTheme] = useLocalStorage('data-theme', '');
+
     const [openEditBox, setOpenEditBox] = useState(false);
     const handleCopy = (url) => {
         navigator.clipboard.writeText(url);
@@ -55,7 +60,7 @@ const LinkItem = ({ data }) => {
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
                     <p style={{ padding: '0 4px' }}></p>
                     <Button shine="true" onClick={handleDoneEdit}>
-                        Save
+                        Close
                     </Button>
                 </div>
             </Styled.EditBox>
@@ -66,7 +71,15 @@ const LinkItem = ({ data }) => {
         <>
             <Styled.Wrapper>
                 <Styled.Icon>
-                    <BsLink45Deg />
+                    {data.origin_link.includes('localhost') ? (
+                        <BsLink45Deg />
+                    ) : (
+                        <SocialIcon
+                            url={data.origin_link}
+                            bgColor="transparent"
+                            style={{ width: '36px', height: '36px', scale: '1.5' }}
+                        />
+                    )}
                 </Styled.Icon>
                 <Styled.Main>
                     <Styled.Title>{data.name || 'Shorten URL'}</Styled.Title>

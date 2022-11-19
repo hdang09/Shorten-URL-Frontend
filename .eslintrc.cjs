@@ -51,7 +51,6 @@ module.exports = {
                 importOrderSeparation: false,
             },
         ],
-        'no-console': 'warn',
         'no-eval': 'warn',
         'no-proto': 2,
         'no-var': 'error',

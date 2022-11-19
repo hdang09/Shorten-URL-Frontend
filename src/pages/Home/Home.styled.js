@@ -43,7 +43,6 @@ export const WrapperInput = styled.div`
 `;
 
 export const CustomInput = styled.input`
-    /* border: 1px solid ${(props) => props.theme.black}; */
-    /* min-width: ${(props) => (props.large ? '100%' : '325px')}; */
+    overflow: hidden;
     display: block;
 `;

@@ -7,9 +7,10 @@ import { BasicLayout, ModernLayout } from '../layouts';
 import { useLocalStorage } from '../hooks';
 import { createContext, useEffect } from 'react';
 
-import { login, signOut, authSelector } from '../pages/Login/loginSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { login, signOut } from '../pages/Login/loginSlice';
+import { useDispatch } from 'react-redux';
 import jwtDecode from 'jwt-decode';
+import { toast } from 'react-toastify';
 
 const publicRoutes = [
     { name: 'landing', path: '/landing', element: <Landing /> },
@@ -38,23 +39,24 @@ export const LayoutContext = createContext();
 const RouterComponents = () => {
     const [layout, setLayoutInLocal] = useLocalStorage('layout', 'new');
     // eslint-disable-next-line prefer-destructuring
-    const token = useLocalStorage('token', '')[0];
     const Layout = layout === 'new' ? ModernLayout : BasicLayout;
     const dispatch = useDispatch();
 
-    const parseJwt = (token) => {
-        try {
-            return JSON.parse(atob(token.split('.')[1]));
-        } catch (e) {
-            return null;
-        }
-    };
+    // // eslint-disable-next-line prefer-destructuring
+    // const token = useLocalStorage('token', '')[0];
+    // const parseJwt = (token) => {
+    //     try {
+    //         return JSON.parse(atob(token.split('.')[1]));
+    //     } catch (e) {
+    //         return null;
+    //     }
+    // };
 
-    useEffect(() => {
-        if (!parseJwt(token) || parseJwt(token)?.exp < Date.now() / 1000) {
-            dispatch(signOut());
-        }
-    }, [dispatch, token]);
+    // useEffect(() => {
+    //     if (!parseJwt(token) || parseJwt(token)?.exp < Date.now() / 1000) {
+    //         dispatch(signOut());
+    //     }
+    // }, [dispatch, token]);
 
     let location = useLocation();
 
@@ -62,18 +64,15 @@ const RouterComponents = () => {
         const UrlParams = new URLSearchParams(location.search);
 
         if (UrlParams.get('success') === 'true') {
-            // save token to localStorage
-            let response = {
-                success: UrlParams.get('success'),
-                token: UrlParams.get('token'),
-            };
-            // alert(response.token);
-            localStorage.setItem('token', JSON.stringify(response.token));
-            const { payload } = jwtDecode(response.token);
+            localStorage.setItem('token', JSON.stringify(UrlParams.get('token')));
+            const { payload } = jwtDecode(UrlParams.get('token'));
             localStorage.setItem('id', JSON.stringify(payload._id));
             // return <Navigate to="/" replace />;
             // window.location = '/';
             dispatch(login());
+        } else if (UrlParams.get('success') === 'false') {
+            const toastType = UrlParams.get('status') === 'waiting' ? 'info' : 'error';
+            toast[toastType](`The account is ${UrlParams.get('status')} to allow access`);
         }
     }, [dispatch, location]);
 

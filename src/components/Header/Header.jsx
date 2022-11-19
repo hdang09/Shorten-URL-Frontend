@@ -14,6 +14,7 @@ import { ThemeContext } from '../../App';
 import { useContext, useState, useEffect } from 'react';
 import { getInfo } from '../../utils/productApi';
 import { useLocalStorage } from '../../hooks';
+import { toast } from 'react-toastify';
 
 function Header({ admin, landingPage }) {
     const location = useLocation();
@@ -31,8 +32,13 @@ function Header({ admin, landingPage }) {
 
     useEffect(() => {
         const getInfoUser = async () => {
-            const { data } = await getInfo(id);
-            setInfoUser(data.data);
+            try {
+                const { data } = await getInfo(id);
+                setInfoUser(data.data);
+            } catch (e) {
+                console.log(e);
+                toast.error(e);
+            }
         };
         getInfoUser();
     }, [id]);

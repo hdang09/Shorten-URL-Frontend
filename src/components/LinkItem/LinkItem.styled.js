@@ -56,11 +56,17 @@ export const EditBox = styled.div`
 `;
 
 export const Icon = styled.div`
+    display: flex;
+    align-items: center;
     font-size: 3.6rem;
-    margin-right: 16px;
+    margin: 0 16px 0 6px;
 
     ${down('md')} {
         display: none;
+    }
+
+    .social-svg-icon {
+        fill: ${(props) => props.theme.white} !important;
     }
 `;
 
