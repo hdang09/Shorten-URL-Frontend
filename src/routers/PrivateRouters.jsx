@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
-
 import { useSelector } from 'react-redux';
-import { Outlet, Navigate, useLocation } from 'react-router-dom';
+import { Outlet, Navigate } from 'react-router-dom';
 
 import { authSelector } from '../pages/Login/loginSlice';
 

@@ -15,7 +15,7 @@ import { down } from 'styled-breakpoints';
 import { useBreakpoint } from 'styled-breakpoints/react-styled';
 
 import { ThemeContext } from '../../App';
-import { getInfo } from '../../utils/productApi';
+import { getInfo } from '../../utils/adminAPI';
 
 function Sidebar({ admin, redesign }) {
     const [infoUser, setInfoUser] = useState({});

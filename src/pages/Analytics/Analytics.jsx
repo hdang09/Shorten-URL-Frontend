@@ -2,7 +2,7 @@ import { Bar, Line } from 'react-chartjs-2';
 import { Row, Col } from 'styled-bootstrap-grid';
 
 import { Report, Card, Statistics } from '../../components';
-import { getReport } from '../../utils/productApi';
+import { getReport } from '../../utils/urlAPI';
 
 import { BarChartData, LineChartData } from './Analytics.dummy';
 

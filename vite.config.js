@@ -7,5 +7,6 @@ export default defineConfig({
     plugins: [eslint(), svgr(), react()],
     server: {
         port: 3000,
+        host: true,
     },
 });

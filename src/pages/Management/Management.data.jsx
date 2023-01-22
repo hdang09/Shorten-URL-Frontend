@@ -5,7 +5,7 @@ import Tippy from '@tippyjs/react';
 import HeadlessTippy from '@tippyjs/react/headless';
 import * as Styled from './Management.styled';
 import { toast } from 'react-toastify';
-import { updateUserRole, updateUserStatus } from '../../utils/productApi';
+import { updateUserRole, updateUserStatus } from '../../utils/adminAPI';
 
 const updateStatus = async (status, accountId) => {
     try {

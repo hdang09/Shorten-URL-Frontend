@@ -3,54 +3,20 @@ import { Table } from 'antd';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
 
 import * as Styled from './Admin.styled';
-import { Button, Card, Avatar } from '../../components';
+import { Button, Card } from '../../components';
 import { Link } from 'react-router-dom';
-import { getAllUser } from '../../utils/productApi';
+import { getAllUser } from '../../utils/adminAPI';
 import { toast } from 'react-toastify';
-import { AiTwotoneCrown, AiOutlineRight, AiOutlineClockCircle } from 'react-icons/ai';
-import Tippy from '@tippyjs/react';
+import { AiOutlineRight, AiOutlineClockCircle } from 'react-icons/ai';
 
 import { IoMdDownload } from 'react-icons/io';
 import { MdUpload } from 'react-icons/md';
 import { FiUserX, FiUsers } from 'react-icons/fi';
 import CreateAccount from './CreateAccount';
+import { columns } from './Admin.columns';
 
 const Admin = () => {
     const [allUserData, setAllUserData] = useState([]);
-
-    const columns = [
-        {
-            title: 'Name',
-            dataIndex: 'name',
-            render: (_, record) => (
-                <Link to={`/admin/management/user-url?id=${record.key}`}>
-                    <Avatar src={record.avatar} />
-                    <Styled.Name>
-                        <span>
-                            {record.first_name} {record.last_name}
-                        </span>
-                        {record.role === 'Admin' && (
-                            <Tippy content="Admin">
-                                <div>
-                                    <AiTwotoneCrown color="orange" size="1.6rem" />
-                                </div>
-                            </Tippy>
-                        )}
-                    </Styled.Name>
-                </Link>
-            ),
-        },
-        {
-            title: 'Role',
-            dataIndex: 'role',
-        },
-        {
-            title: 'Status',
-            key: 'status',
-            dataIndex: 'status',
-            render: (_, record) => <Styled.Tag type={record.status}>{record.status}</Styled.Tag>,
-        },
-    ];
 
     useEffect(() => {
         const getAllUserData = async () => {

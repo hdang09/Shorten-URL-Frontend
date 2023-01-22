@@ -1,7 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
+import localStorageUtils from '../../utils/localStorageUtils';
 
 const initialState = {
-    isAuthenticated: localStorage.getItem('token') ? true : false,
+    isAuthenticated: localStorageUtils.getToken(),
 };
 
 const loginSlice = createSlice({
@@ -13,7 +14,7 @@ const loginSlice = createSlice({
         },
         signOut: (state) => {
             state.isAuthenticated = false;
-            localStorage.removeItem('token');
+            localStorageUtils.deleteUser();
             localStorage.removeItem('id');
         },
     },

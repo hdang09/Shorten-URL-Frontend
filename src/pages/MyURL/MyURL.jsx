@@ -1,34 +1,42 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 
 import * as Styled from './MyURL.styled';
-import { Card, Input, LinkItem } from '../../components';
-import { getReport } from '../../utils/productApi';
+import { Card, URLList } from '../../components';
+import { getReport } from '../../utils/urlAPI';
 import { useLocalStorage } from '../../hooks';
 
 const MyURL = () => {
     const [, userId] = window.location.search.split('?id=');
     const [id] = useLocalStorage('id');
-    const [allLinks, setAllLinks] = useState([]);
-    const [filteredLinks, setFilteredLinks] = useState([]);
+    const [links, setLinks] = useState({
+        all: [],
+        filtered: [],
+    });
     const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
         const getAllLinks = async () => {
             const { data } = await getReport(userId || id);
-            setAllLinks(data.data.links.reverse());
+            setLinks({
+                ...links,
+                all: data.data.links.reverse(),
+                filtered: data.data.links.reverse(),
+            });
         };
         getAllLinks();
-    }, [id, userId]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
 
     const handleSearch = (e) => {
         setInputValue(e.target.value);
-        const filteredData = allLinks.filter((item) =>
+        const filteredData = links.all.filter((item) =>
             item.shorten_link.toLowerCase().includes(e.target.value.toLowerCase()),
         );
-        setFilteredLinks(filteredData);
+        setLinks({
+            ...links,
+            filtered: filteredData,
+        });
     };
-
-    let links = filteredLinks.length ? filteredLinks : allLinks;
 
     return (
         <Styled.Wrapper>
@@ -38,9 +46,7 @@ const MyURL = () => {
                 placeholder="Type here to search my URL..."
             />
             <Card title="My URLs">
-                {links.map((link) => (
-                    <LinkItem key={link._id} data={link} />
-                ))}
+                <URLList list={links.filtered} />
             </Card>
         </Styled.Wrapper>
     );

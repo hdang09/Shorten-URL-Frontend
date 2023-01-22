@@ -3,7 +3,7 @@ import { MdEmail, MdOutlineDriveFileRenameOutline } from 'react-icons/md';
 import { IoPersonAddSharp } from 'react-icons/io5';
 import { FaUserTag } from 'react-icons/fa';
 import { Button, Input } from '../../components';
-import { createAccount } from '../../utils/productApi';
+import { createAccount } from '../../utils/adminAPI';
 import { toast } from 'react-toastify';
 import * as Styled from './Admin.styled';
 

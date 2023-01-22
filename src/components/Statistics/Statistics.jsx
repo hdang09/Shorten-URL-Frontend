@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { RiLinksLine } from 'react-icons/ri';
 import { HiCursorClick } from 'react-icons/hi';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
-import { getReport } from '../../utils/productApi';
+import { getReport } from '../../utils/urlAPI';
 import { useLocalStorage } from '../../hooks';
 
 import * as Styled from './Statistics.styled';

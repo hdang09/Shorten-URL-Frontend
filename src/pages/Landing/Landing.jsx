@@ -45,11 +45,11 @@ function LandingPage() {
                         Get Started
                     </Button>
                     <Button
-                        href="https://shorten-url-hdang09.vercel.app/"
+                        href="https://www.facebook.com/fcodefpt"
                         outline
                         as={Styled.BannerButton}
                     >
-                        Watch Demo
+                        Visit Fanpage
                     </Button>
                 </div>
                 <Styled.Screenshot src={screenshot} alt="Screenshot" />

@@ -31,8 +31,8 @@ function Login() {
                                     </Button>
                                 </div>
                                 <Styled.Contact>
-                                    Don't have an account?{' '}
-                                    <a href="https://www.facebook.com/fcodefpt">Contact admin</a>
+                                    Cannot login?{' '}
+                                    <a href="https://www.facebook.com/hdang.09">Contact admin</a>
                                 </Styled.Contact>
                             </Styled.Box>
                         </Styled.LoginSection>

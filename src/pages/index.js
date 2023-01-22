@@ -7,5 +7,17 @@ import Settings from './Settings/Settings';
 import MyURL from './MyURL/MyURL';
 import Admin from './Admin/Admin';
 import Management from './Management/Management';
+import Onboarding from './Onboarding/Onboarding';
 
-export { Home, Landing, Login, NotFound, Analytics, Settings, MyURL, Admin, Management };
+export {
+    Home,
+    Landing,
+    Login,
+    NotFound,
+    Analytics,
+    Settings,
+    MyURL,
+    Admin,
+    Management,
+    Onboarding,
+};

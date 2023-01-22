@@ -12,7 +12,7 @@ import { adminSidebarSelector, userSidebarSelector } from '../Sidebar/sidebarSli
 import { signOut } from '../../pages/Login/loginSlice';
 import { ThemeContext } from '../../App';
 import { useContext, useState, useEffect } from 'react';
-import { getInfo } from '../../utils/productApi';
+import { getInfo } from '../../utils/adminAPI';
 import { useLocalStorage } from '../../hooks';
 import { toast } from 'react-toastify';
 
@@ -31,17 +31,19 @@ function Header({ admin, landingPage }) {
     const [id, setId] = useLocalStorage('id', '');
 
     useEffect(() => {
-        const getInfoUser = async () => {
-            try {
-                const { data } = await getInfo(id);
-                setInfoUser(data.data);
-            } catch (e) {
-                console.log(e);
-                toast.error(e);
-            }
-        };
-        getInfoUser();
-    }, [id]);
+        if (!landingPage) {
+            const getInfoUser = async () => {
+                try {
+                    const { data } = await getInfo(id);
+                    setInfoUser(data.data);
+                } catch (e) {
+                    console.log(e);
+                    toast.error(e);
+                }
+            };
+            getInfoUser();
+        }
+    }, [id, landingPage]);
 
     let navItem;
     if (landingPage) {

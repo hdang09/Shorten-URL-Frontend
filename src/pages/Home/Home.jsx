@@ -1,28 +1,26 @@
 import { useEffect, useState, createRef } from 'react';
 import { Link } from 'react-router-dom';
+import isUrl from 'is-url';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import { nanoid } from 'nanoid';
 
 import { AiOutlineRight } from 'react-icons/ai';
 import { HiLink } from 'react-icons/hi';
 
-import { Card, LinkItem, QR, Input, Button } from '../../components';
-import { getReport, shortenUrl } from '../../utils/productApi';
-import { urlSelector, add } from '../../components/LinkItem/urlSlice';
+import { Card, QR, Input, Button, URLList } from '../../components';
+import { getReport, shortenUrl } from '../../utils/urlAPI';
+import { add, urlSelector } from '../../components/URLItem/urlSlice';
 import * as Styled from './Home.styled';
 import { useLocalStorage } from '../../hooks';
 import { API_URL } from '../../config';
 
-let counter = 0;
-
 const Home = () => {
     const dispatch = useDispatch();
+    const currentURL = useSelector(urlSelector).shorten;
 
     const [allLinks, setAllLinks] = useState([]);
-    const MY_LINKS = useSelector(urlSelector) || [];
-    const [reRender, setReRender] = useState(false);
     const role = window.location.pathname.split('/')[1] === '' ? 'user' : 'admin';
     const [id] = useLocalStorage('id', '');
 
@@ -32,53 +30,44 @@ const Home = () => {
             setAllLinks(data.data.links.reverse());
         };
         getAllLinks();
-    }, [id, reRender]);
+    }, [id]);
 
     const inputRef = createRef();
     const [originalURL, setOriginalURL] = useState('');
     const [customPath, setCustomPath] = useState('');
 
     const handleShortenURL = async (e) => {
-        if (
-            (originalURL.trim() && originalURL.toLowerCase().includes('https://')) ||
-            originalURL.toLowerCase().includes('www.') ||
-            originalURL.toLowerCase().includes('http://')
-        ) {
-            try {
-                const { data } = await shortenUrl(originalURL, id, customPath || nanoid(10));
-                if (data.message) {
-                    toast.warn(data.message);
-                } else {
-                    ++counter;
-                    setOriginalURL('');
-                    setCustomPath('');
-                    toast.success('Shorten successfully');
-                }
-                let today = new Date();
-                dispatch(
-                    add({
-                        id: counter,
-                        name: `Shorten URL ${counter}`,
-                        shorten_link: data.data.shorten_link,
-                        origin_link: originalURL.toLowerCase(),
-                        // created_at: `${today.getDate()}/${
-                        //     today.getMonth() + 1
-                        // }/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}`,
-                        created_at: JSON.stringify(today),
-                        updated_at: JSON.stringify(today),
-                    }),
-                );
-                setReRender(!reRender);
-            } catch (error) {
-                toast.error(error.message);
-            }
-
-            if (window.location.pathname.split('/')[1] === 'landing') {
-                window.location = '/';
-            }
-        } else {
+        if (!isUrl(originalURL)) {
             toast.error('Your link is wrong. Please try again!');
+            inputRef.current.focus();
+            return;
         }
+
+        try {
+            const { data } = await shortenUrl(originalURL, id, customPath || nanoid(10));
+            if (data.message) {
+                toast.warn(data.message);
+            } else {
+                setOriginalURL('');
+                setCustomPath('');
+                toast.success('Shorten successfully');
+            }
+            dispatch(
+                add({
+                    original: originalURL,
+                    shorten: data.data.shorten_link,
+                }),
+            );
+        } catch (error) {
+            toast.error(error.response.data.message);
+            console.log(error);
+        }
+
+        // if (window.location.pathname.split('/')[1] === 'landing') {
+        //     window.location = '/';
+        // } else {
+        //     toast.error('Your link is wrong. Please try again!');
+        // }
 
         inputRef.current.focus();
     };
@@ -144,9 +133,7 @@ const Home = () => {
                             </Link>
                         }
                     >
-                        {allLinks.slice(0, 4).map((link) => (
-                            <LinkItem key={link._id} data={link} />
-                        ))}
+                        <URLList list={allLinks} isRecent />
                     </Card>
                 </Col>
                 <Col md={12} lg={4}>

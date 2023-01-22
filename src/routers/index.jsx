@@ -11,6 +11,7 @@ import { login, signOut } from '../pages/Login/loginSlice';
 import { useDispatch } from 'react-redux';
 import jwtDecode from 'jwt-decode';
 import { toast } from 'react-toastify';
+import localStorageUtils from '../utils/localStorageUtils';
 
 const publicRoutes = [
     { name: 'landing', path: '/landing', element: <Landing /> },
@@ -38,25 +39,18 @@ export const LayoutContext = createContext();
 
 const RouterComponents = () => {
     const [layout, setLayoutInLocal] = useLocalStorage('layout', 'new');
-    // eslint-disable-next-line prefer-destructuring
     const Layout = layout === 'new' ? ModernLayout : BasicLayout;
     const dispatch = useDispatch();
 
-    // // eslint-disable-next-line prefer-destructuring
-    // const token = useLocalStorage('token', '')[0];
-    // const parseJwt = (token) => {
-    //     try {
-    //         return JSON.parse(atob(token.split('.')[1]));
-    //     } catch (e) {
-    //         return null;
-    //     }
-    // };
-
-    // useEffect(() => {
-    //     if (!parseJwt(token) || parseJwt(token)?.exp < Date.now() / 1000) {
-    //         dispatch(signOut());
-    //     }
-    // }, [dispatch, token]);
+    // eslint-disable-next-line prefer-destructuring
+    const token = localStorageUtils.getToken();
+    const parseJwt = (token) => {
+        try {
+            return JSON.parse(atob(token.split('.')[1]));
+        } catch (e) {
+            return null;
+        }
+    };
 
     let location = useLocation();
 
@@ -73,8 +67,10 @@ const RouterComponents = () => {
         } else if (UrlParams.get('success') === 'false') {
             const toastType = UrlParams.get('status') === 'waiting' ? 'info' : 'error';
             toast[toastType](`The account is ${UrlParams.get('status')} to allow access`);
+        } else if (parseJwt(token)?.exp < Date.now() / 1000) {
+            dispatch(signOut());
         }
-    }, [dispatch, location]);
+    }, [dispatch, location, token]);
 
     return (
         <LayoutContext.Provider value={setLayoutInLocal}>
@@ -102,7 +98,8 @@ const RouterComponents = () => {
                         />
                     ))}
                 </Route>
-                <Route path="*" element={<Navigate to="/landing" replace />} />
+                {/* <Route path="*" element={<Navigate to="/landing" replace />} /> */}
+                <Route path="*" element={<h1>404</h1>} />
             </Routes>
         </LayoutContext.Provider>
     );

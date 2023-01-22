@@ -3,7 +3,8 @@ import Card from './Card/Card';
 import Header from './Header/Header';
 import Input from './Input/Input';
 import Sidebar from './Sidebar/Sidebar';
-import LinkItem from './LinkItem/LinkItem';
+import URLItem from './URLItem/URLItem';
+import URLList from './URLList/URLList';
 import URLShortener from './URLShortener/URLShortener';
 import Report from './Report/Report';
 import Statistics from './Statistics/Statistics';
@@ -16,7 +17,8 @@ export {
     Header,
     Input,
     Sidebar,
-    LinkItem,
+    URLItem,
+    URLList,
     URLShortener,
     Report,
     Statistics,

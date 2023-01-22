@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Table } from 'antd';
 
-import { getAllUser } from '../../utils/productApi';
+import { getAllUser } from '../../utils/adminAPI';
 import 'tippy.js/dist/tippy.css';
 import * as Styled from './Management.styled';
 import { columns } from './Management.data';
 
-const Management = (props) => {
+const Management = () => {
     const [allUsers, setAllUsers] = useState([]);
 
     useEffect(() => {
@@ -21,7 +21,7 @@ const Management = (props) => {
             setAllUsers(newList);
         };
         getAllUserData();
-    }, [allUsers]);
+    }, []);
 
     return (
         <Styled.Wrapper>

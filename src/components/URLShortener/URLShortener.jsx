@@ -6,8 +6,8 @@ import { nanoid } from 'nanoid';
 import * as Styled from './URLShortener.styled';
 import { useLocalStorage } from '../../hooks';
 import { Card, Input, Button } from '../../components';
-import { add } from '../../components/LinkItem/urlSlice';
-import { shortenUrl } from '../../utils/productApi';
+import { add } from '../URLItem/urlSlice';
+import { shortenUrl } from '../../utils/urlAPI';
 
 let counter = 0;
 const regex =
@@ -18,7 +18,7 @@ const URLShortener = ({ noItem }) => {
     const inputRef = createRef();
     const [originalURL, setOriginalURL] = useState('');
     const dispatch = useDispatch();
-    const [id, setId] = useLocalStorage('id');
+    const [id, _] = useLocalStorage('id');
 
     const handleShortenURL = async (e) => {
         if (regex.test(originalURL)) {
