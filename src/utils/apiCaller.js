@@ -1,10 +1,10 @@
 import axios from 'axios';
-import { API_URL } from '../config';
+import config from '../config';
 
 export const request = (endpoint, method, headers = {}, params = {}, body = {}) => {
     const token = JSON.parse(localStorage.getItem('token')) || '';
     return axios({
-        url: API_URL + endpoint,
+        url: config.publicRuntime.API_URL + endpoint,
         method,
         headers: {
             ...headers,

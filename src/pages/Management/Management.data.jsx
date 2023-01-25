@@ -6,6 +6,7 @@ import HeadlessTippy from '@tippyjs/react/headless';
 import * as Styled from './Management.styled';
 import { toast } from 'react-toastify';
 import { updateUserRole, updateUserStatus } from '../../utils/adminAPI';
+import config from '../../config';
 
 const updateStatus = async (status, accountId) => {
     try {
@@ -30,7 +31,7 @@ export const columns = [
         title: 'Name',
         dataIndex: 'name',
         render: (_, record) => (
-            <Link to={`/admin/management/user-url?id=${record.key}`}>
+            <Link to={`${config.routes.adminManageUserURL}?id=${record.key}`}>
                 <Avatar src={record.avatar} />
                 <Styled.Name>
                     <span>{record.first_name} </span>

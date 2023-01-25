@@ -1,4 +1,4 @@
-import { LOCALSTORAGE_TOKEN_NAME } from '../config';
+import config from '../config';
 
 class LocalStorageUtils {
     getItem(key, defaultValue = '') {
@@ -22,10 +22,10 @@ class LocalStorageUtils {
         }
     }
     deleteUser() {
-        localStorage.removeItem(LOCALSTORAGE_TOKEN_NAME);
+        localStorage.removeItem(config.publicRuntime.LOCALSTORAGE_TOKEN_NAME);
     }
     getToken() {
-        return this.getItem(LOCALSTORAGE_TOKEN_NAME);
+        return this.getItem(config.publicRuntime.LOCALSTORAGE_TOKEN_NAME);
     }
     clear() {
         localStorage.clear();

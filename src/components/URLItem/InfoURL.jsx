@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import { Button } from '..';
 import { HiLink } from 'react-icons/hi';
-import { API_URL } from '../../config';
+import config from '../../config';
 import moment from 'moment';
 
 import { MdUpdate } from 'react-icons/md';
@@ -36,7 +36,11 @@ const InfoURL = ({ data, handleClose }) => {
                         </Styled.Label>
 
                         <Styled.WrapperInput>
-                            <input type="text" value={`${API_URL}/`} readOnly />
+                            <input
+                                type="text"
+                                value={`${config.publicRuntime.API_URL}/`}
+                                readOnly
+                            />
                             <Styled.CustomInput
                                 type="text"
                                 value={path}

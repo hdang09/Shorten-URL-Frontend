@@ -16,6 +16,7 @@ import { useBreakpoint } from 'styled-breakpoints/react-styled';
 
 import { ThemeContext } from '../../App';
 import { getInfo } from '../../utils/adminAPI';
+import config from '../../config';
 
 function Sidebar({ admin, redesign }) {
     const [infoUser, setInfoUser] = useState({});
@@ -43,7 +44,7 @@ function Sidebar({ admin, redesign }) {
 
     return redesign ? (
         <Styled.Sidebar>
-            <Link to="/">
+            <Link to={config.routes.home}>
                 <Styled.Logo src={logo} alt="Logo" />
             </Link>
             <Styled.NavList>

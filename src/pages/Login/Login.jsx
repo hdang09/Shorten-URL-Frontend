@@ -4,7 +4,7 @@ import { FcGoogle } from 'react-icons/fc';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
 
 import * as Styled from './Login.styled';
-import { API_URL } from '../../config';
+import config from '../../config';
 
 function Login() {
     return (
@@ -22,7 +22,7 @@ function Login() {
 
                                 <div style={{ margin: '1rem 0 8rem 0' }}>
                                     <Button
-                                        href={`${API_URL}/api/auth/google`}
+                                        href={`${config.publicRuntime.API_URL}/api/auth/google`}
                                         large
                                         outline
                                         leftIcon={<FcGoogle />}

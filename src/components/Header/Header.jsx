@@ -15,6 +15,7 @@ import { useContext, useState, useEffect } from 'react';
 import { getInfo } from '../../utils/adminAPI';
 import { useLocalStorage } from '../../hooks';
 import { toast } from 'react-toastify';
+import config from '../../config';
 
 function Header({ admin, landingPage }) {
     const location = useLocation();
@@ -70,7 +71,7 @@ function Header({ admin, landingPage }) {
     return (
         <Styled.Wrapper landingPage={landingPage}>
             <Styled.Content>
-                <Link to="/">
+                <Link to={config.routes.home}>
                     <Styled.Logo>
                         <img src={Logo} alt="F-Code Logo" />
                         <p>

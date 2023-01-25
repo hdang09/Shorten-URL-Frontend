@@ -14,7 +14,7 @@ import { getReport, shortenUrl } from '../../utils/urlAPI';
 import { add, urlSelector } from '../../components/URLItem/urlSlice';
 import * as Styled from './Home.styled';
 import { useLocalStorage } from '../../hooks';
-import { API_URL } from '../../config';
+import config from '../../config';
 
 const Home = () => {
     const dispatch = useDispatch();
@@ -102,7 +102,11 @@ const Home = () => {
                                     </Styled.Label>
 
                                     <Styled.WrapperInput>
-                                        <input type="text" value={`${API_URL}/`} readOnly />
+                                        <input
+                                            type="text"
+                                            value={`${config.publicRuntime.API_URL}/`}
+                                            readOnly
+                                        />
                                         <Styled.CustomInput
                                             type="text"
                                             value={customPath}
@@ -128,7 +132,7 @@ const Home = () => {
                     <Card
                         title="Recent URLs"
                         subtitle={
-                            <Link to={role === 'user' ? '/url' : '/admin/shorten-url/admin-url'}>
+                            <Link to={role === 'user' ? config.routes.url : config.routes.adminURL}>
                                 View All <AiOutlineRight />
                             </Link>
                         }

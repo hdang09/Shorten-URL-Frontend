@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import config from '../../config';
 import { Table } from 'antd';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
 
@@ -14,7 +15,6 @@ import { MdUpload } from 'react-icons/md';
 import { FiUserX, FiUsers } from 'react-icons/fi';
 import CreateAccount from './CreateAccount';
 import { columns } from './Admin.columns';
-
 const Admin = () => {
     const [allUserData, setAllUserData] = useState([]);
 
@@ -99,7 +99,7 @@ const Admin = () => {
                             <Card
                                 title="Recent Users"
                                 subtitle={
-                                    <Link to="/admin/management">
+                                    <Link to={config.routes.adminManagement}>
                                         View All <AiOutlineRight />
                                     </Link>
                                 }

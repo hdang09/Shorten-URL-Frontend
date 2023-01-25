@@ -3,13 +3,14 @@ import Tippy from '@tippyjs/react';
 import { Avatar } from '../../components';
 import * as Styled from './Admin.styled';
 import { Link } from 'react-router-dom';
+import config from '../../config';
 
 export const columns = [
     {
         title: 'Name',
         dataIndex: 'name',
         render: (_, record) => (
-            <Link to={`/admin/management/user-url?id=${record.key}`}>
+            <Link to={`${config.routes.adminManageUserURL}?id=${record.key}`}>
                 <Avatar src={record.avatar} />
                 <Styled.Name>
                     <span>
