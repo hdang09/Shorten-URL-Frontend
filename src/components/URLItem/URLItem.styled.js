@@ -31,17 +31,24 @@ export const Wrapper = styled.div`
         flex-direction: column;
         align-items: flex-start;
     }
+`;
 
-    /* &::before {
-        content: '';
-        background-size: cover;
-        position: absolute;
-        top: 0px;
-        right: 0px;
-        bottom: 0px;
-        left: 0px;
-        opacity: 0.5;
-    } */
+export const SkeletonWrapper = styled.div`
+    box-shadow: var(--box-shadow);
+    padding: 12px;
+    color: ${(props) => props.theme.white};
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+    border-radius: 10px;
+
+    ${down('md')} {
+        flex-direction: column;
+        align-items: flex-start;
+    }
 `;
 
 export const EditBox = styled.div`
@@ -73,6 +80,7 @@ export const Icon = styled.div`
 export const Main = styled.div`
     flex: 1;
     width: -webkit-fill-available;
+    margin-right: 10px;
 `;
 
 export const Title = styled.h1`

@@ -9,8 +9,8 @@ const MyURL = () => {
     const [, userId] = window.location.search.split('?id=');
     const [id] = useLocalStorage('id');
     const [links, setLinks] = useState({
-        all: [],
-        filtered: [],
+        all: null,
+        filtered: null,
     });
     const [inputValue, setInputValue] = useState('');
 

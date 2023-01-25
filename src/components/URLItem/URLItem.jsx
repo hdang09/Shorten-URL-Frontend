@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import { MdOutlineContentCopy } from 'react-icons/md';
 import { IoQrCodeOutline } from 'react-icons/io5';
 import { BsLink45Deg } from 'react-icons/bs';

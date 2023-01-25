@@ -2,13 +2,16 @@ import React from 'react';
 import URLItem from '../URLItem/URLItem';
 import noLink from '../../assets/images/no-link.png';
 import * as Styled from './URLList.styled';
+import URLSkeleton from '../URLItem/URLSkeleton';
 
 const URLList = ({ list, isRecent }) => {
-    const newList = isRecent && list.length ? list.slice(0, 4) : list;
-
-    console.log(newList);
-
-    return newList.length > 0 ? (
+    let newList;
+    if (list !== null) {
+        newList = isRecent && list.length ? list.slice(0, 4) : list;
+    }
+    return list === null ? (
+        [...Array(4).keys()].map((item) => <URLSkeleton key={item} />)
+    ) : newList.length > 0 ? (
         newList.map((link) => <URLItem key={link._id} data={link} />)
     ) : (
         <Styled.Wrapper>

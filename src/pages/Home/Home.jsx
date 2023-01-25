@@ -20,7 +20,7 @@ const Home = () => {
     const dispatch = useDispatch();
     const currentURL = useSelector(urlSelector).shorten;
 
-    const [allLinks, setAllLinks] = useState([]);
+    const [allLinks, setAllLinks] = useState(null);
     const role = window.location.pathname.split('/')[1] === '' ? 'user' : 'admin';
     const [id] = useLocalStorage('id', '');
 
@@ -36,7 +36,7 @@ const Home = () => {
     const [originalURL, setOriginalURL] = useState('');
     const [customPath, setCustomPath] = useState('');
 
-    const handleShortenURL = async (e) => {
+    const handleShortenURL = async () => {
         if (!isUrl(originalURL)) {
             toast.error('Your link is wrong. Please try again!');
             inputRef.current.focus();
