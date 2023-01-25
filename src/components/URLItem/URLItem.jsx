@@ -22,6 +22,8 @@ import {
 import { AiOutlineInfoCircle } from 'react-icons/ai';
 
 import InfoURL from './InfoURL';
+import { useDispatch } from 'react-redux';
+import { add } from './urlSlice';
 
 const URLItem = ({ data }) => {
     const [openEditBox, setOpenEditBox] = useState(false);
@@ -34,6 +36,18 @@ const URLItem = ({ data }) => {
     // Chakra UI
     const { isOpen, onOpen, onClose } = useDisclosure();
     const btnRef = useRef();
+    const dispatch = useDispatch();
+
+    const generateQR =
+        window.location.pathname === '/' || window.location.pathname === '/admin/shorten-url'
+            ? () =>
+                  dispatch(
+                      add({
+                          original: data.origin_link,
+                          shorten: data.shorten_link,
+                      }),
+                  )
+            : onOpen;
 
     const BUTTON_LIST = [
         {
@@ -49,7 +63,7 @@ const URLItem = ({ data }) => {
         {
             content: 'Generate QR Code',
             icon: IoQrCodeOutline,
-            handleClick: onOpen,
+            handleClick: generateQR,
             ref: btnRef,
         },
         {

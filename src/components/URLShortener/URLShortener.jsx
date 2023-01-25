@@ -5,74 +5,105 @@ import { nanoid } from 'nanoid';
 
 import * as Styled from './URLShortener.styled';
 import { useLocalStorage } from '../../hooks';
-import { Card, Input, Button } from '../../components';
+import { Input, Button } from '../../components';
 import { add } from '../URLItem/urlSlice';
 import { shortenUrl } from '../../utils/urlAPI';
+import config from '../../config';
 
-let counter = 0;
-const regex =
-    // eslint-disable-next-line no-useless-escape
-    /[(http(s)?):\/\/(www\.)?a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/;
+import isUrl from 'is-url';
+import { Col, Row } from 'styled-bootstrap-grid';
 
-const URLShortener = ({ noItem }) => {
-    const inputRef = createRef();
-    const [originalURL, setOriginalURL] = useState('');
+import { HiLink } from 'react-icons/hi';
+
+const URLShortener = () => {
     const dispatch = useDispatch();
     const [id, _] = useLocalStorage('id');
 
-    const handleShortenURL = async (e) => {
-        if (regex.test(originalURL)) {
-            try {
-                const res = await shortenUrl(originalURL, id, nanoid(10));
+    const inputRef = createRef();
+    const [originalURL, setOriginalURL] = useState('');
+    const [customPath, setCustomPath] = useState('');
 
-                ++counter;
-                setOriginalURL('');
-                toast.success('Shorten successfully');
-                let today = new Date();
-                dispatch(
-                    add({
-                        id: counter,
-                        name: `Shorten URL ${counter}`,
-                        shorten_link: res.data.data.shorten_link,
-                        origin_link: originalURL.toLowerCase(),
-                        // created_at: `${today.getDate()}/${
-                        //     today.getMonth() + 1
-                        // }/${today.getFullYear()} ${today.getHours()}:${today.getMinutes()}`,
-                        created_at: today,
-                        updated_at: today,
-                    }),
-                );
-            } catch (error) {
-                toast.error(error.message);
-            }
-
-            if (window.location.pathname.split('/')[1] === 'landing') {
-                window.location = '/';
-            }
-        } else {
+    const handleShortenURL = async () => {
+        if (!isUrl(originalURL)) {
             toast.error('Your link is wrong. Please try again!');
+            inputRef.current.focus();
+            return;
         }
+
+        try {
+            const { data } = await shortenUrl(originalURL, id, customPath || nanoid(10));
+            if (data.message) {
+                toast.warn(data.message);
+            } else {
+                setOriginalURL('');
+                setCustomPath('');
+                toast.success('Shorten successfully');
+            }
+            dispatch(
+                add({
+                    original: originalURL,
+                    shorten: data.data.shorten_link,
+                }),
+            );
+        } catch (error) {
+            toast.error(error.response.data.message);
+            console.log(error);
+        }
+
+        // if (window.location.pathname.split('/')[1] === 'landing') {
+        //     window.location = '/';
+        // } else {
+        //     toast.error('Your link is wrong. Please try again!');
+        // }
 
         inputRef.current.focus();
     };
 
     return (
-        <Card noItem={noItem} title="URL Shortener">
-            <Styled.Wrapper>
-                <Input
-                    ref={inputRef}
-                    value={originalURL}
-                    onChange={(e) => setOriginalURL(e.target.value)}
-                    onKeyDown={(e) => e.keyCode === 13 && handleShortenURL()}
-                    large
-                    background
-                    placeholder="Paste a link to shorten it"
-                />
-                <Button shine="true" onClick={() => handleShortenURL()}>
-                    Shorten
-                </Button>
-            </Styled.Wrapper>
-        </Card>
+        <div>
+            <Row>
+                <Col xs={12} lg={6}>
+                    <Styled.Label>
+                        <HiLink />
+                        <HiLink />
+                        <label htmlFor="">Enter your long URL here</label>
+                    </Styled.Label>
+                    <Input
+                        ref={inputRef}
+                        value={originalURL}
+                        onChange={(e) => setOriginalURL(e.target.value)}
+                        onKeyDown={(e) => e.keyCode === 13 && handleShortenURL()}
+                        large
+                        background
+                        placeholder="Paste a link to shorten it"
+                    />
+                </Col>
+                <Col xs={12} lg={6}>
+                    <Styled.Label>
+                        <HiLink />
+                        <label htmlFor="">Customize your link</label>
+                    </Styled.Label>
+
+                    <Styled.WrapperInput>
+                        <input type="text" value={`${config.publicRuntime.API_URL}/`} readOnly />
+                        <Styled.CustomInput
+                            type="text"
+                            value={customPath}
+                            onChange={(e) => setCustomPath(e.target.value)}
+                            onKeyDown={(e) => e.keyCode === 13 && handleShortenURL()}
+                        />
+                    </Styled.WrapperInput>
+                </Col>
+            </Row>
+
+            <Button
+                shine="true"
+                onClick={() => handleShortenURL()}
+                style={{ margin: '12px auto 0 auto' }}
+            >
+                Shorten
+            </Button>
+        </div>
     );
 };
 
