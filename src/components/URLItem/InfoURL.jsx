@@ -12,13 +12,24 @@ import { updateLink } from '../../utils/urlAPI';
 import { BsLink45Deg } from 'react-icons/bs';
 
 import { Col, Row } from 'styled-bootstrap-grid';
+import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { add } from './urlSlice';
 
 const InfoURL = ({ data, handleClose }) => {
     const [path, setPath] = useState('');
 
+    const dispatch = useDispatch();
     const handleDoneEdit = async () => {
         try {
             await updateLink(data.shorten_link, path);
+            toast.success('Update URL successfully!');
+            dispatch(
+                add({
+                    original: data.origin_link,
+                    shorten: `${config.publicRuntime.API_URL}/${path}`,
+                }),
+            );
         } catch (e) {
             console.error(e);
         }
@@ -30,10 +41,10 @@ const InfoURL = ({ data, handleClose }) => {
             <Styled.Item>
                 <Row>
                     <Col xs={12} lg={8}>
-                        <Styled.Label>
-                            <HiLink />
-                            <label htmlFor="">Customize your link</label>
-                        </Styled.Label>
+                        {/* <Styled.Label> */}
+                        <HiLink />
+                        <label htmlFor="">Customize your link</label>
+                        {/* </Styled.Label> */}
 
                         <Styled.WrapperInput>
                             <input
@@ -46,6 +57,7 @@ const InfoURL = ({ data, handleClose }) => {
                                 value={path}
                                 onChange={(e) => setPath(e.target.value)}
                                 onKeyDown={(e) => e.keyCode === 13 && handleDoneEdit()}
+                                placeholder={data.shorten_link.split('/')[3]}
                             />
                         </Styled.WrapperInput>
                     </Col>

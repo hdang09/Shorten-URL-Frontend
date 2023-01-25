@@ -63,6 +63,10 @@ const GlobalStyles = createGlobalStyle`
         text-decoration: none;
     }
 
+    a:hover {
+        color: #F0BE20;
+    }
+
     /* Scrollbar */
     ::-webkit-scrollbar {
         border-radius: 0;

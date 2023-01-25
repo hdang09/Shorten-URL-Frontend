@@ -4,8 +4,11 @@ import * as Styled from './MyURL.styled';
 import { Card, URLList } from '../../components';
 import { getReport } from '../../utils/urlAPI';
 import { useLocalStorage } from '../../hooks';
+import { useSelector } from 'react-redux';
+import { urlSelector } from '../../components/URLItem/urlSlice';
 
 const MyURL = () => {
+    const currentURL = useSelector(urlSelector).shorten;
     const [, userId] = window.location.search.split('?id=');
     const [id] = useLocalStorage('id');
     const [links, setLinks] = useState({
@@ -25,7 +28,7 @@ const MyURL = () => {
         };
         getAllLinks();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, []);
+    }, [currentURL]);
 
     const handleSearch = (e) => {
         setInputValue(e.target.value);
