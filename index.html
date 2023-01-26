@@ -11,9 +11,39 @@
             href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap"
             rel="stylesheet"
         />
+        <style>
+            body {
+                overflow: hidden;
+            }
+
+            .wrapper {
+                width: 100vw;
+                height: 100vh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                flex-direction: column;
+            }
+
+            img {
+                max-width: 150px;
+            }
+
+            h1 {
+                color: #45ce7b;
+                font-family: Inter;
+                font-weight: 900;
+                margin-top: 12px;
+            }
+        </style>
     </head>
     <body>
-        <div id="root"></div>
+        <div id="root">
+            <div class="wrapper">
+                <img src="./logo.gif" alt="" />
+                <h1>F-Code</h1>
+            </div>
+        </div>
         <script type="module" src="/src/main.jsx"></script>
     </body>
 </html>

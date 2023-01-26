@@ -45,6 +45,7 @@ const GlobalStyles = createGlobalStyle`
         font-size: 1.6rem;
         line-height: 1.5;
         text-rendering: optimizeSpeed;
+        overflow: unset !important;
     }
 
     border,
