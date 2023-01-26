@@ -4,12 +4,13 @@ import { HiCursorClick } from 'react-icons/hi';
 import { Container, Row, Col } from 'styled-bootstrap-grid';
 import { getReport } from '../../utils/urlAPI';
 import { useLocalStorage } from '../../hooks';
+import Skeleton from './StatisticsSkeleton';
 
 import * as Styled from './Statistics.styled';
 
 const Statistics = () => {
     const [id, setId] = useLocalStorage('id', '');
-    const [report, setReport] = useState([]);
+    const [report, setReport] = useState({});
 
     useEffect(() => {
         const getAllLinks = async () => {
@@ -19,28 +20,35 @@ const Statistics = () => {
         getAllLinks();
     }, [id]);
 
+    const STATISTICS_LIST = [
+        {
+            icon: <RiLinksLine />,
+            count: report.totalLinks,
+            title: 'Links',
+        },
+        {
+            icon: <HiCursorClick />,
+            count: report.totalClicks,
+            title: 'Clicks',
+        },
+    ];
+
     return (
         <Container>
             <Row>
-                <Col as={Styled.ColStat} col={6}>
-                    <Styled.LinksIcon>
-                        <RiLinksLine />
-                    </Styled.LinksIcon>
-                    <Styled.InfoStat>
-                        <h2>{report.totalLinks}</h2>
-                        <span>Links</span>
-                    </Styled.InfoStat>
-                </Col>
-
-                <Col as={Styled.ColStat} col={6}>
-                    <Styled.ClickIcon>
-                        <HiCursorClick />
-                    </Styled.ClickIcon>
-                    <Styled.InfoStat>
-                        <h2>{report.totalClicks}</h2>
-                        <span>Clicks</span>
-                    </Styled.InfoStat>
-                </Col>
+                {Object.keys(report).length ? (
+                    STATISTICS_LIST.map((item) => (
+                        <Col as={Styled.ColStat} col={6} key={item.title}>
+                            <Styled.LinksIcon>{item.icon}</Styled.LinksIcon>
+                            <Styled.InfoStat>
+                                <h2>{item.count}</h2>
+                                <span>{item.title}</span>
+                            </Styled.InfoStat>
+                        </Col>
+                    ))
+                ) : (
+                    <Skeleton />
+                )}
             </Row>
         </Container>
     );

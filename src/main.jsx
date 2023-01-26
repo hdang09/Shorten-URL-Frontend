@@ -9,6 +9,8 @@ import GlobalStyles from './assets/styles/GlobalStyles';
 
 import App from './App';
 import 'antd/dist/antd.css';
+import 'react-loading-skeleton/dist/skeleton.css';
+
 import React from 'react';
 
 ReactDOM.createRoot(document.getElementById('root')).render(

@@ -11,6 +11,7 @@ export const InfoStat = styled.div`
     display: inline-flex;
     flex-direction: column;
     margin: 0 0 12px 3px;
+    flex: 1;
 
     & h2 {
         font-size: 2.4rem;
