@@ -97,7 +97,7 @@ const URLItem = ({ data }) => {
                                 <Styled.Button
                                     as={button.icon}
                                     onClick={button.handleClick}
-                                    ref={button.ref}
+                                    innerref={button.ref}
                                 />
                             </span>
                         </Tippy>

@@ -38,7 +38,6 @@ const QR = ({ url }) => {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     const urlInRedux = useSelector(urlSelector).shorten;
     const currentUrl = url || urlInRedux || '';
-    console.log(currentUrl);
     const qrRef = useRef(null);
 
     useEffect(() => {
