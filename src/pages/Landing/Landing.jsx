@@ -6,6 +6,7 @@ import * as Styled from './Landing.styled';
 import lightScreenshot from '../../assets/images/screenshots.png';
 import darkScreenshot from '../../assets/images/screenshots-dark.png';
 import { useLocalStorage } from '../../hooks';
+import { useEffect } from 'react';
 
 AOS.init();
 AOS.init({
@@ -29,6 +30,11 @@ AOS.refresh();
 function LandingPage() {
     const [theme, setTheme] = useLocalStorage('data-theme', 'light');
     const screenshot = theme === 'light' ? lightScreenshot : darkScreenshot;
+
+    useEffect(() => {
+        document.title = 'F-Code Shorten URL Landing Page';
+    }, []);
+
     return (
         <>
             <Header landingPage />

@@ -5,8 +5,13 @@ import { Container, Row, Col } from 'styled-bootstrap-grid';
 
 import * as Styled from './Login.styled';
 import config from '../../config';
+import { useEffect } from 'react';
 
 function Login() {
+    useEffect(() => {
+        document.title = 'Login | F-Code Shorten URL';
+    }, []);
+
     return (
         <Styled.Wrapper>
             <Container>

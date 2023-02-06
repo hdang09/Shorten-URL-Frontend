@@ -18,6 +18,10 @@ const MyURL = () => {
     const [inputValue, setInputValue] = useState('');
 
     useEffect(() => {
+        document.title = 'My URL | F-Code Shorten URL';
+    }, []);
+
+    useEffect(() => {
         const getAllLinks = async () => {
             const { data } = await getReport(userId || id);
             setLinks({

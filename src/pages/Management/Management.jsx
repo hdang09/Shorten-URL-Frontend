@@ -10,6 +10,10 @@ const Management = () => {
     const [allUsers, setAllUsers] = useState([]);
 
     useEffect(() => {
+        document.title = 'Management | F-Code Shorten URL';
+    }, []);
+
+    useEffect(() => {
         const getAllUserData = async () => {
             const { data } = await getAllUser();
             const newList = data.data.map((item) => ({

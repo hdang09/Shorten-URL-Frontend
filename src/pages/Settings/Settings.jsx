@@ -1,3 +1,4 @@
+import { useEffect, useContext } from 'react';
 import { BsMoon } from 'react-icons/bs';
 import { RiLayout2Fill } from 'react-icons/ri';
 import { IoColorPaletteOutline } from 'react-icons/io5';
@@ -8,7 +9,7 @@ import { Card, Input } from '../../components';
 import { useLocalStorage } from '../../hooks';
 import { ThemeContext } from '../../App';
 import { LayoutContext } from '../../routers';
-import { useContext } from 'react';
+
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 import newLayout from '../../assets/images/screenshots.png';
 import basicLayout from '../../assets/images/basic-layout.png';
@@ -18,6 +19,10 @@ const Settings = () => {
     const setThemeInLocal = useContext(ThemeContext);
     const layout = JSON.parse(localStorage.getItem('layout')) || 'new';
     const setLayoutInLocal = useContext(LayoutContext);
+
+    useEffect(() => {
+        document.title = 'Settings | F-Code Shorten URL';
+    }, []);
 
     const [color, setColor] = useLocalStorage('primary-color', '#45ce7b');
     document.querySelector(':root').style.setProperty('--primary-color', `${color}`);

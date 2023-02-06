@@ -15,8 +15,13 @@ import { MdUpload } from 'react-icons/md';
 import { FiUserX, FiUsers } from 'react-icons/fi';
 import CreateAccount from './CreateAccount';
 import { columns } from './Admin.columns';
+
 const Admin = () => {
     const [allUserData, setAllUserData] = useState([]);
+
+    useEffect(() => {
+        document.title = 'F-Code Shorten URL - Admin Page';
+    }, []);
 
     useEffect(() => {
         const getAllUserData = async () => {

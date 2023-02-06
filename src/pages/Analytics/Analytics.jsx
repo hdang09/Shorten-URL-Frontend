@@ -1,15 +1,20 @@
-import { Bar, Line } from 'react-chartjs-2';
+import { useEffect } from 'react';
+// import { Bar, Line } from 'react-chartjs-2';
 import { Row, Col } from 'styled-bootstrap-grid';
 
 import { Report, Card, Statistics } from '../../components';
-import { getReport } from '../../utils/urlAPI';
+// import { getReport } from '../../utils/urlAPI';
 
-import { BarChartData, LineChartData } from './Analytics.dummy';
+// import { BarChartData, LineChartData } from './Analytics.dummy';
 
 const Analytics = () => {
-    const BarChart = () => <Bar data={BarChartData.data} />;
+    // const BarChart = () => <Bar data={BarChartData.data} />;
 
-    const LineChart = () => <Line data={LineChartData.data} options={LineChartData.options} />;
+    // const LineChart = () => <Line data={LineChartData.data} options={LineChartData.options} />;
+
+    useEffect(() => {
+        document.title = 'Analytics | F-Code Shorten URL';
+    }, []);
 
     return (
         <>

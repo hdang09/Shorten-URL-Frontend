@@ -76,7 +76,7 @@ export const HorizontalContent = styled(Content)`
 export const Image = styled.img`
     width: 50px;
     height: auto;
-    margin: 8px 24px;
+    margin: 8px 20px;
 
     &:hover {
         background-color: var(--hover-color);
