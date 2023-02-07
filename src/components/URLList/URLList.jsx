@@ -6,6 +6,7 @@ import URLSkeleton from '../URLItem/URLSkeleton';
 
 const URLList = ({ list, isRecent }) => {
     let newList;
+    console.log(list);
     if (list !== null) {
         newList = isRecent && list.length ? list.slice(0, 4) : list;
     }

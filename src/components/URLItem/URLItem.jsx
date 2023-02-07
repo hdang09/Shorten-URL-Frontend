@@ -88,7 +88,10 @@ const URLItem = ({ data }) => {
                 </Styled.Icon>
                 <Styled.Main>
                     <Styled.Title>{data.name || 'Shorten URL'}</Styled.Title>
-                    <Styled.Subtitle href={data.shorten_link}>{data.shorten_link}</Styled.Subtitle>
+                    <Styled.Subtitle href={data.shorten_link}>
+                        {data.shorten_link.split('https://')[1] ||
+                            data.shorten_link.split('http://')[1]}
+                    </Styled.Subtitle>
                 </Styled.Main>
                 <div style={{ minWidth: '160px' }}>
                     {BUTTON_LIST.map((button) => (

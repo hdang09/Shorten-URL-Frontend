@@ -52,7 +52,7 @@ export const SkeletonWrapper = styled.div`
 `;
 
 export const EditBox = styled.div`
-    border: 1px solid ${(props) => props.theme.black};
+    border: 2px solid var(--primary-color);
     border-radius: 10px;
     padding: 20px 50px;
     margin-bottom: 20px;
@@ -96,6 +96,12 @@ export const Subtitle = styled.a`
     cursor: pointer;
     text-decoration: none;
     text-overflow: ellipsis;
+    padding-bottom: 1px;
+    border-bottom: 2px solid ${(props) => props.theme.white};
+
+    &:hover {
+        color: ${(props) => props.theme.white};
+    }
 `;
 
 export const Button = styled.div`
@@ -117,7 +123,11 @@ export const HighLight = styled.span`
     display: ${(props) => (props.wrap ? 'block' : 'inline-block')};
 `;
 
-export const Link = HighLight.withComponent('a');
+export const Link = styled(HighLight)`
+    &:hover {
+        color: var(--secondary-color);
+    }
+`;
 
 export const Item = styled.div`
     margin-bottom: 8px;

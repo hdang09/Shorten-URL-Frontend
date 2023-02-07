@@ -24,10 +24,11 @@ const MyURL = () => {
     useEffect(() => {
         const getAllLinks = async () => {
             const { data } = await getReport(userId || id);
+            data.data.links.reverse();
             setLinks({
                 ...links,
-                all: data.data.links.reverse(),
-                filtered: data.data.links.reverse(),
+                all: data.data.links,
+                filtered: data.data.links,
             });
         };
         getAllLinks();
