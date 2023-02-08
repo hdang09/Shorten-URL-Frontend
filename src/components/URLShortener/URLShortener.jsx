@@ -17,7 +17,6 @@ import { HiLink } from 'react-icons/hi';
 import removeHttps from '../../utils/removeHttps';
 
 const URLShortener = () => {
-    console.log(config.publicRuntime.API_URL);
     const dispatch = useDispatch();
     const [id, _] = useLocalStorage('id');
 
@@ -87,7 +86,11 @@ const URLShortener = () => {
                     </Styled.Label>
 
                     <Styled.WrapperInput>
-                        <input type="text" value={`hdang09.site/`} readOnly />
+                        <input
+                            type="text"
+                            value={`${removeHttps(config.publicRuntime.API_URL)}/`}
+                            readOnly
+                        />
                         <Styled.CustomInput
                             type="text"
                             value={customPath}
