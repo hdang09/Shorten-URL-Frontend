@@ -17,7 +17,7 @@ export const Toggle = styled.div`
 `;
 
 export const Circle = styled.div`
-    background-color: #ffffff;
+    background-color: var(--white-color);
     transition-property: background-color, border-color, color, fill, stroke, opacity, box-shadow,
         transform;
     transition-duration: 200ms;

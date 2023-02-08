@@ -10,6 +10,11 @@ const GlobalStyles = createGlobalStyle`
     :root {
         --primary-color: rgb(69, 206, 123);
         --secondary-color: rgb(240, 190, 32);
+        --white-color: #fff;
+        --success-color: #7AC5A9;
+        --error-color: #EB403F;
+        --info-color: #3FA0EB;
+        --grey-color: #333;
         --purple-color: 115, 103, 240;
         --aqua-color: 0, 207, 232;
         --red-color: 234, 84, 85;

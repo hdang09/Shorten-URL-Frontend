@@ -17,17 +17,15 @@ export const Name = styled.span`
 `;
 
 export const Tag = styled.label`
-    ${(props) =>
-        props.type === 'Accept'
-            ? `
-    background-color: #7AC5A9;`
-            : props.type === 'Waiting'
-            ? `
-    background-color: #3FA0EB;`
-            : `
-    background-color: #EB403F;`}
-
-    color: #fff;
+    background-color: var(
+        ${(props) =>
+            props.type === 'Accept'
+                ? '--success-color'
+                : props.type === 'Waiting'
+                ? '--info-color'
+                : '--error-color'}
+    );
+    color: var(--white-color);
     border-radius: 4px;
     padding: 4px 10px;
 `;
@@ -61,7 +59,7 @@ export const Center = styled.div`
 export const Separator = styled.div`
     width: 1px;
     height: 16px;
-    background-color: #333;
+    background-color: var(--grey-color);
     margin: 0 8px;
     display: inline-block;
 `;

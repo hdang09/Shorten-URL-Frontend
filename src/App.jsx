@@ -4,7 +4,6 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './assets/styles/themes';
 import { createContext } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
-import './index.css';
 
 const ThemeContext = createContext();
 

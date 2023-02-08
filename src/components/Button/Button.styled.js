@@ -40,7 +40,7 @@ export const Button = styled.button`
         &:hover {
             opacity: 1;
             background-color: var(--primary-color);
-            color: #fff;
+            color: var(--white-color);
         }
     }
 
