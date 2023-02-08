@@ -27,7 +27,6 @@ export const WrapperInput = styled.div`
     height: 42px;
     border-radius: 32px;
     font-size: 1.4rem;
-    caret-color: var(--primary-color);
     color: ${(props) => props.theme.black};
     padding: 8px 20px;
     box-sizing: border-box;
@@ -38,6 +37,7 @@ export const WrapperInput = styled.div`
     }
 
     & input:first-child {
+        max-width: 105px;
         padding-right: 5px;
         border-right: 2px solid #ccc;
     }

@@ -14,8 +14,10 @@ import isUrl from 'is-url';
 import { Col, Row } from 'styled-bootstrap-grid';
 
 import { HiLink } from 'react-icons/hi';
+import removeHttps from '../../utils/removeHttps';
 
 const URLShortener = () => {
+    console.log(config.publicRuntime.API_URL);
     const dispatch = useDispatch();
     const [id, _] = useLocalStorage('id');
 
@@ -42,7 +44,7 @@ const URLShortener = () => {
             dispatch(
                 add({
                     original: originalURL,
-                    shorten: data.data.shorten_link,
+                    shorten: removeHttps(data.data.shorten_link),
                 }),
             );
         } catch (error) {
@@ -85,7 +87,7 @@ const URLShortener = () => {
                     </Styled.Label>
 
                     <Styled.WrapperInput>
-                        <input type="text" value={`${config.publicRuntime.API_URL}/`} readOnly />
+                        <input type="text" value={`hdang09.site/`} readOnly />
                         <Styled.CustomInput
                             type="text"
                             value={customPath}

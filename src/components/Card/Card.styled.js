@@ -47,6 +47,6 @@ export const Subtitle = styled.h3`
     color: var(--primary-color);
 
     &:hover a {
-        opacity: 0.6;
+        opacity: var(--secondary-color);
     }
 `;

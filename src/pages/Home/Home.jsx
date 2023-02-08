@@ -19,6 +19,10 @@ const Home = () => {
     const [id] = useLocalStorage('id', '');
 
     useEffect(() => {
+        document.title = 'F-Code Shorten URL';
+    }, []);
+
+    useEffect(() => {
         const getLinks = async () => {
             const { data } = await getReport(id);
             setLinks(data.data.links.reverse());

@@ -70,6 +70,24 @@ export const SettingsItem = styled.div`
     height: 100%;
     margin-bottom: 1.5rem;
     border-bottom: 1px solid ${(props) => props.theme.background};
+
+    a {
+        display: inline-block;
+
+        &::after {
+            content: '';
+            display: block;
+            bottom: 0;
+            width: 0;
+            height: 2px;
+            background-color: ${(props) => props.theme.black};
+            transition: width linear 0.35s;
+        }
+
+        &:hover::after {
+            width: 100%;
+        }
+    }
 `;
 
 export const SettingsLabel = styled.p`

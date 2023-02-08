@@ -15,6 +15,7 @@ import { Col, Row } from 'styled-bootstrap-grid';
 import { toast } from 'react-toastify';
 import { useDispatch } from 'react-redux';
 import { add } from './urlSlice';
+import removeHttps from '../../utils/removeHttps';
 
 const InfoURL = ({ data, handleClose }) => {
     const [path, setPath] = useState('');
@@ -27,7 +28,7 @@ const InfoURL = ({ data, handleClose }) => {
             dispatch(
                 add({
                     original: data.origin_link,
-                    shorten: `${config.publicRuntime.API_URL}/${path}`,
+                    shorten: `${removeHttps(config.publicRuntime.API_URL)}/${path}`,
                 }),
             );
         } catch (e) {
@@ -49,7 +50,7 @@ const InfoURL = ({ data, handleClose }) => {
                         <Styled.WrapperInput>
                             <input
                                 type="text"
-                                value={`${config.publicRuntime.API_URL}/`}
+                                value={`${removeHttps(config.publicRuntime.API_URL)}/`}
                                 readOnly
                             />
                             <Styled.CustomInput
