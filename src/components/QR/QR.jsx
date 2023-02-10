@@ -1,7 +1,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import QRCodeStyling from 'qr-code-styling';
 import { useSelector } from 'react-redux';
-import { AiOutlineDown, AiOutlineDownload } from 'react-icons/ai';
+import { AiFillFileAdd, AiOutlineDown, AiOutlineDownload } from 'react-icons/ai';
 
 import * as Styled from './QR.styled';
 import { Button, Input } from '../';
@@ -277,44 +277,26 @@ const QR = ({ url }) => {
             header: 'Logo',
             content: (
                 <>
-                    <label>URL:</label>
+                    {/* Upload file */}
+                    <input
+                        id="upload-file"
+                        type="file"
+                        onChange={(e) =>
+                            qrCode.update({ image: URL.createObjectURL(e.target.files[0]) })
+                        }
+                        hidden
+                    />
+                    <Styled.UploadFile htmlFor="upload-file">
+                        <AiFillFileAdd color={primaryColor} /> <span>Upload file</span>
+                    </Styled.UploadFile>
 
+                    <label>URL:</label>
                     <Input
                         placeholder="Input your logo URL"
                         large
                         onChange={(e) => qrCode.update({ image: e.target.value })}
                     />
-                    <label>Upload file:</label>
-                    <input
-                        type="file"
-                        onChange={(e) =>
-                            qrCode.update({ image: URL.createObjectURL(e.target.files[0]) })
-                        }
-                    />
-                    <div>
-                        <label>Hide background logo: </label>
-                        <input
-                            type="checkbox"
-                            onChange={(e) =>
-                                qrCode.update({
-                                    imageOptions: {
-                                        ...qrCode.imageOptions,
-                                        hideBackgroundDots: e.target.checked,
-                                    },
-                                })
-                            }
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="">Logo size: </label>
-                        <input
-                            type="range"
-                            min="0.1"
-                            max="1"
-                            step="0.1"
-                            onChange={handleSetLogoSize}
-                        />
-                    </div>
+
                     <div>
                         <label>Margin: </label>
                         <Input
@@ -331,6 +313,32 @@ const QR = ({ url }) => {
                             }
                         />
                     </div>
+
+                    <Styled.HideBgLogo>
+                        <label>Transparent</label>
+                        <input
+                            type="checkbox"
+                            onChange={(e) =>
+                                qrCode.update({
+                                    imageOptions: {
+                                        ...qrCode.imageOptions,
+                                        hideBackgroundDots: e.target.checked,
+                                    },
+                                })
+                            }
+                        />
+                    </Styled.HideBgLogo>
+
+                    <Styled.Slider>
+                        <label htmlFor="">Logo size: </label>
+                        <input
+                            type="range"
+                            min="0.1"
+                            max="1"
+                            step="0.1"
+                            onChange={handleSetLogoSize}
+                        />
+                    </Styled.Slider>
                 </>
             ),
         },

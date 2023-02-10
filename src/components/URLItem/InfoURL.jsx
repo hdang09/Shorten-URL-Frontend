@@ -67,7 +67,7 @@ const InfoURL = ({ data, handleClose }) => {
             <Styled.Item>
                 <BsLink45Deg />
                 Original link:
-                <Styled.Link as="a" wrap href={data.origin_link}>
+                <Styled.Link as="a" target="_blank" wrap href={data.origin_link}>
                     {data.origin_link}
                 </Styled.Link>
             </Styled.Item>

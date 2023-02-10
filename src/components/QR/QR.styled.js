@@ -55,6 +55,7 @@ export const Heading = styled.h2`
 
 export const Content = styled.div`
     width: inherit;
+    margin-top: 0.75rem;
 
     p {
         font-weight: bold;
@@ -171,5 +172,109 @@ export const ColorsInput = styled.div`
         width: 30px;
         height: 30px;
         margin-left: 6px;
+    }
+`;
+
+export const UploadFile = styled.label`
+    border-radius: 10px;
+    border: 1px dashed ${(props) => props.theme.black};
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 10px;
+
+    & span {
+        margin-top: 5px;
+    }
+
+    &:hover {
+        background-color: ${(props) => props.theme.cardBackground};
+        cursor: pointer;
+        border-color: ${(props) => props.theme.cardBackground};
+    }
+`;
+
+export const HideBgLogo = styled.div`
+    margin-bottom: 10px;
+
+    input[type='checkbox'] {
+        /* Add if not using autoprefixer */
+        -webkit-appearance: none;
+        appearance: none;
+        /* For iOS < 15 to remove gradient background */
+        background-color: ${(props) => props.theme.cardBackground};
+        /* Not removed via appearance */
+        margin: 0;
+        font: inherit;
+        color: currentColor;
+        width: 1.15em;
+        height: 1.15em;
+        border: 0.15em solid ${(props) => props.theme.cardBackground};
+        border-radius: 0.15em;
+        transform: translateY(-0.075em);
+        display: inline-grid;
+        place-content: center;
+        margin-left: 8px;
+        box-shadow: var(--box-shadow);
+
+        &:hover {
+            cursor: pointer;
+        }
+
+        &::before {
+            content: '';
+            width: 0.65em;
+            height: 0.65em;
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em var(--primary-color);
+        }
+
+        &:checked::before {
+            transform: scale(1);
+        }
+    }
+`;
+
+export const Slider = styled.div`
+    display: flex;
+    align-items: center;
+
+    input {
+        -webkit-appearance: none;
+        height: 20px;
+        background: ${(props) => props.theme.cardBackground};
+        outline: none;
+        opacity: 0.7;
+        -webkit-transition: 0.2s;
+        transition: opacity 0.2s;
+        display: inline-block;
+        margin-left: 8px;
+        border-radius: 5px;
+        box-shadow: var(--box-shadow);
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 2px;
+        }
+
+        &::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background-color: var(--primary-color);
+            cursor: pointer;
+            border-radius: 2px;
+        }
     }
 `;

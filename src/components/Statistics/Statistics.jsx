@@ -9,7 +9,7 @@ import Skeleton from './StatisticsSkeleton';
 import * as Styled from './Statistics.styled';
 
 const Statistics = () => {
-    const [id, setId] = useLocalStorage('id', '');
+    const [id, _] = useLocalStorage('id', '');
     const [report, setReport] = useState({});
 
     useEffect(() => {
@@ -22,12 +22,20 @@ const Statistics = () => {
 
     const STATISTICS_LIST = [
         {
-            icon: <RiLinksLine />,
+            icon: (
+                <Styled.LinksIcon>
+                    <RiLinksLine />
+                </Styled.LinksIcon>
+            ),
             count: report.totalLinks,
             title: 'Links',
         },
         {
-            icon: <HiCursorClick />,
+            icon: (
+                <Styled.ClicksIcon>
+                    <HiCursorClick />
+                </Styled.ClicksIcon>
+            ),
             count: report.totalClicks,
             title: 'Clicks',
         },
@@ -39,7 +47,7 @@ const Statistics = () => {
                 {Object.keys(report).length ? (
                     STATISTICS_LIST.map((item) => (
                         <Col as={Styled.ColStat} col={6} key={item.title}>
-                            <Styled.LinksIcon>{item.icon}</Styled.LinksIcon>
+                            {item.icon}
                             <Styled.InfoStat>
                                 <h2>{item.count}</h2>
                                 <span>{item.title}</span>

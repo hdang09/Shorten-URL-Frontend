@@ -17,6 +17,6 @@ export const Wrapper = styled.div`
         margin-bottom: 8px;
         font-size: 24px;
         font-weight: 900;
-        color: ${(props) => props.theme.white};
+        color: ${(props) => props.theme.black};
     }
 `;

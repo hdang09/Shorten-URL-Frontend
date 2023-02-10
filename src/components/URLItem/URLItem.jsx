@@ -88,7 +88,7 @@ const URLItem = ({ data }) => {
                 </Styled.Icon>
                 <Styled.Main>
                     <Styled.Title>{data.name || 'Shorten URL'}</Styled.Title>
-                    <Styled.Subtitle href={data.shorten_link}>
+                    <Styled.Subtitle target="_blank" href={data.shorten_link}>
                         {data.shorten_link.split('https://')[1] ||
                             data.shorten_link.split('http://')[1]}
                     </Styled.Subtitle>

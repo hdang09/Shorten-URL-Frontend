@@ -1,6 +1,20 @@
 import { down } from 'styled-breakpoints';
 import styled from 'styled-components';
 
+export const LeftIcon = styled.div`
+    font-size: 2rem;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+`;
+
+export const RightIcon = styled.div`
+    font-size: 2rem;
+    margin-left: 10px;
+    display: flex;
+    align-items: center;
+`;
+
 export const Button = styled.button`
     border: 1px solid transparent;
     background: var(--primary-color);
@@ -70,18 +84,9 @@ export const Button = styled.button`
     ${down('md')} {
         width: 100%;
     }
-`;
 
-export const LeftIcon = styled.div`
-    font-size: 2rem;
-    margin-right: 10px;
-    display: flex;
-    align-items: center;
-`;
-
-export const RightIcon = styled.div`
-    font-size: 2rem;
-    margin-left: 10px;
-    display: flex;
-    align-items: center;
+    &:hover ${LeftIcon} path,
+    &:hover ${RightIcon} path {
+        fill: var(--white-color);
+    }
 `;

@@ -13,7 +13,7 @@ export const Label = styled.div`
     }
 
     & label {
-        margin-left: 4px;
+        margin: 0 0 4px 4px;
         font-weight: bold;
     }
 `;

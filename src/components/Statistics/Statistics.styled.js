@@ -39,7 +39,7 @@ export const LinksIcon = styled(Icon)`
     }
 `;
 
-export const ClickIcon = styled(Icon)`
+export const ClicksIcon = styled(Icon)`
     background-color: rgba(var(--aqua-color), 0.12);
     & svg {
         color: rgb(var(--aqua-color));

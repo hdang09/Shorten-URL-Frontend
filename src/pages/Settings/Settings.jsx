@@ -82,7 +82,7 @@ const Settings = () => {
                             {/* PrimaryColorSettings */}
                             <Styled.SettingsItem>
                                 <Styled.SettingsLabel>
-                                    <IoColorPaletteOutline /> Change primary color:
+                                    <IoColorPaletteOutline /> Primary color:
                                 </Styled.SettingsLabel>
                                 <div style={{ display: 'flex' }}>
                                     <Styled.ColorInput
@@ -100,7 +100,7 @@ const Settings = () => {
                                 <a onClick={() => setColor('#45ce7b')}>
                                     <MdInvertColorsOff />
                                     {'   '}
-                                    Click here to go back to default color
+                                    Reset to default color
                                 </a>
                             </Styled.SettingsItem>
 

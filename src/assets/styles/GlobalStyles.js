@@ -122,6 +122,7 @@ const GlobalStyles = createGlobalStyle`
     img, svg, video, canvas, audio, iframe, embed, object {
         display: inline-block !important;
     }
+
 `;
 
 GlobalStyles.defaultProps = {
