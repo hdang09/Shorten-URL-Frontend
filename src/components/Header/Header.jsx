@@ -24,7 +24,7 @@ function Header({ admin, landingPage }) {
     const defaultAvatar =
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU';
 
-    const setThemeInLocal = useContext(ThemeContext);
+    const { toggleTheme, _ } = useContext(ThemeContext);
     const dispatch = useDispatch();
 
     const navListMenu = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
@@ -98,7 +98,7 @@ function Header({ admin, landingPage }) {
                         render={(attrs) => (
                             <div tabIndex="-1" {...attrs}>
                                 <Styled.TippyBox>
-                                    <Styled.MenuItem to="" onClick={setThemeInLocal}>
+                                    <Styled.MenuItem to="" onClick={toggleTheme}>
                                         <BsLightbulb />
                                         <Styled.Text>
                                             {theme === 'light' ? 'Dark' : 'Light'} Mode

@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import PrivateRouters from './PrivateRouters';
 import PublicRouters from './PublicRouters';
-// import AdminRouers from './AdminRouers';
+import AdminRouters from './AdminRouers';
 import { Login, Home, Landing, Analytics, Settings, MyURL, Admin, Management } from '../pages';
 import { BasicLayout, ModernLayout } from '../layouts';
 import { useLocalStorage } from '../hooks';
@@ -76,6 +76,15 @@ const RouterComponents = () => {
     return (
         <LayoutContext.Provider value={setLayoutInLocal}>
             <Routes>
+                <Route element={<AdminRouters />}>
+                    {adminRoutes.map((route) => (
+                        <Route
+                            key={route.path}
+                            path={route.path}
+                            element={<Layout admin>{route.element}</Layout>}
+                        />
+                    ))}
+                </Route>
                 <Route element={<PrivateRouters />}>
                     {privateRoutes.map((route) => (
                         <Route
@@ -90,15 +99,7 @@ const RouterComponents = () => {
                         <Route key={route.path} path={route.path} element={route.element} />
                     ))}
                 </Route>
-                <Route element={<PrivateRouters />}>
-                    {adminRoutes.map((route) => (
-                        <Route
-                            key={route.path}
-                            path={route.path}
-                            element={<Layout admin>{route.element}</Layout>}
-                        />
-                    ))}
-                </Route>
+
                 {/* <Route path="*" element={<Navigate to="/landing" replace />} /> */}
                 <Route path="*" element={<h1>404</h1>} />
             </Routes>

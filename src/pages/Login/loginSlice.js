@@ -1,8 +1,15 @@
 import { createSlice } from '@reduxjs/toolkit';
+import jwtDecode from 'jwt-decode';
 import localStorageUtils from '../../utils/localStorageUtils';
 
 const initialState = {
-    isAuthenticated: localStorageUtils.getToken(),
+    isAdmin:
+        localStorageUtils.getToken() &&
+        jwtDecode(localStorageUtils.getToken()).payload.role === '1',
+    isUser:
+        localStorageUtils.getToken() &&
+        jwtDecode(localStorageUtils.getToken()).payload.role === '0',
+    isVisitFirstTime: null,
 };
 
 const loginSlice = createSlice({
@@ -10,16 +17,20 @@ const loginSlice = createSlice({
     initialState,
     reducers: {
         login: (state) => {
-            state.isAuthenticated = true;
+            const { role } = jwtDecode(localStorageUtils.getToken()).payload;
+            state.isUser = role === '0';
+            state.isAdmin = role === '1';
         },
         signOut: (state) => {
-            state.isAuthenticated = false;
+            state.isAdmin = false;
+            state.isUser = false;
             localStorageUtils.deleteUser();
             localStorage.removeItem('id');
         },
     },
 });
 
-export const authSelector = (state) => state.auth?.isAuthenticated;
+export const adminSelector = (state) => state.auth?.isAdmin;
+export const userSelector = (state) => state.auth?.isUser;
 export const { login, signOut } = loginSlice.actions;
 export default loginSlice.reducer;

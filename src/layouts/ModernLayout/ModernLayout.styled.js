@@ -5,7 +5,7 @@ export const Wrapper = styled.div`
     /* display: flex; */
     height: 100%;
     min-height: 100vh;
-    background-color: ${(props) => props.theme.background};
+    background-color: ${(props) => props.theme.contrastBackground || props.theme.background};
     box-sizing: border-box;
 
     /* width: 100%;

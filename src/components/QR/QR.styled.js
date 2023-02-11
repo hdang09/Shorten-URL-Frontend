@@ -244,7 +244,7 @@ export const Slider = styled.div`
 
     input {
         -webkit-appearance: none;
-        height: 20px;
+        height: 15px;
         background: ${(props) => props.theme.cardBackground};
         outline: none;
         opacity: 0.7;

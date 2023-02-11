@@ -1,4 +1,9 @@
 import styled from 'styled-components';
+import hexToRgb from '../../utils/hexToRgb';
+import localStorageUtils from '../../utils/localStorageUtils';
+
+let primaryColor = localStorageUtils.getItem('primary-color');
+let fadeColor = `rgba(${hexToRgb(primaryColor)}, 0.08)`;
 
 export const Toggle = styled.div`
     display: inline-block;
@@ -68,7 +73,7 @@ export const LayoutImg = styled.img`
 export const SettingsItem = styled.div`
     width: 100%;
     height: 100%;
-    margin-bottom: 1.5rem;
+    padding: 1.5rem 0;
     border-bottom: 1px solid ${(props) => props.theme.background};
 
     a {
@@ -88,11 +93,109 @@ export const SettingsItem = styled.div`
             width: 100%;
         }
     }
+
+    & div {
+        margin-bottom: 0;
+    }
+
+    /* & + & {
+        border-top: 1px solid ${(props) => props.theme.background};
+    } */
 `;
 
-export const SettingsLabel = styled.p`
+export const SettingsLabel = styled.div`
     margin: 0 0.5rem 0.5rem 0;
-    display: inline-block;
+    display: inline-flex;
+    align-items: center;
     /* font-size: 1.6rem; */
     font-weight: 500;
+
+    & span {
+        margin-left: 4px;
+    }
+`;
+
+export const SettingsBox = styled.div`
+    width: 150px;
+    height: 75px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: 2px solid ${(props) => props.theme.background};
+
+    &:hover {
+        background-color: ${(props) => props.theme.background};
+        cursor: pointer;
+    }
+
+    & + & {
+        margin-left: 10px;
+    }
+`;
+
+export const Preset = styled.div`
+    width: ${(props) => (props.active ? '20px' : '16px')};
+    height: ${(props) => (props.active ? '20px' : '16px')};
+    background-color: ${(props) => props.color};
+    border-radius: 1000px;
+    transition: all;
+`;
+
+export const SmallSettingsBox = styled.div`
+    width: 97px;
+    height: 50px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    border: ${(props) =>
+        props.active ? '1px solid var(--primary-color)' : `2px solid ${props.theme.background}`};
+    margin: 0 10px 10px 0 !important;
+    background-color: ${(props) =>
+        props.active ? `rgba(${hexToRgb(props.primaryColor)}, 0.08)` : props.theme.cardBackground};
+
+    &:hover {
+        background-color: ${(props) =>
+            props.active ? `rgba(${hexToRgb(props.primaryColor)}, 0.1)` : props.theme.background};
+        cursor: pointer;
+    }
+`;
+
+export const Layout = styled.div`
+    padding: 10px 35px;
+    width: 100%;
+    height: 100%;
+    display: flex;
+
+    & div:first-child {
+        background-color: ${(props) => (props.active ? 'var(--primary-color)' : '#a9b2bc')};
+        border-radius: 3px;
+    }
+
+    & div:nth-child(2) {
+        flex: 1;
+        border-radius: 3px;
+        border: 1px dashed ${(props) => (props.active ? `var(--primary-color)` : '#a9b2bc')};
+        background-color: ${(props) =>
+            props.active ? `rgba(${hexToRgb(props.primaryColor)}, 0.08)` : props.theme.background};
+    }
+`;
+
+export const BasicLayout = styled(Layout)`
+    flex-direction: column;
+
+    & div:first-child {
+        width: 100%;
+        height: 12px;
+        margin-bottom: 6px;
+    }
+`;
+
+export const ModernLayout = styled(Layout)`
+    & div:first-child {
+        width: 15px;
+        height: 100%;
+        margin-right: 6px;
+    }
 `;

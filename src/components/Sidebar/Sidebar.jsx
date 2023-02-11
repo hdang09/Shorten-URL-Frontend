@@ -26,7 +26,7 @@ function Sidebar({ admin, redesign }) {
     const dispatch = useDispatch();
     const sidebarList = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
     const theme = JSON.parse(localStorage.getItem('data-theme')) || 'light';
-    const setThemeInLocal = useContext(ThemeContext);
+    const { toggleTheme, _ } = useContext(ThemeContext);
     const [id, setId] = useLocalStorage('id', '');
 
     const isMobile = useBreakpoint(down('sm'));
@@ -63,7 +63,7 @@ function Sidebar({ admin, redesign }) {
                     placement={tippyPosition}
                     key={'Theme'}
                 >
-                    <Styled.NewSidebarItem to="" onClick={setThemeInLocal}>
+                    <Styled.NewSidebarItem to="" onClick={toggleTheme}>
                         {theme === 'light' ? <BsMoon /> : <BsSun />}
                     </Styled.NewSidebarItem>
                 </Tippy>

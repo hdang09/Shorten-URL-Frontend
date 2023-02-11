@@ -9,7 +9,7 @@ export const Container = styled.div`
     align-items: center;
     top: 0;
     margin-top: var(--header-height);
-    background-color: ${(props) => props.theme.background};
+    background-color: ${(props) => props.theme.contrastBackground || props.theme.background};
 
     ${down('lg')} {
         align-items: flex-start;

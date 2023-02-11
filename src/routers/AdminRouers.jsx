@@ -1,12 +1,11 @@
-// import { Outlet, Navigate } from 'react-router-dom';
-// import jwtDecode from 'jwt-decode';
+import { useSelector } from 'react-redux';
+import { Outlet, Navigate } from 'react-router-dom';
 
-// const AdminRouters = ({ auth }) => {
-//     if (localStorage.getItem('token')) {
-//         let { role } = jwtDecode(localStorage.getItem('token')).payload;
-//         return role === '1' ? <Navigate to="/admin" replace /> : <Navigate to="/" replace />;
-//     }
-//     return auth ? <Navigate to="/" replace /> : <Navigate to="/landing" replace />;
-// };
+import { adminSelector } from '../pages/Login/loginSlice';
 
-// export default AdminRouters;
+const PrivateRouters = () => {
+    const isAdmin = useSelector(adminSelector);
+    return isAdmin ? <Outlet /> : <Navigate to="/" replace />;
+};
+
+export default PrivateRouters;

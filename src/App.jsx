@@ -14,10 +14,40 @@ function App() {
     const [themeInLocal, setThemeInLocal] = useLocalStorage('data-theme', 'light');
     const toggleTheme = () => setThemeInLocal(themeInLocal === 'light' ? 'dark' : 'light');
 
-    const theme = themeInLocal === 'light' ? lightTheme : darkTheme;
+    const [contrastInLocal, setContrastInLocal] = useLocalStorage('is-contrast', false);
+    const toggleContrast = () => setContrastInLocal(!contrastInLocal);
+
+    console.log(typeof contrastInLocal);
+    let theme;
+    if (themeInLocal === 'light') {
+        if (contrastInLocal === true) {
+            theme = {
+                ...lightTheme,
+                contrastBackground: lightTheme.cardBackground,
+            };
+        } else {
+            theme = {
+                ...lightTheme,
+                contrastBackground: null,
+            };
+        }
+    } else {
+        theme = darkTheme;
+        // if (contrastInLocal === true) {
+        //     theme = {
+        //         ...darkTheme,
+        //         contrastBackground: darkTheme.cardBackground,
+        //     };
+        // } else {
+        //     theme = {
+        //         ...lightTheme,
+        //         contrastBackground: null,
+        //     };
+        // }
+    }
 
     return (
-        <ThemeContext.Provider value={toggleTheme}>
+        <ThemeContext.Provider value={{ toggleTheme, toggleContrast }}>
             <ThemeProvider theme={theme}>
                 <Router>
                     <RouterComponents />

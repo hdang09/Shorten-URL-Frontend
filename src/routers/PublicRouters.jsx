@@ -1,16 +1,18 @@
-import { Outlet, Navigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import jwtDecode from 'jwt-decode';
-import { authSelector } from '../pages/Login/loginSlice';
-import localStorageUtils from '../utils/localStorageUtils';
+import { Outlet, Navigate } from 'react-router-dom';
 
-const PublicRouters = () => {
-    const isAuthenticated = useSelector(authSelector);
-    if (localStorageUtils.getToken()) {
-        let { role } = jwtDecode(localStorageUtils.getToken()).payload;
-        return role === '1' ? <Navigate to="/admin" replace /> : <Navigate to="/" replace />;
+import { adminSelector, userSelector } from '../pages/Login/loginSlice';
+
+const PrivateRouters = () => {
+    const isUser = useSelector(userSelector);
+    const isAdmin = useSelector(adminSelector);
+    if (!isUser && !isAdmin) {
+        return <Outlet />;
+    } else if (isAdmin) {
+        return <Navigate to="/admin" replace />;
+    } else if (isUser) {
+        return <Navigate to="/" replace />;
     }
-    return isAuthenticated ? <Navigate to="/" replace /> : <Outlet />;
 };
 
-export default PublicRouters;
+export default PrivateRouters;
