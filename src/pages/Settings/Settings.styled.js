@@ -2,8 +2,7 @@ import styled from 'styled-components';
 import hexToRgb from '../../utils/hexToRgb';
 import localStorageUtils from '../../utils/localStorageUtils';
 
-let primaryColor = localStorageUtils.getItem('primary-color');
-let fadeColor = `rgba(${hexToRgb(primaryColor)}, 0.08)`;
+let primaryColor = localStorageUtils.getItem('primary-color') || '#45c7b';
 
 export const Toggle = styled.div`
     display: inline-block;
