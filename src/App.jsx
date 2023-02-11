@@ -17,7 +17,6 @@ function App() {
     const [contrastInLocal, setContrastInLocal] = useLocalStorage('is-contrast', false);
     const toggleContrast = () => setContrastInLocal(!contrastInLocal);
 
-    console.log(typeof contrastInLocal);
     let theme;
     if (themeInLocal === 'light') {
         if (contrastInLocal === true) {
