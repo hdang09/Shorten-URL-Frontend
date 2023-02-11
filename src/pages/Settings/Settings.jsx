@@ -69,7 +69,7 @@ const Settings = () => {
                         <Styled.SmallSettingsBox
                             key={colorItem}
                             onClick={() => setColor(colorItem)}
-                            active={color === colorItem}
+                            active={color.toLowerCase() === colorItem.toLowerCase}
                             primaryColor={color}
                         >
                             <Styled.Preset color={colorItem} />
