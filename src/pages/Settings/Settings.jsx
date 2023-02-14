@@ -39,7 +39,6 @@ const Settings = () => {
 
     // layout
     const layout = localStorageUtils.getItem(layoutConfig) || 'new';
-    console.log(layout);
     const setLayoutInLocal = useContext(LayoutContext);
 
     // primary color
