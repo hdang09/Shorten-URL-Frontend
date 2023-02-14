@@ -12,8 +12,9 @@ export const Wrapper = styled.div`
     padding-top: 16px;
 
     ${down('lg')} {
+        position: fixed;
         display: inline-block;
-        width: 125px;
+        width: var(--sidebar-width);
     }
 
     ${down('sm')} {

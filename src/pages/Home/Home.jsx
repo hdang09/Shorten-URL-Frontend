@@ -16,7 +16,7 @@ const Home = () => {
 
     const [links, setLinks] = useState(null);
     const role = window.location.pathname.split('/')[1] === '' ? 'user' : 'admin';
-    const [id] = useLocalStorage('id', '');
+    const [id] = useLocalStorage(config.localStorage.idUser, '');
 
     useEffect(() => {
         document.title = 'F-Code Shorten URL';

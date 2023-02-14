@@ -7,6 +7,7 @@ import lightScreenshot from '../../assets/images/screenshots.png';
 import darkScreenshot from '../../assets/images/screenshots-dark.png';
 import { useLocalStorage } from '../../hooks';
 import { useEffect } from 'react';
+import config from '../../config';
 
 AOS.init();
 AOS.init({
@@ -28,7 +29,7 @@ AOS.init({
 AOS.refresh();
 
 function LandingPage() {
-    const [theme, setTheme] = useLocalStorage('data-theme', 'light');
+    const [theme, _] = useLocalStorage(config.localStorage.theme, 'light');
     const screenshot = theme === 'light' ? lightScreenshot : darkScreenshot;
 
     useEffect(() => {

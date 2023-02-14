@@ -18,7 +18,7 @@ import removeHttps from '../../utils/removeHttps';
 
 const URLShortener = () => {
     const dispatch = useDispatch();
-    const [id, _] = useLocalStorage('id');
+    const [id, _] = useLocalStorage(config.localStorage.idUser);
 
     const inputRef = createRef();
     const [originalURL, setOriginalURL] = useState('');
@@ -33,29 +33,25 @@ const URLShortener = () => {
 
         try {
             const { data } = await shortenUrl(originalURL, id, customPath || nanoid(10));
-            if (data.message) {
-                toast.warn(data.message);
-            } else {
-                setOriginalURL('');
-                setCustomPath('');
-                toast.success('Shorten successfully');
-            }
             dispatch(
                 add({
                     original: originalURL,
                     shorten: removeHttps(data.data.shorten_link),
                 }),
             );
+
+            if (data.message) {
+                toast.warn(data.message);
+                return;
+            }
+
+            setOriginalURL('');
+            setCustomPath('');
+            toast.success('Shorten successfully');
         } catch (error) {
             toast.error(error.response.data.message);
             console.log(error);
         }
-
-        // if (window.location.pathname.split('/')[1] === 'landing') {
-        //     window.location = '/';
-        // } else {
-        //     toast.error('Your link is wrong. Please try again!');
-        // }
 
         inputRef.current.focus();
     };

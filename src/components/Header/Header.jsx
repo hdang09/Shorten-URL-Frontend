@@ -19,6 +19,7 @@ import config from '../../config';
 
 function Header({ admin, landingPage }) {
     const location = useLocation();
+    const { theme, idUser } = config.localStorage;
 
     const [infoUser, setInfoUser] = useState({});
     const defaultAvatar =
@@ -28,8 +29,8 @@ function Header({ admin, landingPage }) {
     const dispatch = useDispatch();
 
     const navListMenu = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
-    const theme = JSON.parse(localStorage.getItem('data-theme')) || 'light';
-    const [id, setId] = useLocalStorage('id', '');
+    const themeInLocal = JSON.parse(localStorage.getItem(theme)) || 'light';
+    const [id, setId] = useLocalStorage(idUser, '');
 
     useEffect(() => {
         if (!landingPage) {
@@ -101,7 +102,7 @@ function Header({ admin, landingPage }) {
                                     <Styled.MenuItem to="" onClick={toggleTheme}>
                                         <BsLightbulb />
                                         <Styled.Text>
-                                            {theme === 'light' ? 'Dark' : 'Light'} Mode
+                                            {themeInLocal === 'light' ? 'Dark' : 'Light'} Mode
                                         </Styled.Text>
                                     </Styled.MenuItem>
                                     <Styled.MenuItem to="/helps">

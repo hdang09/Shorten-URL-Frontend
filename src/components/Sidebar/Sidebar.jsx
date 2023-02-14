@@ -17,17 +17,20 @@ import { useBreakpoint } from 'styled-breakpoints/react-styled';
 import { ThemeContext } from '../../App';
 import { getInfo } from '../../utils/adminAPI';
 import config from '../../config';
+import localStorageUtils from '../../utils/localStorageUtils';
 
 function Sidebar({ admin, redesign }) {
+    const { theme: themeConfig, idUser: idConfig } = config.localStorage;
+
     const [infoUser, setInfoUser] = useState({});
     const defaultAvatar =
         'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU';
 
     const dispatch = useDispatch();
     const sidebarList = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
-    const theme = JSON.parse(localStorage.getItem('data-theme')) || 'light';
+    const theme = localStorageUtils.getItem(themeConfig) || 'light';
     const { toggleTheme, _ } = useContext(ThemeContext);
-    const [id, setId] = useLocalStorage('id', '');
+    const [id, setId] = useLocalStorage(idConfig, '');
 
     const isMobile = useBreakpoint(down('sm'));
     const tippyPosition = isMobile ? 'top' : 'right';
@@ -45,7 +48,7 @@ function Sidebar({ admin, redesign }) {
     return redesign ? (
         <Styled.Sidebar>
             <Link to={config.routes.home}>
-                <Styled.Logo src={logo} alt="Logo" />
+                <Styled.Logo src={logo} alt="F-Code Logo" />
             </Link>
             <Styled.NavList>
                 {sidebarList.map(({ name, icon, to }) => (

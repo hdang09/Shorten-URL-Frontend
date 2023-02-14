@@ -7,9 +7,10 @@ import { useLocalStorage } from '../../hooks';
 import Skeleton from './StatisticsSkeleton';
 
 import * as Styled from './Statistics.styled';
+import config from '../../config';
 
 const Statistics = () => {
-    const [id, _] = useLocalStorage('id', '');
+    const [id, _] = useLocalStorage(config.localStorage.idUser, '');
     const [report, setReport] = useState({});
 
     useEffect(() => {

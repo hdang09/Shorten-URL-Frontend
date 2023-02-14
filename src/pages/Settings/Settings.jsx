@@ -13,19 +13,37 @@ import { Col, Container, Row } from 'styled-bootstrap-grid';
 import { RiContrastLine, RiLayout2Fill } from 'react-icons/ri';
 import COLORS_LIST from '../../assets/styles/presets';
 import { TbContrast } from 'react-icons/tb';
+import config from '../../config';
+import localStorageUtils from '../../utils/localStorageUtils';
 
 const Settings = () => {
-    const theme = JSON.parse(localStorage.getItem('data-theme')) || 'light';
-    const isContrast = JSON.parse(localStorage.getItem('is-contrast')) || false;
-    const { toggleTheme, toggleContrast } = useContext(ThemeContext);
-    const layout = JSON.parse(localStorage.getItem('layout')) || 'new';
-    const setLayoutInLocal = useContext(LayoutContext);
+    // config
+    const {
+        primaryColor,
+        layout: layoutConfig,
+        theme: themeConfig,
+        isConstrast: contrastConfig,
+    } = config.localStorage;
 
+    // Set document tilte
     useEffect(() => {
         document.title = 'Settings | F-Code Shorten URL';
     }, []);
 
-    const [color, setColor] = useLocalStorage('primary-color', '#45ce7b');
+    // theme
+    const theme = localStorageUtils.getItem(themeConfig) || 'light';
+    const { toggleTheme, toggleContrast } = useContext(ThemeContext);
+
+    // contrast
+    const isContrast = localStorageUtils.getItem(contrastConfig) || false;
+
+    // layout
+    const layout = localStorageUtils.getItem(layoutConfig) || 'new';
+    console.log(layout);
+    const setLayoutInLocal = useContext(LayoutContext);
+
+    // primary color
+    const [color, setColor] = useLocalStorage(primaryColor, '#45ce7b');
     document.querySelector(':root').style.setProperty('--primary-color', `${color}`);
 
     const SETTINGS_LIST = [
@@ -33,31 +51,41 @@ const Settings = () => {
             icon: <ImBrightnessContrast />,
             label: 'Mode',
             children: (
-                <>
-                    <Styled.SettingsBox onClick={toggleTheme}>
-                        <BsSunFill size={25} color={theme === 'light' ? color : '#C6CACE'} />
-                    </Styled.SettingsBox>
-                    <Styled.SettingsBox onClick={toggleTheme}>
-                        <BsMoonFill size={25} color={theme === 'dark' ? color : '#C6CACE'} />
-                    </Styled.SettingsBox>
-                </>
+                <Row>
+                    <Col xs={6} sm={6}>
+                        <Styled.SettingsBox onClick={toggleTheme}>
+                            <BsSunFill size={25} color={theme === 'light' ? color : '#C6CACE'} />
+                        </Styled.SettingsBox>
+                    </Col>
+
+                    <Col xs={6} sm={6}>
+                        <Styled.SettingsBox onClick={toggleTheme}>
+                            <BsMoonFill size={25} color={theme === 'dark' ? color : '#C6CACE'} />
+                        </Styled.SettingsBox>
+                    </Col>
+                </Row>
             ),
         },
         {
             icon: <IoContrast />,
             label: 'Contrast',
             children: (
-                <>
-                    <Styled.SettingsBox onClick={toggleContrast}>
-                        <RiContrastLine
-                            size={25}
-                            color={isContrast === false ? color : '#C6CACE'}
-                        />
-                    </Styled.SettingsBox>
-                    <Styled.SettingsBox onClick={toggleContrast}>
-                        <TbContrast size={25} color={isContrast === true ? color : '#C6CACE'} />
-                    </Styled.SettingsBox>
-                </>
+                <Row>
+                    <Col xs={6} sm={6}>
+                        <Styled.SettingsBox onClick={toggleContrast}>
+                            <RiContrastLine
+                                size={25}
+                                color={isContrast === false ? color : '#C6CACE'}
+                            />
+                        </Styled.SettingsBox>
+                    </Col>
+
+                    <Col xs={6} sm={6}>
+                        <Styled.SettingsBox onClick={toggleContrast}>
+                            <TbContrast size={25} color={isContrast === true ? color : '#C6CACE'} />
+                        </Styled.SettingsBox>
+                    </Col>
+                </Row>
             ),
         },
         {
@@ -65,29 +93,37 @@ const Settings = () => {
             label: 'Presets',
             children: (
                 <>
-                    {COLORS_LIST.map((colorItem) => (
-                        <Styled.SmallSettingsBox
-                            key={colorItem}
-                            onClick={() => setColor(colorItem)}
-                            active={color.toLowerCase() === colorItem.toLowerCase()}
-                            primaryColor={color}
-                        >
-                            <Styled.Preset color={colorItem} />
-                        </Styled.SmallSettingsBox>
-                    ))}
-                    <div style={{ display: 'flex', paddingRight: '15px' }}>
-                        <Styled.ColorInput
-                            type="color"
-                            value={color}
-                            onChange={(e) => setColor(e.target.value)}
-                        />
-                        <Input
-                            large
-                            background
-                            value={color}
-                            onChange={(e) => setColor(e.target.value)}
-                        />
-                    </div>
+                    <Row>
+                        {COLORS_LIST.map((colorItem) => (
+                            <Col xs={6} sm={6} md={4} key={colorItem}>
+                                <Styled.SmallSettingsBox
+                                    onClick={() => setColor(colorItem)}
+                                    active={color.toLowerCase() === colorItem.toLowerCase()}
+                                    primaryColor={color}
+                                >
+                                    <Styled.Preset color={colorItem} />
+                                </Styled.SmallSettingsBox>
+                            </Col>
+                        ))}
+                    </Row>
+
+                    <Row>
+                        <Col sm={12}>
+                            <div style={{ display: 'flex' }}>
+                                <Styled.ColorInput
+                                    type="color"
+                                    value={color}
+                                    onChange={(e) => setColor(e.target.value)}
+                                />
+                                <Input
+                                    large
+                                    background
+                                    value={color}
+                                    onChange={(e) => setColor(e.target.value)}
+                                />
+                            </div>
+                        </Col>
+                    </Row>
                 </>
             ),
         },
@@ -95,30 +131,24 @@ const Settings = () => {
             icon: <RiLayout2Fill />,
             label: 'Layout',
             children: (
-                <>
-                    <div style={{ display: 'flex' }}>
-                        <Styled.SettingsBox>
-                            <Styled.ModernLayout
-                                active={layout === 'new'}
-                                onClick={() => setLayoutInLocal('new')}
-                                primaryColor={color}
-                            >
+                <Row>
+                    <Col xs={6} sm={6}>
+                        <Styled.SettingsBox onClick={() => setLayoutInLocal('new')}>
+                            <Styled.ModernLayout active={layout === 'new'} primaryColor={color}>
                                 <div />
                                 <div />
                             </Styled.ModernLayout>
                         </Styled.SettingsBox>
-                        <Styled.SettingsBox>
-                            <Styled.BasicLayout
-                                active={layout === 'default'}
-                                onClick={() => setLayoutInLocal('default')}
-                                primaryColor={color}
-                            >
+                    </Col>
+                    <Col xs={6} sm={6}>
+                        <Styled.SettingsBox onClick={() => setLayoutInLocal('default')}>
+                            <Styled.BasicLayout active={layout === 'default'} primaryColor={color}>
                                 <div />
                                 <div />
                             </Styled.BasicLayout>
                         </Styled.SettingsBox>
-                    </div>
-                </>
+                    </Col>
+                </Row>
             ),
         },
     ];
@@ -127,8 +157,8 @@ const Settings = () => {
         <>
             <Container>
                 <div className="row gx-5">
-                    <div className="col-lg-3 hidden-md" />
-                    <div className="col-lg-6 col-md-12">
+                    <div className="col-xl-3 col-lg-2 hidden-md" />
+                    <div className="col-xl-6 col-lg-8 col-md-12">
                         <Card title="Settings">
                             {SETTINGS_LIST.map((item) => (
                                 <Styled.SettingsItem key={item.label}>
@@ -145,7 +175,7 @@ const Settings = () => {
                                 </Styled.SettingsItem>
                             ))}
                         </Card>
-                        <div className="col-lg-3 hidden-md" />
+                        <div className="col-xl-3 col-lg-2 hidden-md" />
                     </div>
                 </div>
             </Container>

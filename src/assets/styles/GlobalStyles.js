@@ -20,6 +20,7 @@ const GlobalStyles = createGlobalStyle`
         --red-color: 234, 84, 85;
         --green-color: 40, 199, 111;
         --header-height: 60px;
+        --sidebar-width: 125px;
         --box-shadow: 0 4px 24px 0 rgb(34 41 47 / 10%);
     }
 

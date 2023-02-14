@@ -4,46 +4,43 @@ import { ThemeProvider } from 'styled-components';
 import { lightTheme, darkTheme } from './assets/styles/themes';
 import { createContext } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import config from './config';
 
 const ThemeContext = createContext();
 
 function App() {
-    const color = JSON.parse(localStorage.getItem('primary-color')) || '#45ce7b';
+    const { primaryColor, theme: themeConfig, isConstrast } = config.localStorage;
+
+    const color = JSON.parse(localStorage.getItem(primaryColor)) || '#45ce7b';
     document.querySelector(':root').style.setProperty('--primary-color', `${color}`);
 
-    const [themeInLocal, setThemeInLocal] = useLocalStorage('data-theme', 'light');
+    const [themeInLocal, setThemeInLocal] = useLocalStorage(themeConfig, 'light');
     const toggleTheme = () => setThemeInLocal(themeInLocal === 'light' ? 'dark' : 'light');
 
-    const [contrastInLocal, setContrastInLocal] = useLocalStorage('is-contrast', false);
+    const [contrastInLocal, setContrastInLocal] = useLocalStorage(isConstrast, false);
     const toggleContrast = () => setContrastInLocal(!contrastInLocal);
 
     let theme;
-    if (themeInLocal === 'light') {
+    const getTheme = () => {
+        if (themeInLocal === 'dark') {
+            theme = darkTheme;
+            return;
+        }
+
         if (contrastInLocal === true) {
             theme = {
                 ...lightTheme,
                 contrastBackground: lightTheme.cardBackground,
             };
-        } else {
-            theme = {
-                ...lightTheme,
-                contrastBackground: null,
-            };
+            return;
         }
-    } else {
-        theme = darkTheme;
-        // if (contrastInLocal === true) {
-        //     theme = {
-        //         ...darkTheme,
-        //         contrastBackground: darkTheme.cardBackground,
-        //     };
-        // } else {
-        //     theme = {
-        //         ...lightTheme,
-        //         contrastBackground: null,
-        //     };
-        // }
-    }
+
+        theme = {
+            ...lightTheme,
+            contrastBackground: null,
+        };
+    };
+    getTheme();
 
     return (
         <ThemeContext.Provider value={{ toggleTheme, toggleContrast }}>

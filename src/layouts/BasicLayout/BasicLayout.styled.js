@@ -27,10 +27,10 @@ export const Content = styled.div`
     margin: 24px 16px;
 
     ${down('lg')} {
-        margin: 16px 8px;
+        margin: 16px 8px 16px var(--sidebar-width);
     }
 
-    ${down('md')} {
+    ${down('sm')} {
         overflow-x: scroll;
         margin: 12px 8px 80px;
     }

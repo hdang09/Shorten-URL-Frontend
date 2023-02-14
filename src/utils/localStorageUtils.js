@@ -9,7 +9,7 @@ class LocalStorageUtils {
         if (item === undefined) {
             item = defaultValue;
         }
-        return item;
+        return JSON.parse(item);
     }
     setItem(key, value = '') {
         if (typeof localStorage !== 'undefined') {
@@ -22,10 +22,10 @@ class LocalStorageUtils {
         }
     }
     deleteUser() {
-        localStorage.removeItem(config.publicRuntime.LOCALSTORAGE_TOKEN_NAME);
+        localStorage.removeItem(config.localStorage.token);
     }
     getToken() {
-        return this.getItem(config.publicRuntime.LOCALSTORAGE_TOKEN_NAME);
+        return this.getItem(config.localStorage.token);
     }
     clear() {
         localStorage.clear();

@@ -3,11 +3,12 @@ import Skeleton from 'react-loading-skeleton';
 
 import * as Styled from './Statistics.styled';
 import { useLocalStorage } from '../../hooks';
+import config from '../../config';
 
 const Statistics = () => {
     const STATISTICS_LIST = [...Array(2).keys()];
     // eslint-disable-next-line prefer-destructuring
-    const isDarkMode = useLocalStorage('data-theme')[0] === 'dark';
+    const isDarkMode = useLocalStorage(config.localStorage.theme)[0] === 'dark';
 
     return (
         <>

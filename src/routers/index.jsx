@@ -39,7 +39,7 @@ const adminRoutes = [
 export const LayoutContext = createContext();
 
 const RouterComponents = () => {
-    const [layout, setLayoutInLocal] = useLocalStorage('layout', 'new');
+    const [layout, setLayoutInLocal] = useLocalStorage(config.localStorage.layout, 'new');
     const Layout = layout === 'new' ? ModernLayout : BasicLayout;
     const dispatch = useDispatch();
 

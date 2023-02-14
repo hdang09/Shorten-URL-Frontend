@@ -1,8 +1,6 @@
+import { between, down } from 'styled-breakpoints';
 import styled from 'styled-components';
 import hexToRgb from '../../utils/hexToRgb';
-import localStorageUtils from '../../utils/localStorageUtils';
-
-let primaryColor = localStorageUtils.getItem('primary-color') || '#45c7b';
 
 export const Toggle = styled.div`
     display: inline-block;
@@ -115,13 +113,14 @@ export const SettingsLabel = styled.div`
 `;
 
 export const SettingsBox = styled.div`
-    width: 150px;
+    display: flex;
+    flex: 1;
     height: 75px;
-    display: inline-flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
     border: 2px solid ${(props) => props.theme.background};
+    margin-bottom: 5px !important;
 
     &:hover {
         background-color: ${(props) => props.theme.background};
@@ -142,15 +141,15 @@ export const Preset = styled.div`
 `;
 
 export const SmallSettingsBox = styled.div`
-    width: 97px;
     height: 50px;
-    display: inline-flex;
+    display: flex;
+    flex: 1;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
+    margin-bottom: 10px !important;
     border: ${(props) =>
         props.active ? '1px solid var(--primary-color)' : `2px solid ${props.theme.background}`};
-    margin: 0 10px 10px 0 !important;
     background-color: ${(props) =>
         props.active ? `rgba(${hexToRgb(props.primaryColor)}, 0.08)` : props.theme.cardBackground};
 
@@ -162,7 +161,8 @@ export const SmallSettingsBox = styled.div`
 `;
 
 export const Layout = styled.div`
-    padding: 10px 35px;
+    max-width: 75px;
+    padding: 10px 0;
     width: 100%;
     height: 100%;
     display: flex;
@@ -179,6 +179,10 @@ export const Layout = styled.div`
         background-color: ${(props) =>
             props.active ? `rgba(${hexToRgb(props.primaryColor)}, 0.08)` : props.theme.background};
     }
+
+    /* ${between('md', 'lg')} {
+        max-width: 100px;
+    } */
 `;
 
 export const BasicLayout = styled(Layout)`
@@ -187,7 +191,7 @@ export const BasicLayout = styled(Layout)`
     & div:first-child {
         width: 100%;
         height: 12px;
-        margin-bottom: 6px;
+        margin-bottom: 5px;
     }
 `;
 

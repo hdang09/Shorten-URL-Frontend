@@ -6,17 +6,19 @@ import { getReport } from '../../utils/urlAPI';
 import { useLocalStorage } from '../../hooks';
 import { useSelector } from 'react-redux';
 import { urlSelector } from '../../components/URLItem/urlSlice';
+import config from '../../config';
 
 const MyURL = () => {
     const currentURL = useSelector(urlSelector).shorten;
     const [, userId] = window.location.search.split('?id=');
-    const [id] = useLocalStorage('id');
+    const [id] = useLocalStorage(config.localStorage.idUser);
     const [links, setLinks] = useState({
         all: null,
         filtered: null,
     });
     const [inputValue, setInputValue] = useState('');
 
+    // Set document title
     useEffect(() => {
         document.title = 'My URL | F-Code Shorten URL';
     }, []);
