@@ -1,7 +1,8 @@
 # Shorten URL Frontend
 
-An URL Shortener that transform long, ugly links into nice, short URLs
-Here is [the backend](https://github.com/khanhlinh2601/Shorten-URL-Backend)
+An URL Shortener that transform long, ugly links into nice, short URLs.
+
+Here is [the website](https://shorten.hdang09.site) and this is [the backend](https://github.com/khanhlinh2601/Shorten-URL-Backend)
 
 ## Team members
 
@@ -135,6 +136,6 @@ Contributions are more than welcome! Please check out the [contributing guide](C
 
 ## Contact
 
-<p><span style="margin-right: 30px;"></span><a href="https://www.linkedin.com/in/dang-tran-hai-761024238/"><img target="_blank" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" style="width: 5%; margin: 0 10px"></a><span style="margin-right: 30px;"></span><a href="https://github.com/hdang09"><img target="_blank" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" style="width: 5%; margin: 0 10px"></a><span style="margin-right: 30px;"></span><a href="fdsfadfa"><img target="_blank" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" style="width: 5%; margin: 0 10px"></a></p>
+<p><span style="margin-right: 30px;"></span><a href="https://www.linkedin.com/in/dang-tran-hai-761024238/"><img target="_blank" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg" style="width: 10%;"></a><span style="margin-right: 30px;"></span><a href="https://github.com/hdang09"><img target="_blank" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" style="width: 10%;"></a><span style="margin-right: 30px;"></span><a href="fdsfadfa"><img target="_blank" src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/facebook/facebook-original.svg" style="width: 10%;"></a></p>
 
-https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/
+<!-- https://www.freecodecamp.org/news/how-to-write-a-good-readme-file/ -->
