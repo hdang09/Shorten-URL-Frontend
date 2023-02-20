@@ -25,14 +25,13 @@ function Button({
     ];
 
     const handleButtonType = () => {
-        // if (!href?.startsWith('http://') || !href?.startsWith('https://')) href = `http://${href}`;
-
         if (to) {
             return {
                 as: Link,
                 to,
             };
-        } else if (href) {
+        }
+        if (href) {
             return {
                 as: 'a',
                 href,

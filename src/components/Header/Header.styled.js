@@ -32,6 +32,10 @@ export const Content = styled.div`
     justify-content: space-between;
     align-items: center;
     margin: 0 25px;
+
+    ${down('md')} {
+        justify-content: center;
+    }
 `;
 
 export const Logo = styled.div`

@@ -18,13 +18,12 @@ import { ThemeContext } from '../../App';
 import { getInfo } from '../../utils/adminAPI';
 import config from '../../config';
 import localStorageUtils from '../../utils/localStorageUtils';
+import noAvatar from '../../assets/images/no-avatar.png';
 
 function Sidebar({ admin, redesign }) {
     const { theme: themeConfig, idUser: idConfig } = config.localStorage;
 
     const [infoUser, setInfoUser] = useState({});
-    const defaultAvatar =
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU';
 
     const dispatch = useDispatch();
     const sidebarList = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
@@ -77,7 +76,15 @@ function Sidebar({ admin, redesign }) {
                 </Tippy>
             </Styled.NavList>
             <Tippy content={infoUser.first_name || 'Anonymous'} placement={tippyPosition}>
-                <Styled.Logo src={infoUser.avatar || defaultAvatar} alt="Avatar" isAvatar />
+                <Styled.Logo
+                    src={infoUser.avatar || noAvatar}
+                    alt="Avatar"
+                    isAvatar
+                    onError={({ currentTarget }) => {
+                        currentTarget.onerror = null; // prevents looping
+                        currentTarget.src = noAvatar;
+                    }}
+                />
             </Tippy>
         </Styled.Sidebar>
     ) : (

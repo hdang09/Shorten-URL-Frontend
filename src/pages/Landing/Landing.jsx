@@ -44,8 +44,8 @@ function LandingPage() {
                     Create <Styled.Highlight>Short</Styled.Highlight>&nbsp;Links!
                 </Styled.Heading>
                 <Styled.Subheading data-aos="fade-up">
-                    A URL shortener built with powerful tools to help you grow and protect your
-                    brand.
+                    An URL Shortener built with powerful tools that transform long, ugly links into
+                    nice, short URLs.
                 </Styled.Subheading>
                 <div style={{ margin: '2rem' }}>
                     <Button to="/login" style={{ display: 'inline-flex' }} shine="true">

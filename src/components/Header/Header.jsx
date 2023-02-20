@@ -16,14 +16,13 @@ import { getInfo } from '../../utils/adminAPI';
 import { useLocalStorage } from '../../hooks';
 import { toast } from 'react-toastify';
 import config from '../../config';
+import noAvatar from '../../assets/images/no-avatar.png';
 
 function Header({ admin, landingPage }) {
     const location = useLocation();
     const { theme, idUser } = config.localStorage;
 
     const [infoUser, setInfoUser] = useState({});
-    const defaultAvatar =
-        'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvnc6MdmGqI6SSWXO_yEK6FpBZUd4L_VNJLBAOmEzlahtmEHZm_UaXVkEcwXEb4rMpGz0&usqp=CAU';
 
     const { toggleTheme, _ } = useContext(ThemeContext);
     const dispatch = useDispatch();
@@ -33,18 +32,18 @@ function Header({ admin, landingPage }) {
     const [id, setId] = useLocalStorage(idUser, '');
 
     useEffect(() => {
-        if (!landingPage) {
-            const getInfoUser = async () => {
-                try {
-                    const { data } = await getInfo(id);
-                    setInfoUser(data.data);
-                } catch (e) {
-                    console.log(e);
-                    toast.error(e);
-                }
-            };
-            getInfoUser();
-        }
+        if (landingPage) return;
+
+        const getInfoUser = async () => {
+            try {
+                const { data } = await getInfo(id);
+                setInfoUser(data.data);
+            } catch (e) {
+                console.log(e);
+                toast.error(e);
+            }
+        };
+        getInfoUser();
     }, [id, landingPage]);
 
     let navItem;
@@ -125,7 +124,14 @@ function Header({ admin, landingPage }) {
                         )}
                     >
                         <Styled.User>
-                            <Styled.Avatar src={infoUser.avatar || defaultAvatar} />
+                            <Styled.Avatar
+                                src={infoUser.avatar || noAvatar}
+                                alt="Avatar"
+                                onError={({ currentTarget }) => {
+                                    currentTarget.onerror = null; // prevents looping
+                                    currentTarget.src = noAvatar;
+                                }}
+                            />
                             <Styled.NameUser>{infoUser.first_name || 'Anonymous'}</Styled.NameUser>
                             <AiFillCaretDown />
                         </Styled.User>

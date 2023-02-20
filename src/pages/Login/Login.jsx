@@ -37,7 +37,7 @@ function Login() {
                                 </div>
                                 <Styled.Contact>
                                     Cannot login?{' '}
-                                    <a href="https://www.facebook.com/hdang.09">Contact admin</a>
+                                    <a href="mailto:contact@hdang09.site">Contact admin</a>
                                 </Styled.Contact>
                             </Styled.Box>
                         </Styled.LoginSection>
