@@ -1,20 +1,20 @@
-import React, { useState, useEffect } from 'react';
-import config from '../../config';
-import { Table } from 'antd';
-import { Container, Row, Col } from 'styled-bootstrap-grid';
-
-import * as Styled from './Admin.styled';
-import { Button, Card } from '../../components';
-import { Link } from 'react-router-dom';
-import { getAllUser } from '../../utils/adminAPI';
-import { toast } from 'react-toastify';
-import { AiOutlineRight, AiOutlineClockCircle } from 'react-icons/ai';
-
+import React, { useEffect, useState } from 'react';
+import { AiOutlineClockCircle, AiOutlineRight } from 'react-icons/ai';
+import { FiUsers, FiUserX } from 'react-icons/fi';
 import { IoMdDownload } from 'react-icons/io';
 import { MdUpload } from 'react-icons/md';
-import { FiUserX, FiUsers } from 'react-icons/fi';
-import CreateAccount from './CreateAccount';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { Table } from 'antd';
+import { Col, Container, Row } from 'styled-bootstrap-grid';
+
+import { Button, Card } from '../../components';
+import config from '../../config';
+import { getAllUser } from '../../utils/adminAPI';
+
 import { columns } from './Admin.columns';
+import * as Styled from './Admin.styled';
+import CreateAccount from './CreateAccount';
 
 const Admin = () => {
     const [allUserData, setAllUserData] = useState([]);

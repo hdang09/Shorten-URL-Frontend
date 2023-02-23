@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import { Outlet, Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router-dom';
 
 import { userSelector } from '../pages/Login/loginSlice';
 

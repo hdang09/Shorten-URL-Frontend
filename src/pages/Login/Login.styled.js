@@ -1,6 +1,8 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
 import styled from 'styled-components';
+
 import urlComponent from '../../assets/images/url.png';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export const Wrapper = styled.div`
     height: 100vh;

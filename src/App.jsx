@@ -1,10 +1,11 @@
-import { RouterComponents } from './routers';
-import { useLocalStorage } from './hooks';
-import { ThemeProvider } from 'styled-components';
-import { lightTheme, darkTheme } from './assets/styles/themes';
 import { createContext } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { ThemeProvider } from 'styled-components';
+
+import { darkTheme, lightTheme } from './assets/styles/themes';
 import config from './config';
+import { useLocalStorage } from './hooks';
+import { RouterComponents } from './routers';
 
 const ThemeContext = createContext();
 

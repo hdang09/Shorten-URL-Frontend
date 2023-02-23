@@ -1,7 +1,9 @@
-import * as Styled from './URLItem.styled';
 import Skeleton from 'react-loading-skeleton';
-import { useLocalStorage } from '../../hooks';
+
 import config from '../../config';
+import { useLocalStorage } from '../../hooks';
+
+import * as Styled from './URLItem.styled';
 
 const URLSkeleton = () => {
     const BUTTON_LIST = [...Array(4).keys()];

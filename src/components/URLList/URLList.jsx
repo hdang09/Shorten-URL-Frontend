@@ -1,8 +1,10 @@
 import React from 'react';
-import URLItem from '../URLItem/URLItem';
+
 import noLink from '../../assets/images/no-link.png';
-import * as Styled from './URLList.styled';
+import URLItem from '../URLItem/URLItem';
 import URLSkeleton from '../URLItem/URLSkeleton';
+
+import * as Styled from './URLList.styled';
 
 const URLList = ({ list, isRecent }) => {
     let newList;

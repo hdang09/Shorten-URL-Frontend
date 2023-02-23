@@ -1,5 +1,6 @@
+import { forwardRef, useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
-import { useState, forwardRef } from 'react';
+
 import * as Styled from './Input.styled';
 
 const Input = forwardRef(

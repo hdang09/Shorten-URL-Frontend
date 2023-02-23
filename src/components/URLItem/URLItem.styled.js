@@ -1,5 +1,6 @@
 import { down } from 'styled-breakpoints';
 import styled, { keyframes } from 'styled-components';
+
 import gradientColors from '../../assets/styles/gradientColors';
 
 const permanentRandNum = Math.floor(Math.random() * gradientColors.length);

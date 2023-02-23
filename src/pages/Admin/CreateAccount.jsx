@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
-import { MdEmail, MdOutlineDriveFileRenameOutline } from 'react-icons/md';
-import { IoPersonAddSharp } from 'react-icons/io5';
 import { FaUserTag } from 'react-icons/fa';
+import { IoPersonAddSharp } from 'react-icons/io5';
+import { MdEmail, MdOutlineDriveFileRenameOutline } from 'react-icons/md';
+import { toast } from 'react-toastify';
+
 import { Button, Input } from '../../components';
 import { createAccount } from '../../utils/adminAPI';
-import { toast } from 'react-toastify';
+
 import * as Styled from './Admin.styled';
 
 const CreateAccount = () => {

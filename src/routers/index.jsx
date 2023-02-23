@@ -1,18 +1,19 @@
-import { Routes, Route, Navigate, useLocation } from 'react-router-dom';
+import { createContext, useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { Route, Routes, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import jwtDecode from 'jwt-decode';
+
+import config from '../config';
+import { useLocalStorage } from '../hooks';
+import { BasicLayout, ModernLayout } from '../layouts';
+import { Admin, Analytics, Home, Landing, Login, Management, MyURL, Settings } from '../pages';
+import { login, signOut } from '../pages/Login/loginSlice';
+import localStorageUtils from '../utils/localStorageUtils';
+
+import AdminRouters from './AdminRouers';
 import PrivateRouters from './PrivateRouters';
 import PublicRouters from './PublicRouters';
-import AdminRouters from './AdminRouers';
-import { Login, Home, Landing, Analytics, Settings, MyURL, Admin, Management } from '../pages';
-import { BasicLayout, ModernLayout } from '../layouts';
-import { useLocalStorage } from '../hooks';
-import { createContext, useEffect } from 'react';
-
-import { login, signOut } from '../pages/Login/loginSlice';
-import { useDispatch } from 'react-redux';
-import jwtDecode from 'jwt-decode';
-import { toast } from 'react-toastify';
-import localStorageUtils from '../utils/localStorageUtils';
-import config from '../config';
 
 const publicRoutes = [
     { path: config.routes.landing, element: <Landing /> },
@@ -107,4 +108,4 @@ const RouterComponents = () => {
     );
 };
 
-export { publicRoutes, privateRoutes, RouterComponents };
+export { privateRoutes, publicRoutes, RouterComponents };

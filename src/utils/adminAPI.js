@@ -1,4 +1,4 @@
-import { post, get, put } from './apiCaller';
+import { get, post, put } from './apiCaller';
 
 // Admin API
 export const getAllUser = () => {

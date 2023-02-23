@@ -1,5 +1,6 @@
-import * as Styled from './ModernLayout.styled';
 import { Sidebar } from '../../components';
+
+import * as Styled from './ModernLayout.styled';
 
 const ModernLayout = ({ children, admin }) => {
     return (

@@ -27,8 +27,22 @@ module.exports = {
         ecmaVersion: 'latest',
         sourceType: 'module',
     },
-    plugins: ['unused-imports'],
+    plugins: ['unused-imports', 'simple-import-sort'],
     rules: {
+        'simple-import-sort/exports': 'error',
+        'simple-import-sort/imports': [
+            'error',
+            {
+                groups: [
+                    ['^react', '^@?\\w'],
+                    ['^(@|components)(/.*|$)'],
+                    ['^\\u0000'],
+                    ['^\\.\\.(?!/?$)', '^\\.\\./?$'],
+                    ['^\\./(?=.*/)(?!/?$)', '^\\.(?!/?$)', '^\\./?$'],
+                    ['^.+\\.?(css)$'],
+                ],
+            },
+        ],
         'prettier/prettier': [
             'error',
             {

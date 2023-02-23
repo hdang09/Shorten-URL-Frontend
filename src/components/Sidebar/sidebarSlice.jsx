@@ -1,8 +1,9 @@
-import { createSlice } from '@reduxjs/toolkit';
 import { AiOutlineHome } from 'react-icons/ai';
-import { TbBrandGoogleAnalytics } from 'react-icons/tb';
-import { BsGear, BsPeople } from 'react-icons/bs';
 import { BiLink } from 'react-icons/bi';
+import { BsGear, BsPeople } from 'react-icons/bs';
+import { TbBrandGoogleAnalytics } from 'react-icons/tb';
+import { createSlice } from '@reduxjs/toolkit';
+
 import config from '../../config';
 
 const initialState = {

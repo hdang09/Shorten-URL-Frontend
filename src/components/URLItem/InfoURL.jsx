@@ -1,21 +1,20 @@
 import { useState } from 'react';
-
-import { Button } from '..';
-import { HiLink } from 'react-icons/hi';
-import config from '../../config';
-import moment from 'moment';
-
-import { MdUpdate } from 'react-icons/md';
-import { IoCreateOutline } from 'react-icons/io5';
-import * as Styled from './URLItem.styled';
-import { updateLink } from '../../utils/urlAPI';
 import { BsLink45Deg } from 'react-icons/bs';
-
-import { Col, Row } from 'styled-bootstrap-grid';
-import { toast } from 'react-toastify';
+import { HiLink } from 'react-icons/hi';
+import { IoCreateOutline } from 'react-icons/io5';
+import { MdUpdate } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
-import { add } from './urlSlice';
+import { toast } from 'react-toastify';
+import moment from 'moment';
+import { Col, Row } from 'styled-bootstrap-grid';
+
+import config from '../../config';
 import removeHttps from '../../utils/removeHttps';
+import { updateLink } from '../../utils/urlAPI';
+import { Button } from '..';
+
+import * as Styled from './URLItem.styled';
+import { add } from './urlSlice';
 
 const InfoURL = ({ data, handleClose }) => {
     const [path, setPath] = useState('');

@@ -1,9 +1,10 @@
-import { Col } from 'styled-bootstrap-grid';
 import Skeleton from 'react-loading-skeleton';
+import { Col } from 'styled-bootstrap-grid';
+
+import config from '../../config';
+import { useLocalStorage } from '../../hooks';
 
 import * as Styled from './Statistics.styled';
-import { useLocalStorage } from '../../hooks';
-import config from '../../config';
 
 const Statistics = () => {
     const STATISTICS_LIST = [...Array(2).keys()];

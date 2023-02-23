@@ -1,12 +1,13 @@
-import { useState, useEffect } from 'react';
-
-import * as Styled from './MyURL.styled';
-import { Card, URLList } from '../../components';
-import { getReport } from '../../utils/urlAPI';
-import { useLocalStorage } from '../../hooks';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
+
+import { Card, URLList } from '../../components';
 import { urlSelector } from '../../components/URLItem/urlSlice';
 import config from '../../config';
+import { useLocalStorage } from '../../hooks';
+import { getReport } from '../../utils/urlAPI';
+
+import * as Styled from './MyURL.styled';
 
 const MyURL = () => {
     const currentURL = useSelector(urlSelector).shorten;

@@ -1,5 +1,6 @@
-import * as Styled from './BasicLayout.styled';
 import { Header, Sidebar } from '../../components';
+
+import * as Styled from './BasicLayout.styled';
 
 const BasicLayout = ({ admin, children }) => {
     return (

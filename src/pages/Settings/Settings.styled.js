@@ -1,5 +1,6 @@
 import { between, down } from 'styled-breakpoints';
 import styled from 'styled-components';
+
 import hexToRgb from '../../utils/hexToRgb';
 
 export const Toggle = styled.div`

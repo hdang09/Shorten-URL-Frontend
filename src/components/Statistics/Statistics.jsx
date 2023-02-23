@@ -1,13 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { RiLinksLine } from 'react-icons/ri';
+import React, { useEffect, useState } from 'react';
 import { HiCursorClick } from 'react-icons/hi';
-import { Container, Row, Col } from 'styled-bootstrap-grid';
-import { getReport } from '../../utils/urlAPI';
+import { RiLinksLine } from 'react-icons/ri';
+import { Col, Container, Row } from 'styled-bootstrap-grid';
+
+import config from '../../config';
 import { useLocalStorage } from '../../hooks';
-import Skeleton from './StatisticsSkeleton';
+import { getReport } from '../../utils/urlAPI';
 
 import * as Styled from './Statistics.styled';
-import config from '../../config';
+import Skeleton from './StatisticsSkeleton';
 
 const Statistics = () => {
     const [id, _] = useLocalStorage(config.localStorage.idUser, '');

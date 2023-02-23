@@ -1,9 +1,11 @@
 import { AiTwotoneCrown } from 'react-icons/ai';
-import Tippy from '@tippyjs/react';
-import { Avatar } from '../../components';
-import * as Styled from './Admin.styled';
 import { Link } from 'react-router-dom';
+import Tippy from '@tippyjs/react';
+
+import { Avatar } from '../../components';
 import config from '../../config';
+
+import * as Styled from './Admin.styled';
 
 export const columns = [
     {

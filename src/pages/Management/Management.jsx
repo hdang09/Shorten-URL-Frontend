@@ -1,10 +1,12 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table } from 'antd';
 
 import { getAllUser } from '../../utils/adminAPI';
-import 'tippy.js/dist/tippy.css';
-import * as Styled from './Management.styled';
+
 import { columns } from './Management.data';
+import * as Styled from './Management.styled';
+
+import 'tippy.js/dist/tippy.css';
 
 const Management = () => {
     const [allUsers, setAllUsers] = useState([]);

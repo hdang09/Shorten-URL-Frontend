@@ -1,6 +1,8 @@
 import React from 'react';
-import * as Styled from './Avatar.styled';
+
 import noAvatar from '../../assets/images/no-avatar.png';
+
+import * as Styled from './Avatar.styled';
 
 const Avatar = ({ src, alt = '', size }) => {
     return (

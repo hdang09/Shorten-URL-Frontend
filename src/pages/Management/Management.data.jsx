@@ -1,12 +1,14 @@
-import { Avatar, Button } from '../../components';
-import { Link } from 'react-router-dom';
 import { AiTwotoneCrown } from 'react-icons/ai';
+import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Tippy from '@tippyjs/react';
 import HeadlessTippy from '@tippyjs/react/headless';
-import * as Styled from './Management.styled';
-import { toast } from 'react-toastify';
-import { updateUserRole, updateUserStatus } from '../../utils/adminAPI';
+
+import { Avatar, Button } from '../../components';
 import config from '../../config';
+import { updateUserRole, updateUserStatus } from '../../utils/adminAPI';
+
+import * as Styled from './Management.styled';
 
 const updateStatus = async (status, accountId) => {
     try {

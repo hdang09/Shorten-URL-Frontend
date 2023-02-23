@@ -1,7 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
+
+import sidebarReducer from '../components/Sidebar/sidebarSlice';
 import urlReducer from '../components/URLItem/urlSlice';
 import authReducer from '../pages/Login/loginSlice';
-import sidebarReducer from '../components/Sidebar/sidebarSlice';
 
 const store = configureStore({
     reducer: {

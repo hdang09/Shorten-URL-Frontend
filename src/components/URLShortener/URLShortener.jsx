@@ -1,20 +1,19 @@
-import { useState, createRef } from 'react';
-import { toast } from 'react-toastify';
+import { createRef, useState } from 'react';
+import { HiLink } from 'react-icons/hi';
 import { useDispatch } from 'react-redux';
-import { nanoid } from 'nanoid';
-
-import * as Styled from './URLShortener.styled';
-import { useLocalStorage } from '../../hooks';
-import { Input, Button } from '../../components';
-import { add } from '../URLItem/urlSlice';
-import { shortenUrl } from '../../utils/urlAPI';
-import config from '../../config';
-
+import { toast } from 'react-toastify';
 import isUrl from 'is-url';
+import { nanoid } from 'nanoid';
 import { Col, Row } from 'styled-bootstrap-grid';
 
-import { HiLink } from 'react-icons/hi';
+import { Button, Input } from '../../components';
+import config from '../../config';
+import { useLocalStorage } from '../../hooks';
 import removeHttps from '../../utils/removeHttps';
+import { shortenUrl } from '../../utils/urlAPI';
+import { add } from '../URLItem/urlSlice';
+
+import * as Styled from './URLShortener.styled';
 
 const URLShortener = () => {
     const dispatch = useDispatch();

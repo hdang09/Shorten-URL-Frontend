@@ -1,11 +1,12 @@
 /* eslint-disable react/no-unescaped-entities */
-import { Button } from '../../components';
+import { useEffect } from 'react';
 import { FcGoogle } from 'react-icons/fc';
-import { Container, Row, Col } from 'styled-bootstrap-grid';
+import { Col, Container, Row } from 'styled-bootstrap-grid';
+
+import { Button } from '../../components';
+import config from '../../config';
 
 import * as Styled from './Login.styled';
-import config from '../../config';
-import { useEffect } from 'react';
 
 function Login() {
     useEffect(() => {

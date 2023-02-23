@@ -1,6 +1,6 @@
-import styled from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { down } from 'styled-breakpoints';
+import styled from 'styled-components';
 
 export const Wrapper = styled.div`
     /* display: inline-block; */

@@ -1,5 +1,6 @@
 import { down } from 'styled-breakpoints';
 import styled, { keyframes } from 'styled-components';
+
 import { Button } from '../../components';
 
 export const Banner = styled.div`

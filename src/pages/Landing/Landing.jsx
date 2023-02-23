@@ -1,13 +1,15 @@
+import { useEffect } from 'react';
 import AOS from 'aos';
-import 'aos/dist/aos.css';
 
-import { Button, Header } from '../../components';
-import * as Styled from './Landing.styled';
 import lightScreenshot from '../../assets/images/screenshots.png';
 import darkScreenshot from '../../assets/images/screenshots-dark.png';
-import { useLocalStorage } from '../../hooks';
-import { useEffect } from 'react';
+import { Button, Header } from '../../components';
 import config from '../../config';
+import { useLocalStorage } from '../../hooks';
+
+import * as Styled from './Landing.styled';
+
+import 'aos/dist/aos.css';
 
 AOS.init();
 AOS.init({

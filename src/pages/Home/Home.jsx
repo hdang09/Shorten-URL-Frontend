@@ -1,15 +1,14 @@
 import { useEffect, useState } from 'react';
+import { AiOutlineRight } from 'react-icons/ai';
+import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
-import { useSelector } from 'react-redux';
-
-import { AiOutlineRight } from 'react-icons/ai';
 
 import { Card, QR, URLList, URLShortener } from '../../components';
-import { getReport } from '../../utils/urlAPI';
 import { urlSelector } from '../../components/URLItem/urlSlice';
-import { useLocalStorage } from '../../hooks';
 import config from '../../config';
+import { useLocalStorage } from '../../hooks';
+import { getReport } from '../../utils/urlAPI';
 
 const Home = () => {
     const currentURL = useSelector(urlSelector).shorten;

@@ -1,20 +1,20 @@
-import { useEffect, useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { BsMoonFill, BsSunFill } from 'react-icons/bs';
 import { ImBrightnessContrast } from 'react-icons/im';
 import { IoColorPaletteOutline, IoContrast } from 'react-icons/io5';
+import { RiContrastLine, RiLayout2Fill } from 'react-icons/ri';
+import { TbContrast } from 'react-icons/tb';
+import { Col, Container, Row } from 'styled-bootstrap-grid';
+
+import { ThemeContext } from '../../App';
+import COLORS_LIST from '../../assets/styles/presets';
+import { Card, Input } from '../../components';
+import config from '../../config';
+import { useLocalStorage } from '../../hooks';
+import { LayoutContext } from '../../routers';
+import localStorageUtils from '../../utils/localStorageUtils';
 
 import * as Styled from './Settings.styled';
-import { Card, Input } from '../../components';
-import { useLocalStorage } from '../../hooks';
-import { ThemeContext } from '../../App';
-import { LayoutContext } from '../../routers';
-
-import { Col, Container, Row } from 'styled-bootstrap-grid';
-import { RiContrastLine, RiLayout2Fill } from 'react-icons/ri';
-import COLORS_LIST from '../../assets/styles/presets';
-import { TbContrast } from 'react-icons/tb';
-import config from '../../config';
-import localStorageUtils from '../../utils/localStorageUtils';
 
 const Settings = () => {
     // config

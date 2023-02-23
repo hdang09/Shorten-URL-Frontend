@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import jwtDecode from 'jwt-decode';
+
 import localStorageUtils from '../../utils/localStorageUtils';
 
 const initialState = {

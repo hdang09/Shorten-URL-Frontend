@@ -1,4 +1,4 @@
-import { post, get } from './apiCaller';
+import { get, post } from './apiCaller';
 
 // URL API
 export const shortenUrl = (link, accountId, linkcode) => {

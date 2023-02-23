@@ -1,22 +1,23 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useContext, useEffect, useState } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
-import { BsGear, BsQuestionOctagon, BsLightbulb } from 'react-icons/bs';
+import { BsGear, BsLightbulb, BsQuestionOctagon } from 'react-icons/bs';
 import { FiLogOut } from 'react-icons/fi';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useLocation } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import Tippy from '@tippyjs/react/headless';
 
-import { Button } from '..';
-import Logo from '../../assets/images/logo.png';
-import * as Styled from './Header.styled';
-import { useDispatch, useSelector } from 'react-redux';
-import { adminSidebarSelector, userSidebarSelector } from '../Sidebar/sidebarSlice';
-import { signOut } from '../../pages/Login/loginSlice';
 import { ThemeContext } from '../../App';
-import { useContext, useState, useEffect } from 'react';
-import { getInfo } from '../../utils/adminAPI';
-import { useLocalStorage } from '../../hooks';
-import { toast } from 'react-toastify';
-import config from '../../config';
+import Logo from '../../assets/images/logo.png';
 import noAvatar from '../../assets/images/no-avatar.png';
+import config from '../../config';
+import { useLocalStorage } from '../../hooks';
+import { signOut } from '../../pages/Login/loginSlice';
+import { getInfo } from '../../utils/adminAPI';
+import { adminSidebarSelector, userSidebarSelector } from '../Sidebar/sidebarSlice';
+import { Button } from '..';
+
+import * as Styled from './Header.styled';
 
 function Header({ admin, landingPage }) {
     const location = useLocation();

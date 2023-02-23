@@ -1,24 +1,23 @@
 import { useContext, useEffect, useState } from 'react';
+import { BsMoon, BsSun } from 'react-icons/bs';
+import { MdLogout } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
-import { MdLogout } from 'react-icons/md';
-import { BsMoon, BsSun } from 'react-icons/bs';
-
-import * as Styled from './Sidebar.styled';
-import { userSidebarSelector, adminSidebarSelector } from '../Sidebar/sidebarSlice';
-import logo from '../../assets/images/logo.png';
-import { useLocalStorage } from '../../hooks';
-import { signOut } from '../../pages/Login/loginSlice';
-
 import { down } from 'styled-breakpoints';
 import { useBreakpoint } from 'styled-breakpoints/react-styled';
 
 import { ThemeContext } from '../../App';
-import { getInfo } from '../../utils/adminAPI';
-import config from '../../config';
-import localStorageUtils from '../../utils/localStorageUtils';
+import logo from '../../assets/images/logo.png';
 import noAvatar from '../../assets/images/no-avatar.png';
+import config from '../../config';
+import { useLocalStorage } from '../../hooks';
+import { signOut } from '../../pages/Login/loginSlice';
+import { getInfo } from '../../utils/adminAPI';
+import localStorageUtils from '../../utils/localStorageUtils';
+import { adminSidebarSelector, userSidebarSelector } from '../Sidebar/sidebarSlice';
+
+import * as Styled from './Sidebar.styled';
 
 function Sidebar({ admin, redesign }) {
     const { theme: themeConfig, idUser: idConfig } = config.localStorage;

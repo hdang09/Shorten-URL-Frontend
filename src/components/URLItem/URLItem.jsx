@@ -1,29 +1,28 @@
-import { useState, useRef } from 'react';
-import { MdOutlineContentCopy } from 'react-icons/md';
-import { IoQrCodeOutline } from 'react-icons/io5';
+import { useRef, useState } from 'react';
+import { AiOutlineInfoCircle } from 'react-icons/ai';
 import { BsLink45Deg } from 'react-icons/bs';
-import { toast } from 'react-toastify';
-import Tippy from '@tippyjs/react';
-import 'tippy.js/dist/tippy.css';
-import { SocialIcon } from 'react-social-icons';
-
-import * as Styled from './URLItem.styled';
-import { QR } from '..';
 import { HiCursorClick } from 'react-icons/hi';
-
+import { IoQrCodeOutline } from 'react-icons/io5';
+import { MdOutlineContentCopy } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
+import { SocialIcon } from 'react-social-icons';
+import { toast } from 'react-toastify';
 import {
     Drawer,
-    DrawerOverlay,
-    DrawerContent,
     DrawerCloseButton,
+    DrawerContent,
+    DrawerOverlay,
     useDisclosure,
 } from '@chakra-ui/react';
+import Tippy from '@tippyjs/react';
 
-import { AiOutlineInfoCircle } from 'react-icons/ai';
+import { QR } from '..';
 
 import InfoURL from './InfoURL';
-import { useDispatch } from 'react-redux';
+import * as Styled from './URLItem.styled';
 import { add } from './urlSlice';
+
+import 'tippy.js/dist/tippy.css';
 
 const URLItem = ({ data }) => {
     const [openEditBox, setOpenEditBox] = useState(false);
