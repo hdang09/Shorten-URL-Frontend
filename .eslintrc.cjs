@@ -82,5 +82,15 @@ module.exports = {
         'react-hooks/exhaustive-deps': 'error',
         'import/no-unresolved': 'off',
         'react/prop-types': ['off'],
+        'sort-imports': [
+            'error',
+            {
+                ignoreCase: true,
+                ignoreDeclarationSort: true,
+                ignoreMemberSort: true,
+                memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'],
+                allowSeparatedGroups: true,
+            },
+        ],
     },
 };

@@ -1,16 +1,16 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
-import QRCodeStyling from 'qr-code-styling';
-import { useSelector } from 'react-redux';
 import { AiFillFileAdd, AiOutlineDown, AiOutlineDownload } from 'react-icons/ai';
-
-import * as Styled from './QR.styled';
-import { Button, Input } from '../';
-import { urlSelector } from '../URLItem/urlSlice';
+import { useSelector } from 'react-redux';
+import QRCodeStyling from 'qr-code-styling';
 
 import logo from '../../assets/images/logo.png';
-import { ReactComponent as QRScanningImg } from '../../assets/svg/qr-code.svg';
 import { ReactComponent as BorderQR } from '../../assets/svg/border.svg';
-import { FRAMES, CORNERS_SQUARES, CORNERS_DOTS } from './QR.images';
+import { ReactComponent as QRScanningImg } from '../../assets/svg/qr-code.svg';
+import { urlSelector } from '../URLItem/urlSlice';
+import { Button, Input } from '../';
+
+import { CORNERS_DOTS, CORNERS_SQUARES, FRAMES } from './QR.images';
+import * as Styled from './QR.styled';
 
 let primaryColor = JSON.parse(localStorage.getItem('primary-color')) || '#45ce7b';
 

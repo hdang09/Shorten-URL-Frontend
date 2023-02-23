@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+
 import { lightTheme } from './themes';
 
 const GlobalStyles = createGlobalStyle`
