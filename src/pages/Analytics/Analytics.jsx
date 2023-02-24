@@ -1,16 +1,13 @@
 import { useEffect } from 'react';
-// import { Bar, Line } from 'react-chartjs-2';
+// import { Bar } from 'react-chartjs-2';
 import { Col, Row } from 'styled-bootstrap-grid';
 
-import { Card, Statistics } from '../../components';
-// import { getReport } from '../../utils/urlAPI';
+import { Card, Report, Statistics } from '../../components';
 
-// import { BarChartData, LineChartData } from './Analytics.dummy';
+// import { BarChartData } from './Analytics.dummy';
 
 const Analytics = () => {
     // const BarChart = () => <Bar data={BarChartData.data} />;
-
-    // const LineChart = () => <Line data={LineChartData.data} options={LineChartData.options} />;
 
     useEffect(() => {
         document.title = 'Analytics | F-Code Shorten URL';
@@ -43,40 +40,8 @@ const Analytics = () => {
                     </Card>
                 </Col> */}
             </Row>
-            {/* <Row>
-                <Col sm={12}>
-                    <Card title="Annual Report">
-                        <LineChart />
-                    </Card>
-                </Col>
-            </Row> */}
         </>
     );
 };
 
 export default Analytics;
-
-{
-    /* <Row>
-                <Col sm={12} md={12} lg={4}>
-                    <Row>
-                        <Col sm={12} md={6} lg={12}>
-                            <Card title="Statistics">
-                                <Statistics />
-                            </Card>
-                        </Col>
-
-                        <Col sm={12} md={6} lg={12}>
-                            <Card title="Analytics" subtitle="5 days recently">
-                                <Report />
-                            </Card>
-                        </Col>
-                    </Row>
-                </Col>
-                <Col sm={12} md={12} lg={8}>
-                    <Card title="Annual Report">
-                        <BarChart />
-                    </Card>
-                </Col>
-            </Row> */
-}

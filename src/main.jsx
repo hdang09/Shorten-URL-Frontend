@@ -1,7 +1,6 @@
 import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import { ToastContainer } from 'react-toastify';
-import { ChakraProvider } from '@chakra-ui/react';
 
 import store from './app/store';
 import GlobalStyles from './assets/styles/GlobalStyles';
@@ -15,9 +14,7 @@ import 'react-toastify/dist/ReactToastify.css';
 ReactDOM.createRoot(document.getElementById('root')).render(
     <>
         <Provider store={store}>
-            <ChakraProvider>
-                <App />
-            </ChakraProvider>
+            <App />
             <GlobalStyles />
             <ToastContainer
                 theme={JSON.parse(window.localStorage.getItem(config.theme)) || 'light'}

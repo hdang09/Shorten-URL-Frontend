@@ -7,14 +7,8 @@ import { MdOutlineContentCopy } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { SocialIcon } from 'react-social-icons';
 import { toast } from 'react-toastify';
-import {
-    Drawer,
-    DrawerCloseButton,
-    DrawerContent,
-    DrawerOverlay,
-    useDisclosure,
-} from '@chakra-ui/react';
 import Tippy from '@tippyjs/react';
+import { Drawer } from 'antd';
 
 import { QR } from '..';
 
@@ -27,15 +21,23 @@ import 'tippy.js/dist/tippy.css';
 const URLItem = ({ data }) => {
     const [openEditBox, setOpenEditBox] = useState(false);
 
+    const dispatch = useDispatch();
+
     const handleCopy = (url) => {
         navigator.clipboard.writeText(url);
         toast.success(`Copied to clipboard`);
     };
 
-    // Chakra UI
-    const { isOpen, onOpen, onClose } = useDisclosure();
+    // Drawer
+    const [openDrawer, setOpenDrawer] = useState(false);
+    const showDrawer = () => {
+        setOpenDrawer(true);
+    };
+    const onClose = () => {
+        setOpenDrawer(false);
+    };
+
     const btnRef = useRef();
-    const dispatch = useDispatch();
 
     const generateQR =
         window.location.pathname === '/' || window.location.pathname === '/admin/shorten-url'
@@ -46,7 +48,7 @@ const URLItem = ({ data }) => {
                           shorten: data.shorten_link,
                       }),
                   )
-            : onOpen;
+            : showDrawer;
 
     const BUTTON_LIST = [
         {
@@ -107,20 +109,10 @@ const URLItem = ({ data }) => {
                 </div>
             </Styled.Wrapper>
 
-            <Drawer
-                isOpen={isOpen}
-                placement="right"
-                onClose={onClose}
-                finalFocusRef={btnRef}
-                size="lg"
-            >
-                <DrawerOverlay />
-                <DrawerContent>
-                    <DrawerCloseButton />
-                    <Styled.QRDrawer>
-                        <QR url={data.shorten_link} />
-                    </Styled.QRDrawer>
-                </DrawerContent>
+            <Drawer title="Generate QR Code" placement="right" onClose={onClose} open={openDrawer}>
+                <Styled.QRDrawer>
+                    <QR url={data.shorten_link} />
+                </Styled.QRDrawer>
             </Drawer>
 
             {openEditBox && (

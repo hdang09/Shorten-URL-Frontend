@@ -116,7 +116,7 @@ export const Button = styled.div`
 `;
 
 export const QRDrawer = styled.div`
-    padding: 48px;
+    padding: 0 12px;
 `;
 
 export const HighLight = styled.span`

@@ -31,6 +31,7 @@ export const Subheading = styled.h2`
     /* margin-bottom: 32px; */
     font-weight: 400;
     text-align: center;
+    font-size: 1.6rem;
 
     ${down('sm')} {
         padding: 16px;
