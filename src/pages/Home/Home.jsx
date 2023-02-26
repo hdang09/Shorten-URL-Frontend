@@ -7,7 +7,6 @@ import { Col, Container, Row } from 'styled-bootstrap-grid';
 import { urlSelector } from '../../app/reducers/urlReducer';
 import { Card, QR, URLList, URLShortener } from '../../components';
 import config from '../../config';
-import { useLocalStorage } from '../../hooks';
 import { getReport } from '../../utils/urlAPI';
 
 const Home = () => {
@@ -15,7 +14,6 @@ const Home = () => {
 
     const [links, setLinks] = useState(null);
     const role = window.location.pathname.split('/')[1] === '' ? 'user' : 'admin';
-    const [id] = useLocalStorage(config.localStorage.idUser, '');
 
     useEffect(() => {
         document.title = 'F-Code Shorten URL';
@@ -23,11 +21,11 @@ const Home = () => {
 
     useEffect(() => {
         const getLinks = async () => {
-            const { data } = await getReport(id);
+            const { data } = await getReport();
             setLinks(data.data.links.reverse());
         };
         getLinks();
-    }, [id, currentURL]);
+    }, [currentURL]);
 
     return (
         <Container>

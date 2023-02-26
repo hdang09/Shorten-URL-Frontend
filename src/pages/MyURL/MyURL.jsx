@@ -3,16 +3,14 @@ import { useSelector } from 'react-redux';
 
 import { urlSelector } from '../../app/reducers/urlReducer';
 import { Card, URLList } from '../../components';
-import config from '../../config';
-import { useLocalStorage } from '../../hooks';
 import { getReport } from '../../utils/urlAPI';
 
 import * as Styled from './MyURL.styled';
 
 const MyURL = () => {
     const currentURL = useSelector(urlSelector).shorten;
-    const [, userId] = window.location.search.split('?id=');
-    const [id] = useLocalStorage(config.localStorage.idUser);
+    // eslint-disable-next-line prefer-destructuring
+    const userId = window.location.search.split('?id=')[1];
     const [links, setLinks] = useState({
         all: null,
         filtered: null,
@@ -26,7 +24,7 @@ const MyURL = () => {
 
     useEffect(() => {
         const getAllLinks = async () => {
-            const { data } = await getReport(userId || id);
+            const { data } = await getReport(userId);
             data.data.links.reverse();
             setLinks({
                 ...links,

@@ -3,24 +3,21 @@ import { HiCursorClick } from 'react-icons/hi';
 import { RiLinksLine } from 'react-icons/ri';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 
-import config from '../../config';
-import { useLocalStorage } from '../../hooks';
 import { getReport } from '../../utils/urlAPI';
 
 import * as Styled from './Statistics.styled';
 import Skeleton from './StatisticsSkeleton';
 
 const Statistics = () => {
-    const [id, _] = useLocalStorage(config.localStorage.idUser, '');
     const [report, setReport] = useState({});
 
     useEffect(() => {
         const getAllLinks = async () => {
-            const { data } = await getReport(id);
+            const { data } = await getReport();
             setReport(data.data);
         };
         getAllLinks();
-    }, [id]);
+    }, []);
 
     const STATISTICS_LIST = [
         {

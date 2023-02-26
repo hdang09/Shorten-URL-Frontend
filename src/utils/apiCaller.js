@@ -1,9 +1,11 @@
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 import config from '../config';
 
 export const request = (endpoint, method, headers = {}, params = {}, body = {}) => {
-    const token = JSON.parse(localStorage.getItem('token')) || '';
+    const token = new Cookies().get('token') || '';
+
     return axios({
         url: config.publicRuntime.API_URL + endpoint,
         method,

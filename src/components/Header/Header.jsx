@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
 import { BsGear, BsLightbulb, BsQuestionOctagon } from 'react-icons/bs';
 import { FiLogOut } from 'react-icons/fi';
@@ -13,7 +13,6 @@ import { adminSidebarSelector, userSidebarSelector } from '../../app/reducers/si
 import Logo from '../../assets/images/logo.png';
 import noAvatar from '../../assets/images/no-avatar.png';
 import config from '../../config';
-import { useLocalStorage } from '../../hooks';
 import { getInfo } from '../../utils/adminAPI';
 import { Button } from '..';
 
@@ -21,7 +20,6 @@ import * as Styled from './Header.styled';
 
 function Header({ admin, landingPage }) {
     const location = useLocation();
-    const { idUser } = config.localStorage;
 
     const [infoUser, setInfoUser] = useState({});
 
@@ -29,14 +27,13 @@ function Header({ admin, landingPage }) {
 
     const navListMenu = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
     const themeInLocal = useSelector(modeSelector);
-    const [id, setId] = useLocalStorage(idUser, '');
 
     useEffect(() => {
         if (landingPage) return;
 
         const getInfoUser = async () => {
             try {
-                const { data } = await getInfo(id);
+                const { data } = await getInfo();
                 setInfoUser(data.data);
             } catch (e) {
                 console.log(e);
@@ -44,7 +41,7 @@ function Header({ admin, landingPage }) {
             }
         };
         getInfoUser();
-    }, [id, landingPage]);
+    }, [landingPage]);
 
     let navItem;
     if (landingPage) {

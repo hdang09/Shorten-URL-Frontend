@@ -13,31 +13,27 @@ import { adminSidebarSelector, userSidebarSelector } from '../../app/reducers/si
 import logo from '../../assets/images/logo.png';
 import noAvatar from '../../assets/images/no-avatar.png';
 import config from '../../config';
-import { useLocalStorage } from '../../hooks';
 import { getInfo } from '../../utils/adminAPI';
 
 import * as Styled from './Sidebar.styled';
 
 function Sidebar({ admin, redesign }) {
-    const { idUser: idConfig } = config.localStorage;
-
     const [infoUser, setInfoUser] = useState({});
 
     const dispatch = useDispatch();
     const sidebarList = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
     const theme = useSelector(modeSelector);
-    const [id, setId] = useLocalStorage(idConfig, '');
 
     const isMobile = useBreakpoint(down('sm'));
     const tippyPosition = isMobile ? 'top' : 'right';
 
     useEffect(() => {
         const getInfoUser = async () => {
-            const { data } = await getInfo(id);
+            const { data } = await getInfo();
             setInfoUser(data.data);
         };
         getInfoUser();
-    }, [id]);
+    }, []);
 
     const location = useLocation();
 

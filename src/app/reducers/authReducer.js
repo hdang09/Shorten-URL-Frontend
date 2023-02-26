@@ -1,15 +1,14 @@
 import { createSlice } from '@reduxjs/toolkit';
 import jwtDecode from 'jwt-decode';
+import Cookies from 'universal-cookie';
 
 import localStorageUtils from '../../utils/localStorageUtils';
 
 const initialState = {
     isAdmin:
-        localStorageUtils.getToken() &&
-        jwtDecode(localStorageUtils.getToken()).payload.role === '1',
+        new Cookies().get('token') && jwtDecode(new Cookies().get('token')).payload.role === '1',
     isUser:
-        localStorageUtils.getToken() &&
-        jwtDecode(localStorageUtils.getToken()).payload.role === '0',
+        new Cookies().get('token') && jwtDecode(new Cookies().get('token')).payload.role === '0',
     isVisitFirstTime: null,
 };
 
@@ -18,15 +17,16 @@ const authSlice = createSlice({
     initialState,
     reducers: {
         login: (state) => {
-            const { role } = jwtDecode(localStorageUtils.getToken()).payload;
+            const { role } = jwtDecode(new Cookies().get('token')).payload;
             state.isUser = role === '0';
             state.isAdmin = role === '1';
         },
         signOut: (state) => {
+            const cookies = new Cookies();
             state.isAdmin = false;
             state.isUser = false;
-            localStorageUtils.deleteUser();
-            localStorage.removeItem('id');
+            cookies.remove('token', { path: '/' });
+            cookies.remove('id', { path: '/' });
         },
     },
 });

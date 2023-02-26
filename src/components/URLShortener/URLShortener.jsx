@@ -9,7 +9,6 @@ import { Col, Row } from 'styled-bootstrap-grid';
 import { add } from '../../app/reducers/urlReducer';
 import { Button, Input } from '../../components';
 import config from '../../config';
-import { useLocalStorage } from '../../hooks';
 import removeHttps from '../../utils/removeHttps';
 import { shortenUrl } from '../../utils/urlAPI';
 
@@ -17,7 +16,6 @@ import * as Styled from './URLShortener.styled';
 
 const URLShortener = () => {
     const dispatch = useDispatch();
-    const [id, _] = useLocalStorage(config.localStorage.idUser);
 
     const inputRef = createRef();
     const [originalURL, setOriginalURL] = useState('');
@@ -31,7 +29,7 @@ const URLShortener = () => {
         }
 
         try {
-            const { data } = await shortenUrl(originalURL, id, customPath || nanoid(10));
+            const { data } = await shortenUrl(originalURL, customPath || nanoid(10));
             dispatch(
                 add({
                     original: originalURL,
