@@ -8,7 +8,7 @@ import * as Styled from './Statistics.styled';
 
 const Statistics = () => {
     const STATISTICS_LIST = [...Array(2).keys()];
-    const isDarkMode = useSelector(modeSelector);
+    const isDarkMode = useSelector(modeSelector) === 'dark';
 
     return (
         <>

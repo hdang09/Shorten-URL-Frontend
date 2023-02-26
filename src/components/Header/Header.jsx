@@ -70,7 +70,7 @@ function Header({ admin, landingPage }) {
 
     return (
         <Styled.Wrapper landingPage={landingPage}>
-            <Styled.Content>
+            <Styled.Content isLoginPage={landingPage}>
                 <Link to={config.routes.home}>
                     <Styled.Logo>
                         <img src={Logo} alt="F-Code Logo" />

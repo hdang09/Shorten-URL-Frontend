@@ -34,7 +34,7 @@ export const Content = styled.div`
     margin: 0 25px;
 
     ${down('md')} {
-        justify-content: center;
+        justify-content: ${(props) => (props.isLoginPage ? ' center' : 'space-between')};
     }
 `;
 
