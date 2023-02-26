@@ -1,15 +1,14 @@
 import Skeleton from 'react-loading-skeleton';
+import { useSelector } from 'react-redux';
 import { Col } from 'styled-bootstrap-grid';
 
-import config from '../../config';
-import { useLocalStorage } from '../../hooks';
+import { modeSelector } from '../../app/reducers/customizationReducer';
 
 import * as Styled from './Statistics.styled';
 
 const Statistics = () => {
     const STATISTICS_LIST = [...Array(2).keys()];
-    // eslint-disable-next-line prefer-destructuring
-    const isDarkMode = useLocalStorage(config.localStorage.theme)[0] === 'dark';
+    const isDarkMode = useSelector(modeSelector);
 
     return (
         <>

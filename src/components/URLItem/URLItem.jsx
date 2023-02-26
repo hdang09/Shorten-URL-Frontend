@@ -10,11 +10,11 @@ import { toast } from 'react-toastify';
 import Tippy from '@tippyjs/react';
 import { Drawer } from 'antd';
 
+import { add } from '../../app/reducers/urlReducer';
 import { QR } from '..';
 
 import InfoURL from './InfoURL';
 import * as Styled from './URLItem.styled';
-import { add } from './urlSlice';
 
 import 'tippy.js/dist/tippy.css';
 

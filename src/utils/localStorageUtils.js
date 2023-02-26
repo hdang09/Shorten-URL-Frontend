@@ -13,7 +13,7 @@ class LocalStorageUtils {
     }
     setItem(key, value = '') {
         if (typeof localStorage !== 'undefined') {
-            localStorage.setItem(key, value);
+            localStorage.setItem(key, JSON.stringify(value));
         }
     }
     removeItem(key) {

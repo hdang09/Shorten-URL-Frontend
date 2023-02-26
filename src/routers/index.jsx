@@ -1,58 +1,22 @@
 import { createContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { useLocation, useRoutes } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import jwtDecode from 'jwt-decode';
 
-import config from '../config';
-import { useLocalStorage } from '../hooks';
-import { BasicLayout, ModernLayout } from '../layouts';
-import { Admin, Analytics, Home, Landing, Login, Management, MyURL, Settings } from '../pages';
-import { login, signOut } from '../pages/Login/loginSlice';
+import { login, signOut } from '../app/reducers/authReducer';
 import localStorageUtils from '../utils/localStorageUtils';
 
-import AdminRouters from './AdminRouers';
-import PrivateRouters from './PrivateRouters';
-import PublicRouters from './PublicRouters';
-
-const publicRoutes = [
-    { path: config.routes.landing, element: <Landing /> },
-    { path: config.routes.login, element: <Login /> },
-];
-
-const privateRoutes = [
-    { path: config.routes.home, element: <Home /> },
-    { path: config.routes.analytics, element: <Analytics /> },
-    { path: config.routes.settings, element: <Settings /> },
-    { path: config.routes.url, element: <MyURL /> },
-];
-
-const adminRoutes = [
-    { path: config.routes.admin, element: <Admin /> },
-    { path: config.routes.adminAnalytics, element: <Analytics /> },
-    { path: config.routes.adminManagement, element: <Management /> },
-    { path: config.routes.adminManageUserURL, element: <MyURL /> },
-    { path: config.routes.adminShortenURL, element: <Home /> },
-    { path: config.routes.adminURL, element: <MyURL /> },
-    { path: config.routes.adminSettings, element: <Settings /> },
-];
+import AdminRoutes from './AdminRoutes';
+import PublicRoutes from './PublicRoutes';
+import UserRoutes from './UserRoutes';
 
 export const LayoutContext = createContext();
 
 const RouterComponents = () => {
-    const [layout, setLayoutInLocal] = useLocalStorage(config.localStorage.layout, 'new');
-    const Layout = layout === 'new' ? ModernLayout : BasicLayout;
     const dispatch = useDispatch();
 
-    // eslint-disable-next-line prefer-destructuring
     const token = localStorageUtils.getToken();
-    const parseJwt = (token) => {
-        try {
-            return JSON.parse(atob(token.split('.')[1]));
-        } catch (e) {
-            return null;
-        }
-    };
 
     let location = useLocation();
 
@@ -63,49 +27,24 @@ const RouterComponents = () => {
             localStorage.setItem('token', JSON.stringify(UrlParams.get('token')));
             const { payload } = jwtDecode(UrlParams.get('token'));
             localStorage.setItem('id', JSON.stringify(payload._id));
-            // return <Navigate to="/" replace />;
-            // window.location = '/';
             dispatch(login());
-        } else if (UrlParams.get('success') === 'false') {
+            return;
+        }
+
+        if (UrlParams.get('success') === 'false') {
             const toastType = UrlParams.get('status') === 'waiting' ? 'info' : 'error';
             toast[toastType](`The account is ${UrlParams.get('status')} to allow access`);
-        } else if (parseJwt(token)?.exp < Date.now() / 1000) {
+            return;
+        }
+
+        if (!token) return;
+
+        if (jwtDecode(token)?.exp < Date.now() / 1000) {
             dispatch(signOut());
         }
-    }, [dispatch, location, token]);
+    }, [dispatch, location.search, token]);
 
-    return (
-        <LayoutContext.Provider value={setLayoutInLocal}>
-            <Routes>
-                <Route element={<AdminRouters />}>
-                    {adminRoutes.map((route) => (
-                        <Route
-                            key={route.path}
-                            path={route.path}
-                            element={<Layout admin>{route.element}</Layout>}
-                        />
-                    ))}
-                </Route>
-                <Route element={<PrivateRouters />}>
-                    {privateRoutes.map((route) => (
-                        <Route
-                            key={route.path}
-                            path={route.path}
-                            element={<Layout>{route.element}</Layout>}
-                        />
-                    ))}
-                </Route>
-                <Route element={<PublicRouters />}>
-                    {publicRoutes.map((route) => (
-                        <Route key={route.path} path={route.path} element={route.element} />
-                    ))}
-                </Route>
-
-                {/* <Route path="*" element={<Navigate to="/landing" replace />} /> */}
-                <Route path="*" element={<h1>404</h1>} />
-            </Routes>
-        </LayoutContext.Provider>
-    );
+    return useRoutes([UserRoutes, AdminRoutes, PublicRoutes]);
 };
 
-export { privateRoutes, publicRoutes, RouterComponents };
+export { RouterComponents };

@@ -59,6 +59,9 @@ const sidebarSlice = createSlice({
     reducers: {},
 });
 
-export default sidebarSlice.reducer;
+// Selector
 export const userSidebarSelector = (state) => state.sidebar.user;
 export const adminSidebarSelector = (state) => state.sidebar.admin;
+
+// Reducer
+export default sidebarSlice.reducer;

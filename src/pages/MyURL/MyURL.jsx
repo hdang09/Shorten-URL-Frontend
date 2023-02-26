@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
+import { urlSelector } from '../../app/reducers/urlReducer';
 import { Card, URLList } from '../../components';
-import { urlSelector } from '../../components/URLItem/urlSlice';
 import config from '../../config';
 import { useLocalStorage } from '../../hooks';
 import { getReport } from '../../utils/urlAPI';

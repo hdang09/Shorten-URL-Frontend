@@ -1,15 +1,18 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import sidebarReducer from '../components/Sidebar/sidebarSlice';
-import urlReducer from '../components/URLItem/urlSlice';
-import authReducer from '../pages/Login/loginSlice';
+import { authReducer, customizationReducer, sidebarReducer, urlReducer } from './reducers';
 
 const store = configureStore({
     reducer: {
         url: urlReducer,
         auth: authReducer,
         sidebar: sidebarReducer,
+        customization: customizationReducer,
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
 });
 
 export default store;

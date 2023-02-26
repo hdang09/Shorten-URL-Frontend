@@ -8,13 +8,13 @@ import { toast } from 'react-toastify';
 import moment from 'moment';
 import { Col, Row } from 'styled-bootstrap-grid';
 
+import { add } from '../../app/reducers/urlReducer';
 import config from '../../config';
 import removeHttps from '../../utils/removeHttps';
 import { updateLink } from '../../utils/urlAPI';
 import { Button } from '..';
 
 import * as Styled from './URLItem.styled';
-import { add } from './urlSlice';
 
 const InfoURL = ({ data, handleClose }) => {
     const [path, setPath] = useState('');

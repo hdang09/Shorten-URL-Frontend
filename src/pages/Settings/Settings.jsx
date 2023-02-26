@@ -1,49 +1,40 @@
-import { useContext, useEffect } from 'react';
+import { useEffect } from 'react';
 import { BsMoonFill, BsSunFill } from 'react-icons/bs';
 import { ImBrightnessContrast } from 'react-icons/im';
 import { IoColorPaletteOutline, IoContrast } from 'react-icons/io5';
 import { RiContrastLine, RiLayout2Fill } from 'react-icons/ri';
 import { TbContrast } from 'react-icons/tb';
+import { useDispatch, useSelector } from 'react-redux';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 
-import { ThemeContext } from '../../App';
+import {
+    contrastSelector,
+    layoutSelector,
+    modeSelector,
+    primaryColorSelector,
+    setContrast,
+    setLayout,
+    setMode,
+    setPrimaryColor,
+} from '../../app/reducers/customizationReducer';
 import COLORS_LIST from '../../assets/styles/presets';
 import { Card, Input } from '../../components';
-import config from '../../config';
-import { useLocalStorage } from '../../hooks';
-import { LayoutContext } from '../../routers';
-import localStorageUtils from '../../utils/localStorageUtils';
 
 import * as Styled from './Settings.styled';
 
 const Settings = () => {
-    // config
-    const {
-        primaryColor,
-        layout: layoutConfig,
-        theme: themeConfig,
-        isConstrast: contrastConfig,
-    } = config.localStorage;
+    const dispatch = useDispatch();
 
     // Set document tilte
     useEffect(() => {
         document.title = 'Settings | F-Code Shorten URL';
     }, []);
 
-    // theme
-    const theme = localStorageUtils.getItem(themeConfig) || 'light';
-    const { toggleTheme, toggleContrast } = useContext(ThemeContext);
-
-    // contrast
-    const isContrast = localStorageUtils.getItem(contrastConfig) || false;
-
-    // layout
-    const layout = localStorageUtils.getItem(layoutConfig) || 'new';
-    const setLayoutInLocal = useContext(LayoutContext);
-
-    // primary color
-    const [color, setColor] = useLocalStorage(primaryColor, '#45ce7b');
-    document.querySelector(':root').style.setProperty('--primary-color', `${color}`);
+    // Get state in customization from Redux
+    const theme = useSelector(modeSelector);
+    const isContrast = useSelector(contrastSelector);
+    const layout = useSelector(layoutSelector);
+    const primaryColor = useSelector(primaryColorSelector);
 
     const SETTINGS_LIST = [
         {
@@ -52,14 +43,20 @@ const Settings = () => {
             children: (
                 <Row>
                     <Col xs={6} sm={6}>
-                        <Styled.SettingsBox onClick={toggleTheme}>
-                            <BsSunFill size={25} color={theme === 'light' ? color : '#C6CACE'} />
+                        <Styled.SettingsBox onClick={() => dispatch(setMode('light'))}>
+                            <BsSunFill
+                                size={25}
+                                color={theme === 'light' ? primaryColor : '#C6CACE'}
+                            />
                         </Styled.SettingsBox>
                     </Col>
 
                     <Col xs={6} sm={6}>
-                        <Styled.SettingsBox onClick={toggleTheme}>
-                            <BsMoonFill size={25} color={theme === 'dark' ? color : '#C6CACE'} />
+                        <Styled.SettingsBox onClick={() => dispatch(setMode('dark'))}>
+                            <BsMoonFill
+                                size={25}
+                                color={theme === 'dark' ? primaryColor : '#C6CACE'}
+                            />
                         </Styled.SettingsBox>
                     </Col>
                 </Row>
@@ -71,17 +68,20 @@ const Settings = () => {
             children: (
                 <Row>
                     <Col xs={6} sm={6}>
-                        <Styled.SettingsBox onClick={toggleContrast}>
+                        <Styled.SettingsBox onClick={() => dispatch(setContrast(false))}>
                             <RiContrastLine
                                 size={25}
-                                color={isContrast === false ? color : '#C6CACE'}
+                                color={isContrast === false ? primaryColor : '#C6CACE'}
                             />
                         </Styled.SettingsBox>
                     </Col>
 
                     <Col xs={6} sm={6}>
-                        <Styled.SettingsBox onClick={toggleContrast}>
-                            <TbContrast size={25} color={isContrast === true ? color : '#C6CACE'} />
+                        <Styled.SettingsBox onClick={() => dispatch(setContrast(true))}>
+                            <TbContrast
+                                size={25}
+                                color={isContrast === true ? primaryColor : '#C6CACE'}
+                            />
                         </Styled.SettingsBox>
                     </Col>
                 </Row>
@@ -96,9 +96,9 @@ const Settings = () => {
                         {COLORS_LIST.map((colorItem) => (
                             <Col xs={6} sm={6} md={4} key={colorItem}>
                                 <Styled.SmallSettingsBox
-                                    onClick={() => setColor(colorItem)}
-                                    active={color.toLowerCase() === colorItem.toLowerCase()}
-                                    primaryColor={color}
+                                    onClick={() => dispatch(setPrimaryColor(colorItem))}
+                                    active={primaryColor.toLowerCase() === colorItem.toLowerCase()}
+                                    primaryColor={primaryColor}
                                 >
                                     <Styled.Preset color={colorItem} />
                                 </Styled.SmallSettingsBox>
@@ -111,14 +111,14 @@ const Settings = () => {
                             <div style={{ display: 'flex' }}>
                                 <Styled.ColorInput
                                     type="color"
-                                    value={color}
-                                    onChange={(e) => setColor(e.target.value)}
+                                    value={primaryColor}
+                                    onChange={(e) => dispatch(setPrimaryColor(e.target.value))}
                                 />
                                 <Input
                                     large
                                     background
-                                    value={color}
-                                    onChange={(e) => setColor(e.target.value)}
+                                    value={primaryColor}
+                                    onChange={(e) => dispatch(setPrimaryColor(e.target.value))}
                                 />
                             </div>
                         </Col>
@@ -132,16 +132,22 @@ const Settings = () => {
             children: (
                 <Row>
                     <Col xs={6} sm={6}>
-                        <Styled.SettingsBox onClick={() => setLayoutInLocal('new')}>
-                            <Styled.ModernLayout active={layout === 'new'} primaryColor={color}>
+                        <Styled.SettingsBox onClick={() => dispatch(setLayout('new'))}>
+                            <Styled.ModernLayout
+                                active={layout === 'new'}
+                                primaryColor={primaryColor}
+                            >
                                 <div />
                                 <div />
                             </Styled.ModernLayout>
                         </Styled.SettingsBox>
                     </Col>
                     <Col xs={6} sm={6}>
-                        <Styled.SettingsBox onClick={() => setLayoutInLocal('default')}>
-                            <Styled.BasicLayout active={layout === 'default'} primaryColor={color}>
+                        <Styled.SettingsBox onClick={() => dispatch(setLayout('default'))}>
+                            <Styled.BasicLayout
+                                active={layout === 'default'}
+                                primaryColor={primaryColor}
+                            >
                                 <div />
                                 <div />
                             </Styled.BasicLayout>

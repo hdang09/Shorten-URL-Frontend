@@ -12,13 +12,9 @@ import 'react-loading-skeleton/dist/skeleton.css';
 import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-    <>
-        <Provider store={store}>
-            <App />
-            <GlobalStyles />
-            <ToastContainer
-                theme={JSON.parse(window.localStorage.getItem(config.theme)) || 'light'}
-            />
-        </Provider>
-    </>,
+    <Provider store={store}>
+        <App />
+        <GlobalStyles />
+        <ToastContainer theme={JSON.parse(window.localStorage.getItem(config.theme)) || 'light'} />
+    </Provider>,
 );

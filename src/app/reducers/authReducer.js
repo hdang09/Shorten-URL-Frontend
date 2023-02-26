@@ -13,7 +13,7 @@ const initialState = {
     isVisitFirstTime: null,
 };
 
-const loginSlice = createSlice({
+const authSlice = createSlice({
     name: 'auth',
     initialState,
     reducers: {
@@ -31,7 +31,12 @@ const loginSlice = createSlice({
     },
 });
 
+// Selector
 export const adminSelector = (state) => state.auth?.isAdmin;
 export const userSelector = (state) => state.auth?.isUser;
-export const { login, signOut } = loginSlice.actions;
-export default loginSlice.reducer;
+
+// Actions
+export const { login, signOut } = authSlice.actions;
+
+// Reducer
+export default authSlice.reducer;

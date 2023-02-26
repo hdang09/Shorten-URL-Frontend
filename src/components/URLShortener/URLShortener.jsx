@@ -6,12 +6,12 @@ import isUrl from 'is-url';
 import { nanoid } from 'nanoid';
 import { Col, Row } from 'styled-bootstrap-grid';
 
+import { add } from '../../app/reducers/urlReducer';
 import { Button, Input } from '../../components';
 import config from '../../config';
 import { useLocalStorage } from '../../hooks';
 import removeHttps from '../../utils/removeHttps';
 import { shortenUrl } from '../../utils/urlAPI';
-import { add } from '../URLItem/urlSlice';
 
 import * as Styled from './URLShortener.styled';
 

@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import AOS from 'aos';
 
+import { modeSelector } from '../../app/reducers/customizationReducer';
 import lightScreenshot from '../../assets/images/screenshots.png';
 import darkScreenshot from '../../assets/images/screenshots-dark.png';
 import { Button, Header } from '../../components';
-import config from '../../config';
-import { useLocalStorage } from '../../hooks';
 
 import * as Styled from './Landing.styled';
 
@@ -31,7 +31,7 @@ AOS.init({
 AOS.refresh();
 
 function LandingPage() {
-    const [theme, _] = useLocalStorage(config.localStorage.theme, 'light');
+    const theme = useSelector(modeSelector);
     const screenshot = theme === 'light' ? lightScreenshot : darkScreenshot;
 
     useEffect(() => {

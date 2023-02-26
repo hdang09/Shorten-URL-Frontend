@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BsMoon, BsSun } from 'react-icons/bs';
 import { MdLogout } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,27 +7,25 @@ import Tippy from '@tippyjs/react';
 import { down } from 'styled-breakpoints';
 import { useBreakpoint } from 'styled-breakpoints/react-styled';
 
-import { ThemeContext } from '../../App';
+import { signOut } from '../../app/reducers/authReducer';
+import { modeSelector, toggleMode } from '../../app/reducers/customizationReducer';
+import { adminSidebarSelector, userSidebarSelector } from '../../app/reducers/sidebarReducer';
 import logo from '../../assets/images/logo.png';
 import noAvatar from '../../assets/images/no-avatar.png';
 import config from '../../config';
 import { useLocalStorage } from '../../hooks';
-import { signOut } from '../../pages/Login/loginSlice';
 import { getInfo } from '../../utils/adminAPI';
-import localStorageUtils from '../../utils/localStorageUtils';
-import { adminSidebarSelector, userSidebarSelector } from '../Sidebar/sidebarSlice';
 
 import * as Styled from './Sidebar.styled';
 
 function Sidebar({ admin, redesign }) {
-    const { theme: themeConfig, idUser: idConfig } = config.localStorage;
+    const { idUser: idConfig } = config.localStorage;
 
     const [infoUser, setInfoUser] = useState({});
 
     const dispatch = useDispatch();
     const sidebarList = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
-    const theme = localStorageUtils.getItem(themeConfig) || 'light';
-    const { toggleTheme, _ } = useContext(ThemeContext);
+    const theme = useSelector(modeSelector);
     const [id, setId] = useLocalStorage(idConfig, '');
 
     const isMobile = useBreakpoint(down('sm'));
@@ -64,7 +62,7 @@ function Sidebar({ admin, redesign }) {
                     placement={tippyPosition}
                     key={'Theme'}
                 >
-                    <Styled.NewSidebarItem to="" onClick={toggleTheme}>
+                    <Styled.NewSidebarItem to="" onClick={() => dispatch(toggleMode())}>
                         {theme === 'light' ? <BsMoon /> : <BsSun />}
                     </Styled.NewSidebarItem>
                 </Tippy>

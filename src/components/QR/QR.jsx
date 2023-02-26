@@ -3,10 +3,11 @@ import { AiFillFileAdd, AiOutlineDown, AiOutlineDownload } from 'react-icons/ai'
 import { useSelector } from 'react-redux';
 import QRCodeStyling from 'qr-code-styling';
 
+import { primaryColorSelector } from '../../app/reducers/customizationReducer';
+import { urlSelector } from '../../app/reducers/urlReducer';
 import logo from '../../assets/images/logo.png';
 import { ReactComponent as BorderQR } from '../../assets/svg/border.svg';
 import { ReactComponent as QRScanningImg } from '../../assets/svg/qr-code.svg';
-import { urlSelector } from '../URLItem/urlSlice';
 import { Button, Input } from '../';
 
 import { CORNERS_DOTS, CORNERS_SQUARES, FRAMES } from './QR.images';
@@ -35,7 +36,7 @@ const qrCode = new QRCodeStyling({
 });
 
 const QR = ({ url }) => {
-    // eslint-disable-next-line react-hooks/rules-of-hooks
+    primaryColor = useSelector(primaryColorSelector);
     const urlInRedux = useSelector(urlSelector).shorten;
     const currentUrl = url || urlInRedux || '';
     const qrRef = useRef(null);

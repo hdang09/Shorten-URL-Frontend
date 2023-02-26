@@ -7,29 +7,28 @@ import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Tippy from '@tippyjs/react/headless';
 
-import { ThemeContext } from '../../App';
+import { signOut } from '../../app/reducers/authReducer';
+import { modeSelector, toggleMode } from '../../app/reducers/customizationReducer';
+import { adminSidebarSelector, userSidebarSelector } from '../../app/reducers/sidebarReducer';
 import Logo from '../../assets/images/logo.png';
 import noAvatar from '../../assets/images/no-avatar.png';
 import config from '../../config';
 import { useLocalStorage } from '../../hooks';
-import { signOut } from '../../pages/Login/loginSlice';
 import { getInfo } from '../../utils/adminAPI';
-import { adminSidebarSelector, userSidebarSelector } from '../Sidebar/sidebarSlice';
 import { Button } from '..';
 
 import * as Styled from './Header.styled';
 
 function Header({ admin, landingPage }) {
     const location = useLocation();
-    const { theme, idUser } = config.localStorage;
+    const { idUser } = config.localStorage;
 
     const [infoUser, setInfoUser] = useState({});
 
-    const { toggleTheme, _ } = useContext(ThemeContext);
     const dispatch = useDispatch();
 
     const navListMenu = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
-    const themeInLocal = JSON.parse(localStorage.getItem(theme)) || 'light';
+    const themeInLocal = useSelector(modeSelector);
     const [id, setId] = useLocalStorage(idUser, '');
 
     useEffect(() => {
@@ -99,7 +98,8 @@ function Header({ admin, landingPage }) {
                         render={(attrs) => (
                             <div tabIndex="-1" {...attrs}>
                                 <Styled.TippyBox>
-                                    <Styled.MenuItem to="" onClick={toggleTheme}>
+                                    {/* // ! toggleTheme */}
+                                    <Styled.MenuItem to="" onClick={() => dispatch(toggleMode())}>
                                         <BsLightbulb />
                                         <Styled.Text>
                                             {themeInLocal === 'light' ? 'Dark' : 'Light'} Mode
