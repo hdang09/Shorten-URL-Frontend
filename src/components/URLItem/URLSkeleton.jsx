@@ -1,14 +1,13 @@
 import Skeleton from 'react-loading-skeleton';
+import { useSelector } from 'react-redux';
 
-import config from '../../config';
-import { useLocalStorage } from '../../hooks';
+import { modeSelector } from '../../app/reducers/customizationReducer';
 
 import * as Styled from './URLItem.styled';
 
 const URLSkeleton = () => {
     const BUTTON_LIST = [...Array(4).keys()];
-    // eslint-disable-next-line prefer-destructuring
-    const isDarkMode = useLocalStorage(config.localStorage.theme)[0] === 'dark';
+    const isDarkMode = useSelector(modeSelector) === 'dark';
 
     return (
         <>

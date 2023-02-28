@@ -2,8 +2,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import jwtDecode from 'jwt-decode';
 import Cookies from 'universal-cookie';
 
-import localStorageUtils from '../../utils/localStorageUtils';
-
 const initialState = {
     isAdmin:
         new Cookies().get('token') && jwtDecode(new Cookies().get('token')).payload.role === '1',

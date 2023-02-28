@@ -4,7 +4,7 @@ import { ThemeProvider } from 'styled-components';
 
 import { setPrimaryColor } from './app/reducers/customizationReducer';
 import getTheme from './utils/getTheme';
-import { RouterComponents } from './routers';
+import Routes from './routes';
 
 function App() {
     const dispatch = useDispatch();
@@ -18,7 +18,7 @@ function App() {
     return (
         <ThemeProvider theme={theme}>
             <Router>
-                <RouterComponents />
+                <Routes />
             </Router>
         </ThemeProvider>
     );

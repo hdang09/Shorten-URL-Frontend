@@ -4,7 +4,6 @@ import { Navigate, Outlet } from 'react-router-dom';
 import { userSelector } from '../app/reducers/authReducer';
 import { layoutSelector } from '../app/reducers/customizationReducer';
 import config from '../config';
-import { useLocalStorage } from '../hooks';
 import { BasicLayout, ModernLayout } from '../layouts';
 import { Analytics, Home, MyURL, Settings } from '../pages';
 

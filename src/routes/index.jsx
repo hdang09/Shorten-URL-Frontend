@@ -1,4 +1,4 @@
-import { createContext, useEffect, useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { useDispatch } from 'react-redux';
 import { useLocation, useRoutes } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -6,13 +6,10 @@ import jwtDecode from 'jwt-decode';
 import Cookies from 'universal-cookie';
 
 import { login, signOut } from '../app/reducers/authReducer';
-import localStorageUtils from '../utils/localStorageUtils';
 
 import AdminRoutes from './AdminRoutes';
 import PublicRoutes from './PublicRoutes';
 import UserRoutes from './UserRoutes';
-
-export const LayoutContext = createContext();
 
 const RouterComponents = () => {
     // Redux
@@ -28,11 +25,12 @@ const RouterComponents = () => {
         const UrlParams = new URLSearchParams(location.search);
 
         if (UrlParams.get('success') === 'true') {
+            // token
             cookies.set('token', UrlParams.get('token'), { path: '/' });
-            // localStorage.setItem('token', JSON.stringify(UrlParams.get('token')));
+
+            // user id
             const { payload } = jwtDecode(UrlParams.get('token'));
             cookies.set('id', payload._id, { path: '/' });
-            // localStorage.setItem('id', JSON.stringify(payload._id));
             dispatch(login());
             return;
         }
@@ -53,4 +51,4 @@ const RouterComponents = () => {
     return useRoutes([UserRoutes, AdminRoutes, PublicRoutes]);
 };
 
-export { RouterComponents };
+export default RouterComponents;
