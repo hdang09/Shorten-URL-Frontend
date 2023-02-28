@@ -15,7 +15,7 @@ const AdminRouters = () => {
     const isAdmin = useSelector(adminSelector);
 
     return isAdmin ? (
-        <Layout admin>
+        <Layout isAdmin>
             <Outlet />
         </Layout>
     ) : (

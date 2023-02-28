@@ -1,35 +1,35 @@
 import { useEffect, useState } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
-import { BsGear, BsLightbulb, BsQuestionOctagon } from 'react-icons/bs';
+import { BsGear, BsLightbulb } from 'react-icons/bs';
 import { FiLogOut } from 'react-icons/fi';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Tippy from '@tippyjs/react/headless';
+import PropTypes from 'prop-types';
 
 import { signOut } from '../../app/reducers/authReducer';
 import { modeSelector, toggleMode } from '../../app/reducers/customizationReducer';
 import { adminSidebarSelector, userSidebarSelector } from '../../app/reducers/sidebarReducer';
 import Logo from '../../assets/images/logo.png';
-import noAvatar from '../../assets/images/no-avatar.png';
 import config from '../../config';
 import { getInfo } from '../../utils/adminAPI';
-import { Button } from '..';
+import { Avatar, Button } from '..';
 
 import * as Styled from './Header.styled';
 
-function Header({ admin, landingPage }) {
+const Header = ({ isAdmin, isLandingPage }) => {
     const location = useLocation();
 
     const [infoUser, setInfoUser] = useState({});
 
     const dispatch = useDispatch();
 
-    const navListMenu = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
+    const navListMenu = useSelector(isAdmin ? adminSidebarSelector : userSidebarSelector);
     const themeInLocal = useSelector(modeSelector);
 
     useEffect(() => {
-        if (landingPage) return;
+        if (isLandingPage) return;
 
         const getInfoUser = async () => {
             try {
@@ -41,10 +41,10 @@ function Header({ admin, landingPage }) {
             }
         };
         getInfoUser();
-    }, [landingPage]);
+    }, [isLandingPage]);
 
     let navItem;
-    if (landingPage) {
+    if (isLandingPage) {
         // navList = (
         //     <Styled.NavList>
         //         <Styled.NavItem to="#">HOME</Styled.NavItem>
@@ -65,9 +65,34 @@ function Header({ admin, landingPage }) {
         ));
     }
 
+    const DROP_DOWN_MENU_LIST = [
+        {
+            to: '',
+            handleClick: () => dispatch(toggleMode()),
+            icon: <BsLightbulb />,
+            text: `${themeInLocal === 'light' ? 'Dark' : 'Light'} Mode`,
+        },
+        // {
+        //     to: '/helps',
+        //     icon: <BsQuestionOctagon />,
+        //     text: 'Helps',
+        // },
+        {
+            to: '/settings',
+            icon: <BsGear />,
+            text: 'Settings',
+        },
+        {
+            to: '/landing',
+            handleClick: () => dispatch(signOut()),
+            icon: <FiLogOut />,
+            text: 'Log out',
+        },
+    ];
+
     return (
-        <Styled.Wrapper landingPage={landingPage}>
-            <Styled.Content isLoginPage={landingPage}>
+        <Styled.Wrapper isLandingPage={isLandingPage}>
+            <Styled.Content isLoginPage={isLandingPage}>
                 <Link to={config.routes.home}>
                     <Styled.Logo>
                         <img src={Logo} alt="F-Code Logo" />
@@ -78,7 +103,7 @@ function Header({ admin, landingPage }) {
                     </Styled.Logo>
                 </Link>
                 <Styled.NavList>{navItem}</Styled.NavList>
-                {landingPage ? (
+                {isLandingPage ? (
                     <Styled.HeaderButtons>
                         <Button
                             href="https://www.facebook.com/fcodefpt"
@@ -95,49 +120,37 @@ function Header({ admin, landingPage }) {
                         render={(attrs) => (
                             <div tabIndex="-1" {...attrs}>
                                 <Styled.TippyBox>
-                                    {/* // ! toggleTheme */}
-                                    <Styled.MenuItem to="" onClick={() => dispatch(toggleMode())}>
-                                        <BsLightbulb />
-                                        <Styled.Text>
-                                            {themeInLocal === 'light' ? 'Dark' : 'Light'} Mode
-                                        </Styled.Text>
-                                    </Styled.MenuItem>
-                                    <Styled.MenuItem to="/helps">
-                                        <BsQuestionOctagon />
-                                        <Styled.Text>Helps</Styled.Text>
-                                    </Styled.MenuItem>
-                                    <Styled.MenuItem to="/settings">
-                                        <BsGear />
-                                        <Styled.Text>Settings</Styled.Text>
-                                    </Styled.MenuItem>
-                                    <Styled.MenuItem
-                                        to="/landing"
-                                        onClick={() => dispatch(signOut())}
-                                    >
-                                        <FiLogOut />
-                                        <Styled.Text>Log out</Styled.Text>
-                                    </Styled.MenuItem>
+                                    {DROP_DOWN_MENU_LIST.map((item) => (
+                                        <Styled.MenuItem
+                                            to={item.to}
+                                            onClick={item.handleClick}
+                                            key={item.text}
+                                        >
+                                            {item.icon}
+                                            <Styled.Text>{item.text}</Styled.Text>
+                                        </Styled.MenuItem>
+                                    ))}
                                 </Styled.TippyBox>
                             </div>
                         )}
                     >
+                        {/* {[...Object.keys(infoUser)].length && ( */}
                         <Styled.User>
-                            <Styled.Avatar
-                                src={infoUser.avatar || noAvatar}
-                                alt="Avatar"
-                                onError={({ currentTarget }) => {
-                                    currentTarget.onerror = null; // prevents looping
-                                    currentTarget.src = noAvatar;
-                                }}
-                            />
+                            <Avatar src={infoUser.avatar} size="3.5rem" />
                             <Styled.NameUser>{infoUser.first_name || 'Anonymous'}</Styled.NameUser>
                             <AiFillCaretDown />
                         </Styled.User>
+                        {/* )} */}
                     </Tippy>
                 )}
             </Styled.Content>
         </Styled.Wrapper>
     );
-}
+};
+
+Header.propTypes = {
+    isAdmin: PropTypes.bool,
+    isLandingPage: PropTypes.bool,
+};
 
 export default Header;

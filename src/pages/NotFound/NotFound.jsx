@@ -1,3 +1,4 @@
+// import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
 import { Button } from '../../components';
@@ -28,5 +29,7 @@ function NotFound() {
         </Wrapper>
     );
 }
+
+NotFound.propTypes = {};
 
 export default NotFound;

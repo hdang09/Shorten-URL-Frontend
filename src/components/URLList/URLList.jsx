@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 import noLink from '../../assets/images/no-link.png';
 import URLItem from '../URLItem/URLItem';
@@ -24,6 +25,11 @@ const URLList = ({ list, isRecent }) => {
             </p>
         </Styled.Wrapper>
     );
+};
+
+URLList.propTypes = {
+    list: PropTypes.array,
+    isRecent: PropTypes.bool,
 };
 
 export default URLList;

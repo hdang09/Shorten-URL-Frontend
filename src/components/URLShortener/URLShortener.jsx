@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import isUrl from 'is-url';
 import { nanoid } from 'nanoid';
+// import PropTypes from 'prop-types';
 import { Col, Row } from 'styled-bootstrap-grid';
 
 import { add } from '../../app/reducers/urlReducer';
@@ -104,5 +105,7 @@ const URLShortener = () => {
         </div>
     );
 };
+
+URLShortener.propTypes = {};
 
 export default URLShortener;

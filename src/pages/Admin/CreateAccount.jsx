@@ -3,6 +3,7 @@ import { FaUserTag } from 'react-icons/fa';
 import { IoPersonAddSharp } from 'react-icons/io5';
 import { MdEmail, MdOutlineDriveFileRenameOutline } from 'react-icons/md';
 import { toast } from 'react-toastify';
+import PropTypes from 'prop-types';
 
 import { Button, Input } from '../../components';
 import { createAccount } from '../../utils/adminAPI';
@@ -94,5 +95,7 @@ const CreateAccount = () => {
         </>
     );
 };
+
+CreateAccount.propTypes = {};
 
 export default CreateAccount;

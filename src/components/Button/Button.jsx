@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 import * as Styled from './Button.styled';
 
-function Button({
+const Button = ({
     href,
     to,
     leftIcon,
@@ -15,7 +16,7 @@ function Button({
     disabled = false,
     menu = false,
     ...props
-}) {
+}) => {
     const className = [
         outline && 'outline',
         small && 'small',
@@ -47,6 +48,20 @@ function Button({
             {rightIcon && <Styled.LeftIcon>{rightIcon}</Styled.LeftIcon>}
         </Styled.Button>
     );
-}
+};
+
+Button.propTypes = {
+    href: PropTypes.string,
+    to: PropTypes.string,
+    leftIcon: PropTypes.element,
+    rightIcon: PropTypes.element,
+    children: PropTypes.node.isRequired,
+    text: PropTypes.bool,
+    outline: PropTypes.bool,
+    small: PropTypes.bool,
+    large: PropTypes.bool,
+    disabled: PropTypes.bool,
+    menu: PropTypes.bool,
+};
 
 export default Button;

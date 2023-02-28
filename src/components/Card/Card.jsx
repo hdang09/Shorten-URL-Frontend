@@ -1,11 +1,13 @@
+import PropTypes from 'prop-types';
+
 import * as Styled from './Card.styled';
 
-function Card({ title, children, subtitle, noItem, ...props }) {
+function Card({ title, children, subtitle, ...props }) {
     return (
-        <Styled.Wrapper noItem={noItem} {...props}>
+        <Styled.Wrapper {...props}>
             {title && (
                 <Styled.Header>
-                    <Styled.Title noItem={noItem}>{title}</Styled.Title>
+                    <Styled.Title>{title}</Styled.Title>
                     {subtitle && <Styled.Subtitle>{subtitle}</Styled.Subtitle>}
                 </Styled.Header>
             )}
@@ -13,5 +15,11 @@ function Card({ title, children, subtitle, noItem, ...props }) {
         </Styled.Wrapper>
     );
 }
+
+Card.propTypes = {
+    title: PropTypes.string,
+    children: PropTypes.node.isRequired,
+    subtitle: PropTypes.node,
+};
 
 export default Card;

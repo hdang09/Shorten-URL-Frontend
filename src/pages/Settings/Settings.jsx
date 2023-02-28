@@ -5,6 +5,7 @@ import { IoColorPaletteOutline, IoContrast } from 'react-icons/io5';
 import { RiContrastLine, RiLayout2Fill } from 'react-icons/ri';
 import { TbContrast } from 'react-icons/tb';
 import { useDispatch, useSelector } from 'react-redux';
+// import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 
 import {
@@ -187,5 +188,7 @@ const Settings = () => {
         </>
     );
 };
+
+Settings.propTypes = {};
 
 export default Settings;

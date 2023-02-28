@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useRef, useState } from 'react';
 import { AiFillFileAdd, AiOutlineDown, AiOutlineDownload } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
+import PropTypes from 'prop-types';
 import QRCodeStyling from 'qr-code-styling';
 
 import { primaryColorSelector } from '../../app/reducers/customizationReducer';
@@ -427,6 +428,10 @@ const QR = ({ url }) => {
             </Styled.Center> */}
         </>
     );
+};
+
+QR.propTypes = {
+    url: PropTypes.string,
 };
 
 export default memo(QR);

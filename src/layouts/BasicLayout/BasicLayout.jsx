@@ -2,12 +2,12 @@ import { Header, Sidebar } from '../../components';
 
 import * as Styled from './BasicLayout.styled';
 
-const BasicLayout = ({ admin, children }) => {
+const BasicLayout = ({ isAdmin, children }) => {
     return (
         <>
-            <Header admin={admin} new />
+            <Header isAdmin={isAdmin} new />
             <Styled.Container>
-                <Sidebar admin={admin} />
+                <Sidebar isAdmin={isAdmin} />
                 <Styled.Content className="container">{children}</Styled.Content>
             </Styled.Container>
         </>

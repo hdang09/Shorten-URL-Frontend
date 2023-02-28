@@ -13,7 +13,7 @@ export const columns = [
         dataIndex: 'name',
         render: (_, record) => (
             <Link to={`${config.routes.adminManageUserURL}?id=${record.key}`}>
-                <Avatar src={record.avatar} />
+                <Avatar src={record.avatar} size="4rem" />
                 <Styled.Name>
                     <span>
                         {record.first_name} {record.last_name}

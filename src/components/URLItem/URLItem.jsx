@@ -9,6 +9,7 @@ import { SocialIcon } from 'react-social-icons';
 import { toast } from 'react-toastify';
 import Tippy from '@tippyjs/react';
 import { Drawer } from 'antd';
+import PropTypes from 'prop-types';
 
 import { add } from '../../app/reducers/urlReducer';
 import { QR } from '..';
@@ -120,6 +121,10 @@ const URLItem = ({ data }) => {
             )}
         </>
     );
+};
+
+URLItem.propTypes = {
+    data: PropTypes.string,
 };
 
 export default URLItem;

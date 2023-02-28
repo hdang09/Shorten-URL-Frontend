@@ -6,6 +6,7 @@ import { MdUpdate } from 'react-icons/md';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import moment from 'moment';
+import PropTypes from 'prop-types';
 import { Col, Row } from 'styled-bootstrap-grid';
 
 import { add } from '../../app/reducers/urlReducer';
@@ -89,6 +90,11 @@ const InfoURL = ({ data, handleClose }) => {
             </div>
         </Styled.EditBox>
     );
+};
+
+InfoURL.propTypes = {
+    data: PropTypes.object,
+    handleClose: PropTypes.func,
 };
 
 export default InfoURL;

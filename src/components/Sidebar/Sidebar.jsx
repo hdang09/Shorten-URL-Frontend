@@ -4,6 +4,7 @@ import { MdLogout } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import Tippy from '@tippyjs/react';
+import PropTypes from 'prop-types';
 import { down } from 'styled-breakpoints';
 import { useBreakpoint } from 'styled-breakpoints/react-styled';
 
@@ -17,11 +18,11 @@ import { getInfo } from '../../utils/adminAPI';
 
 import * as Styled from './Sidebar.styled';
 
-function Sidebar({ admin, redesign }) {
+function Sidebar({ isAdmin, redesign }) {
     const [infoUser, setInfoUser] = useState({});
 
     const dispatch = useDispatch();
-    const sidebarList = useSelector(admin ? adminSidebarSelector : userSidebarSelector);
+    const sidebarList = useSelector(isAdmin ? adminSidebarSelector : userSidebarSelector);
     const theme = useSelector(modeSelector);
 
     const isMobile = useBreakpoint(down('sm'));
@@ -97,6 +98,11 @@ function Sidebar({ admin, redesign }) {
 }
 
 export default Sidebar;
+
+Sidebar.propTypes = {
+    isAdmin: PropTypes.bool,
+    redesign: PropTypes.bool,
+};
 
 {
     /* <Styled.NavList expanded={expandedNav}>

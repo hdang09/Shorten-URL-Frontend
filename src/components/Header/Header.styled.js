@@ -14,7 +14,7 @@ export const Wrapper = styled.header`
     justify-content: center;
     align-items: center;
     ${(props) =>
-        props.landingPage === true
+        props.isLandingPage === true
             ? `backdrop-filter: blur(5px);`
             : `box-shadow: 0px 1px 1px rgb(0 0 0 / 12%);
     background-color: ${props.theme.cardBackground};`}
@@ -59,6 +59,7 @@ export const Logo = styled.div`
         line-height: initial;
         background: rgb(69, 206, 123);
         background: linear-gradient(90deg, rgba(69, 206, 123, 1) 0%, rgba(255, 201, 20, 1) 100%);
+        background-clip: text;
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
         text-rendering: optimizeSpeed;
@@ -120,11 +121,6 @@ export const NavItem = styled(NavLink)`
     }
 `;
 
-export const Avatar = styled.img`
-    border-radius: 100%;
-    width: 35px;
-    height: 35px;
-`;
 export const User = styled.div`
     cursor: pointer;
     color: ${(props) => props.theme.black};
@@ -139,6 +135,7 @@ export const NameUser = styled.span`
         display: none;
     }
 `;
+
 export const Menu = styled.div``;
 
 export const TippyBox = styled.ul`

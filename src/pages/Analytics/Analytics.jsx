@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+// import PropTypes from 'prop-types';
 // import { Bar } from 'react-chartjs-2';
 import { Col, Row } from 'styled-bootstrap-grid';
 
@@ -43,5 +44,7 @@ const Analytics = () => {
         </>
     );
 };
+
+Analytics.propTypes = {};
 
 export default Analytics;

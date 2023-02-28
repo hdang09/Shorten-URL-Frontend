@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { AiOutlineRight } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+// import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 
 import { urlSelector } from '../../app/reducers/urlReducer';
@@ -55,5 +56,7 @@ const Home = () => {
         </Container>
     );
 };
+
+Home.propTypes = {};
 
 export default Home;

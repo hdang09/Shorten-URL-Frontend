@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'antd';
+import PropTypes from 'prop-types';
 
 import { getAllUser } from '../../utils/adminAPI';
 
@@ -35,5 +36,7 @@ const Management = () => {
         </Styled.Wrapper>
     );
 };
+
+Management.propTypes = {};
 
 export default Management;

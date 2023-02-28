@@ -1,6 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 import { useEffect } from 'react';
 import { FcGoogle } from 'react-icons/fc';
+// import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 
 import { Button } from '../../components';
@@ -49,6 +50,8 @@ function Login() {
         </Styled.Wrapper>
     );
 }
+
+Login.propTypes = {};
 
 export default Login;
 

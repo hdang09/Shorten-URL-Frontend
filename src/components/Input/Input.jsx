@@ -1,5 +1,6 @@
 import { forwardRef, useState } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
+import PropTypes from 'prop-types';
 
 import * as Styled from './Input.styled';
 
@@ -60,5 +61,19 @@ const Input = forwardRef(
         );
     },
 );
+
+Input.propTypes = {
+    placeholder: PropTypes.string,
+    type: PropTypes.string,
+    large: PropTypes.bool,
+    background: PropTypes.bool,
+    password: PropTypes.bool,
+    confirmPassword: PropTypes.bool,
+    outline: PropTypes.bool,
+    onClick: PropTypes.func,
+    submitBtn: PropTypes.element,
+    icon: PropTypes.element,
+    color: PropTypes.string,
+};
 
 export default Input;

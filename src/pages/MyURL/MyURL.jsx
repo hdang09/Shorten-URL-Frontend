@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
+// import PropTypes from 'prop-types';
 import { urlSelector } from '../../app/reducers/urlReducer';
 import { Card, URLList } from '../../components';
 import { getReport } from '../../utils/urlAPI';
@@ -60,5 +61,7 @@ const MyURL = () => {
         </Styled.Wrapper>
     );
 };
+
+MyURL.propTypes = {};
 
 export default MyURL;

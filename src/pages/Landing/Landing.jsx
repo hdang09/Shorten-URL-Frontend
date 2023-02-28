@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import AOS from 'aos';
 
+// import PropTypes from 'prop-types';
 import { modeSelector } from '../../app/reducers/customizationReducer';
 import lightScreenshot from '../../assets/images/screenshots.png';
 import darkScreenshot from '../../assets/images/screenshots-dark.png';
@@ -40,7 +41,7 @@ function LandingPage() {
 
     return (
         <>
-            <Header landingPage />
+            <Header isLandingPage />
             <Styled.Banner>
                 <Styled.Heading data-aos="fade-up">
                     Create <Styled.Highlight>Short</Styled.Highlight>&nbsp;Links!
@@ -66,5 +67,7 @@ function LandingPage() {
         </>
     );
 }
+
+LandingPage.propTypes = {};
 
 export default LandingPage;

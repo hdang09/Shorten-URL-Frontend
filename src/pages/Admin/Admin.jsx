@@ -6,6 +6,7 @@ import { MdUpload } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Table } from 'antd';
+// import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 
 import { Button, Card } from '../../components';
@@ -155,5 +156,7 @@ const Admin = () => {
         </Container>
     );
 };
+
+Admin.propTypes = {};
 
 export default Admin;
