@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { AiFillCaretDown } from 'react-icons/ai';
 import { BsGear, BsLightbulb } from 'react-icons/bs';
 import { FiLogOut } from 'react-icons/fi';
+import Skeleton from 'react-loading-skeleton';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -27,6 +28,7 @@ const Header = ({ isAdmin, isLandingPage }) => {
 
     const navListMenu = useSelector(isAdmin ? adminSidebarSelector : userSidebarSelector);
     const themeInLocal = useSelector(modeSelector);
+    const isDarkMode = useSelector(modeSelector) === 'dark';
 
     useEffect(() => {
         if (isLandingPage) return;
@@ -90,6 +92,66 @@ const Header = ({ isAdmin, isLandingPage }) => {
         },
     ];
 
+    const RightContent = () => {
+        if (isLandingPage) {
+            return (
+                <Styled.HeaderButtons>
+                    <Button
+                        href="https://www.facebook.com/fcodefpt"
+                        style={{ display: 'inline-flex' }}
+                        text
+                    >
+                        Visit Fanpage
+                    </Button>
+                    <Button to="/login">Log in</Button>
+                </Styled.HeaderButtons>
+            );
+        }
+
+        if ([...Object.keys(infoUser)].length) {
+            return (
+                <Tippy
+                    interactive
+                    render={(attrs) => (
+                        <div tabIndex="-1" {...attrs}>
+                            <Styled.TippyBox>
+                                {DROP_DOWN_MENU_LIST.map((item) => (
+                                    <Styled.MenuItem
+                                        to={item.to}
+                                        onClick={item.handleClick}
+                                        key={item.text}
+                                    >
+                                        {item.icon}
+                                        <Styled.Text>{item.text}</Styled.Text>
+                                    </Styled.MenuItem>
+                                ))}
+                            </Styled.TippyBox>
+                        </div>
+                    )}
+                >
+                    <Styled.User>
+                        <Avatar src={infoUser.avatar} size="3.5rem" />
+                        <Styled.NameUser>{infoUser.first_name || 'Anonymous'}</Styled.NameUser>
+                        <AiFillCaretDown />
+                    </Styled.User>
+                </Tippy>
+            );
+        }
+
+        return (
+            <Styled.User>
+                <Skeleton
+                    circle
+                    width="3.5rem"
+                    height="3.5rem"
+                    baseColor={isDarkMode ? '#161D31' : '#ebebeb'}
+                    inline
+                />
+                <Skeleton width={100} baseColor={isDarkMode ? '#161D31' : '#ebebeb'} />
+            </Styled.User>
+        );
+    };
+
     return (
         <Styled.Wrapper isLandingPage={isLandingPage}>
             <Styled.Content isLoginPage={isLandingPage}>
@@ -103,46 +165,7 @@ const Header = ({ isAdmin, isLandingPage }) => {
                     </Styled.Logo>
                 </Link>
                 <Styled.NavList>{navItem}</Styled.NavList>
-                {isLandingPage ? (
-                    <Styled.HeaderButtons>
-                        <Button
-                            href="https://www.facebook.com/fcodefpt"
-                            style={{ display: 'inline-flex' }}
-                            text
-                        >
-                            Visit Fanpage
-                        </Button>
-                        <Button to="/login">Log in</Button>
-                    </Styled.HeaderButtons>
-                ) : (
-                    <Tippy
-                        interactive
-                        render={(attrs) => (
-                            <div tabIndex="-1" {...attrs}>
-                                <Styled.TippyBox>
-                                    {DROP_DOWN_MENU_LIST.map((item) => (
-                                        <Styled.MenuItem
-                                            to={item.to}
-                                            onClick={item.handleClick}
-                                            key={item.text}
-                                        >
-                                            {item.icon}
-                                            <Styled.Text>{item.text}</Styled.Text>
-                                        </Styled.MenuItem>
-                                    ))}
-                                </Styled.TippyBox>
-                            </div>
-                        )}
-                    >
-                        {/* {[...Object.keys(infoUser)].length && ( */}
-                        <Styled.User>
-                            <Avatar src={infoUser.avatar} size="3.5rem" />
-                            <Styled.NameUser>{infoUser.first_name || 'Anonymous'}</Styled.NameUser>
-                            <AiFillCaretDown />
-                        </Styled.User>
-                        {/* )} */}
-                    </Tippy>
-                )}
+                <RightContent />
             </Styled.Content>
         </Styled.Wrapper>
     );

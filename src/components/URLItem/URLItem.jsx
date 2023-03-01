@@ -124,7 +124,7 @@ const URLItem = ({ data }) => {
 };
 
 URLItem.propTypes = {
-    data: PropTypes.string,
+    data: PropTypes.object,
 };
 
 export default URLItem;

@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
@@ -10,7 +11,9 @@ function App() {
     const dispatch = useDispatch();
 
     // Primary Color
-    dispatch(setPrimaryColor());
+    useEffect(() => {
+        dispatch(setPrimaryColor());
+    }, [dispatch]);
 
     // Theme
     const theme = getTheme();

@@ -5,7 +5,7 @@ const routes = {
     analytics: '/analytics',
     settings: '/settings',
     url: '/url',
-    admin: '/admin/',
+    admin: '/admin',
     adminAnalytics: '/admin/analytics',
     adminManagement: '/admin/management',
     adminManageUserURL: '/admin/management/user-url',

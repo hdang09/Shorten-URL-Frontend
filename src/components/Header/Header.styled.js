@@ -122,8 +122,14 @@ export const NavItem = styled(NavLink)`
 `;
 
 export const User = styled.div`
+    display: flex;
+    align-items: center;
     cursor: pointer;
     color: ${(props) => props.theme.black};
+
+    & span:nth-child(2) {
+        margin-left: 10px;
+    }
 `;
 
 export const NameUser = styled.span`
