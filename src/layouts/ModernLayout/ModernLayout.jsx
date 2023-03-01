@@ -2,10 +2,10 @@ import { Sidebar } from '../../components';
 
 import * as Styled from './ModernLayout.styled';
 
-const ModernLayout = ({ children, admin }) => {
+const ModernLayout = ({ children, isAdmin }) => {
     return (
         <Styled.Wrapper>
-            <Sidebar redesign admin={admin} />
+            <Sidebar redesign isAdmin={isAdmin} />
             <Styled.Container>
                 <Styled.Content className="container">{children}</Styled.Content>
             </Styled.Container>
