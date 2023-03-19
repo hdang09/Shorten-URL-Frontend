@@ -56,7 +56,7 @@ export const SidebarItem = styled(NavLink)`
         opacity: 0.8;
     }
 
-    &.active2 {
+    &.active {
         color: var(--primary-color);
         font-weight: 700;
     }
@@ -140,7 +140,7 @@ export const NewSidebarItem = styled(NavLink)`
     }
     ${(props) =>
         props.to &&
-        `&.active2 {
+        `&.active {
         background-color: var(--primary-color);
         color: ${props.theme.white};
     }`}

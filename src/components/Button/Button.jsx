@@ -26,26 +26,13 @@ const Button = ({
         text && 'text',
     ];
 
-    const handleButtonType = () => {
-        if (to) {
-            return {
-                as: Link,
-                to,
-            };
-        }
-        if (href) {
-            return {
-                as: 'a',
-                href,
-            };
-        }
-    };
+    const buttonProps = to ? { as: Link, to } : href ? { as: 'a', href } : {};
 
     return (
-        <Styled.Button {...handleButtonType()} className={className} {...props}>
+        <Styled.Button {...buttonProps} className={className} {...props}>
             {leftIcon && <Styled.LeftIcon>{leftIcon}</Styled.LeftIcon>}
             {children}
-            {rightIcon && <Styled.LeftIcon>{rightIcon}</Styled.LeftIcon>}
+            {rightIcon && <Styled.RightIcon>{rightIcon}</Styled.RightIcon>}
         </Styled.Button>
     );
 };

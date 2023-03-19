@@ -5,22 +5,26 @@ import noAvatar from '../../assets/images/no-avatar.png';
 
 import * as Styled from './Avatar.styled';
 
-const Avatar = ({ src, alt = 'Avatar', size = '4rem' }) => {
-    return (
-        <Styled.Avatar
-            src={src || noAvatar}
-            alt={alt}
-            onError={({ currentTarget }) => {
-                currentTarget.onerror = null; // prevents looping
-                currentTarget.src = noAvatar;
-            }}
-            size={size}
-        />
-    );
-};
+const Avatar = React.forwardRef(
+    ({ src, alt = 'Avatar', size = '4rem', hideOnMobile = false }, ref) => {
+        return (
+            <Styled.Avatar
+                src={src || noAvatar}
+                alt={alt}
+                onError={({ currentTarget }) => {
+                    currentTarget.onerror = null; // prevents looping
+                    currentTarget.src = noAvatar;
+                }}
+                size={size}
+                hideOnMobile
+                ref={ref}
+            />
+        );
+    },
+);
 
 Avatar.propTypes = {
-    src: PropTypes.string.isRequired,
+    src: PropTypes.string, // cannot put isRequired here, because of call API problem
     alt: PropTypes.string,
     size: PropTypes.string.isRequired,
 };

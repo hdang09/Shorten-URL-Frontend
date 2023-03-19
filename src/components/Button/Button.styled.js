@@ -1,18 +1,18 @@
 import { down } from 'styled-breakpoints';
 import styled from 'styled-components';
 
-export const LeftIcon = styled.div`
+export const Icon = styled.div`
     font-size: 2rem;
-    margin-right: 10px;
     display: flex;
     align-items: center;
 `;
 
-export const RightIcon = styled.div`
-    font-size: 2rem;
+export const LeftIcon = styled(Icon)`
+    margin-right: 10px;
+`;
+
+export const RightIcon = styled(Icon)`
     margin-left: 10px;
-    display: flex;
-    align-items: center;
 `;
 
 export const Button = styled.button`

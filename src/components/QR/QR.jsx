@@ -64,21 +64,17 @@ const QR = ({ url }) => {
         });
     };
 
-    const [openSetingsList, setOpenSettingsList] = useState([
-        { id: 0, isOpened: false },
-        { id: 1, isOpened: false },
-        { id: 2, isOpened: false },
-        { id: 3, isOpened: false },
-        { id: 4, isOpened: false },
-    ]);
+    const [openSetingsList, setOpenSettingsList] = useState(
+        Array.from({ length: 5 }, (_, id) => ({ id, isOpened: false })),
+    );
 
-    const handleOpenSetingsList = (num) => {
-        const newList = openSetingsList.map((item) => ({
-            key: item.id,
-            id: item.id,
-            isOpened: item.id === num ? !openSetingsList[num].isOpened : false,
-        }));
-        setOpenSettingsList(newList);
+    const handleOpenSetingsList = (id) => {
+        setOpenSettingsList((list) =>
+            list.map((item) => ({
+                ...item,
+                isOpened: item.id === id ? !item.isOpened : false,
+            })),
+        );
     };
 
     const changeSingleColor = (inputColor, option) => {
