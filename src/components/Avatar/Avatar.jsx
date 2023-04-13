@@ -16,7 +16,7 @@ const Avatar = React.forwardRef(
                     currentTarget.src = noAvatar;
                 }}
                 size={size}
-                hideOnMobile
+                hideOnMobile={hideOnMobile}
                 ref={ref}
             />
         );

@@ -82,7 +82,7 @@ export const Search = styled.div`
     }
 `;
 
-export const NavList = styled.ul`
+export const NavList = styled.nav`
     display: flex;
     justify-content: center;
     align-items: center;
@@ -100,7 +100,7 @@ export const NavItem = styled(NavLink)`
     text-transform: uppercase;
     color: ${(props) => props.theme.black};
 
-    &.active2 {
+    &.active {
         --active-line: 2px;
         opacity: 0.75;
         color: var(--primary-color);

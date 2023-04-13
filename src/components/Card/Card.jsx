@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 import * as Styled from './Card.styled';
 
-function Card({ title, children, subtitle, ...props }) {
+const Card = ({ title, children, subtitle, ...props }) => {
     return (
         <Styled.Wrapper {...props}>
             {title && (
@@ -14,7 +14,7 @@ function Card({ title, children, subtitle, ...props }) {
             <div>{children}</div>
         </Styled.Wrapper>
     );
-}
+};
 
 Card.propTypes = {
     title: PropTypes.string,

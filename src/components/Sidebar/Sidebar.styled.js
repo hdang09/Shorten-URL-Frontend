@@ -72,14 +72,14 @@ export const Icon = styled.div`
     }
 `;
 
-export const Sidebar = styled.div`
+export const Sidebar = styled.aside`
     position: fixed;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     height: 100vh;
-    padding: 5rem 0 5rem 1.5rem;
+    padding-left: 2rem;
     z-index: 10;
 
     ${down('sm')} {
@@ -102,7 +102,7 @@ export const Logo = styled.img`
     }
 `;
 
-export const NavList = styled.ul`
+export const NavList = styled.nav`
     list-style: none;
     background-color: ${(props) => props.theme.cardBackground};
     border-radius: ${(props) => (props.expanded ? '32px' : '100px')};

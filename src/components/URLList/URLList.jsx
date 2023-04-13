@@ -8,10 +8,8 @@ import URLSkeleton from '../URLItem/URLSkeleton';
 import * as Styled from './URLList.styled';
 
 const URLList = ({ list, isRecent }) => {
-    let newList;
-    if (list !== null) {
-        newList = isRecent && list.length ? list.slice(0, 4) : list;
-    }
+    const newList = list !== null && (isRecent && list.length ? list.slice(0, 4) : list);
+
     return list === null ? (
         [...Array(4).keys()].map((item) => <URLSkeleton key={item} />)
     ) : newList.length > 0 ? (
