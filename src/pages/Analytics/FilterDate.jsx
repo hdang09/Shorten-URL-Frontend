@@ -9,16 +9,16 @@ const FilterDate = ({ date, setDate }) => {
     const months = generateMonths(date);
 
     const handleClickYear = (e) => {
-        message.info('Click on menu item.');
-        console.log('click', e);
+        // message.info('Click on menu item.');
+        // console.log('click', e);
         setDate((prev) => ({
             ...prev,
             year: Number.parseInt(e.key),
         }));
     };
     const handleClickMonth = (e) => {
-        message.info('Click on menu item.');
-        console.log('click', e);
+        // message.info('Click on menu item.');
+        // console.log('click', e);
         setDate((prev) => ({
             ...prev,
             month: Number.parseInt(e.key),

@@ -34,7 +34,6 @@ const MyURL = () => {
     useEffect(() => {
         const getAllLinks = async () => {
             const { data } = await getReport(userId);
-            console.log(data.data.links);
             setLinks({
                 ...links,
                 all: data.data.links,
