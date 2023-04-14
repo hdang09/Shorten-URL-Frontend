@@ -56,3 +56,8 @@ export const Subtitle = styled.h3`
         color: var(--secondary-color);
     }
 `;
+
+export const Body = styled.div`
+    max-height: calc(100vh - 275px);
+    overflow-y: scroll;
+`;

@@ -11,7 +11,7 @@ const Card = ({ title, children, subtitle, ...props }) => {
                     {subtitle && <Styled.Subtitle>{subtitle}</Styled.Subtitle>}
                 </Styled.Header>
             )}
-            <div>{children}</div>
+            <Styled.Body>{children}</Styled.Body>
         </Styled.Wrapper>
     );
 };
