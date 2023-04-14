@@ -160,32 +160,30 @@ const Settings = () => {
     ];
 
     return (
-        <>
-            <Container>
-                <div className="row gx-5">
+        <Container>
+            <div className="row gx-5">
+                <div className="col-xl-3 col-lg-2 hidden-md" />
+                <div className="col-xl-6 col-lg-8 col-md-12">
+                    <Card title="Settings">
+                        {SETTINGS_LIST.map((item) => (
+                            <Styled.SettingsItem key={item.label}>
+                                <Row>
+                                    <Col md={12} lg={4}>
+                                        <Styled.SettingsLabel>
+                                            {item.icon} <span>{item.label}</span>
+                                        </Styled.SettingsLabel>
+                                    </Col>
+                                    <Col md={12} lg={8}>
+                                        {item.children}
+                                    </Col>
+                                </Row>
+                            </Styled.SettingsItem>
+                        ))}
+                    </Card>
                     <div className="col-xl-3 col-lg-2 hidden-md" />
-                    <div className="col-xl-6 col-lg-8 col-md-12">
-                        <Card title="Settings">
-                            {SETTINGS_LIST.map((item) => (
-                                <Styled.SettingsItem key={item.label}>
-                                    <Row>
-                                        <Col md={12} lg={4}>
-                                            <Styled.SettingsLabel>
-                                                {item.icon} <span>{item.label}</span>
-                                            </Styled.SettingsLabel>
-                                        </Col>
-                                        <Col md={12} lg={8}>
-                                            {item.children}
-                                        </Col>
-                                    </Row>
-                                </Styled.SettingsItem>
-                            ))}
-                        </Card>
-                        <div className="col-xl-3 col-lg-2 hidden-md" />
-                    </div>
                 </div>
-            </Container>
-        </>
+            </div>
+        </Container>
     );
 };
 

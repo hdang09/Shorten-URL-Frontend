@@ -13,7 +13,7 @@ export const Label = styled.div`
     }
 
     & label {
-        margin: 0 0 8px 4px;
+        margin: 0 0 10px 4px;
         font-weight: bold;
     }
 `;
@@ -39,7 +39,7 @@ export const WrapperInput = styled.div`
     & input:first-child {
         max-width: 105px;
         padding-right: 5px;
-        border-right: 2px solid #ccc;
+        border-right: 2px solid ${(props) => props.theme.gray};
     }
 
     & input:last-child {

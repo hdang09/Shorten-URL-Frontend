@@ -13,6 +13,7 @@ import { modeSelector, toggleMode } from '../../app/reducers/customizationReduce
 import { adminSidebarSelector, userSidebarSelector } from '../../app/reducers/sidebarReducer';
 import logo from '../../assets/images/logo.png';
 import config from '../../config';
+import useWindowDimensions from '../../hooks/useWindowDimensions';
 import { getInfo } from '../../utils/adminAPI';
 import Avatar from '../Avatar/Avatar';
 
@@ -21,12 +22,14 @@ import SidebarItem from './SidebarItem';
 
 function Sidebar({ isAdmin, redesign }) {
     const [infoUser, setInfoUser] = useState({});
-
     const avatarRef = useRef();
     const dispatch = useDispatch();
     const sidebarList = useSelector(isAdmin ? adminSidebarSelector : userSidebarSelector);
     const theme = useSelector(modeSelector);
     const isMobile = useBreakpoint(down('sm'));
+    const { height } = useWindowDimensions();
+
+    const isBigHeight = height > 600;
     const tippyPosition = isMobile ? 'top' : 'right';
 
     useEffect(() => {
@@ -53,17 +56,21 @@ function Sidebar({ isAdmin, redesign }) {
 
     return redesign ? (
         <Styled.Sidebar>
-            <Link to={config.routes.home}>
-                <Styled.Logo src={logo} alt="F-Code Logo" />
-            </Link>
+            {isBigHeight && (
+                <Link to={config.routes.home}>
+                    <Styled.Logo src={logo} alt="F-Code Logo" />
+                </Link>
+            )}
             <Styled.NavList>
                 {NAV_LIST.map((item) => (
                     <SidebarItem key={item.name} tippyPosition={tippyPosition} isNew {...item} />
                 ))}
             </Styled.NavList>
-            <Tippy content={infoUser.first_name || 'Anonymous'} placement={tippyPosition}>
-                <Avatar src={infoUser.avatar} size="4.4rem" hideOnMobile innerref={avatarRef} />
-            </Tippy>
+            {isBigHeight && (
+                <Tippy content={infoUser.first_name || 'Anonymous'} placement={tippyPosition}>
+                    <Avatar src={infoUser.avatar} size="4.4rem" hideOnMobile innerref={avatarRef} />
+                </Tippy>
+            )}
         </Styled.Sidebar>
     ) : (
         <Styled.Wrapper>

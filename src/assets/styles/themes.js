@@ -3,6 +3,7 @@ export const lightTheme = {
     white: '#fff',
     background: '#eef0f4',
     cardBackground: '#fff',
+    gray: '#ccc',
 };
 
 export const darkTheme = {
@@ -10,4 +11,5 @@ export const darkTheme = {
     white: '#000',
     background: '#161D31',
     cardBackground: '#283046',
+    gray: '#666',
 };

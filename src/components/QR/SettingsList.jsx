@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { AiFillFileAdd, AiOutlineDown } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -155,7 +155,7 @@ const SettingsList = ({ qrCode, currentUrl }) => {
                             onClick={(e) =>
                                 qrCode.update({
                                     cornersDotOptions: {
-                                        ...qrCode.cornersDotOptions,
+                                        ...qrCode._options.cornersDotOptions,
                                         type: frame.type,
                                     },
                                 })
@@ -237,7 +237,7 @@ const SettingsList = ({ qrCode, currentUrl }) => {
                             onChange={(e) =>
                                 qrCode.update({
                                     imageOptions: {
-                                        ...qrCode.imageOptions,
+                                        ...qrCode._options.imageOptions,
                                         margin: e.target.value,
                                     },
                                 })
@@ -246,14 +246,14 @@ const SettingsList = ({ qrCode, currentUrl }) => {
                     </div>
 
                     <Styled.HideBgLogo>
-                        <label>Transparent</label>
+                        <label>Remove transparent</label>
                         <input
                             type="checkbox"
                             onChange={(e) =>
                                 qrCode.update({
                                     imageOptions: {
-                                        ...qrCode.imageOptions,
-                                        hideBackgroundDots: e.target.checked,
+                                        ...qrCode._options.imageOptions,
+                                        hideBackgroundDots: !e.target.checked,
                                     },
                                 })
                             }

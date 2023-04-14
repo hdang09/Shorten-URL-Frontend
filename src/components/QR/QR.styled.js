@@ -4,7 +4,7 @@ export const QR = styled.div`
     & canvas {
         max-width: 250px;
         max-height: 250px;
-        /* height: auto; */
+        height: auto;
     }
 `;
 
@@ -12,7 +12,6 @@ export const Center = styled.div`
     width: 100%;
     display: flex;
     justify-content: center;
-    margin: 4px 0;
     position: relative;
 `;
 

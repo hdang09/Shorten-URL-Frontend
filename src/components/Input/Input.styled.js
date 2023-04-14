@@ -4,6 +4,8 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
     position: relative;
     margin-bottom: 12px;
+    display: flex;
+    justify-content: center;
 
     & + button {
         margin-left: 8px;

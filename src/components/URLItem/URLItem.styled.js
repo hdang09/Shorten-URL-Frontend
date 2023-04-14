@@ -15,16 +15,17 @@ const slideLeft = keyframes`
 `;
 
 export const Wrapper = styled.div`
-    box-shadow: var(--box-shadow);
+    /* box-shadow: var(--box-shadow); */
     padding: 12px;
-    color: ${(props) => props.theme.white};
+    color: ${(props) => props.theme.black};
     display: flex;
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
     position: relative;
     z-index: 1;
-    background: linear-gradient(${gradientColors[permanentRandNum]});
+    /* background: linear-gradient(${gradientColors[permanentRandNum]}); */
+    background: ${(props) => props.theme.background};
     border-radius: 10px;
     animation: ${slideLeft} 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s forwards;
 
@@ -53,7 +54,7 @@ export const SkeletonWrapper = styled.div`
 `;
 
 export const EditBox = styled.div`
-    border: 2px solid var(--primary-color);
+    border: 2px solid ${(props) => props.theme.gray};
     border-radius: 10px;
     padding: 20px 50px;
     margin-bottom: 20px;
@@ -74,7 +75,12 @@ export const Icon = styled.div`
     }
 
     .social-svg-icon {
-        fill: ${(props) => props.theme.white} !important;
+        fill: ${(props) => props.theme.black} !important;
+    }
+
+    .social-svg-mask {
+        fill: ${(props) => props.theme.background} !important;
+        transition: none !important;
     }
 `;
 
@@ -88,7 +94,7 @@ export const Title = styled.h1`
     font-size: 2rem;
     font-weight: 600;
     margin-bottom: 6px;
-    color: ${(props) => props.theme.white};
+    color: var(--primary-color);
 `;
 
 export const Subtitle = styled.a`
@@ -98,10 +104,12 @@ export const Subtitle = styled.a`
     text-decoration: none;
     text-overflow: ellipsis;
     padding-bottom: 1px;
-    border-bottom: 2px solid ${(props) => props.theme.white};
+    border-bottom: 2px solid ${(props) => props.theme.gray};
 
     &:hover {
-        color: ${(props) => props.theme.white};
+        color: inherit;
+        border-color: var(--primary-color);
+        transition: border-color 0.25s linear;
     }
 `;
 
@@ -172,7 +180,7 @@ export const WrapperInput = styled.div`
     & input:first-child {
         max-width: 105px;
         padding-right: 5px;
-        border-right: 2px solid #ccc;
+        border-right: 2px solid ${(props) => props.theme.gray};
     }
 
     & input:last-child {

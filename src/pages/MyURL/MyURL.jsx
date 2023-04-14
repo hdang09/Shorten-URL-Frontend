@@ -3,20 +3,28 @@ import { useSelector } from 'react-redux';
 
 // import PropTypes from 'prop-types';
 import { urlSelector } from '../../app/reducers/urlReducer';
-import { Card, URLList } from '../../components';
+import { Card, Input, URLList } from '../../components';
 import { getReport } from '../../utils/urlAPI';
 
 import * as Styled from './MyURL.styled';
 
 const MyURL = () => {
     const currentURL = useSelector(urlSelector).shorten;
-    // eslint-disable-next-line prefer-destructuring
-    const userId = window.location.search.split('?id=')[1];
+    const [userId] = window.location.search.split('?id=');
     const [links, setLinks] = useState({
         all: null,
         filtered: null,
     });
     const [inputValue, setInputValue] = useState('');
+
+    // useEffect(() => {
+    //     const getLinksByDate = async () => {
+    //         console.log(date);
+    //         const { data } = await getReport(userId, date.year, date.month);
+    //         console.log(date);
+    //     };
+    //     getLinksByDate();
+    // }, [date, links, userId]);
 
     // Set document title
     useEffect(() => {
@@ -26,7 +34,7 @@ const MyURL = () => {
     useEffect(() => {
         const getAllLinks = async () => {
             const { data } = await getReport(userId);
-            data.data.links.reverse();
+            console.log(data.data.links);
             setLinks({
                 ...links,
                 all: data.data.links,
@@ -35,7 +43,7 @@ const MyURL = () => {
         };
         getAllLinks();
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentURL]);
+    }, [currentURL, userId]);
 
     const handleSearch = (e) => {
         setInputValue(e.target.value);
@@ -50,7 +58,7 @@ const MyURL = () => {
 
     return (
         <Styled.Wrapper>
-            <Styled.SearchInput
+            <Input
                 value={inputValue}
                 onChange={handleSearch}
                 placeholder="Type here to search my URL..."
