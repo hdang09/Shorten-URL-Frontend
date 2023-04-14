@@ -31,7 +31,6 @@ export const Content = styled.div`
     }
 
     ${down('sm')} {
-        overflow-x: scroll;
         margin: 12px 8px 80px;
     }
 `;

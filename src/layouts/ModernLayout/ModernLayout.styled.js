@@ -45,6 +45,5 @@ export const Content = styled.div`
     ${down('sm')} {
         width: auto;
         margin: 16px 8px 80px;
-        overflow-x: auto;
     }
 `;

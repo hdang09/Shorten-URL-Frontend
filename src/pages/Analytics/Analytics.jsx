@@ -20,11 +20,13 @@ const Analytics = () => {
                 <Col sm={12} md={12} lg={4} />
                 <Col sm={12} md={12} lg={4}>
                     <Row>
+                        <Col md={3} />
                         <Col sm={12} md={6} lg={12}>
                             <Card title="Statistics">
                                 <Statistics />
                             </Card>
                         </Col>
+                        <Col md={3} />
 
                         {/* <Col sm={12} md={6} lg={12}>
                             <Card title="Analytics" subtitle="5 days recently">

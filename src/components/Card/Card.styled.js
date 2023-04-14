@@ -25,6 +25,7 @@ export const Wrapper = styled.div`
 
     ${down('sm')} {
         width: auto;
+        max-width: calc(100vw - 32px);
     }
 `;
 

@@ -16,10 +16,10 @@ export const Center = styled.div`
 `;
 
 export const SettingsList = styled.ul`
-    margin-top: 2rem;
+    margin: 2rem 0 0.6rem 0;
     list-style: none;
     padding: 0;
-    height: 325px;
+    height: 333px;
     /* overflow-y: auto; */
     overflow-x: hidden;
 `;
@@ -45,6 +45,11 @@ export const Header = styled.div`
     cursor: pointer;
 `;
 
+export const Icon = styled.div`
+    transform: ${(props) => (props.isOpen ? 'rotate(180deg)' : 'rotate(0)')};
+    transition: transform 0.3s ease-in-out;
+`;
+
 export const Heading = styled.h2`
     font-size: 1.8rem;
     text-transform: uppercase;
@@ -54,7 +59,10 @@ export const Heading = styled.h2`
 
 export const Content = styled.div`
     width: inherit;
-    margin-top: 0.75rem;
+    margin-top: ${(props) => (props.isOpen ? '0.75rem' : '0')};
+    max-height: ${(props) => (props.isOpen ? '1000px' : '0')};
+    overflow: hidden;
+    transition: max-height 0.3s ease-in-out, margin-top 0.3s ease-in-out;
 
     p {
         font-weight: bold;
@@ -117,6 +125,7 @@ const flicker = keyframes`
 export const QRScanningGroup = styled.div`
     height: 250px;
     position: relative;
+    margin-bottom: 6px;
 
     &::after {
         content: '';
@@ -132,6 +141,10 @@ export const QRScanningGroup = styled.div`
             drop-shadow(0 0 60px var(--primary-color));
         animation: ${animateLine} 4s ease-in-out infinite;
     }
+
+    @media only screen and (max-width: 300px) {
+        height: 200px;
+    }
 `;
 
 export const QrScanningBg = styled.div`
@@ -139,6 +152,10 @@ export const QrScanningBg = styled.div`
     position: absolute;
     width: 250px;
     padding: 5rem;
+
+    @media only screen and (max-width: 300px) {
+        width: 200px;
+    }
 `;
 
 export const QrScanning = styled(QrScanningBg)`
@@ -149,6 +166,10 @@ export const QrScanning = styled(QrScanningBg)`
     overflow: hidden;
     background-size: 250px;
     animation: ${scanning} 4s linear infinite;
+
+    @media only screen and (max-width: 300px) {
+        background-size: 200px;
+    }
 `;
 
 export const BorderQr = styled.div`
@@ -159,6 +180,11 @@ export const BorderQr = styled.div`
 
     & .border {
         stroke: ${(props) => props.theme.black};
+    }
+
+    @media only screen and (max-width: 300px) {
+        width: 200px;
+        height: 200px;
     }
 `;
 

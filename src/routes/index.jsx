@@ -44,6 +44,7 @@ const RouterComponents = () => {
         if (!token) return;
 
         if (jwtDecode(token)?.exp < Date.now() / 1000) {
+            toast.info('Your session has expired. Please login again!');
             dispatch(signOut());
         }
     }, [cookies, dispatch, location.search, token]);

@@ -40,7 +40,7 @@ function Sidebar({ isAdmin, redesign }) {
         getInfoUser();
     }, []);
 
-    const NAV_LIST = [
+    let NAV_LIST = [
         ...sidebarList,
         {
             name: `${theme === 'light' ? 'Dark' : 'Light'} Mode`,
@@ -53,6 +53,8 @@ function Sidebar({ isAdmin, redesign }) {
             handleClick: () => dispatch(signOut()),
         },
     ];
+
+    if (isMobile || !isBigHeight) delete NAV_LIST[4];
 
     return redesign ? (
         <Styled.Sidebar>

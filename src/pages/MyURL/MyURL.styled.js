@@ -14,4 +14,5 @@ export const Wrapper = styled.div`
 export const Body = styled.div`
     max-height: calc(100vh - 275px);
     overflow-y: scroll;
+    overflow-x: hidden;
 `;

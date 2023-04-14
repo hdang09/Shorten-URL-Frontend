@@ -6,7 +6,7 @@ import * as Styled from './Sidebar.styled';
 
 const NewSidebarItem = ({ name, icon, to, handleClick, tippyPosition, isNew = false }) => {
     return isNew ? (
-        <Tippy content={name} placement={tippyPosition} key={name}>
+        <Tippy content={name} placement={tippyPosition} key={name} touch="hold">
             <Styled.NewSidebarItem to={to} onClick={handleClick} end>
                 {icon}
             </Styled.NewSidebarItem>

@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import noLink from '../../assets/images/no-link.png';
+import URLSkeleton from '../URLItem/components/URLSkeleton';
 import URLItem from '../URLItem/URLItem';
-import URLSkeleton from '../URLItem/URLSkeleton';
 
 import * as Styled from './URLList.styled';
 

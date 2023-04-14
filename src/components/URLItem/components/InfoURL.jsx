@@ -9,13 +9,12 @@ import moment from 'moment';
 import PropTypes from 'prop-types';
 import { Col, Row } from 'styled-bootstrap-grid';
 
-import { add } from '../../app/reducers/urlReducer';
-import config from '../../config';
-import removeHttps from '../../utils/removeHttps';
-import { updateLink } from '../../utils/urlAPI';
-import { Button } from '..';
-
-import * as Styled from './URLItem.styled';
+import { add } from '../../../app/reducers/urlReducer';
+import config from '../../../config';
+import removeHttps from '../../../utils/removeHttps';
+import { updateLink } from '../../../utils/urlAPI';
+import { Button } from '../..';
+import * as Styled from '../URLItem.styled';
 
 const InfoURL = ({ data, handleClose }) => {
     const [path, setPath] = useState('');
@@ -67,7 +66,7 @@ const InfoURL = ({ data, handleClose }) => {
             <Styled.Item>
                 <BsLink45Deg />
                 Original link:
-                <Styled.Link as="a" target="_blank" wrap href={data.origin_link}>
+                <Styled.Link as="a" target="_blank" wrap="true" href={data.origin_link}>
                     {data.origin_link}
                 </Styled.Link>
             </Styled.Item>

@@ -7,11 +7,10 @@ import { useDispatch } from 'react-redux';
 import Tippy from '@tippyjs/react';
 import PropTypes from 'prop-types';
 
-import { add } from '../../app/reducers/urlReducer';
-import config from '../../config';
-import handleCopy from '../../utils/handleCopy';
-
-import * as Styled from './URLItem.styled';
+import { add } from '../../../app/reducers/urlReducer';
+import config from '../../../config';
+import handleCopy from '../../../utils/handleCopy';
+import * as Styled from '../URLItem.styled';
 
 const ButtonList = ({ showDrawer, data, toggleEditBox }) => {
     const dispatch = useDispatch();

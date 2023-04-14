@@ -32,7 +32,7 @@ export const Tag = styled.label`
 `;
 
 export const Wrapper = styled.div`
-    /* width: 100vw; */
+    width: calc(100vw - 32px);
     overflow-x: scroll;
 
     & .ant-table-tbody {

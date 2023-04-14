@@ -305,17 +305,22 @@ const SettingsList = ({ qrCode, currentUrl }) => {
 
     return (
         <Styled.SettingsList>
-            {SETTINGS_LIST.map((item, index) => (
-                <Styled.SettingsItem key={item.header}>
-                    <Styled.Header onClick={() => handleOpenSetingsList(index)}>
-                        <Styled.Heading>{item.header}</Styled.Heading>
-                        <AiOutlineDown />
-                    </Styled.Header>
-                    {openSetingsList[index].isOpened && (
-                        <Styled.Content>{item.content}</Styled.Content>
-                    )}
-                </Styled.SettingsItem>
-            ))}
+            {SETTINGS_LIST.map((item, index) => {
+                const isOpen = openSetingsList[index].isOpened;
+
+                return (
+                    <Styled.SettingsItem key={item.header}>
+                        <Styled.Header onClick={() => handleOpenSetingsList(index)}>
+                            <Styled.Heading>{item.header}</Styled.Heading>
+                            <Styled.Icon isOpen={isOpen}>
+                                <AiOutlineDown />
+                            </Styled.Icon>
+                        </Styled.Header>
+
+                        <Styled.Content isOpen={isOpen}>{item.content}</Styled.Content>
+                    </Styled.SettingsItem>
+                );
+            })}
         </Styled.SettingsList>
     );
 };

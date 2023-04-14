@@ -16,6 +16,7 @@ const slideLeft = keyframes`
 
 export const Wrapper = styled.div`
     /* box-shadow: var(--box-shadow); */
+    overflow: hidden;
     padding: 12px;
     color: ${(props) => props.theme.black};
     display: flex;
@@ -113,6 +114,10 @@ export const Subtitle = styled.a`
     }
 `;
 
+export const SubtitleSkel = styled(Subtitle)`
+    border-color: transparent;
+`;
+
 export const Button = styled.div`
     cursor: pointer;
     font-size: 2.4rem;
@@ -133,6 +138,8 @@ export const HighLight = styled.span`
 `;
 
 export const Link = styled(HighLight)`
+    overflow-wrap: break-word;
+
     &:hover {
         color: var(--secondary-color);
     }

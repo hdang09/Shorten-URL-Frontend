@@ -7,8 +7,8 @@ import PropTypes from 'prop-types';
 import removeHttps from '../../utils/removeHttps';
 import { QR } from '..';
 
-import ButtonList from './ButtonList';
-import InfoURL from './InfoURL';
+import ButtonList from './components/ButtonList';
+import InfoURL from './components/InfoURL';
 import * as Styled from './URLItem.styled';
 
 import 'tippy.js/dist/tippy.css';

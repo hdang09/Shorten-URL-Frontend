@@ -1,9 +1,8 @@
 import Skeleton from 'react-loading-skeleton';
 import { useSelector } from 'react-redux';
 
-import { modeSelector } from '../../app/reducers/customizationReducer';
-
-import * as Styled from './URLItem.styled';
+import { modeSelector } from '../../../app/reducers/customizationReducer';
+import * as Styled from '../URLItem.styled';
 
 const URLSkeleton = () => {
     const BUTTON_LIST = [...Array(4).keys()];
@@ -24,9 +23,9 @@ const URLSkeleton = () => {
                     <Styled.Title>
                         <Skeleton width={150} baseColor={isDarkMode ? '#161D31' : '#ebebeb'} />
                     </Styled.Title>
-                    <Styled.Subtitle>
+                    <Styled.SubtitleSkel>
                         <Skeleton baseColor={isDarkMode ? '#161D31' : '#ebebeb'} />
-                    </Styled.Subtitle>
+                    </Styled.SubtitleSkel>
                 </Styled.Main>
                 {BUTTON_LIST.map((button) => (
                     <Styled.Icon key={button}>
