@@ -10,3 +10,8 @@ export const Wrapper = styled.div`
         padding: 0;
     }
 `;
+
+export const Body = styled.div`
+    max-height: calc(100vh - 275px);
+    overflow-y: scroll;
+`;

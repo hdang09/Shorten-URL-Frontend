@@ -63,7 +63,9 @@ const MyURL = () => {
                 placeholder="Type here to search my URL..."
             />
             <Card title="My URLs">
-                <URLList list={links.filtered} />
+                <Styled.Body>
+                    <URLList list={links.filtered} />
+                </Styled.Body>
             </Card>
         </Styled.Wrapper>
     );
