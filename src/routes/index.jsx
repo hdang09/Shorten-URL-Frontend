@@ -39,7 +39,6 @@ const RouterComponents = () => {
                 secure: true,
                 sameSite: 'strict',
             });
-            console.log(cookies.get('token'), cookies.get('id'));
             dispatch(login());
             return;
         }

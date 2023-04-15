@@ -26,7 +26,7 @@ const RightContent = ({ isLandingPage }) => {
                 const { data } = await getInfo();
                 setInfoUser(data.data);
             } catch (e) {
-                console.log(e);
+                console.error(e);
                 toast.error(e);
             }
         };

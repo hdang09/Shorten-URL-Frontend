@@ -92,5 +92,6 @@ module.exports = {
                 allowSeparatedGroups: true,
             },
         ],
+        'no-console': ['warn', { allow: ['warn', 'error'] }],
     },
 };
