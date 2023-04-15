@@ -25,12 +25,21 @@ const RouterComponents = () => {
         const UrlParams = new URLSearchParams(location.search);
 
         if (UrlParams.get('success') === 'true') {
-            // token
-            cookies.set('token', UrlParams.get('token'), { path: '/' });
+            // Token
+            cookies.set('token', UrlParams.get('token'), {
+                path: '/',
+                secure: true,
+                sameSite: 'strict',
+            });
 
-            // user id
+            // User ID
             const { payload } = jwtDecode(UrlParams.get('token'));
-            cookies.set('id', payload._id, { path: '/' });
+            cookies.set('id', payload._id, {
+                path: '/',
+                secure: true,
+                sameSite: 'strict',
+            });
+            console.log(cookies.get('token'), cookies.get('id'));
             dispatch(login());
             return;
         }

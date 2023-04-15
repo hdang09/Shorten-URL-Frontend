@@ -1,25 +1,26 @@
-import {
-    CategoryScale,
-    Chart as ChartJS,
-    Filler,
-    Legend,
-    LinearScale,
-    LineElement,
-    PointElement,
-    Title,
-    Tooltip,
-} from 'chart.js';
+// * Remember to install 'chart.js' when uncomment these code
+// import {
+//     CategoryScale,
+//     Chart as ChartJS,
+//     Filler,
+//     Legend,
+//     LinearScale,
+//     LineElement,
+//     PointElement,
+//     Title,
+//     Tooltip,
+// } from 'chart.js';
 
-ChartJS.register(
-    CategoryScale,
-    LinearScale,
-    PointElement,
-    LineElement,
-    Title,
-    Tooltip,
-    Filler,
-    Legend,
-);
+// ChartJS.register(
+//     CategoryScale,
+//     LinearScale,
+//     PointElement,
+//     LineElement,
+//     Title,
+//     Tooltip,
+//     Filler,
+//     Legend,
+// );
 
 export const data = {
     labels: ['14/9', '15/9', '16/9', '17/9', '18/9'],

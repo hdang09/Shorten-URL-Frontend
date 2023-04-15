@@ -23,8 +23,16 @@ const authSlice = createSlice({
             const cookies = new Cookies();
             state.isAdmin = false;
             state.isUser = false;
-            cookies.remove('token', { path: '/' });
-            cookies.remove('id', { path: '/' });
+            cookies.remove('token', {
+                path: '/',
+                secure: true,
+                sameSite: 'strict',
+            });
+            cookies.remove('id', {
+                path: '/',
+                secure: true,
+                sameSite: 'strict',
+            });
         },
     },
 });

@@ -1,13 +1,14 @@
-import {
-    BarElement,
-    CategoryScale,
-    Chart as ChartJS,
-    Legend,
-    LinearScale,
-    Title,
-    Tooltip,
-} from 'chart.js';
-ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
+// * Remember to install 'chart.js' when uncomment these code
+// import {
+//     BarElement,
+//     CategoryScale,
+//     Chart as ChartJS,
+//     Legend,
+//     LinearScale,
+//     Title,
+//     Tooltip,
+// } from 'chart.js';
+// ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
 export const BarChartData = {
     data: {

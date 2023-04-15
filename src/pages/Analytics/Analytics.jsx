@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 // import { Bar } from 'react-chartjs-2';
 import { Col, Row } from 'styled-bootstrap-grid';
 
-import { Card, Report, Statistics } from '../../components';
+import { Card, Statistics } from '../../components';
 
 // import { BarChartData } from './Analytics.dummy';
 
