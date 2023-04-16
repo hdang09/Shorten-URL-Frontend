@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 
 import { Button } from '../../components';
 
-export const Banner = styled.div`
+export const Main = styled.main`
     background-color: ${(props) => props.theme.cardBackground};
     display: flex;
     justify-content: center;
@@ -13,13 +13,49 @@ export const Banner = styled.div`
     min-height: 100vh;
 `;
 
+export const Hero = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+`;
+
+export const GradientBg = styled.div`
+    z-index: 10;
+    pointer-events: none;
+    position: absolute;
+    top: -250px;
+    left: 50%;
+    -webkit-transform: translateX(-50%) scale(1.5);
+    -moz-transform: translateX(-50%) scale(1.5);
+    -ms-transform: translateX(-50%) scale(1.5);
+    transform: translateX(-50%) scale(1.5);
+    width: 600px;
+    height: 400px;
+    opacity: 0.2;
+    -webkit-filter: blur(69px);
+    filter: blur(69px);
+    will-change: transform;
+    background: linear-gradient(
+        135deg,
+        #f7c900 0%,
+        var(--primary-color) 30%,
+        var(--secondary-color) 70%,
+        #00accf 100%
+    );
+    -webkit-background-size: 200% 200%;
+    background-size: 200% 200%;
+    -webkit-animation: glow 10s ease infinite;
+    animation: glow 10s ease infinite;
+`;
+
 export const Heading = styled.h1`
     color: ${(props) => props.theme.black};
     display: block;
     font-family: 'GT Walsheim Pro Black';
     font-weight: 800;
     text-align: center;
-    font-size: 4rem;
+    font-size: 4.5rem;
     margin: 10rem 0 1rem;
     /* font-family: Quantum; */
     /* text-transform: uppercase; */
@@ -36,6 +72,10 @@ export const Subheading = styled.h2`
     ${down('sm')} {
         padding: 16px;
     }
+`;
+
+export const CtaWrap = styled.div`
+    margin: 2rem;
 `;
 
 const scaleUpCanter = keyframes`
@@ -66,6 +106,16 @@ export const LinkButton = styled(Button)`
     display: inline-flex;
 `;
 
+const wave = keyframes`
+    from, to {
+        clip-path: polygon(0 55%, 8% 55%, 20% 55%, 31% 53%, 38% 45%, 48% 38%, 55% 34%, 68% 33%, 78% 34%, 85% 43%, 89% 50%, 94% 57%, 100% 57%, 100% 100%, 0% 100%);
+    }
+
+    50% {
+        clip-path: polygon(0% 54%, 7% 46%, 16% 39%, 27% 34%, 37% 35%, 47% 38%, 53% 47%, 57% 51%, 66% 55%, 77% 55%, 88% 56%, 100% 56%, 100% 100%, 0% 100%, 0 78%);
+    }
+`;
+
 export const Highlight = styled.span`
     color: var(--primary-color);
     /* margin: 0 0.25rem; */
@@ -73,6 +123,22 @@ export const Highlight = styled.span`
     border: 3px solid var(--primary-color);
     box-sizing: border-box;
     position: relative;
+
+    h1 {
+        display: inline-block;
+        font-size: inherit;
+    }
+
+    h1:first-child {
+        position: absolute;
+        color: transparent;
+        -webkit-text-stroke: 2px var(--primary-color);
+    }
+
+    h1:nth-child(2) {
+        color: var(--primary-color);
+        animation: ${wave} 4s ease-in-out infinite;
+    }
 `;
 
 export const BannerButton = styled.a`

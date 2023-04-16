@@ -38,6 +38,8 @@ export const Button = styled.button`
     &:hover {
         opacity: 0.8;
         color: ${(props) => props.theme.white};
+        /* box-shadow: ${(props) =>
+            props.shine === 'true' ? '0px 8px 56px 0px var(--primary-color)' : 'none'}; */
     }
 
     & + & {
