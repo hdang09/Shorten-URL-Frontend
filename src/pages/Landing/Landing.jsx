@@ -1,5 +1,4 @@
 import { useEffect } from 'react';
-import { AiOutlineRight } from 'react-icons/ai';
 import { BsFillCaretRightFill } from 'react-icons/bs';
 import { SiFandom } from 'react-icons/si';
 import { useSelector } from 'react-redux';

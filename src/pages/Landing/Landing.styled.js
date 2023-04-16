@@ -21,19 +21,17 @@ export const Hero = styled.div`
 `;
 
 export const GradientBg = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
     z-index: 10;
     pointer-events: none;
     position: absolute;
     top: -250px;
-    left: 50%;
-    -webkit-transform: translateX(-50%) scale(1.5);
-    -moz-transform: translateX(-50%) scale(1.5);
-    -ms-transform: translateX(-50%) scale(1.5);
-    transform: translateX(-50%) scale(1.5);
-    width: 600px;
+    transform: scale(1.5);
+    width: min(600px, 100vw);
     height: 400px;
     opacity: 0.2;
-    -webkit-filter: blur(69px);
     filter: blur(69px);
     will-change: transform;
     background: linear-gradient(
@@ -43,10 +41,12 @@ export const GradientBg = styled.div`
         var(--secondary-color) 70%,
         #00accf 100%
     );
-    -webkit-background-size: 200% 200%;
     background-size: 200% 200%;
-    -webkit-animation: glow 10s ease infinite;
     animation: glow 10s ease infinite;
+
+    ${down('sm')} {
+        transform: scale(1);
+    }
 `;
 
 export const Heading = styled.h1`
