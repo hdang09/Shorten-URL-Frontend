@@ -37,7 +37,7 @@ export const Button = styled.button`
 
     &:hover {
         opacity: 0.8;
-        color: ${(props) => props.theme.white};
+        color: var(--white-color);
         /* box-shadow: ${(props) =>
             props.shine === 'true' ? '0px 8px 56px 0px var(--primary-color)' : 'none'}; */
     }
@@ -89,6 +89,7 @@ export const Button = styled.button`
 
     &:hover ${LeftIcon} path,
     &:hover ${RightIcon} path {
+        transition: all 0.5s;
         fill: var(--white-color);
     }
 `;
