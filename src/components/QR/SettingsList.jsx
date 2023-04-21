@@ -29,7 +29,9 @@ const SettingsList = ({ qrCode, currentUrl }) => {
     const SETTINGS_LIST = [
         {
             header: 'URL',
-            content: <Input large value={currentUrl || 'Your QR Code will showing here...'} />,
+            content: (
+                <Input large defaulValue={currentUrl || 'Your QR Code will showing here...'} />
+            ),
         },
         {
             header: 'Dots',

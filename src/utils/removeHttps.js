@@ -1,5 +1,9 @@
 const removeHttps = (url) => {
-    return url.split('https://')[1] || url.split('http://')[1];
+    const urlWithoutHttps = url.includes('https://')
+        ? url.split('https://')[1]
+        : url.split('http://')[1];
+
+    return urlWithoutHttps;
 };
 
 export default removeHttps;
