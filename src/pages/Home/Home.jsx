@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { AiOutlineRight } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -12,6 +12,11 @@ import { getReport } from '../../utils/urlAPI';
 
 const Home = () => {
     const currentURL = useSelector(urlSelector).shorten;
+
+    const qrRef = useRef(null);
+    const scollToQr = () => {
+        qrRef.current?.scrollIntoView({ behavior: 'smooth' });
+    };
 
     const [links, setLinks] = useState(null);
     const role = window.location.pathname.split('/')[1] === '' ? 'user' : 'admin';
@@ -44,12 +49,12 @@ const Home = () => {
                             </Link>
                         }
                     >
-                        <URLList list={links} isRecent />
+                        <URLList list={links} isRecent scollToQr={scollToQr} />
                     </Card>
                 </Col>
                 <Col md={12} lg={4}>
                     <Card noTitle>
-                        <QR />
+                        <QR ref={qrRef} />
                     </Card>
                 </Col>
             </Row>

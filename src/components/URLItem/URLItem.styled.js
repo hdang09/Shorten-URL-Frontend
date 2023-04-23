@@ -128,6 +128,10 @@ export const Button = styled.div`
     }
 `;
 
+export const DrawerTitle = styled.span`
+    color: ${(props) => props.theme.black};
+`;
+
 export const QRDrawer = styled.div`
     padding: 0 12px;
 `;

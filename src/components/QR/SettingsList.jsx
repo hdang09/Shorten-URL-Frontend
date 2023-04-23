@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { AiFillFileAdd, AiOutlineDown } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
+import { useTheme } from 'styled-components';
 
 import { primaryColorSelector } from '../../app/reducers/customizationReducer.js';
 import { changeGradientColor, changeSingleColor, handleSetLogoSize } from '../../utils/customQR.js';
@@ -11,7 +12,8 @@ import { CORNERS_DOTS, CORNERS_SQUARES, FRAMES } from './QR.images';
 import * as Styled from './QR.styled';
 
 const SettingsList = ({ qrCode, currentUrl }) => {
-    let primaryColor = useSelector(primaryColorSelector);
+    const primaryColor = useSelector(primaryColorSelector);
+    const theme = useTheme();
 
     const [openSetingsList, setOpenSettingsList] = useState(
         Array.from({ length: 5 }, (_, id) => ({ id, isOpened: false })),
@@ -315,7 +317,7 @@ const SettingsList = ({ qrCode, currentUrl }) => {
                         <Styled.Header onClick={() => handleOpenSetingsList(index)}>
                             <Styled.Heading>{item.header}</Styled.Heading>
                             <Styled.Icon isOpen={isOpen}>
-                                <AiOutlineDown />
+                                <AiOutlineDown color={theme.black} />
                             </Styled.Icon>
                         </Styled.Header>
 

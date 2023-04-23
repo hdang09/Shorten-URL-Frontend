@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 import Tippy from '@tippyjs/react';
 import PropTypes from 'prop-types';
+import { useTheme } from 'styled-components';
 
 import { signOut } from '../../../app/reducers/authReducer';
 import { modeSelector, toggleMode } from '../../../app/reducers/customizationReducer';
@@ -17,6 +18,9 @@ import * as Styled from '../Header.styled';
 
 const RightContent = ({ isLandingPage }) => {
     const [infoUser, setInfoUser] = useState({});
+
+    // Theme styled-components
+    const theme = useTheme();
 
     useEffect(() => {
         if (isLandingPage) return;
@@ -36,7 +40,6 @@ const RightContent = ({ isLandingPage }) => {
     const dispatch = useDispatch();
 
     const themeInLocal = useSelector(modeSelector);
-    const isDarkMode = themeInLocal === 'dark';
 
     const DROP_DOWN_MENU_LIST = [
         {
@@ -105,14 +108,8 @@ const RightContent = ({ isLandingPage }) => {
 
     return (
         <Styled.User>
-            <Skeleton
-                circle
-                width="3.5rem"
-                height="3.5rem"
-                baseColor={isDarkMode ? '#161D31' : '#ebebeb'}
-                inline
-            />
-            <Skeleton width={100} baseColor={isDarkMode ? '#161D31' : '#ebebeb'} />
+            <Skeleton circle width="3.5rem" height="3.5rem" baseColor={theme.background} inline />
+            <Skeleton width={100} baseColor={theme.background} />
         </Styled.User>
     );
 };

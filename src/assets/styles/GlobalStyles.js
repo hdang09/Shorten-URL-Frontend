@@ -37,7 +37,6 @@ const GlobalStyles = createGlobalStyle`
         line-height: 150%;
     }
     
-
     * {
         padding: 0;
         margin: 0;
@@ -95,7 +94,7 @@ const GlobalStyles = createGlobalStyle`
 
     /* Selection */
     ::selection {
-        color: ${(props) => props.theme.white};
+        color: var(--white-color);
         background: var(--primary-color);
     }
 

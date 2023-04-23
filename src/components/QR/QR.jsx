@@ -3,6 +3,7 @@ import { AiOutlineDownload } from 'react-icons/ai';
 import { useSelector } from 'react-redux';
 import PropTypes from 'prop-types';
 import QRCodeStyling from 'qr-code-styling';
+import { useTheme } from 'styled-components';
 
 import { urlSelector } from '../../app/reducers/urlReducer';
 import logo from '../../assets/images/logo.png';
@@ -36,12 +37,24 @@ const qrCode = new QRCodeStyling({
     },
 });
 
-const QR = ({ url }) => {
+const QR = React.forwardRef((props, ref) => {
+    const { url } = props;
+
     const urlInRedux = useSelector(urlSelector).shorten;
     const currentUrl = url || urlInRedux || '';
     const qrRef = useRef(null);
     const TYPES = ['png', 'svg'];
     // const TYPES = ['png', 'svg', 'jpeg', 'webp']
+
+    const theme = useTheme();
+    useEffect(() => {
+        qrCode.update({
+            dotsOptions: {
+                ...qrCode._options.dotsOptions,
+                color: theme.black,
+            },
+        });
+    }, [theme]);
 
     useEffect(() => {
         qrCode.append(qrRef.current);
@@ -52,7 +65,7 @@ const QR = ({ url }) => {
 
     return (
         <>
-            <Styled.Center>
+            <Styled.Center ref={ref}>
                 {!currentUrl ? (
                     <Styled.QRScanningGroup>
                         <Styled.QrScanningBg as={QRScanningImg} />
@@ -82,7 +95,7 @@ const QR = ({ url }) => {
             </Styled.Center>
         </>
     );
-};
+});
 
 QR.propTypes = {
     url: PropTypes.string,

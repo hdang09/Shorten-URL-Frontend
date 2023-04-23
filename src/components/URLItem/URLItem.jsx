@@ -1,8 +1,10 @@
 import { useState } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
 import { BsLink45Deg } from 'react-icons/bs';
 import { SocialIcon } from 'react-social-icons';
 import { Drawer } from 'antd';
 import PropTypes from 'prop-types';
+import { useTheme } from 'styled-components';
 
 import removeHttps from '../../utils/removeHttps';
 import { QR } from '..';
@@ -13,7 +15,7 @@ import * as Styled from './URLItem.styled';
 
 import 'tippy.js/dist/tippy.css';
 
-const URLItem = ({ data }) => {
+const URLItem = ({ data, scollToQr }) => {
     const [openEditBox, setOpenEditBox] = useState(false);
     const toggleEditBox = () => setOpenEditBox(!openEditBox);
 
@@ -25,6 +27,9 @@ const URLItem = ({ data }) => {
     const showDrawer = () => {
         setOpenDrawer(true);
     };
+
+    // Theme styled-components
+    const theme = useTheme();
 
     return (
         <>
@@ -45,10 +50,24 @@ const URLItem = ({ data }) => {
                         {removeHttps(data.shorten_link)}
                     </Styled.Subtitle>
                 </Styled.Main>
-                <ButtonList showDrawer={showDrawer} data={data} toggleEditBox={toggleEditBox} />
+                <ButtonList
+                    showDrawer={showDrawer}
+                    data={data}
+                    toggleEditBox={toggleEditBox}
+                    scollToQr={scollToQr}
+                />
             </Styled.Wrapper>
 
-            <Drawer title="Generate QR Code" placement="right" onClose={onClose} open={openDrawer}>
+            <Drawer
+                title={<Styled.DrawerTitle>Generate QR Code</Styled.DrawerTitle>}
+                placement="right"
+                colo
+                onClose={onClose}
+                open={openDrawer}
+                bodyStyle={{ background: theme.cardBackground }}
+                headerStyle={{ background: theme.cardBackground }}
+                closeIcon={<AiOutlineClose color={theme.black} />}
+            >
                 <Styled.QRDrawer>
                     <QR url={data.shorten_link} />
                 </Styled.QRDrawer>

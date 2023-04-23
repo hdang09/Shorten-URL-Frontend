@@ -1,40 +1,31 @@
 import Skeleton from 'react-loading-skeleton';
-import { useSelector } from 'react-redux';
+import { useTheme } from 'styled-components';
 
-import { modeSelector } from '../../../app/reducers/customizationReducer';
 import * as Styled from '../URLItem.styled';
 
 const URLSkeleton = () => {
     const BUTTON_LIST = [...Array(4).keys()];
-    const isDarkMode = useSelector(modeSelector) === 'dark';
+
+    // Theme styled-components
+    const theme = useTheme();
 
     return (
         <>
             <Styled.SkeletonWrapper>
                 <Styled.Icon>
-                    <Skeleton
-                        circle
-                        width={35}
-                        height={35}
-                        baseColor={isDarkMode ? '#161D31' : '#ebebeb'}
-                    />
+                    <Skeleton circle width={35} height={35} baseColor={theme.background} />
                 </Styled.Icon>
                 <Styled.Main>
                     <Styled.Title>
-                        <Skeleton width={150} baseColor={isDarkMode ? '#161D31' : '#ebebeb'} />
+                        <Skeleton width={150} baseColor={theme.background} />
                     </Styled.Title>
                     <Styled.SubtitleSkel>
-                        <Skeleton baseColor={isDarkMode ? '#161D31' : '#ebebeb'} />
+                        <Skeleton baseColor={theme.background} />
                     </Styled.SubtitleSkel>
                 </Styled.Main>
                 {BUTTON_LIST.map((button) => (
                     <Styled.Icon key={button}>
-                        <Skeleton
-                            width={30}
-                            height={30}
-                            circle
-                            baseColor={isDarkMode ? '#161D31' : '#ebebeb'}
-                        />
+                        <Skeleton width={30} height={30} circle baseColor={theme.background} />
                     </Styled.Icon>
                 ))}
             </Styled.SkeletonWrapper>

@@ -1,8 +1,8 @@
 import { toast } from 'react-toastify';
 
-const handleCopy = (url) => {
+const handleCopy = (url = '', text = '') => {
     navigator.clipboard.writeText(url);
-    toast.success(`Copied to clipboard`);
+    toast.success(text ? text : 'Copied to clipboard');
 };
 
 export default handleCopy;

@@ -22,12 +22,6 @@ export const Times = styled(Title)`
     color: rgb(var(--green-color));
 `;
 
-export const DashboardCalandar = styled.div`
-    width: 100%;
-    border: 1px solid #f0f0f0;
-    border-radius: 2px;
-`;
-
 export const Label = styled.h3`
     color: ${(props) => props.theme.black};
     font-size: 1.6rem;

@@ -12,7 +12,7 @@ import config from '../../../config';
 import handleCopy from '../../../utils/handleCopy';
 import * as Styled from '../URLItem.styled';
 
-const ButtonList = ({ showDrawer, data, toggleEditBox }) => {
+const ButtonList = ({ showDrawer, data, toggleEditBox, scollToQr }) => {
     const dispatch = useDispatch();
 
     const btnRef = useRef();
@@ -24,11 +24,15 @@ const ButtonList = ({ showDrawer, data, toggleEditBox }) => {
                 shorten: data.shorten_link,
             }),
         );
-    const generateQR =
+
+    const generateQR = () => {
         window.location.pathname === config.routes.home ||
         window.location.pathname === config.routes.adminShortenURL
-            ? dispatchAddUrl
-            : showDrawer;
+            ? dispatchAddUrl()
+            : showDrawer();
+
+        scollToQr();
+    };
 
     const BUTTON_LIST = [
         {
