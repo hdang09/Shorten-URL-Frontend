@@ -44,7 +44,7 @@ export const GradientBg = styled.div`
     background-size: 200% 200%;
     animation: glow 10s ease infinite;
 
-    ${down('sm')} {
+    ${down('lg')} {
         transform: scale(1);
     }
 `;
