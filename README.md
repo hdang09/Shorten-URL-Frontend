@@ -4,6 +4,21 @@ An URL Shortener that transform long, ugly links into nice, short URLs.
 
 Here is [the website](https://shorten.hdang09.site) and this is [the backend](https://github.com/khanhlinh2601/Shorten-URL-Backend)
 
+## Table of Contents
+
+-   [Shorten URL Frontend](#shorten-url-frontend)
+    -   [Table of Contents](#table-of-contents)
+    -   [Team members](#team-members)
+    -   [Manual Installation](#manual-installation)
+    -   [Screenshots](#screenshots)
+    -   [Technologies Used](#technologies-used)
+    -   [Environment Variables](#environment-variables)
+    -   [Project Structure](#project-structure)
+    -   [Linting](#linting)
+    -   [Contributing](#contributing)
+    -   [License](#license)
+    -   [Contact](#contact)
+
 ## Team members
 
 -   [Trần Hải Đăng](https://github.com/hdang09): Front-end, UI/UX Designer
@@ -35,21 +50,6 @@ cp .env.example .env
 
 # open .env and modify the environment variables
 ```
-
-## Table of Contents
-
--   [Shorten URL Frontend](#shorten-url-frontend)
-    -   [Team members](#team-members)
-    -   [Manual Installation](#manual-installation)
-    -   [Table of Contents](#table-of-contents)
-    -   [Screenshots](#screenshots)
-    -   [Technologies Used](#technologies-used)
-    -   [Environment Variables](#environment-variables)
-    -   [Project Structure](#project-structure)
-    -   [Linting](#linting)
-    -   [Contributing](#contributing)
-    -   [License](#license)
-    -   [Contact](#contact)
 
 ## Screenshots
 
