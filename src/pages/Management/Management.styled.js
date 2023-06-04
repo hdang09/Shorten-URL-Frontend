@@ -1,3 +1,4 @@
+import { up } from 'styled-breakpoints';
 import styled from 'styled-components';
 
 export const TippyBox = styled.div`
@@ -34,6 +35,10 @@ export const Tag = styled.label`
 export const Wrapper = styled.div`
     width: calc(100vw - 32px);
     overflow-x: scroll;
+
+    ${up('sm')} {
+        width: 100%;
+    }
 
     & .ant-table-tbody {
         background: ${(props) => props.theme.cardBackground};

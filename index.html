@@ -17,6 +17,8 @@
         <style>
             body {
                 overflow: hidden;
+                --orange-color: #fbb45f;
+                --white-color: #ffffff;
             }
 
             .wrapper {
@@ -31,14 +33,92 @@
             .wrapper img {
                 max-width: 150px;
             }
+
+            #cookies-consent {
+                z-index: 10;
+                position: absolute;
+                left: 40px;
+                bottom: 40px;
+                width: 300px;
+                height: 400px;
+                box-shadow: 0 4px 24px 0 rgb(34 41 47 / 10%);
+                background-color: var(--white-color);
+                display: flex;
+                align-items: center;
+                flex-direction: column;
+                padding: 24px;
+                text-align: center;
+                font-family: 'GT Walsheim Pro';
+                border-radius: 12px;
+            }
+
+            #cookies-consent h1 {
+                font-family: 'GT Walsheim Pro Black';
+                font-size: 28px;
+            }
+
+            #cookies-consent button {
+                display: block;
+                width: 100%;
+                padding: 12px 0;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+            #cookies-consent button.primary {
+                margin-bottom: 12px;
+                background-color: var(--orange-color);
+                color: var(--white-color);
+                border: none;
+            }
+            #cookies-consent .close {
+                position: absolute;
+                top: 12px;
+                right: 18px;
+                font-size: 28px;
+                cursor: pointer;
+            }
         </style>
     </head>
     <body>
         <div id="root">
             <div class="wrapper">
                 <img src="./favicon.ico" alt="F-Code" />
+                <div id="cookies-consent">
+                    <div class="close">x</div>
+                    <img src="./cookie.png" alt="Cookie" />
+                    <h1>Cookies And Privacy</h1>
+                    <p>
+                        The website use cookies to ensure you get the best experience on our website
+                    </p>
+                    <button class="primary" onclick="guideEnableCookie()">
+                        Accept All Cookies
+                    </button>
+                    <button class="customize" onclick="guideExplainCookie()">
+                        What is cookies?
+                    </button>
+                </div>
             </div>
         </div>
         <script type="module" src="/src/main.jsx"></script>
+        <script>
+            const cookieConsent = document.getElementById('cookies-consent');
+            cookieConsent.style.display = navigator.cookieEnabled ? 'none' : 'flex';
+
+            const guideEnableCookie = () => {
+                window.open(
+                    'https://support.google.com/accounts/answer/61416?hl=en&co=GENIE.Platform%3DDesktop',
+                    '_blank',
+                );
+            };
+            const guideExplainCookie = () => {
+                window.open('https://en.wikipedia.org/wiki/HTTP_cookie', '_blank');
+            };
+
+            const closeBtn = document.getElementsByClassName('close')[0];
+            closeBtn.onclick = () => {
+                cookieConsent.style.display = 'none';
+            };
+        </script>
     </body>
 </html>
