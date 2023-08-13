@@ -22,8 +22,7 @@ const Management = () => {
                 ...item,
                 key: item._id,
                 status: item.status[0].toUpperCase() + item.status.slice(1),
-                // role: item.role === 0 ? 'User' : 'Admin', // *NodeJS
-                role: item.role === 0 ? 'User' : 'Admin', // *Java
+                role: item.role == 0 ? 'User' : 'Admin',
             }));
             setAllUsers(newList);
         };

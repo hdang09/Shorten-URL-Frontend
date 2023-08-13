@@ -6,7 +6,6 @@ import { MdUpload } from 'react-icons/md';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { Table } from 'antd';
-// import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 
 import { Button, Card } from '../../components';
@@ -16,6 +15,8 @@ import { getAllUser } from '../../utils/adminAPI';
 import { columns } from './Admin.columns';
 import * as Styled from './Admin.styled';
 import CreateAccount from './CreateAccount';
+
+// import PropTypes from 'prop-types';
 
 const Admin = () => {
     const [allUserData, setAllUserData] = useState([]);
@@ -31,7 +32,7 @@ const Admin = () => {
                 ...item,
                 key: item._id,
                 status: item.status[0].toUpperCase() + item.status.slice(1),
-                role: item.role === '0' ? 'User' : 'Admin',
+                role: item.role == 0 ? 'User' : 'Admin',
             }));
             setAllUserData(newList);
         };

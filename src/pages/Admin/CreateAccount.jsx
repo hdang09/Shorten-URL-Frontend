@@ -15,7 +15,7 @@ const CreateAccount = () => {
         email: '',
         first_name: '',
         last_name: '',
-        role: '',
+        role: '0',
     });
 
     const handleCreateAccount = async () => {
@@ -73,19 +73,22 @@ const CreateAccount = () => {
                 </p>
                 <input
                     type="radio"
+                    id="role"
                     name="role"
                     value="0"
                     onChange={(e) => e.target.checked && setAccount({ ...account, role: '0' })}
+                    checked
                 />{' '}
-                <label htmlFor="0"> User</label>
+                <label htmlFor="role"> User</label>
                 <input
                     type="radio"
+                    id="role"
                     name="role"
                     value="1"
-                    style={{ marginLeft: '1.5rem' }}
                     onChange={(e) => e.target.checked && setAccount({ ...account, role: '1' })}
+                    style={{ marginLeft: '1.5rem' }}
                 />{' '}
-                <label htmlFor="0"> Admin</label>
+                <label htmlFor="role"> Admin</label>
             </div>
             <Styled.Center>
                 <Button onClick={handleCreateAccount} leftIcon={<IoPersonAddSharp />}>
