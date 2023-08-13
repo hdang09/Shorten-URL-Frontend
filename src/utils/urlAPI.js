@@ -5,22 +5,45 @@ import { get, post } from './apiCaller';
 // URL API
 export const shortenUrl = (link, linkcode) => {
     const accountId = new Cookies().get('id');
-    const url = '/api/url/shorten/';
+    const url = '/api/url/shorten';
 
-    return post(url, {
-        origin_link: link,
-        account_id: accountId,
-        linkcode,
-    });
+    // *NodeJS
+    // return post(url, {
+    //     origin_link: link,
+    //     account_id: accountId,
+    //     linkcode,
+    // });
+
+    // *Java
+    return post(
+        url,
+        {},
+        {
+            originLink: link,
+            accountId,
+            linkcode,
+        },
+    );
 };
 
 export const updateLink = (shortenLink, linkcode) => {
     const url = '/api/url/shorten/update-link';
 
-    return post(url, {
-        shorten_link: shortenLink,
-        linkcode,
-    });
+    // *NodeJS
+    // return post(url, {
+    //     shorten_link: shortenLink,
+    //     linkcode,
+    // });
+
+    // *Java
+    return post(
+        url,
+        {},
+        {
+            shortenLink,
+            linkcode,
+        },
+    );
 };
 
 // Reports API

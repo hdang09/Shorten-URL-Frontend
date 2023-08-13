@@ -33,6 +33,11 @@ export const Center = styled.div`
     padding-top: 1rem;
 `;
 
+export const Crown = styled.div`
+    display: flex;
+    margin-left: 4px;
+`;
+
 export const Name = styled.span`
     display: inline-flex;
     align-items: center;

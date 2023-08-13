@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { Table } from 'antd';
-import PropTypes from 'prop-types';
 
 import { getAllUser } from '../../utils/adminAPI';
 
@@ -23,7 +22,8 @@ const Management = () => {
                 ...item,
                 key: item._id,
                 status: item.status[0].toUpperCase() + item.status.slice(1),
-                role: item.role === '0' ? 'User' : 'Admin',
+                // role: item.role === 0 ? 'User' : 'Admin', // *NodeJS
+                role: item.role === 0 ? 'User' : 'Admin', // *Java
             }));
             setAllUsers(newList);
         };

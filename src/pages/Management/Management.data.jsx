@@ -36,13 +36,14 @@ export const columns = [
             <Link to={`${config.routes.adminManageUserURL}?id=${record.key}`}>
                 <Avatar src={record.avatar} size="4rem" />
                 <Styled.Name>
-                    <span>{record.first_name} </span>
-                    <span style={{ margin: '0 4px' }}>{record.last_name}</span>
+                    <span>
+                        {record.first_name} {record.last_name}
+                    </span>
                     {record.role === 'Admin' && (
                         <Tippy content="Admin">
-                            <div>
+                            <Styled.Crown>
                                 <AiTwotoneCrown color="orange" size="1.6rem" />
-                            </div>
+                            </Styled.Crown>
                         </Tippy>
                     )}
                 </Styled.Name>

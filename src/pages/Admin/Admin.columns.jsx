@@ -20,9 +20,9 @@ export const columns = [
                     </span>
                     {record.role === 'Admin' && (
                         <Tippy content="Admin">
-                            <div>
+                            <Styled.Crown>
                                 <AiTwotoneCrown color="orange" size="1.6rem" />
-                            </div>
+                            </Styled.Crown>
                         </Tippy>
                     )}
                 </Styled.Name>

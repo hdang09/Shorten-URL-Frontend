@@ -18,6 +18,11 @@ export const Name = styled.span`
     margin-left: 1rem;
 `;
 
+export const Crown = styled.div`
+    display: flex;
+    margin-left: 4px;
+`;
+
 export const Tag = styled.label`
     background-color: var(
         ${(props) =>
