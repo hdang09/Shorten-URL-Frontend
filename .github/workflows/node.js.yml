@@ -26,8 +26,14 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   cache: 'npm'
 
+            - name: Cache dependencies
+              uses: actions/cache@v2
+              with:
+                  path: ~/.npm
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
             - name: Install dependencies
-              run: npm i
+              run: npm ci
 
             - name: Add .env file
               run: echo "${{ secrets.ENVIROMENT_VARIABLES }}" >> .env
