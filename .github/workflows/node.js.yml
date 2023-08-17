@@ -26,8 +26,11 @@ jobs:
                   node-version: ${{ matrix.node-version }}
                   cache: 'npm'
 
-            - name: Install dependencies
-              run: npm i
+            # - name: Install dependencies
+            #   run: npm i
+
+            - name: Add .env file
+              run: echo "${{ secrets.ENVIROMENT_VARIABLES }}" >> .env
 
             - name: Build the application
               run: npm run build
