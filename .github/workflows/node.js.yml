@@ -29,14 +29,14 @@ jobs:
             - name: Cache dependencies
               uses: actions/cache@v2
               with:
-                  path: ~/.npm
-                  key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+                  path: ~/.cache/yarn
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
             - name: Install dependencies
-              run: npm ci
+              run: yarn install --frozen-lockfile
 
             - name: Add .env file
               run: echo "${{ secrets.ENVIROMENT_VARIABLES }}" >> .env
 
             - name: Build the application
-              run: npm run build
+              run: yarn build
