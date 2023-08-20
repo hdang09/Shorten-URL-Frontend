@@ -22,30 +22,33 @@ jobs:
             - name: Checkout code
               uses: actions/checkout@v3
 
-            # - name: Use Node.js ${{ matrix.node-version }}
-            #   uses: actions/setup-node@v3
-            #   with:
-            #       node-version: ${{ matrix.node-version }}
-            #       cache: 'npm'
+            - name: Use Node.js ${{ matrix.node-version }}
+              uses: actions/setup-node@v3
+              with:
+                  node-version: ${{ matrix.node-version }}
+                  cache: 'npm'
 
-            # - name: Cache dependencies
-            #   uses: actions/cache@v2
-            #   with:
-            #       path: ~/.cache/yarn
-            #       key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+            - name: Cache dependencies
+              uses: actions/cache@v2
+              with:
+                  path: ~/.cache/yarn
+                  key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
 
-            # - name: Install dependencies
-            #   run: yarn install --frozen-lockfile
+            - name: Install dependencies
+              run: yarn install --frozen-lockfile
 
-            # - name: Add .env file
-            #   run: echo "${{ secrets.ENVIROMENT_VARIABLES }}" >> .env
+            - name: Add .env file
+              run: echo "${{ secrets.ENVIROMENT_VARIABLES }}" >> .env
 
-            # - name: Build the application
-            #   run: yarn build
+            - name: Build the application
+              run: yarn build
 
-            - run: sudo apt-get install -y openssh-client
-            - run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
-            - run: chmod 600 key.pem
-            - run: scp -o "StrictHostKeyChecking=no" -i ./key.pem -r .github/ ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }}:/home/${{ secrets.USERNAME }}
-            - run: rm -r shorten-fe
-            - run: mv .github shorten-fe
+            - name: Rename dist folder
+              run: mv dist shorten-fe
+
+            - name: Copy dist folder to server
+              run: |
+                  sudo apt-get install -y openssh-client
+                  echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
+                  chmod 600 key.pem
+                  scp -o "StrictHostKeyChecking=no" -i ./key.pem -r shorten-fe/ ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }}:/home/${{ secrets.USERNAME }}
