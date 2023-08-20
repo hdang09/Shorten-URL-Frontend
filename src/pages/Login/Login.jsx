@@ -1,13 +1,15 @@
 /* eslint-disable react/no-unescaped-entities */
+
 import { useEffect } from 'react';
 import { FcGoogle } from 'react-icons/fc';
-// import PropTypes from 'prop-types';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 
 import { Button } from '../../components';
 import config from '../../config';
 
 import * as Styled from './Login.styled';
+
+// import PropTypes from 'prop-types';
 
 function Login() {
     useEffect(() => {
@@ -24,7 +26,9 @@ function Login() {
                             <Styled.Box>
                                 <Styled.ImgSection />
                                 <Styled.Title>Hello Again!</Styled.Title>
-                                <Styled.SubTitle>Welcome back you've been missed</Styled.SubTitle>
+                                <Styled.SubTitle>
+                                    Welcome back what you've been missed
+                                </Styled.SubTitle>
                                 <Styled.Separator />
 
                                 <div style={{ margin: '1rem 0 8rem 0' }}>
