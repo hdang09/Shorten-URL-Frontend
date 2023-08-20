@@ -43,11 +43,9 @@ jobs:
             - name: Build the application
               run: yarn build
 
-            - name: Copy dist folder
-              run: |
-                  sudo apt-get install -y openssh-client
-                  echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
-                  chmod 600 key.pem
-                  scp -i key.pem -r dist/ ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }}:/home/${{ secrets.USERNAME }}
-                  rm -r shorten-fe
-                  mv dist shorten-fe
+            - run: sudo apt-get install -y openssh-client
+            - run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
+            - run: chmod 600 key.pem
+            - run: scp -i key.pem -r dist/ ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }}:/home/${{ secrets.USERNAME }}
+            - run: rm -r shorten-fe
+            - run: mv dist shorten-fe
