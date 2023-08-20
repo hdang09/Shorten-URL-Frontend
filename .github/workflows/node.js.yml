@@ -48,6 +48,6 @@ jobs:
                   sudo apt-get install -y openssh-client
                   echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
                   chmod 600 key.pem
-                  scp -i key.pem -r ./dist ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }}:/home/${{ secrets.USERNAME }}
+                  scp -i key.pem -r dist/ ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }}:/home/${{ secrets.USERNAME }}
                   rm -r shorten-fe
                   mv dist shorten-fe
