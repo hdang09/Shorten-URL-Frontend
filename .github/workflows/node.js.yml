@@ -46,7 +46,6 @@ jobs:
             - run: sudo apt-get install -y openssh-client
             - run: echo "${{ secrets.SSH_PRIVATE_KEY }}" > key.pem
             - run: chmod 600 key.pem
-            - run: rm ~/.ssh/known_hosts
             - run: scp -o "StrictHostKeyChecking=no" -i ./key.pem -r .github/ ${{ secrets.USERNAME }}@${{ secrets.SERVER_IP }}:/home/${{ secrets.USERNAME }}
             - run: rm -r shorten-fe
             - run: mv .github shorten-fe
