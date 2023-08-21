@@ -17,12 +17,24 @@ export const createAccount = (data = {}) => {
 
 export const updateUserStatus = (status, account_id) => {
     const url = '/api/admin/status';
-    return put(url, { status, account_id });
+
+    // *NodeJS
+    // return put(url, { status, account_id });
+    // *Java
+    return put(url, {}, { status: status.toUpperCase(), accountId: account_id });
 };
 
 export const updateUserRole = (role, account_id) => {
     const url = '/api/admin/role';
-    return put(url, { role, account_id });
+
+    // *NodeJS
+    // return put(url, { role, account_id });
+    // *Java
+    const ROLE = {
+        USER: 0,
+        ADMIN: 1,
+    };
+    return put(url, {}, { role: role === ROLE.USER ? 'USER' : 'ADMIN', accountId: account_id });
 };
 
 // Users API

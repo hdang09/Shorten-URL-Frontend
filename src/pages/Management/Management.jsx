@@ -27,7 +27,7 @@ const Management = () => {
             setAllUsers(newList);
         };
         getAllUserData();
-    }, []);
+    }, [allUsers]);
 
     return (
         <Styled.Wrapper>
