@@ -1,10 +1,19 @@
+import { between } from 'styled-breakpoints';
 import styled, { keyframes } from 'styled-components';
 
 export const QR = styled.div`
     & canvas {
-        max-width: 250px;
-        max-height: 250px;
+        --default-size: 250px;
+        max-width: var(--default-size);
+        max-height: var(--default-size);
         height: auto;
+
+        ${between('lg', 'xl')} {
+            --tablet-size: 225px;
+            max-width: var(--tablet-size);
+            max-height: var(--tablet-size);
+            margin: calc((var(--default-size) - var(--tablet-size)) / 2) 0;
+        }
     }
 `;
 
@@ -269,6 +278,7 @@ export const Slider = styled.div`
 
     input {
         -webkit-appearance: none;
+        appearance: none;
         height: 15px;
         background: ${(props) => props.theme.cardBackground};
         outline: none;

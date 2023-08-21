@@ -11,21 +11,35 @@ import { updateUserRole, updateUserStatus } from '../../utils/adminAPI';
 import * as Styled from './Management.styled';
 
 const updateStatus = async (status, accountId) => {
-    try {
-        const { data } = await updateUserStatus(status, accountId);
-        toast.success(data.message);
-    } catch (error) {
-        toast.error(error.response.data.message);
-    }
+    toast.promise(updateUserStatus(status, accountId), {
+        pending: 'Updating status...',
+        success: {
+            render({ data }) {
+                return data.data.message;
+            },
+        },
+        error: {
+            render({ data }) {
+                return data.response.data.message;
+            },
+        },
+    });
 };
 
 const updateRole = async (role, accountId) => {
-    try {
-        const { data } = await updateUserRole(role, accountId);
-        toast.success(data.message);
-    } catch (error) {
-        toast.error(error.response.data.message);
-    }
+    toast.promise(updateUserRole(role, accountId), {
+        pending: 'Updating role...',
+        success: {
+            render({ data }) {
+                return data.data.message;
+            },
+        },
+        error: {
+            render({ data }) {
+                return data.response.data.message;
+            },
+        },
+    });
 };
 
 export const columns = [

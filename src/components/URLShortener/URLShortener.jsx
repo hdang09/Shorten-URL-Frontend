@@ -4,7 +4,6 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import isUrl from 'is-url';
 import { nanoid } from 'nanoid';
-// import PropTypes from 'prop-types';
 import { Col, Row } from 'styled-bootstrap-grid';
 
 import { add } from '../../app/reducers/urlReducer';
@@ -29,27 +28,32 @@ const URLShortener = () => {
             return;
         }
 
-        try {
-            const { data } = await shortenUrl(originalURL, customPath || nanoid(10));
-            dispatch(
-                add({
-                    original: originalURL,
-                    shorten: removeHttps(data.data.shorten_link),
-                }),
-            );
+        toast.promise(shortenUrl(originalURL, customPath || nanoid(10)), {
+            pending: 'The link is shortening...',
+            success: {
+                render({ data }) {
+                    dispatch(
+                        add({
+                            original: originalURL,
+                            shorten: removeHttps(data.data.data.shorten_link),
+                        }),
+                    );
 
-            if (data.message) {
-                toast.warn(data.message);
-                return;
-            }
+                    if (data.data.message) {
+                        return data.data.message;
+                    }
 
-            setOriginalURL('');
-            setCustomPath('');
-            toast.success('Shorten successfully');
-        } catch (error) {
-            toast.error(error.response.data.message);
-            console.error(error);
-        }
+                    setOriginalURL('');
+                    setCustomPath('');
+                    return 'Shorten successfully';
+                },
+            },
+            error: {
+                render({ data }) {
+                    return data.response.data.messaage;
+                },
+            },
+        });
 
         inputRef.current.focus();
     };

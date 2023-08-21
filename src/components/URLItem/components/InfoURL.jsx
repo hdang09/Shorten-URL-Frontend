@@ -21,18 +21,22 @@ const InfoURL = ({ data, handleClose }) => {
 
     const dispatch = useDispatch();
     const handleDoneEdit = async () => {
-        try {
-            await updateLink(data.shorten_link, path);
-            toast.success('Update URL successfully!');
-            dispatch(
-                add({
-                    original: data.origin_link,
-                    shorten: `${removeHttps(config.publicRuntime.API_URL)}/${path}`,
-                }),
-            );
-        } catch (e) {
-            console.error(e);
-        }
+        toast.promise(updateLink(data.shorten_link, path), {
+            pending: 'The link is shortening...',
+            success: {
+                render({ data }) {
+                    dispatch(
+                        add({
+                            original: data.origin_link,
+                            shorten: `${removeHttps(config.publicRuntime.API_URL)}/${path}`,
+                        }),
+                    );
+                    return data.data.message;
+                },
+            },
+            error: "There's something wrong. Please try again!",
+        });
+
         handleClose();
     };
 

@@ -3,7 +3,6 @@ import { FaUserTag } from 'react-icons/fa';
 import { IoPersonAddSharp } from 'react-icons/io5';
 import { MdEmail, MdOutlineDriveFileRenameOutline } from 'react-icons/md';
 import { toast } from 'react-toastify';
-import PropTypes from 'prop-types';
 
 import { Button, Input } from '../../components';
 import { createAccount } from '../../utils/adminAPI';
@@ -19,17 +18,26 @@ const CreateAccount = () => {
     });
 
     const handleCreateAccount = async () => {
-        try {
-            await createAccount(account);
-            setAccount({
-                email: '',
-                first_name: '',
-                last_name: '',
-                role: '',
-            });
-        } catch (error) {
-            toast.error(error.response.data.message);
-        }
+        toast.promise(createAccount(account), {
+            pending: 'Creating an account...',
+            success: {
+                render({ data }) {
+                    setAccount({
+                        email: '',
+                        first_name: '',
+                        last_name: '',
+                        role: '',
+                    });
+
+                    return data.data.message;
+                },
+            },
+            error: {
+                render({ data }) {
+                    return data.response.data.message;
+                },
+            },
+        });
     };
 
     return (
