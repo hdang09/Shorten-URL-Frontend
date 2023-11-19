@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 
-// import PropTypes from 'prop-types';
 import { urlSelector } from '../../app/reducers/urlReducer';
 import { Card, Input, URLList } from '../../components';
 import { getReport } from '../../utils/urlAPI';
@@ -10,7 +9,7 @@ import * as Styled from './MyURL.styled';
 
 const MyURL = () => {
     const currentURL = useSelector(urlSelector).shorten;
-    const [userId] = window.location.search.split('?id=');
+    const [_, userId] = window.location.search.split('?id=');
     const [links, setLinks] = useState({
         all: null,
         filtered: null,
@@ -34,7 +33,7 @@ const MyURL = () => {
     useEffect(() => {
         const getAllLinks = async () => {
             const { data } = await getReport(userId);
-            data.data.links.reverse();
+
             setLinks({
                 ...links,
                 all: data.data.links,
@@ -46,10 +45,16 @@ const MyURL = () => {
     }, [currentURL, userId]);
 
     const handleSearch = (e) => {
-        setInputValue(e.target.value);
-        const filteredData = links.all.filter((item) =>
-            item.shorten_link.toLowerCase().includes(e.target.value.toLowerCase()),
+        const keyword = e.target.value.toLowerCase().trim();
+
+        setInputValue(keyword);
+
+        const filteredData = links.all.filter(
+            (item) =>
+                item.shortenLink.toLowerCase().includes(keyword) ||
+                item.title.toLowerCase().includes(keyword),
         );
+
         setLinks({
             ...links,
             filtered: filteredData,

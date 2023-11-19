@@ -89,6 +89,7 @@ export const Main = styled.div`
     flex: 1;
     width: -webkit-fill-available;
     margin-right: 10px;
+    max-height: 54px;
 `;
 
 export const Title = styled.h1`
@@ -96,6 +97,11 @@ export const Title = styled.h1`
     font-weight: 600;
     margin-bottom: 6px;
     color: var(--primary-color);
+
+    display: -webkit-box;
+    -webkit-line-clamp: var(--line-clamp, 1);
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 `;
 
 export const Subtitle = styled.a`
@@ -107,6 +113,11 @@ export const Subtitle = styled.a`
     padding-bottom: 1px;
     border-bottom: 2px solid ${(props) => props.theme.gray};
 
+    display: -webkit-inline-box;
+    -webkit-line-clamp: var(--line-clamp, 1);
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+
     &:hover {
         color: inherit;
         border-color: var(--primary-color);
@@ -114,8 +125,21 @@ export const Subtitle = styled.a`
     }
 `;
 
-export const SubtitleSkel = styled(Subtitle)`
+export const SubtitleSkel = styled.a`
+    color: inherit;
+    font-size: 1.6rem;
+    cursor: pointer;
+    text-decoration: none;
+    text-overflow: ellipsis;
+    padding-bottom: 1px;
+    border-bottom: 2px solid ${(props) => props.theme.gray};
     border-color: transparent;
+
+    &:hover {
+        color: inherit;
+        border-color: var(--primary-color);
+        transition: border-color 0.25s linear;
+    }
 `;
 
 export const Button = styled.div`
@@ -150,7 +174,7 @@ export const Link = styled(HighLight)`
 `;
 
 export const Item = styled.div`
-    margin-bottom: 8px;
+    margin-bottom: 16px;
 
     & svg {
         margin-right: 4px;
@@ -187,17 +211,17 @@ export const WrapperInput = styled.div`
         height: 28px;
         background: transparent;
     }
-
-    & input:first-child {
-        /* max-width: 105px; */
-        padding-right: 5px;
-        border-right: 2px solid ${(props) => props.theme.gray};
-    }
 `;
 
-export const CustomInput = styled.input`
+export const Domain = styled.span`
+    display: block;
+    padding-right: 12px;
+    border-right: 2px solid ${(props) => props.theme.gray};
+`;
+
+export const Input = styled.input`
     width: 100%;
     overflow: hidden;
     display: block;
-    padding-left: 10px;
+    padding-left: 12px;
 `;

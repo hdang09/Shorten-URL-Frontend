@@ -69,7 +69,7 @@ function Sidebar({ isAdmin, redesign }) {
                 ))}
             </Styled.NavList>
             {isBigHeight && (
-                <Tippy content={infoUser.first_name || 'Anonymous'} placement={tippyPosition}>
+                <Tippy content={infoUser.firstName || 'Anonymous'} placement={tippyPosition}>
                     <Avatar src={infoUser.avatar} size="4.4rem" hideOnMobile innerref={avatarRef} />
                 </Tippy>
             )}

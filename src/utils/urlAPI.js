@@ -4,44 +4,28 @@ import { get, post } from './apiCaller';
 
 // URL API
 export const shortenUrl = (link, linkcode) => {
-    const accountId = new Cookies().get('id');
     const url = '/api/url/shorten';
 
-    // *NodeJS
-    // return post(url, {
-    //     origin_link: link,
-    //     account_id: accountId,
-    //     linkcode,
-    // });
-
-    // *Java
     return post(
         url,
         {},
         {
             originLink: link,
-            accountId,
             linkcode,
         },
     );
 };
 
-export const updateLink = (shortenLink, linkcode) => {
+export const updateLink = (shortenLink, linkcode, title) => {
     const url = '/api/url/shorten/update-link';
 
-    // *NodeJS
-    // return post(url, {
-    //     shorten_link: shortenLink,
-    //     linkcode,
-    // });
-
-    // *Java
     return post(
         url,
         {},
         {
             shortenLink,
             linkcode,
+            title,
         },
     );
 };

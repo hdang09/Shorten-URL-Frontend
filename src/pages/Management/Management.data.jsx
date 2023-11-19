@@ -51,7 +51,7 @@ export const columns = [
                 <Avatar src={record.avatar} size="4rem" />
                 <Styled.Name>
                     <span>
-                        {record.first_name} {record.last_name}
+                        {record.firstName} {record.lastName}
                     </span>
                     {record.role === 'Admin' && (
                         <Tippy content="Admin">
@@ -88,37 +88,37 @@ export const columns = [
                     render={(attrs) => (
                         <div>
                             <Styled.TippyBox tabIndex="-1" {...attrs}>
-                                <Button outline onClick={() => updateRole('0', record._id)}>
+                                <Button outline onClick={() => updateRole('0', record.id)}>
                                     User
                                 </Button>
 
-                                <Button outline onClick={() => updateRole('1', record._id)}>
+                                <Button outline onClick={() => updateRole('1', record.id)}>
                                     Admin
                                 </Button>
                             </Styled.TippyBox>
                         </div>
                     )}
                 >
-                    <Styled.Name>Role</Styled.Name>
+                    <Styled.Action>Role</Styled.Action>
                 </HeadlessTippy>
                 <Styled.Separator />
                 <HeadlessTippy
                     interactive
                     render={(attrs) => (
                         <Styled.TippyBox tabIndex="-1" {...attrs}>
-                            <Button outline onClick={() => updateStatus('waiting', record._id)}>
+                            <Button outline onClick={() => updateStatus('waiting', record.id)}>
                                 Waiting
                             </Button>
-                            <Button outline onClick={() => updateStatus('reject', record._id)}>
+                            <Button outline onClick={() => updateStatus('reject', record.id)}>
                                 Reject
                             </Button>
-                            <Button outline onClick={() => updateStatus('accept', record._id)}>
+                            <Button outline onClick={() => updateStatus('accept', record.id)}>
                                 Accept
                             </Button>
                         </Styled.TippyBox>
                     )}
                 >
-                    <Styled.Name>Status</Styled.Name>
+                    <Styled.Action>Status</Styled.Action>
                 </HeadlessTippy>
             </Styled.Center>
         ),

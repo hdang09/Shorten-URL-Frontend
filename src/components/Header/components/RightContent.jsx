@@ -99,7 +99,7 @@ const RightContent = ({ isLandingPage }) => {
             >
                 <Styled.User>
                     <Avatar src={infoUser.avatar} size="3.5rem" />
-                    <Styled.NameUser>{infoUser.first_name || 'Anonymous'}</Styled.NameUser>
+                    <Styled.NameUser>{infoUser.firstName || 'Anonymous'}</Styled.NameUser>
                     <AiFillCaretDown />
                 </Styled.User>
             </Tippy>

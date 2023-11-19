@@ -35,17 +35,16 @@ export const WrapperInput = styled.div`
         height: 28px;
         background: transparent;
     }
-
-    & input:first-child {
-        /* max-width: 105px; */
-        padding-right: 5px;
-        border-right: 2px solid ${(props) => props.theme.gray};
-    }
 `;
 
-export const CustomInput = styled.input`
+export const Domain = styled.span`
+    padding-right: 12px;
+    border-right: 2px solid ${(props) => props.theme.gray};
+`;
+
+export const Input = styled.input`
     width: 100%;
     overflow: hidden;
     display: block;
-    padding-left: 10px;
+    padding-left: 12px;
 `;

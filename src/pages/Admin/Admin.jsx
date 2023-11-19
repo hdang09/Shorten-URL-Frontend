@@ -32,7 +32,7 @@ const Admin = () => {
                 ...item,
                 key: item._id,
                 status: item.status[0].toUpperCase() + item.status.slice(1),
-                role: item.role == 0 ? 'User' : 'Admin',
+                role: item.role === 0 ? 'User' : 'Admin',
             }));
             setAllUserData(newList);
         };

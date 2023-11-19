@@ -34,7 +34,7 @@ const RouterComponents = () => {
 
             // User ID
             const { payload } = jwtDecode(UrlParams.get('token'));
-            cookies.set('id', payload._id, {
+            cookies.set('id', payload.id, {
                 path: '/',
                 secure: true,
                 sameSite: 'strict',

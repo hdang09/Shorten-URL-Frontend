@@ -11,7 +11,7 @@ export const request = (endpoint, method, headers = {}, params = {}, body = {}) 
         method,
         headers: {
             ...headers,
-            token,
+            Authorization: `Bearer ${token}`,
         },
         params: {
             ...params,

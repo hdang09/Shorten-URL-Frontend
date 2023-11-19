@@ -1,4 +1,4 @@
-import { up } from 'styled-breakpoints';
+import { down, up } from 'styled-breakpoints';
 import styled from 'styled-components';
 
 export const TippyBox = styled.div`
@@ -11,6 +11,18 @@ export const TippyBox = styled.div`
 `;
 
 export const Name = styled.span`
+    display: inline-flex;
+    align-items: center;
+    color: var(--primary-color);
+    font-weight: 500;
+    margin-left: 1rem;
+
+    ${down('lg')} {
+        display: none;
+    }
+`;
+
+export const Action = styled.span`
     display: inline-flex;
     align-items: center;
     color: var(--primary-color);
@@ -56,9 +68,9 @@ export const Wrapper = styled.div`
         color: ${(props) => props.theme.black};
     }
 
-    & .ant-table-tbody tr:hover {
+    & .ant-table-tbody tr:hover td {
         /* Identify when is dark theme */
-        color: ${(props) => (props.theme.white === '#000' ? '#000' : '')};
+        background-color: ${(props) => props.theme.white === '#000' && '#1e1d38'};
     }
 `;
 

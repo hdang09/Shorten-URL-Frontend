@@ -3,7 +3,7 @@ import { Navigate, Outlet } from 'react-router-dom';
 
 import { adminSelector, userSelector } from '../app/reducers/authReducer';
 import config from '../config';
-import { Landing, Login } from '../pages';
+import { Landing, Login, NotFound } from '../pages';
 
 const PublicRouters = () => {
     // Authentication
@@ -29,6 +29,7 @@ const PublicRoutes = {
     children: [
         { path: config.routes.landing, element: <Landing /> },
         { path: config.routes.login, element: <Login /> },
+        { path: config.routes.notFound, element: <NotFound /> },
     ],
 };
 

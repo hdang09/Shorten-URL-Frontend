@@ -3,10 +3,8 @@ import jwtDecode from 'jwt-decode';
 import Cookies from 'universal-cookie';
 
 const initialState = {
-    isAdmin:
-        new Cookies().get('token') && jwtDecode(new Cookies().get('token')).payload.role === '1',
-    isUser:
-        new Cookies().get('token') && jwtDecode(new Cookies().get('token')).payload.role === '0',
+    isAdmin: new Cookies().get('token') && jwtDecode(new Cookies().get('token')).payload.role === 1,
+    isUser: new Cookies().get('token') && jwtDecode(new Cookies().get('token')).payload.role === 0,
     isVisitFirstTime: null,
 };
 
@@ -16,8 +14,8 @@ const authSlice = createSlice({
     reducers: {
         login: (state) => {
             const { role } = jwtDecode(new Cookies().get('token')).payload;
-            state.isUser = role === '0';
-            state.isAdmin = role === '1';
+            state.isUser = role === 0;
+            state.isAdmin = role === 1;
         },
         signOut: (state) => {
             const cookies = new Cookies();

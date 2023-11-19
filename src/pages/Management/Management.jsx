@@ -20,14 +20,14 @@ const Management = () => {
             const { data } = await getAllUser();
             const newList = data.data.map((item) => ({
                 ...item,
-                key: item._id,
+                key: item.id,
                 status: item.status[0].toUpperCase() + item.status.slice(1),
-                role: item.role == 0 ? 'User' : 'Admin',
+                role: item.role === 0 ? 'User' : 'Admin',
             }));
             setAllUsers(newList);
         };
         getAllUserData();
-    }, [allUsers]);
+    }, []);
 
     return (
         <Styled.Wrapper>

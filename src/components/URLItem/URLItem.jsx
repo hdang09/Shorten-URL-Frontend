@@ -35,21 +35,23 @@ const URLItem = ({ data, scollToQr }) => {
         <>
             <Styled.Wrapper>
                 <Styled.Icon>
-                    {data.origin_link.includes('localhost') ? (
+                    {data.originLink.includes('localhost') ? (
                         <BsLink45Deg />
                     ) : (
                         <SocialIcon
-                            url={data.origin_link}
+                            url={data.originLink}
                             style={{ width: '36px', height: '36px', scale: '1.5' }}
                         />
                     )}
                 </Styled.Icon>
+
                 <Styled.Main>
-                    <Styled.Title>{data.name || 'Shorten URL'}</Styled.Title>
-                    <Styled.Subtitle target="_blank" href={data.shorten_link}>
-                        {removeHttps(data.shorten_link)}
+                    <Styled.Title>{data.title}</Styled.Title>
+                    <Styled.Subtitle target="_blank" href={data.shortenLink}>
+                        {removeHttps(data.shortenLink)}
                     </Styled.Subtitle>
                 </Styled.Main>
+
                 <ButtonList
                     showDrawer={showDrawer}
                     data={data}
@@ -69,7 +71,7 @@ const URLItem = ({ data, scollToQr }) => {
                 closeIcon={<AiOutlineClose color={theme.black} />}
             >
                 <Styled.QRDrawer>
-                    <QR url={data.shorten_link} />
+                    <QR url={data.shortenLink} />
                 </Styled.QRDrawer>
             </Drawer>
 

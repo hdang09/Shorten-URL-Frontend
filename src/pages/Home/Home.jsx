@@ -28,7 +28,7 @@ const Home = () => {
     useEffect(() => {
         const getLinks = async () => {
             const { data } = await getReport();
-            setLinks(data.data.links.reverse());
+            setLinks(data.data.links);
         };
         getLinks();
     }, [currentURL]);

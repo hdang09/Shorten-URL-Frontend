@@ -1,3 +1,4 @@
+// TODO: Split by role
 const routes = {
     landing: '/landing',
     login: '/login',
@@ -12,6 +13,7 @@ const routes = {
     adminShortenURL: '/admin/shorten-url',
     adminURL: '/admin/shorten-url/admin-url',
     adminSettings: '/admin/settings',
+    notFound: '*',
 };
 
 export default routes;

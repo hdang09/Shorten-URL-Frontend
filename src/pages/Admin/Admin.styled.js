@@ -1,4 +1,4 @@
-import { between } from 'styled-breakpoints';
+import { between, down } from 'styled-breakpoints';
 import styled from 'styled-components';
 
 export const Title = styled.h1`
@@ -44,6 +44,10 @@ export const Name = styled.span`
     color: var(--primary-color);
     font-weight: 500;
     margin-left: 1rem;
+
+    ${down('md')} {
+        display: none;
+    }
 `;
 
 export const Tag = styled.label`
@@ -137,9 +141,9 @@ export const TableWrapper = styled.div`
         color: ${(props) => props.theme.black};
     }
 
-    & .ant-table-tbody tr:hover {
+    & .ant-table-tbody tr:hover td {
         /* Identify when is dark theme */
-        color: ${(props) => (props.theme.white === '#000' ? '#000' : '')};
+        background-color: ${(props) => props.theme.white === '#000' && '#1e1d38'};
     }
 
     & .ant-table-pagination.ant-pagination {

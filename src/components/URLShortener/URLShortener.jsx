@@ -35,7 +35,7 @@ const URLShortener = () => {
                     dispatch(
                         add({
                             original: originalURL,
-                            shorten: removeHttps(data.data.data.shorten_link),
+                            shorten: removeHttps(data.data.data.shortenLink),
                         }),
                     );
 
@@ -67,6 +67,7 @@ const URLShortener = () => {
                         <HiLink />
                         <label htmlFor="">Enter your long URL here</label>
                     </Styled.Label>
+
                     <Input
                         ref={inputRef}
                         value={originalURL}
@@ -77,6 +78,7 @@ const URLShortener = () => {
                         placeholder="Paste a link to shorten it"
                     />
                 </Col>
+
                 <Col xs={12} lg={6}>
                     <Styled.Label>
                         <HiLink />
@@ -84,12 +86,9 @@ const URLShortener = () => {
                     </Styled.Label>
 
                     <Styled.WrapperInput>
-                        <input
-                            type="text"
-                            value={`${removeHttps(config.publicRuntime.API_URL)}/`}
-                            readOnly
-                        />
-                        <Styled.CustomInput
+                        <Styled.Domain>{removeHttps(config.publicRuntime.API_URL)}/</Styled.Domain>
+
+                        <Styled.Input
                             type="text"
                             value={customPath}
                             onChange={(e) => setCustomPath(e.target.value)}

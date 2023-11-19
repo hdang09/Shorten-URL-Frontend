@@ -12,8 +12,8 @@ import * as Styled from './Admin.styled';
 const CreateAccount = () => {
     const [account, setAccount] = useState({
         email: '',
-        first_name: '',
-        last_name: '',
+        firstName: '',
+        lastName: '',
         role: '0',
     });
 
@@ -24,8 +24,8 @@ const CreateAccount = () => {
                 render({ data }) {
                     setAccount({
                         email: '',
-                        first_name: '',
-                        last_name: '',
+                        firstName: '',
+                        lastName: '',
                         role: '',
                     });
 
@@ -60,8 +60,8 @@ const CreateAccount = () => {
                 <Input
                     large
                     background
-                    value={account.first_name}
-                    onChange={(e) => setAccount({ ...account, first_name: e.target.value })}
+                    value={account.firstName}
+                    onChange={(e) => setAccount({ ...account, firstName: e.target.value })}
                 />
             </div>
             <div>
@@ -71,8 +71,8 @@ const CreateAccount = () => {
                 <Input
                     large
                     background
-                    value={account.last_name}
-                    onChange={(e) => setAccount({ ...account, last_name: e.target.value })}
+                    value={account.lastName}
+                    onChange={(e) => setAccount({ ...account, lastName: e.target.value })}
                 />
             </div>
             <div>

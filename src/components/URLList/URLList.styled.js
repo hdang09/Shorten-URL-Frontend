@@ -1,6 +1,17 @@
+import { up } from 'styled-breakpoints';
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+import config from '../../config';
+
+export const URLList = styled.div`
+    ${up('lg')} {
+        max-height: ${(props) => (props.$isSmall ? '352px' : 'auto')};
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+`;
+
+export const NoLink = styled.div`
     display: flex;
     align-items: center;
     justify-content: center;

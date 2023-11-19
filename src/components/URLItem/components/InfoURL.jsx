@@ -17,20 +17,22 @@ import { Button } from '../..';
 import * as Styled from '../URLItem.styled';
 
 const InfoURL = ({ data, handleClose }) => {
-    const [path, setPath] = useState('');
+    const [path, setPath] = useState(data.shortenLink.split('/')[3]);
+    const [title, setTitle] = useState(data.title);
 
     const dispatch = useDispatch();
     const handleDoneEdit = async () => {
-        toast.promise(updateLink(data.shorten_link, path), {
+        toast.promise(updateLink(data.shortenLink.split('/')[3], path.trim(), title.trim()), {
             pending: 'The link is shortening...',
             success: {
                 render({ data }) {
                     dispatch(
                         add({
-                            original: data.origin_link,
+                            original: data.originLink,
                             shorten: `${removeHttps(config.publicRuntime.API_URL)}/${path}`,
                         }),
                     );
+
                     return data.data.message;
                 },
             },
@@ -44,24 +46,36 @@ const InfoURL = ({ data, handleClose }) => {
         <Styled.EditBox>
             <Styled.Item>
                 <Row>
-                    <Col xs={12} lg={8}>
-                        {/* <Styled.Label> */}
+                    <Col xs={12} lg={6}>
                         <HiLink />
-                        <label htmlFor="">Customize your link</label>
-                        {/* </Styled.Label> */}
+                        <label htmlFor="">Customize title</label>
 
                         <Styled.WrapperInput>
-                            <input
+                            <Styled.Input
                                 type="text"
-                                value={`${removeHttps(config.publicRuntime.API_URL)}/`}
-                                readOnly
+                                value={title}
+                                onChange={(e) => setTitle(e.target.value)}
+                                onKeyDown={(e) => e.keyCode === 13 && handleDoneEdit()}
+                                placeholder={data.title}
                             />
-                            <Styled.CustomInput
+                        </Styled.WrapperInput>
+                    </Col>
+
+                    <Col xs={12} lg={6}>
+                        <HiLink />
+                        <label htmlFor="">Customize your link</label>
+
+                        <Styled.WrapperInput>
+                            <Styled.Domain>
+                                {removeHttps(config.publicRuntime.API_URL)}
+                            </Styled.Domain>
+
+                            <Styled.Input
                                 type="text"
                                 value={path}
                                 onChange={(e) => setPath(e.target.value)}
                                 onKeyDown={(e) => e.keyCode === 13 && handleDoneEdit()}
-                                placeholder={data.shorten_link.split('/')[3]}
+                                placeholder={data.shortenLink.split('/')[3]}
                             />
                         </Styled.WrapperInput>
                     </Col>
@@ -70,8 +84,8 @@ const InfoURL = ({ data, handleClose }) => {
             <Styled.Item>
                 <BsLink45Deg />
                 Original link:
-                <Styled.Link as="a" target="_blank" wrap="true" href={data.origin_link}>
-                    {data.origin_link}
+                <Styled.Link as="a" target="_blank" wrap="true" href={data.originLink}>
+                    {data.originLink}
                 </Styled.Link>
             </Styled.Item>
             <Styled.Item>

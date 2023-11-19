@@ -15,32 +15,25 @@ export const createAccount = (data = {}) => {
     return post(url, data);
 };
 
-export const updateUserStatus = (status, account_id) => {
+export const updateUserStatus = (status, accountId) => {
     const url = '/api/admin/status';
 
-    // *NodeJS
-    // return put(url, { status, account_id });
-    // *Java
-    return put(url, {}, { status: status.toUpperCase(), accountId: account_id });
+    return put(url, {}, { status: status.toUpperCase(), accountId });
 };
 
-export const updateUserRole = (role, account_id) => {
+export const updateUserRole = (role, accountId) => {
     const url = '/api/admin/role';
 
-    // *NodeJS
-    // return put(url, { role, account_id });
-    // *Java
     const ROLE = {
         USER: 0,
         ADMIN: 1,
     };
-    return put(url, {}, { role: role === ROLE.USER ? 'USER' : 'ADMIN', accountId: account_id });
+    return put(url, {}, { role: role === ROLE.USER ? 'USER' : 'ADMIN', accountId });
 };
 
 // Users API
 export const getInfo = () => {
-    const accountId = cookies.get('id');
+    const url = `/api/user`;
 
-    const url = `/api/user/${accountId}`;
     return get(url);
 };

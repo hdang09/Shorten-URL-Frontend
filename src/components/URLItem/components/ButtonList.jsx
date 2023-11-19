@@ -20,8 +20,8 @@ const ButtonList = ({ showDrawer, data, toggleEditBox, scollToQr }) => {
     const dispatchAddUrl = () =>
         dispatch(
             add({
-                original: data.origin_link,
-                shorten: data.shorten_link,
+                original: data.originLink,
+                shorten: data.shortenLink,
             }),
         );
 
@@ -38,7 +38,7 @@ const ButtonList = ({ showDrawer, data, toggleEditBox, scollToQr }) => {
         {
             content: 'Copy',
             icon: MdOutlineContentCopy,
-            handleClick: () => handleCopy(data.shorten_link),
+            handleClick: () => handleCopy(data.shortenLink),
         },
         {
             content: 'Info',
