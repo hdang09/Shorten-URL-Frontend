@@ -32,25 +32,24 @@ const URLShortener = () => {
             pending: 'The link is shortening...',
             success: {
                 render({ data }) {
-                    dispatch(
-                        add({
-                            original: originalURL,
-                            shorten: removeHttps(data.data.data.shortenLink),
-                        }),
-                    );
+                    if (data.data.code === 201) {
+                        dispatch(
+                            add({
+                                original: originalURL,
+                                shorten: removeHttps(data.data.data.shortenLink),
+                            }),
+                        );
 
-                    if (data.data.message) {
-                        return data.data.message;
+                        setOriginalURL('');
+                        setCustomPath('');
                     }
 
-                    setOriginalURL('');
-                    setCustomPath('');
-                    return 'Shorten successfully';
+                    return data.data.message;
                 },
             },
             error: {
                 render({ data }) {
-                    return data.response.data.messaage;
+                    return data.response.data.message;
                 },
             },
         });
