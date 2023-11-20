@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 
 import { urlSelector } from '../../app/reducers/urlReducer';
 import { Card, Input, URLList } from '../../components';
-import { getReport } from '../../utils/urlAPI';
+import { getReport, getReportForCurrentUser } from '../../utils/urlAPI';
 
 import * as Styled from './MyURL.styled';
 
@@ -32,7 +32,7 @@ const MyURL = () => {
 
     useEffect(() => {
         const getAllLinks = async () => {
-            const { data } = await getReport(userId);
+            const { data } = userId ? await getReport(userId) : await getReportForCurrentUser();
 
             setLinks({
                 ...links,

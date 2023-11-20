@@ -32,7 +32,6 @@ export const updateLink = (shortenLink, linkcode, title) => {
 
 // Reports API
 export const getReport = (accountId, year, month) => {
-    accountId = !accountId ? new Cookies().get('id') : accountId;
     let url = `/api/report/${accountId}`;
 
     if (year && month) url += `/${year}/${month}`;
