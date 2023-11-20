@@ -8,7 +8,7 @@ import { Col, Container, Row } from 'styled-bootstrap-grid';
 import { urlSelector } from '../../app/reducers/urlReducer';
 import { Card, QR, URLList, URLShortener } from '../../components';
 import config from '../../config';
-import { getReport } from '../../utils/urlAPI';
+import { getReportForCurrentUser } from '../../utils/urlAPI';
 
 const Home = () => {
     const currentURL = useSelector(urlSelector).shorten;
@@ -27,7 +27,7 @@ const Home = () => {
 
     useEffect(() => {
         const getLinks = async () => {
-            const { data } = await getReport();
+            const { data } = await getReportForCurrentUser();
             setLinks(data.data.links);
         };
         getLinks();

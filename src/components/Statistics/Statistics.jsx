@@ -3,7 +3,7 @@ import { HiCursorClick } from 'react-icons/hi';
 import { RiLinksLine } from 'react-icons/ri';
 import { Col, Container, Row } from 'styled-bootstrap-grid';
 
-import { getReport } from '../../utils/urlAPI';
+import { getReportForCurrentUser } from '../../utils/urlAPI';
 
 import * as Styled from './Statistics.styled';
 import Skeleton from './StatisticsSkeleton';
@@ -13,7 +13,7 @@ const Statistics = () => {
 
     useEffect(() => {
         const getAllLinks = async () => {
-            const { data } = await getReport();
+            const { data } = await getReportForCurrentUser();
             setReport(data.data);
         };
         getAllLinks();

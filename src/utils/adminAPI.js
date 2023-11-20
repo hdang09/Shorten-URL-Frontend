@@ -1,8 +1,4 @@
-import Cookies from 'universal-cookie';
-
 import { get, post, put } from './apiCaller';
-
-const cookies = new Cookies();
 
 // Admin API
 export const getAllUser = () => {
