@@ -3,8 +3,8 @@ import Cookies from 'universal-cookie';
 import { get, post, put } from './apiCaller';
 
 // URL API
-export const shortenUrl = (link, linkcode) => {
-    const url = '/api/url/shorten';
+export const shortenUrl = (link, linkcode, isNotLogin = false) => {
+    const url = isNotLogin ? '/api/url/shorten/without-login' : '/api/url/shorten';
 
     return post(
         url,

@@ -1,7 +1,9 @@
 import { createRef, useState } from 'react';
 import { HiLink } from 'react-icons/hi';
+import { RxOpenInNewWindow } from 'react-icons/rx';
 import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
+import { Modal } from 'antd';
 import isUrl from 'is-url';
 import { nanoid } from 'nanoid';
 import { Col, Row } from 'styled-bootstrap-grid';
@@ -9,12 +11,13 @@ import { Col, Row } from 'styled-bootstrap-grid';
 import { add } from '../../app/reducers/urlReducer';
 import { Button, Input } from '../../components';
 import config from '../../config';
+import handleCopy from '../../utils/handleCopy';
 import removeHttps from '../../utils/removeHttps';
 import { shortenUrl } from '../../utils/urlAPI';
 
 import * as Styled from './URLShortener.styled';
 
-const URLShortener = () => {
+const URLShortener = ({ isNotLogin = false }) => {
     const dispatch = useDispatch();
 
     const inputRef = createRef();
@@ -28,7 +31,7 @@ const URLShortener = () => {
             return;
         }
 
-        toast.promise(shortenUrl(originalURL, customPath || nanoid(10)), {
+        toast.promise(shortenUrl(originalURL, customPath || nanoid(10), isNotLogin), {
             pending: 'The link is shortening...',
             success: {
                 render({ data }) {
@@ -44,12 +47,31 @@ const URLShortener = () => {
                         setCustomPath('');
                     }
 
+                    if (data.data.code === 201 && isNotLogin) {
+                        const shortenLink = `${removeHttps(config.publicRuntime.API_URL)}/${
+                            data.data.data.shortenLink
+                        }`;
+                        Modal.success({
+                            title: <strong>{shortenLink}</strong>,
+                            okText: 'Copy URL',
+                            content: (
+                                <p>
+                                    Your link will be expired in <strong>7 days</strong>. Please
+                                    login to save this link forever.
+                                </p>
+                            ),
+                            onOk() {
+                                handleCopy(shortenLink);
+                            },
+                        });
+                    }
+
                     return data.data.message;
                 },
             },
             error: {
                 render({ data }) {
-                    return data.response.data.message;
+                    return data.response?.data?.message;
                 },
             },
         });
@@ -101,6 +123,7 @@ const URLShortener = () => {
                 shine="true"
                 onClick={() => handleShortenURL()}
                 style={{ margin: '12px auto 0 auto' }}
+                leftIcon={<RxOpenInNewWindow />}
             >
                 Shorten
             </Button>

@@ -111,7 +111,7 @@ const GlobalStyles = createGlobalStyle`
         margin-bottom: 0;
     }
 
-    /* OVerride CSS */
+    /* Override CSS */
     .ant-picker-cell-in-view.ant-picker-cell-selected .ant-picker-cell-inner {
         background: var(--primary-color);
     }
@@ -122,6 +122,12 @@ const GlobalStyles = createGlobalStyle`
 
     img, svg, video, canvas, audio, iframe, embed, object {
         display: inline-block !important;
+    }
+
+    .ant-btn.ant-btn-primary {
+        background-color: var(--primary-color);
+        border-radius: 4px;
+        border: none;
     }
 
 `;

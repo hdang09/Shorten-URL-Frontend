@@ -3,11 +3,10 @@ import { BsFillCaretRightFill } from 'react-icons/bs';
 import { SiFandom } from 'react-icons/si';
 import { useSelector } from 'react-redux';
 
-// import PropTypes from 'prop-types';
 import { modeSelector } from '../../app/reducers/customizationReducer';
 import lightScreenshot from '../../assets/images/screenshots.png';
 import darkScreenshot from '../../assets/images/screenshots-dark.png';
-import { Button, Header } from '../../components';
+import { Button, Header, URLShortener } from '../../components';
 import config from '../../config';
 import aosInit from '../../utils/aosInit';
 
@@ -62,6 +61,11 @@ function LandingPage() {
                         </Button>
                     </Styled.CtaWrap>
                 </Styled.Hero>
+
+                <Styled.ShortenerCard>
+                    <URLShortener isNotLogin={true} />
+                </Styled.ShortenerCard>
+
                 <Styled.Screenshot src={screenshot} alt="Screenshot" />
                 {/* All Features */}
                 {/* How to start */}

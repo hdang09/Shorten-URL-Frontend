@@ -1,7 +1,7 @@
 import { down } from 'styled-breakpoints';
 import styled, { keyframes } from 'styled-components';
 
-import { Button } from '../../components';
+import { Button, Card } from '../../components';
 
 export const Main = styled.main`
     background-color: ${(props) => props.theme.cardBackground};
@@ -146,4 +146,8 @@ export const BannerButton = styled.a`
         margin-left: 0 !important;
         margin-top: 1rem;
     }
+`;
+
+export const ShortenerCard = styled(Card)`
+    width: auto;
 `;
